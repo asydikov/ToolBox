@@ -1,7 +1,7 @@
 using System;
 using ToolBox.Common.Enums;
 
-namespace ToolBox.Common.Commands.SQLMonitoringService
+namespace ToolBox.Common.Commands.SQLMonitorService
 {
     public class CreateServer : IAuthenticatedCommand
     {
@@ -10,7 +10,7 @@ namespace ToolBox.Common.Commands.SQLMonitoringService
 
         public string Name { get; set; }
         public ServerType Type { get; set; }
-        public string Adress { get; set; }
+        public string Address { get; set; }
         public int Port { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
