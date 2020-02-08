@@ -10,6 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ToolBox.Api.Handlers;
+using ToolBox.Common.Events;
+using ToolBox.Common.Events.IdentityService;
+using ToolBox.Common.RabbitMq;
 
 namespace ToolBox.Api
 {
@@ -26,6 +30,8 @@ namespace ToolBox.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddRabbitMq(Configuration);
+            services.AddTransient<IEventHandler<UserCreated>, UserCreatedHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
