@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ToolBox.Common.Events.IdentityService;
 using ToolBox.Common.Services;
+using static ToolBox.Common.Services.ServiceHost;
 
 namespace ToolBox.Api
 {
@@ -15,19 +16,18 @@ namespace ToolBox.Api
     {
         public static async Task Main(string[] args)
         {
-            // CreateHostBuilder(args).Build().Run();
-            await ServiceHost.Create<Startup>(args)
-                  .UserRabbitMq()
-                  .SubscribeToEvent<UserCreated>()
-                  .Build()
-                  .Run();
+            await new RabbitmqHostBuilder(CreateHostBuilder(args).Build())
+            .UserRabbitMq()
+            .SubscribeToEvent<UserCreated>()
+            .Build()
+            .Run();
         }
 
-        // public static IHostBuilder CreateHostBuilder(string[] args) =>
-        //     Host.CreateDefaultBuilder(args)
-        //         .ConfigureWebHostDefaults(webBuilder =>
-        //         {
-        //             webBuilder.UseStartup<Startup>();
-        //         });
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }

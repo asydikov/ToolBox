@@ -1,10 +1,5 @@
-using System;
-using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using RawRabbit;
 using ToolBox.Common.Commands;
 using ToolBox.Common.Events;
@@ -15,39 +10,25 @@ namespace ToolBox.Common.Services
     /// The Service bus runs asynchronously
     public class ServiceHost : IServiceHost
     {
-        private readonly IWebHost _webhost;
-        public ServiceHost(IWebHost webhost)
+        private readonly IHost _webhost;
+        public ServiceHost(IHost webhost)
         {
             _webhost = webhost;
         }
         public async Task Run() => await _webhost.RunAsync();
-        public static HostBuilder Create<TStartup>(string[] args) where TStartup : class
-        {
-            Console.WriteLine("Running rabbitmq server");
-            Console.Title = typeof(TStartup).Namespace;
-            var config = new ConfigurationBuilder()
-            .AddEnvironmentVariables()
-            .AddCommandLine(args)
-            .Build();
-            var webHostBuilder = WebHost.CreateDefaultBuilder(args)
-            .UseConfiguration(config)
-            .UseStartup<TStartup>();
-
-            return new HostBuilder(webHostBuilder.Build());
-        }
 
         public abstract class BuilderBase
         {
             public abstract ServiceHost Build();
         }
 
-        public class HostBuilder : BuilderBase
+        public class RabbitmqHostBuilder : BuilderBase
         {
-            private readonly IWebHost _webHost;
+            private readonly IHost _webHost;
             /// Responsible for sending and receiving messages
             private IBusClient _bus;
 
-            public HostBuilder(IWebHost webHost)
+            public RabbitmqHostBuilder(IHost webHost)
             {
                 _webHost = webHost;
             }
@@ -66,9 +47,9 @@ namespace ToolBox.Common.Services
 
         public class BusBuilder : BuilderBase
         {
-            private readonly IWebHost _webHost;
+            private readonly IHost _webHost;
             private IBusClient _bus;
-            public BusBuilder(IWebHost webHost, IBusClient bus)
+            public BusBuilder(IHost webHost, IBusClient bus)
             {
                 _webHost = webHost;
                 _bus = bus;
@@ -77,13 +58,10 @@ namespace ToolBox.Common.Services
             ///https://stackoverflow.com/questions/55089755/cannot-resolve-scoped-service/55091641
             public BusBuilder SubscribeToEvent<TEvent>() where TEvent : IEvent
             {
-                var serviceScopeFactory = _webHost.Services.GetService<IServiceScopeFactory>();
-                using (var scope = serviceScopeFactory.CreateScope())
-                {
-                    var handler = (IEventHandler<TEvent>)scope.ServiceProvider
-                                .GetService(typeof(IEventHandler<TEvent>));
-                    _bus.WithEventHandlerAsync(handler);
-                }
+                var handler = (IEventHandler<TEvent>)_webHost.Services
+                            .GetService(typeof(IEventHandler<TEvent>));
+                _bus.WithEventHandlerAsync(handler);
+
                 return this;
             }
 
