@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,6 +15,7 @@ using ToolBox.Common.Commands;
 using ToolBox.Common.Commands.IdentityService;
 using ToolBox.Common.Events;
 using ToolBox.Common.RabbitMq;
+using ToolBox.Services.Identity.EF;
 using ToolBox.Services.Identity.Handlers;
 
 namespace ToolBox.Services.Identity
@@ -32,9 +34,9 @@ namespace ToolBox.Services.Identity
         {
             services.AddControllers();
             services.AddRabbitMq(Configuration);
+            services.Configure<SqlSettings>(Configuration.GetSection("sql"));
+            services.AddEntityFrameworkSqlServer().AddDbContext<IdentityDbContext>();
             services.AddTransient<ICommandHandler<CreateUser>, CreateUserHandler>();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
