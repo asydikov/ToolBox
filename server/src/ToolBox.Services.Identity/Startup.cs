@@ -15,8 +15,11 @@ using ToolBox.Common.Commands;
 using ToolBox.Common.Commands.IdentityService;
 using ToolBox.Common.Events;
 using ToolBox.Common.RabbitMq;
+using ToolBox.Services.Identity.Domain.Repositories;
 using ToolBox.Services.Identity.EF;
 using ToolBox.Services.Identity.Handlers;
+using ToolBox.Services.Identity.Repositories;
+using ToolBox.Services.Identity.Services;
 
 namespace ToolBox.Services.Identity
 {
@@ -36,7 +39,10 @@ namespace ToolBox.Services.Identity
             services.AddRabbitMq(Configuration);
             services.Configure<SqlSettings>(Configuration.GetSection("sql"));
             services.AddEntityFrameworkSqlServer().AddDbContext<IdentityDbContext>();
-            services.AddTransient<ICommandHandler<CreateUser>, CreateUserHandler>();
+            services.AddScoped<ICommandHandler<CreateUser>, CreateUserHandler>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

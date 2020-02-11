@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RawRabbit;
@@ -25,6 +26,7 @@ namespace ToolBox.Api.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Post([FromBody] CreateUser command)
         {
+            Console.WriteLine($"User controller {command.Name}{command.Email}{command.Password}");
             await _busClient.PublishAsync(command);
             return Content("Hello world");
         }

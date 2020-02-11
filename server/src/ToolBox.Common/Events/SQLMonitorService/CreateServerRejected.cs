@@ -1,15 +1,18 @@
+using System;
 using ToolBox.Common.Enums;
 
 namespace ToolBox.Common.Events.SQLMonitorService
 {
     public class CreateServerRejected : IRejectedEvent
     {
+        public Guid RejectedCommandId { get; set; }
         public string Email { get; }
         public string Reason { get; }
-        public RejectionCode Code { get; }
+        public string Code { get; }
         protected CreateServerRejected() { }
-        public CreateServerRejected(string email, string reason, RejectionCode code)
+        public CreateServerRejected(Guid rejectedCommandId, string email, string reason, string code)
         {
+            RejectedCommandId = RejectedCommandId;
             Email = email;
             Reason = reason;
             Code = code;

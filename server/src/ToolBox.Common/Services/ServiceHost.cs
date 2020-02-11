@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RawRabbit;
 using ToolBox.Common.Commands;
@@ -58,8 +59,20 @@ namespace ToolBox.Common.Services
             ///https://stackoverflow.com/questions/55089755/cannot-resolve-scoped-service/55091641
             public BusBuilder SubscribeToEvent<TEvent>() where TEvent : IEvent
             {
-                var handler = (IEventHandler<TEvent>)_webHost.Services
-                            .GetService(typeof(IEventHandler<TEvent>));
+                // var handler = (IEventHandler<TEvent>)_webHost.Services
+                //             .GetService(typeof(IEventHandler<TEvent>));
+                // _bus.WithEventHandlerAsync(handler);
+
+                // var serviceScopeFactory = _webHost.Services.GetService<IServiceScopeFactory>();
+                // using (var scope = serviceScopeFactory.CreateScope())
+                // {
+                //     var handler = (IEventHandler<TEvent>)scope.ServiceProvider
+                //     .GetService(typeof(IEventHandler<TEvent>));
+                // }
+
+                var handler = (IEventHandler<TEvent>)_webHost.Services.CreateScope()
+                           .ServiceProvider.GetRequiredService(typeof(IEventHandler<TEvent>));
+
                 _bus.WithEventHandlerAsync(handler);
 
                 return this;
@@ -67,9 +80,21 @@ namespace ToolBox.Common.Services
 
             public BusBuilder SubscribeToCommand<TCommand>() where TCommand : ICommand
             {
-                var handler = (ICommandHandler<TCommand>)_webHost.Services
-                            .GetService(typeof(ICommandHandler<TCommand>));
+                // var handler = (ICommandHandler<TCommand>)_webHost.Services
+                //             .GetService(typeof(ICommandHandler<TCommand>));
+                // _bus.WithCommandHandlerAsync(handler);
+
+                // var serviceScopeFactory = _webHost.Services.GetService<IServiceScopeFactory>();
+                // using (var scope = serviceScopeFactory.CreateScope())
+                // {
+                //     var handler = (ICommandHandler<TCommand>)scope.ServiceProvider
+                //     .GetService(typeof(ICommandHandler<TCommand>));
+                // }
+
+                var handler = (ICommandHandler<TCommand>)_webHost.Services.CreateScope()
+                          .ServiceProvider.GetRequiredService(typeof(ICommandHandler<TCommand>));
                 _bus.WithCommandHandlerAsync(handler);
+
                 return this;
             }
 

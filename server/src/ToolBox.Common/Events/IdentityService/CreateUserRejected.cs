@@ -5,15 +5,16 @@ namespace ToolBox.Common.Events.IdentityService
 {
     public class CreateUserRejected : IRejectedEvent
     {
-        public string Email { get; }
+        public Guid RejectedCommandId { get; set; }
         public string Reason { get; }
-        public RejectionCode Code { get; }
+        public string Code { get; }
+
         protected CreateUserRejected() { }
-        public CreateUserRejected(string email, string reason, RejectionCode code)
+        public CreateUserRejected(Guid rejectedCommandId, string code, string reason)
         {
-            Email = email;
-            Reason = reason;
+            RejectedCommandId = RejectedCommandId;
             Code = code;
+            Reason = reason;
         }
     }
 }

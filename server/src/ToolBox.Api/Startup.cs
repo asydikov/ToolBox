@@ -31,7 +31,7 @@ namespace ToolBox.Api
         {
             services.AddControllers();
             services.AddRabbitMq(Configuration);
-            services.AddTransient<IEventHandler<UserCreated>, UserCreatedHandler>();
+            services.AddScoped<IEventHandler<UserCreated>, UserCreatedHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

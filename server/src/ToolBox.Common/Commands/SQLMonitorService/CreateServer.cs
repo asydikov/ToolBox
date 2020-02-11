@@ -5,6 +5,7 @@ namespace ToolBox.Common.Commands.SQLMonitorService
 {
     public class CreateServer : IAuthenticatedCommand
     {
+        public Guid CommandId { get; set; }
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
 
