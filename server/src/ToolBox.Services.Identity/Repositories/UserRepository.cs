@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using ToolBox.Common.Exceptions;
 using ToolBox.Services.Identity.Domain.Repositories;
 using ToolBox.Services.Identity.EF;
 using ToolBox.Services.Identity.Entities;
@@ -19,33 +16,25 @@ namespace ToolBox.Services.Identity.Repositories
         }
 
         public async Task<User> GetAsync(Guid id)
-            => await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+           => await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
 
-        public async Task<User> GetByEmailAsync(string email)
-         => await _context.Users.FirstOrDefaultAsync(x => x.Email == email.ToLowerInvariant());
-
-        public async Task AddAsync(User user)
+        public async Task<User> GetAsync(string email)
         {
-
-            Console.WriteLine($"------------------------------------------------------------{_context.ContextId}------------------------------------------------------------");
-            Console.WriteLine($"User repository: Guid{user.Id}; Name - {user.Name}{user.Email}{user.Password}");
-
-            try
-            {
-                await _context.Users.AddAsync(user);
-                _context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new ToolBoxException("Exception from UserRespository", ex.InnerException.Message);
-            }
+            return await _context.Set<User>().FirstOrDefaultAsync(x => x.Email == email.ToLowerInvariant());
+            // return await _context.Users.FirstOrDefaultAsync(x => x.Email == email.ToLowerInvariant());
 
         }
 
+        public async Task AddAsync(User user)
+        {
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
+        }
 
-        public async Task<IEnumerable<User>> BrowseAsync()
-            => await _context.Users.ToListAsync();
-
-
+        public async Task UpdateAsync(User user)
+        {
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+        }
     }
 }

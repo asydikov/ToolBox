@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RawRabbit;
 using ToolBox.Common.Commands.IdentityService;
@@ -7,6 +8,7 @@ using ToolBox.Common.Commands.IdentityService;
 namespace ToolBox.Api.Controllers
 {
     [Route("[controller]")]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IBusClient _busClient;

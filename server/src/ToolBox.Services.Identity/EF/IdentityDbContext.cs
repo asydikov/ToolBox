@@ -7,17 +7,19 @@ namespace ToolBox.Services.Identity.EF
 {
     public class IdentityDbContext : DbContext
     {
-        // private IOptions<SqlSettings> _sqlSettings;
         private IOptions<SqlSettings> _sqlSettings;
 
         public IdentityDbContext(DbContextOptions<IdentityDbContext> options, IOptions<SqlSettings> sqlSettings)
               : base(options)
         {
             _sqlSettings = sqlSettings;
+            //https://github.com/Microsoft/mssql-docker/issues/360
+            this.Database.EnsureCreatedAsync();
         }
         public DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.EnableSensitiveDataLogging();
             optionsBuilder.UseSqlServer(_sqlSettings.Value.ConnectionString);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -25,8 +27,10 @@ namespace ToolBox.Services.Identity.EF
             modelBuilder.Entity<User>().Property(x => x.Email).IsRequired();
             modelBuilder.Entity<User>().Property(x => x.Password).IsRequired();
             modelBuilder.Entity<User>().Property(x => x.Name).IsRequired();
-            modelBuilder.Entity<User>().Property(x => x.CreatedAt).IsRequired();
+            modelBuilder.Entity<User>().Property(x => x.CreatedDate).IsRequired();
+            modelBuilder.Entity<User>().Property(x => x.UpdatedDate).IsRequired();
             modelBuilder.Seed();
         }
+
     }
 }

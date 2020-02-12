@@ -25,7 +25,7 @@ namespace ToolBox.Services.Identity.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -40,35 +40,15 @@ namespace ToolBox.Services.Identity.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Salt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("ca362225-0562-470c-b712-5aea9a8e5f01"),
-                            CreatedAt = new DateTime(2020, 2, 9, 18, 1, 16, 379, DateTimeKind.Utc).AddTicks(2430),
-                            Email = "test@test.com",
-                            Name = "Nick",
-                            Password = "1"
-                        },
-                        new
-                        {
-                            Id = new Guid("c88e8569-f3db-4d7e-88f2-b7c6b25071d7"),
-                            CreatedAt = new DateTime(2020, 2, 9, 18, 1, 16, 379, DateTimeKind.Utc).AddTicks(3200),
-                            Email = "test@test.com",
-                            Name = "John",
-                            Password = "1"
-                        },
-                        new
-                        {
-                            Id = new Guid("48f2cace-05ae-45c6-af58-a4c8449ea67c"),
-                            CreatedAt = new DateTime(2020, 2, 9, 18, 1, 16, 379, DateTimeKind.Utc).AddTicks(3350),
-                            Email = "test@test.com",
-                            Name = "Roe",
-                            Password = "1"
-                        });
                 });
 #pragma warning restore 612, 618
         }

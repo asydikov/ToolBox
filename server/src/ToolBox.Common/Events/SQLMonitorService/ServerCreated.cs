@@ -1,5 +1,4 @@
 using System;
-using ToolBox.Common.Enums;
 
 namespace ToolBox.Common.Events.SQLMonitorService
 {
@@ -8,17 +7,17 @@ namespace ToolBox.Common.Events.SQLMonitorService
         public Guid Id { get; }
         public Guid UserId { get; }
         public string Name { get; }
-        public ServerType Type { get; }
+        // public ServerType Type { get; }
         public string Address { get; }
         public int Port { get; }
         public string Login { get; }
         public string Password { get; }
         protected ServerCreated() { }
-        public ServerCreated(Guid id, string name, ServerType type, string address, int port, string login, string password)
+        public ServerCreated(Guid id, string name, string address, int port, string login, string password)
         {
             Id = id;
             Name = name;
-            Type = type;
+            // Type = type;
             Address = address;
             Port = port;
             Login = login;

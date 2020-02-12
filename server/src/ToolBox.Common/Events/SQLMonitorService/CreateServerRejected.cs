@@ -1,5 +1,4 @@
 using System;
-using ToolBox.Common.Enums;
 
 namespace ToolBox.Common.Events.SQLMonitorService
 {

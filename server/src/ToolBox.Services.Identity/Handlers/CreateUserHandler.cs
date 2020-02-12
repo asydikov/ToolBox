@@ -13,14 +13,14 @@ namespace ToolBox.Services.Identity.Handlers
     public class CreateUserHandler : ICommandHandler<CreateUser>
     {
         private readonly IBusClient _busClient;
-        private readonly IUserService _userService;
+        private readonly IIdentityService _identityService;
         private readonly ILogger _logger;
         public CreateUserHandler(IBusClient busClient,
-        IUserService userService,
-        ILogger<CreateUserHandler> logger)
+         IIdentityService identityService,
+         ILogger<AuthenticateUserHandler> logger)
         {
             _busClient = busClient;
-            _userService = userService;
+            _identityService = identityService;
             _logger = logger;
         }
         public async Task HandleAsync(CreateUser command)
@@ -29,8 +29,8 @@ namespace ToolBox.Services.Identity.Handlers
 
             try
             {
-                await _userService.AddAsync(command);
-                await _busClient.PublishAsync(new UserCreated(Guid.NewGuid(), command.Email, command.Name));
+                await _identityService.SignUpAsync(command.CommandId, command.Email, command.Name, command.Password);
+                await _busClient.PublishAsync(new UserCreated(command.CommandId, command.Email));
                 return;
             }
             catch (ToolBoxException ex)

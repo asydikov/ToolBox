@@ -1,5 +1,4 @@
 using System;
-using ToolBox.Common.Enums;
 
 namespace ToolBox.Common.Commands.SQLMonitorService
 {
@@ -10,7 +9,7 @@ namespace ToolBox.Common.Commands.SQLMonitorService
         public Guid UserId { get; set; }
 
         public string Name { get; set; }
-        public ServerType Type { get; set; }
+        // public ServerType Type { get; set; }
         public string Address { get; set; }
         public int Port { get; set; }
         public string Login { get; set; }
