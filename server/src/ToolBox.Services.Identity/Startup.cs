@@ -50,10 +50,10 @@ namespace ToolBox.Services.Identity
             services.AddEntityFrameworkSqlServer().AddDbContext<IdentityDbContext>();
             services.AddScoped<ICommandHandler<CreateUser>, CreateUserHandler>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
             services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IEncrypter, Encrypter>();
-            services.AddTransient<IAccessTokenService, AccessTokenService>();
+            services.AddTransient<IRefreshTokenService, RefreshTokenService>();
             services.AddTransient<IClaimsProvider, ClaimsProvider>();
             services.AddTransient<IPasswordHasher<User>, PasswordHasher<User>>();
 
@@ -74,6 +74,7 @@ namespace ToolBox.Services.Identity
             app.UseRouting();
 
             app.UseAuthorization();
+
             app.UseAuthentication();
             // app.UseMiddleware<AccessTokenValidatorMiddleware>();
             app.UseEndpoints(endpoints =>

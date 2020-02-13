@@ -16,7 +16,5 @@ namespace ToolBox.Services.Identity.Controllers
             => string.IsNullOrWhiteSpace(User?.Identity?.Name) ?
                 Guid.Empty :
                 Guid.Parse(User.Identity.Name);
-
-        // protected ClaimsPrincipal UserId => User.AddIdentity.;
     }
 }

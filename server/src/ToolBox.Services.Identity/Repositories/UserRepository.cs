@@ -19,11 +19,7 @@ namespace ToolBox.Services.Identity.Repositories
            => await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<User> GetAsync(string email)
-        {
-            return await _context.Set<User>().FirstOrDefaultAsync(x => x.Email == email.ToLowerInvariant());
-            // return await _context.Users.FirstOrDefaultAsync(x => x.Email == email.ToLowerInvariant());
-
-        }
+            => await _context.Users.Include(x => x.RefreshToken).FirstOrDefaultAsync(x => x.Email == email.ToLowerInvariant());
 
         public async Task AddAsync(User user)
         {

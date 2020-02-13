@@ -35,10 +35,8 @@ namespace ToolBox.Common.Auth
                 IssuerSigningKey = issuerSigningKey,
                 ValidIssuer = _options.Issuer,
                 ValidateLifetime = _options.ValidateLifetime,
-                //  ValidAudience = _options.ValidAudience, // should be urls of possib;e consumers
-                // ValidateAudience = _options.ValidateAudience,
-                ValidateAudience = false,
-
+                ValidAudience = _options.ValidAudience, // should be urls of possible consumers
+                ValidateAudience = _options.ValidateAudience,
             };
         }
 
@@ -85,25 +83,6 @@ namespace ToolBox.Common.Auth
                 Claims = customClaims.ToDictionary(c => c.Type, c => c.Value)
             };
 
-        }
-
-        public JsonWebTokenPayload GetTokenPayload(string accessToken)
-        {
-            _jwtSecurityTokenHandler.ValidateToken(accessToken, _tokenValidationParameters,
-                out var validatedSecurityToken);
-            if (!(validatedSecurityToken is JwtSecurityToken jwt))
-            {
-                return null;
-            }
-
-            return new JsonWebTokenPayload
-            {
-                Subject = jwt.Subject,
-                Role = jwt.Claims.SingleOrDefault(x => x.Type == ClaimTypes.Role)?.Value,
-                Expires = ToTimestamp(jwt.ValidTo),
-                Claims = jwt.Claims.Where(x => !DefaultClaims.Contains(x.Type))
-                    .ToDictionary(k => k.Type, v => v.Value)
-            };
         }
 
         public static long ToTimestamp(DateTime dateTime)

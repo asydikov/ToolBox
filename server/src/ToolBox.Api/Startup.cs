@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ToolBox.Api.Handlers;
+using ToolBox.Common.Auth;
 using ToolBox.Common.Events;
 using ToolBox.Common.Events.IdentityService;
 using ToolBox.Common.RabbitMq;
@@ -30,6 +31,7 @@ namespace ToolBox.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddJwt(Configuration);
             services.AddRabbitMq(Configuration);
             services.AddScoped<IEventHandler<UserCreated>, UserCreatedHandler>();
         }
@@ -45,6 +47,8 @@ namespace ToolBox.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

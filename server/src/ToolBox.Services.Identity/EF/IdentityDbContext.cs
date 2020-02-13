@@ -1,6 +1,7 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using ToolBox.Services.Identity.Domain;
 using ToolBox.Services.Identity.Entities;
 
 namespace ToolBox.Services.Identity.EF
@@ -14,9 +15,10 @@ namespace ToolBox.Services.Identity.EF
         {
             _sqlSettings = sqlSettings;
             //https://github.com/Microsoft/mssql-docker/issues/360
-            this.Database.EnsureCreatedAsync();
+            // this.Database.EnsureCreatedAsync();
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.EnableSensitiveDataLogging();
@@ -27,8 +29,10 @@ namespace ToolBox.Services.Identity.EF
             modelBuilder.Entity<User>().Property(x => x.Email).IsRequired();
             modelBuilder.Entity<User>().Property(x => x.Password).IsRequired();
             modelBuilder.Entity<User>().Property(x => x.Name).IsRequired();
-            modelBuilder.Entity<User>().Property(x => x.CreatedDate).IsRequired();
-            modelBuilder.Entity<User>().Property(x => x.UpdatedDate).IsRequired();
+            modelBuilder.Entity<User>().HasOne(x => x.RefreshToken)
+                                        .WithOne(x => x.User)
+                                        .HasForeignKey<RefreshToken>(x => x.UserId);
+
             modelBuilder.Seed();
         }
 

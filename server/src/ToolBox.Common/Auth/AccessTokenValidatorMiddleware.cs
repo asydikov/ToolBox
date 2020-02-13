@@ -6,21 +6,14 @@ namespace ToolBox.Common.Auth
 {
     public class AccessTokenValidatorMiddleware : IMiddleware
     {
-        private readonly IAccessTokenService _accessTokenService;
-
-        public AccessTokenValidatorMiddleware(IAccessTokenService accessTokenService)
+        public AccessTokenValidatorMiddleware()
         {
-            _accessTokenService = accessTokenService;
         }
 
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            if (await _accessTokenService.IsCurrentActiveToken())
-            {
-                await next(context);
+            await next(context);
 
-                return;
-            }
             context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
         }
     }

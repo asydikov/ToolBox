@@ -8,6 +8,13 @@ namespace ToolBox.Services.Identity.Entities
         public string Name { get; set; }
         public string Password { get; set; }
         public string Salt { get; set; }
+        public Guid RefreshTokenId { get; set; }
+        public RefreshToken RefreshToken { get; set; }
+
+        public User()
+        {
+
+        }
 
         public User(Guid id, string email, string name) : base(id)
         {

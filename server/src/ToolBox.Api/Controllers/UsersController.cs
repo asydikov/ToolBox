@@ -8,8 +8,7 @@ using ToolBox.Common.Commands.IdentityService;
 namespace ToolBox.Api.Controllers
 {
     [Route("[controller]")]
-    [Authorize]
-    public class UsersController : ControllerBase
+    public class UsersController : BaseController
     {
         private readonly IBusClient _busClient;
         public UsersController(IBusClient busClient)
@@ -17,13 +16,18 @@ namespace ToolBox.Api.Controllers
             _busClient = busClient;
         }
 
-
         [HttpGet("")]
         public IActionResult Get()
         {
-            _busClient.PublishAsync(new CreateUser());
             return Content("Thank you for creating me, with love - ToolBox");
         }
+
+        // [HttpGet("")]
+        // public IActionResult Get()
+        // {
+        //     _busClient.PublishAsync(new CreateUser());
+        //     return Content("Thank you for creating me, with love - ToolBox");
+        // }
 
         [HttpPost("register")]
         public async Task<IActionResult> Post([FromBody] CreateUser command)
