@@ -10,8 +10,8 @@ using ToolBox.Services.Identity.EF;
 namespace ToolBox.Services.Identity.Migrations
 {
     [DbContext(typeof(IdentityDbContext))]
-    [Migration("20200213184430_Initial-Create")]
-    partial class InitialCreate
+    [Migration("20200213235457_Initial_Migration")]
+    partial class Initial_Migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,9 +76,6 @@ namespace ToolBox.Services.Identity.Migrations
 
                     b.Property<Guid>("RefreshTokenId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Salt")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");

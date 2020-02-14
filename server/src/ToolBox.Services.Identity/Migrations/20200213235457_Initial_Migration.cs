@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ToolBox.Services.Identity.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial_Migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,7 +18,6 @@ namespace ToolBox.Services.Identity.Migrations
                     Email = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Password = table.Column<string>(nullable: false),
-                    Salt = table.Column<string>(nullable: true),
                     RefreshTokenId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
