@@ -71,12 +71,14 @@ namespace ToolBox.Services.Identity.Services
             {
                 user.RefreshToken.Token = refreshToken.Token;
                 user.RefreshToken.SetUpdatedDate();
-                await _userRepository.UpdateAsync(user);
             }
             else
             {
                 await _refreshTokenRepository.AddAsync(refreshToken);
+                user.RefreshToken = refreshToken;
+                user.RefreshTokenId = refreshToken.Id;
             }
+            await _userRepository.UpdateAsync(user);
             return jwt;
         }
 

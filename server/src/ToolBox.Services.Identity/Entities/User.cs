@@ -7,7 +7,6 @@ namespace ToolBox.Services.Identity.Entities
         public string Email { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
-        public string Salt { get; set; }
         public Guid RefreshTokenId { get; set; }
         public RefreshToken RefreshToken { get; set; }
 

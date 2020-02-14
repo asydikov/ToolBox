@@ -75,9 +75,6 @@ namespace ToolBox.Services.Identity.Migrations
                     b.Property<Guid>("RefreshTokenId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Salt")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
