@@ -7,7 +7,7 @@ using ToolBox.Services.Identity.Services;
 
 namespace ToolBox.Services.Identity.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class IdentityController : BaseController
     {
@@ -40,4 +40,4 @@ namespace ToolBox.Services.Identity.Controllers
             return Accepted();
         }
     }
-}
+}   

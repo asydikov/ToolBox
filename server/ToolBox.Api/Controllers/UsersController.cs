@@ -14,7 +14,7 @@ namespace ToolBox.Api.Controllers
         public UsersController(IBusClient busClient)
         {
             _busClient = busClient;
-        }
+        }     
 
         [HttpGet("")]
         public IActionResult Get()

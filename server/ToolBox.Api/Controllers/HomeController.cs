@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ToolBox.Api.Controllers
 {
 
-    [Route("")]
+    [Route("api/[controller]")]
     public class HomeController : ControllerBase
     {
         [HttpGet("")]

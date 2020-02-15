@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Toolbox.Common.Auth;
 
 namespace ToolBox.Common.Auth
 {
@@ -85,6 +86,25 @@ namespace ToolBox.Common.Auth
 
         }
 
+        public JsonWebTokenPayload GetTokenPayload(string accessToken)
+        {
+            _jwtSecurityTokenHandler.ValidateToken(accessToken, _tokenValidationParameters,
+                out var validatedSecurityToken);
+            if (!(validatedSecurityToken is JwtSecurityToken jwt))
+            {
+                return null;
+            }
+
+            return new JsonWebTokenPayload
+            {
+                Subject = jwt.Subject,
+                Role = jwt.Claims.SingleOrDefault(x => x.Type == ClaimTypes.Role)?.Value,
+                Expires = ToTimestamp(jwt.ValidTo),
+                Claims = jwt.Claims.Where(x => !DefaultClaims.Contains(x.Type))
+                    .ToDictionary(k => k.Type, v => v.Value)
+            };
+        }
+
         public static long ToTimestamp(DateTime dateTime)
         {
             var centuryBegin = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
@@ -92,6 +112,5 @@ namespace ToolBox.Common.Auth
 
             return expectedDate.Ticks / 10000;
         }
-
     }
 }
