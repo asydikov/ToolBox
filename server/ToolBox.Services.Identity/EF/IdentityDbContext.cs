@@ -15,7 +15,7 @@ namespace ToolBox.Services.Identity.EF
         {
             _sqlSettings = sqlSettings;
             //https://github.com/Microsoft/mssql-docker/issues/360
-            // this.Database.EnsureCreatedAsync();
+          //  Database.EnsureCreatedAsync();
         }
         public DbSet<User> Users { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
