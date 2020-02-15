@@ -7,7 +7,7 @@ using ToolBox.Common.Commands.IdentityService;
 
 namespace ToolBox.Api.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UsersController : BaseController
     {
         private readonly IBusClient _busClient;

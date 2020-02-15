@@ -18,9 +18,6 @@ namespace ToolBox.Services.Identity.Controllers
             _identityService = identityService;
         }
 
-        [HttpGet("me")]
-        public IActionResult Get() => Content($"Your id: '{UserId:N}'.");
-
         [AllowAnonymous]
         [HttpPost("sign-up")]
         public async Task<IActionResult> SignUp(SignUp command)
