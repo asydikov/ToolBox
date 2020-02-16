@@ -3,12 +3,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using RawRabbit;
 using ToolBox.Common.Auth;
-using ToolBox.Common.Events.IdentityService;
 using ToolBox.Common.Exceptions;
-using ToolBox.Services.Identity.Domain;
 using ToolBox.Services.Identity.Domain.Repositories;
 using ToolBox.Services.Identity.Entities;
 using ToolBox.Services.Identity.Helpers;
+using ToolBox.Services.Identity.Messages.Events;
 using ToolBox.Services.Identity.Repositories;
 
 namespace ToolBox.Services.Identity.Services
@@ -49,7 +48,7 @@ namespace ToolBox.Services.Identity.Services
             user = new User(id, email, name);
             user.SetPassword(password, _passwordHasher);
             await _userRepository.AddAsync(user);
-            await _busClient.PublishAsync(new SignedUp(id, email));
+            await _busClient.PublishAsync(new SignedUp(Guid.NewGuid(), id, email));
         }
 
         public async Task<JsonWebToken> SignInAsync(string email, string password)
@@ -97,7 +96,7 @@ namespace ToolBox.Services.Identity.Services
             }
             user.SetPassword(newPassword, _passwordHasher);
             await _userRepository.UpdateAsync(user);
-            await _busClient.PublishAsync(new PasswordChanged(userId));
+            await _busClient.PublishAsync(new PasswordChanged(Guid.NewGuid(),userId));
         }
     }
 }

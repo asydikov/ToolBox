@@ -1,9 +1,11 @@
 using System;
 using Newtonsoft.Json;
+using Toolbox.Common.Messages;
 using ToolBox.Common.Commands;
 
 namespace ToolBox.Services.Identity.Messages.Commands
 {
+    [MessageNamespace("identity")]
     public class SignUp : ICommand
     {
         public Guid Id { get; }
@@ -15,10 +17,11 @@ namespace ToolBox.Services.Identity.Messages.Commands
         {
 
         }
+
         [JsonConstructor]
-        public SignUp(Guid id, string email, string name, string password)
+        public SignUp(Guid? id, string email, string name, string password)
         {
-            Id = id;
+            Id = id ?? Guid.NewGuid();
             Email = email;
             Name = name;
             Password = password;

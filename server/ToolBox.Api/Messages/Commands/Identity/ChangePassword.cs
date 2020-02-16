@@ -1,9 +1,12 @@
+﻿using Newtonsoft.Json;
 using System;
-using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Toolbox.Common.Messages;
 using ToolBox.Common.Commands;
 
-namespace ToolBox.Services.Identity.Messages.Commands
+namespace ToolBox.Api.Messages.Commands.Identity
 {
     [MessageNamespace("identity")]
     public class ChangePassword : ICommand

@@ -17,12 +17,9 @@ namespace ToolBox.Services.Notification
         {
             await new RabbitmqHostBuilder(CreateHostBuilder(args).Build())
            .UserRabbitMq()
-           /*  .SubscribeToEvent<OperationPending>()
-                .SubscribeToEvent<OperationCompleted>()
-                .SubscribeToEvent<OperationRejected>()*/
-             /* .SubscribeEvent<OperationPending>(@namespace: "operations")
-                .SubscribeEvent<OperationCompleted>(@namespace: "operations")
-                .SubscribeEvent<OperationRejected>(@namespace: "operations");*/
+           //.SubscribeToEvent<OperationPending>()
+           .SubscribeToEvent<OperationCompleted>()
+           //.SubscribeToEvent<OperationRejected>()
            .Build()
            .Run();
         }

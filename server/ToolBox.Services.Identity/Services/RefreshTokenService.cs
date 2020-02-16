@@ -68,7 +68,7 @@ namespace ToolBox.Services.Identity.Services
             var claims = await _claimsProvider.GetAsync(refreshToken.UserId);
             var jwt = _jwtHandler.CreateToken(refreshToken.UserId.ToString("N"), null, claims);
             jwt.RefreshToken = refreshToken.Token;
-            await _busClient.PublishAsync(new AccessTokenRefreshed(refreshToken.UserId));
+            await _busClient.PublishAsync(new AccessTokenRefreshed(Guid.NewGuid(),refreshToken.UserId));
             // await _busClient.PublishAsync(new AccessTokenRefreshed(user.Id), CorrelationContext.Empty);
 
             return jwt;

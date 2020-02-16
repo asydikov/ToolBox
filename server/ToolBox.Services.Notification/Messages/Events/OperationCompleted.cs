@@ -3,11 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Toolbox.Common.Messages;
 using ToolBox.Common.Events;
 
 namespace ToolBox.Services.Notification.Messages.Events
 {
-  //  [MessageNamespace("operations")]
+    [MessageNamespace("notification")]
     public class OperationCompleted : IEvent
     {
         public Guid Id { get; }

@@ -17,9 +17,5 @@
     <ProjectReference Include="..\Toolbox.Common\Toolbox.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="lib11\%40microsoft\signalr\dist\browser\" />
-  </ItemGroup>
-
 
 </Project>

@@ -1,15 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Toolbox.Common.Messages;
 using ToolBox.Common.Events;
 
-namespace ToolBox.Services.Notification.Messages.Events
+namespace ToolBox.Services.Identity.Messages.Events.Notification
 {
     [MessageNamespace("notification")]
-    public class OperationPending : IEvent
+    public class OperationCompleted : IEvent
     {
         public Guid Id { get; }
         public Guid UserId { get; }
@@ -17,7 +14,7 @@ namespace ToolBox.Services.Notification.Messages.Events
         public string Resource { get; }
 
         [JsonConstructor]
-        public OperationPending(Guid id,
+        public OperationCompleted(Guid id,
             Guid userId, string name, string resource)
         {
             Id = id;

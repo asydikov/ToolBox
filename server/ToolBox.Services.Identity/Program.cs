@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using ToolBox.Common.Commands.IdentityService;
+using ToolBox.Services.Identity.Messages.Commands;
 using static ToolBox.Common.Services.ServiceHost;
 
 namespace ToolBox.Services.Identity
@@ -17,7 +12,8 @@ namespace ToolBox.Services.Identity
         {
             await new RabbitmqHostBuilder(CreateHostBuilder(args).Build())
             .UserRabbitMq()
-             .SubscribeToCommand<CreateUser>()
+             .SubscribeToCommand<SignUp>()
+             .SubscribeToCommand<ChangePassword>()
              .Build()
              .Run();
         }

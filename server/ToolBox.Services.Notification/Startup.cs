@@ -9,11 +9,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using ToolBox.Common.Auth;
+using ToolBox.Common.Events;
 using ToolBox.Common.RabbitMq;
-using ToolBox.Services.Notification.Framework;
+using ToolBox.Services.Notification.Handlers;
 using ToolBox.Services.Notification.Hubs;
+using ToolBox.Services.Notification.Messages.Events;
+using ToolBox.Services.Notification.Services;
 
 namespace ToolBox.Services.Notification
 {
@@ -33,6 +35,9 @@ namespace ToolBox.Services.Notification
             services.AddJwt(Configuration);
             services.AddRabbitMq(Configuration);
             services.AddSignalR();
+            services.AddScoped<IHubService, HubService>();
+            services.AddScoped<IHubWrapper, HubWrapper>();
+            services.AddScoped<IEventHandler<OperationCompleted>, OperationCompletedHandler>();
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", cors =>

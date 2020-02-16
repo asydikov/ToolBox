@@ -3,33 +3,33 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using RawRabbit;
 using ToolBox.Common.Commands;
-using ToolBox.Common.Commands.IdentityService;
-using ToolBox.Common.Events.IdentityService;
+
 using ToolBox.Common.Exceptions;
+using ToolBox.Services.Identity.Messages.Commands;
 using ToolBox.Services.Identity.Services;
 
 namespace ToolBox.Services.Identity.Handlers
 {
-    public class CreateUserHandler : ICommandHandler<CreateUser>
+    public class SignInHandler : ICommandHandler<SignIn>
     {
         private readonly IBusClient _busClient;
         private readonly IIdentityService _identityService;
         private readonly ILogger _logger;
-        public CreateUserHandler(IBusClient busClient,
+        public SignInHandler(IBusClient busClient,
          IIdentityService identityService,
-         ILogger<AuthenticateUserHandler> logger)
+         ILogger<SignInHandler> logger)
         {
             _busClient = busClient;
             _identityService = identityService;
             _logger = logger;
         }
-        public async Task HandleAsync(CreateUser command)
+        public async Task HandleAsync(SignIn command)
         {
-            _logger.LogInformation($"Creating user: {command.Email} {command.Name}");
+           /* _logger.LogInformation($"Authenticating user: {command.Email}");
 
             try
             {
-                await _identityService.SignUpAsync(command.CommandId, command.Email, command.Name, command.Password);
+                await _identityService.SignInAsync(command.Email, command.Password);
                 await _busClient.PublishAsync(new UserCreated(command.CommandId, command.Email));
                 return;
             }
@@ -42,11 +42,9 @@ namespace ToolBox.Services.Identity.Handlers
             {
                 await _busClient.PublishAsync(new CreateUserRejected(command.CommandId, "error", ex.Message));
                 _logger.LogError(ex.Message);
-            }
+            }*/
 
         }
-
-
 
     }
 }

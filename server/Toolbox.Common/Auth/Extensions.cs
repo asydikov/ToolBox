@@ -26,7 +26,7 @@ namespace ToolBox.Common.Auth
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.SecretKey)),
                         ValidIssuer = options.Issuer,
                         ValidateLifetime = options.ValidateLifetime,
-                        ValidateAudience = false,
+                        ValidateAudience = options.ValidateAudience,
                         ClockSkew = TimeSpan.Zero
                     };
                 });
