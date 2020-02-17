@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using RawRabbit;
 using ToolBox.Api.Messages.Commands.Identity;
 using ToolBox.Api.Models;
@@ -15,10 +16,14 @@ namespace ToolBox.Api.Controllers
     {
         private readonly IBusClient _busClient;
         private readonly IIdentityService _identityService;
-        public IdentityController(IIdentityService identityService, IBusClient busClient)
+        private readonly ILogger _logger;
+        public IdentityController(IIdentityService identityService, 
+            IBusClient busClient,
+             ILogger<IdentityController> logger)
         {
             _identityService = identityService;
             _busClient = busClient;
+            _logger = logger;
         }
 
         [HttpGet("me")]

@@ -18,31 +18,12 @@ namespace ToolBox.Services.Identity.Controllers
             _identityService = identityService;
         }
 
-       /* [AllowAnonymous]
-        [HttpPost("sign-up")]
-        public async Task<IActionResult> SignUp(SignUp command)
-        {
-            // command.BindId(c => c.Id);
-            await _identityService.SignUpAsync(command.Id, command.Email, command.Name, command.Password);
-            return Accepted();
-        }*/
-
         [AllowAnonymous]
         [HttpPost("sign-in")]
         public async Task<IActionResult> SignIn(SignIn command)
         {
             Console.WriteLine($"Identity controller - {command.Email}");
-             var t = await _identityService.SignInAsync(command.Email, command.Password);
-            return Ok(t);
+            return Ok(await _identityService.SignInAsync(command.Email, command.Password));
         }
-            //=> Ok(await _identityService.SignInAsync(command.Email, command.Password));
-
-       /* [HttpPut("change-password")]
-        public async Task<ActionResult> ChangePassword(ChangePassword command)
-        {
-            // await _identityService.ChangePasswordAsync(command.Bind(c => c.UserId, UserId).UserId,
-            await _identityService.ChangePasswordAsync(command.UserId, command.CurrentPassword, command.NewPassword);
-            return Accepted();
-        }*/
     }
 }   

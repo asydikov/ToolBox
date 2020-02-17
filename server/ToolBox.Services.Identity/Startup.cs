@@ -13,6 +13,7 @@ using ToolBox.Services.Identity.EF;
 using ToolBox.Services.Identity.Entities;
 using ToolBox.Services.Identity.Handlers;
 using ToolBox.Services.Identity.Messages.Commands;
+using ToolBox.Services.Identity.MIddlewares;
 using ToolBox.Services.Identity.Repositories;
 using ToolBox.Services.Identity.Services;
 
@@ -61,6 +62,8 @@ namespace ToolBox.Services.Identity
             app.UseAuthorization();
 
             app.UseAuthentication();
+
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

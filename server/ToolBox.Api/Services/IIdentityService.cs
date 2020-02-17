@@ -14,6 +14,6 @@ namespace ToolBox.Api.Services.Identity
         [AllowAnyStatusCode]
       
         [Post("api/identity/sign-in")]
-        Task<JsonWebToken> SignIn([Query] SignIn command);
+        Task<object> SignIn([Body] SignIn command);
     }
 }
