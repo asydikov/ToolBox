@@ -30,23 +30,21 @@ namespace ToolBox.Services.Identity.Handlers
         {
             _logger.LogInformation($"Change password handler in Identity  service: {command.Id} {command.UserId}");
 
-           /* try
-            {*/
+            try
+            {
                 await _identityService.ChangePasswordAsync(command.UserId, command.CurrentPassword, command.NewPassword);
-                //await _busClient.PublishAsync(new PasswordChanged(command.Id, command.UserId));
-                await _busClient.PublishAsync(new OperationCompleted(command.Id, command.UserId, "test", "identity service"));
-            return;
-          /*  }
+                await _busClient.PublishAsync(new OperationCompleted(command.Id, command.UserId, "password-changed", "identity service"));
+            }
             catch (ToolBoxException ex)
             {
-                await _busClient.PublishAsync(new CreateUserRejected(command.Id, ex.Code, ex.Message));
+                await _busClient.PublishAsync(new OperationRejected(command.Id,command.UserId, "password-changed", "identity service", ex.Code, ex.Message));
                 _logger.LogError(ex.Message);
             }
             catch (Exception ex)
             {
-                await _busClient.PublishAsync(new CreateUserRejected(command.Id, "error", ex.Message));
+                await _busClient.PublishAsync(new OperationRejected(command.Id, command.UserId, "password-changed", "identity service", "error", ex.Message));
                 _logger.LogError(ex.Message);
-            }*/
+            }
 
         }
     }

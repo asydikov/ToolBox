@@ -1,10 +1,6 @@
 ﻿using RestEase;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using ToolBox.Api.Models;
-using ToolBox.Common.Auth;
+using ToolBox.Api.Domain.Models.Identity;
 
 namespace ToolBox.Api.Services.Identity
 {
@@ -12,8 +8,11 @@ namespace ToolBox.Api.Services.Identity
     public interface IIdentityService
     {
         [AllowAnyStatusCode]
-      
         [Post("api/identity/sign-in")]
-        Task<object> SignIn([Body] SignIn command);
+        Task<object> SignIn([Body] SignInModel model);
+
+        [AllowAnyStatusCode]
+        [Post("api/identity/sign-up")]
+        Task<object> SignUp([Body] SignUpModel command);
     }
 }

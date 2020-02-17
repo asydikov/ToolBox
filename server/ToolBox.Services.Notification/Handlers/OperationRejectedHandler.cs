@@ -1,21 +1,17 @@
 ﻿using Microsoft.Extensions.Logging;
-using RawRabbit;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ToolBox.Common.Commands;
 using ToolBox.Common.Events;
 using ToolBox.Services.Notification.Messages.Events;
 using ToolBox.Services.Notification.Services;
 
 namespace ToolBox.Services.Notification.Handlers
 {
-    public class OperationCompletedHandler : IEventHandler<OperationCompleted>
+    public class OperationRejectedHandler:IEventHandler<OperationRejected>
     {
         private readonly IHubService _hubService;
         private readonly ILogger _logger;
-        public OperationCompletedHandler(
+        public OperationRejectedHandler(
          IHubService hubService,
          ILogger<OperationCompletedHandler> logger)
         {
@@ -24,10 +20,10 @@ namespace ToolBox.Services.Notification.Handlers
         }
 
 
-        public async Task HandleAsync(OperationCompleted @event)
+        public async Task HandleAsync(OperationRejected @event)
         {
-            _logger.LogInformation($"Notification service event handler. Sending notificationto user: {@event.UserId}");
-            await _hubService.PublishOperationCompletedAsync(@event);
+            _logger.LogError($"Notification service rejected event handler. Sending notificationto user: {@event.UserId}");
+            await _hubService.PublishOperationRejectedAsync(@event);
         }
     }
 }

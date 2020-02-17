@@ -36,8 +36,20 @@ namespace ToolBox.Services.Identity.Services
             _busClient = busClient;
         }
 
-        public async Task SignUpAsync(Guid id, string email, string name, string password)
+        public async Task<Guid> SignUpAsync(string email, string name, string password)
         {
+            if (String.IsNullOrEmpty(password))
+            {
+                throw new ToolBoxException(Codes.EmptyPassword,
+                    $"Password cannot be empty.");
+            }
+
+            if (String.IsNullOrEmpty(email))
+            {
+                throw new ToolBoxException(Codes.EmptyEmail,
+                    $"Email cannot be empty.");
+            }
+
             var user = await _userRepository.GetAsync(email);
             if (user != null)
             {
@@ -45,10 +57,10 @@ namespace ToolBox.Services.Identity.Services
                     $"Email: '{email}' is already in use.");
             }
 
-            user = new User(id, email, name);
+            user = new User(Guid.NewGuid(), email, name);
             user.SetPassword(password, _passwordHasher);
             await _userRepository.AddAsync(user);
-            await _busClient.PublishAsync(new SignedUp(Guid.NewGuid(), id, email));
+            return user.Id;
         }
 
         public async Task<JsonWebToken> SignInAsync(string email, string password)
@@ -94,6 +106,7 @@ namespace ToolBox.Services.Identity.Services
                 throw new ToolBoxException(Codes.InvalidCurrentPassword,
                     "Invalid current password.");
             }
+          //  throw new Exception();
             user.SetPassword(newPassword, _passwordHasher);
             await _userRepository.UpdateAsync(user);
             await _busClient.PublishAsync(new PasswordChanged(Guid.NewGuid(),userId));

@@ -19,7 +19,7 @@ namespace ToolBox.Services.Notification
            .UserRabbitMq()
            //.SubscribeToEvent<OperationPending>()
            .SubscribeToEvent<OperationCompleted>()
-           //.SubscribeToEvent<OperationRejected>()
+           .SubscribeToEvent<OperationRejected>()
            .Build()
            .Run();
         }

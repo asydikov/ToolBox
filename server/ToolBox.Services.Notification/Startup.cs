@@ -38,6 +38,7 @@ namespace ToolBox.Services.Notification
             services.AddScoped<IHubService, HubService>();
             services.AddScoped<IHubWrapper, HubWrapper>();
             services.AddScoped<IEventHandler<OperationCompleted>, OperationCompletedHandler>();
+            services.AddScoped<IEventHandler<OperationRejected>, OperationRejectedHandler>();
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", cors =>

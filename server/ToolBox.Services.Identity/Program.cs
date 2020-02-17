@@ -12,7 +12,6 @@ namespace ToolBox.Services.Identity
         {
             await new RabbitmqHostBuilder(CreateHostBuilder(args).Build())
             .UserRabbitMq()
-             .SubscribeToCommand<SignUp>()
              .SubscribeToCommand<ChangePassword>()
              .Build()
              .Run();

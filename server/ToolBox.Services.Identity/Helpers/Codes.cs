@@ -6,7 +6,9 @@ namespace ToolBox.Services.Identity.Helpers
         public static string InvalidCredentials => "invalid_credentials";
         public static string InvalidCurrentPassword => "invalid_current_password";
         public static string InvalidEmail => "invalid_email";
+        public static string EmptyEmail => "empty_email";
         public static string InvalidPassword => "invalid_password";
+        public static string EmptyPassword => "Empty_password";
         public static string InvalidRole => "invalid_role";
         public static string RefreshTokenNotFound => "refresh_token_not_found";
         public static string RefreshTokenAlreadyRevoked => "refresh_token_already_revoked";

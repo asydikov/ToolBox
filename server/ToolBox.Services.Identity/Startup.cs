@@ -38,7 +38,6 @@ namespace ToolBox.Services.Identity
             services.AddRabbitMq(Configuration);
             services.Configure<SqlSettings>(sql);
             services.AddEntityFrameworkSqlServer().AddDbContext<IdentityDbContext>();
-            services.AddScoped<ICommandHandler<SignUp>, SignUpHandler>();
             services.AddScoped<ICommandHandler<ChangePassword>, ChangePasswordHandler>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();

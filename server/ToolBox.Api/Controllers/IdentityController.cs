@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RawRabbit;
+using ToolBox.Api.Domain.Models.Identity;
 using ToolBox.Api.Messages.Commands.Identity;
-using ToolBox.Api.Models;
 using ToolBox.Api.Services.Identity;
 
 namespace ToolBox.Api.Controllers
@@ -30,8 +30,16 @@ namespace ToolBox.Api.Controllers
         public IActionResult Get() => Content($"Your id: '{UserId:N}'.");
 
         [AllowAnonymous]
+        [HttpPost("sign-up")]
+        public async Task<IActionResult> SignUp(SignUpModel model)
+        {
+            Console.WriteLine($"Api gateway signup- {model.Email}");
+           return Ok(await _identityService.SignUp(model));
+        }
+
+        [AllowAnonymous]
         [HttpPost("sign-in")]
-        public async Task<IActionResult> SignIn(SignIn model)
+        public async Task<IActionResult> SignIn(SignInModel model)
         {
             Console.WriteLine($"Api controller - {model.Email}");
             var result = await _identityService.SignIn(model);
@@ -40,15 +48,6 @@ namespace ToolBox.Api.Controllers
                 return NotFound();
 
             return Ok(result);
-        }
-
-        [AllowAnonymous]
-        [HttpPost("sign-up")]
-        public async Task<IActionResult> SignUp(SignUp command)
-        {
-            Console.WriteLine($"Api gateway - {command.Email}. Event sharing...");
-            await _busClient.PublishAsync(command);
-            return Accepted();
         }
 
         [HttpPut("change-password")]

@@ -37,7 +37,7 @@ namespace ToolBox.Services.Notification.Hubs
                 await Groups.AddToGroupAsync(Context.ConnectionId, group);
                 await ConnectAsync();
             }
-            catch(Exception ex)
+            catch
             {
                 await DisconnectAsync();
             }

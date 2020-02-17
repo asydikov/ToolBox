@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ToolBox.Services.Identity.Messages.Commands;
+using ToolBox.Services.Identity.Domain.Models;
 using ToolBox.Services.Identity.Services;
 
 namespace ToolBox.Services.Identity.Controllers
@@ -19,11 +19,21 @@ namespace ToolBox.Services.Identity.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("sign-in")]
-        public async Task<IActionResult> SignIn(SignIn command)
+        [HttpPost("sign-up")]
+        public async Task<IActionResult> SignUp(SignUpModel model)
         {
-            Console.WriteLine($"Identity controller - {command.Email}");
-            return Ok(await _identityService.SignInAsync(command.Email, command.Password));
+            Console.WriteLine($"Identity controller signup- {model.Email}");
+            return Ok(await _identityService.SignUpAsync(model.Email, model.Name, model.Password));
         }
+
+        [AllowAnonymous]
+        [HttpPost("sign-in")]
+        public async Task<IActionResult> SignIn(SignInModel model)
+        {
+            Console.WriteLine($"Identity controller - {model.Email}");
+            return Ok(await _identityService.SignInAsync(model.Email, model.Password));
+        }
+
+       
     }
 }   

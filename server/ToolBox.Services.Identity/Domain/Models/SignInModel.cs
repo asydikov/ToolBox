@@ -3,21 +3,19 @@ using System;
 using Toolbox.Common.Messages;
 using ToolBox.Common.Commands;
 
-namespace ToolBox.Services.Identity.Messages.Commands
+namespace ToolBox.Services.Identity.Domain.Models
 {
-    [MessageNamespace("identity")]
-    public class SignIn : ICommand
+    public class SignInModel
     {
         public Guid Id { get; }
         public string Email { get; set; }
         public string Password { get; set; }
 
-        public SignIn()
+        public SignInModel()
         {
 
         }
-        [JsonConstructor]
-        public SignIn(Guid? id, string email, string password)
+        public SignInModel(Guid? id, string email, string password)
         {
             Id = id ?? Guid.NewGuid();
             Email = email;
