@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Toolbox.Common.RestEase;
+using ToolBox.Api.Services.Identity;
 using ToolBox.Common.Auth;
 using ToolBox.Common.RabbitMq;
 
@@ -24,6 +26,8 @@ namespace ToolBox.Api
             services.AddControllers();
             services.AddJwt(Configuration);
             services.AddRabbitMq(Configuration);
+            services.RegisterRestEaseService<IIdentityService>("identity-service");
+            //services.RegisterRestEaseService<IIdentityService>("notification-service");
         }   
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

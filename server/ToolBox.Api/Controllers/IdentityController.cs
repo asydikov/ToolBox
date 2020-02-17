@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RawRabbit;
 using ToolBox.Api.Messages.Commands.Identity;
+using ToolBox.Api.Models;
+using ToolBox.Api.Services.Identity;
 
 namespace ToolBox.Api.Controllers
 {
@@ -12,13 +14,28 @@ namespace ToolBox.Api.Controllers
     public class IdentityController : BaseController
     {
         private readonly IBusClient _busClient;
-        public IdentityController(IBusClient busClient)
+        private readonly IIdentityService _identityService;
+        public IdentityController(IIdentityService identityService, IBusClient busClient)
         {
+            _identityService = identityService;
             _busClient = busClient;
         }
 
         [HttpGet("me")]
         public IActionResult Get() => Content($"Your id: '{UserId:N}'.");
+
+        [AllowAnonymous]
+        [HttpPost("sign-in")]
+        public async Task<IActionResult> SignIn(SignIn model)
+        {
+            Console.WriteLine($"Api controller - {model.Email}");
+            var result = await _identityService.SignIn(model);
+
+            if (result is null)
+                return NotFound();
+
+            return Ok(result);
+        }
 
         [AllowAnonymous]
         [HttpPost("sign-up")]

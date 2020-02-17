@@ -30,7 +30,12 @@ namespace ToolBox.Services.Identity.Controllers
         [AllowAnonymous]
         [HttpPost("sign-in")]
         public async Task<IActionResult> SignIn(SignIn command)
-            => Ok(await _identityService.SignInAsync(command.Email, command.Password));
+        {
+            Console.WriteLine($"Identity controller - {command.Email}");
+             var t = await _identityService.SignInAsync(command.Email, command.Password);
+            return Ok(t);
+        }
+            //=> Ok(await _identityService.SignInAsync(command.Email, command.Password));
 
        /* [HttpPut("change-password")]
         public async Task<ActionResult> ChangePassword(ChangePassword command)
