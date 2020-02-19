@@ -13,6 +13,10 @@ namespace ToolBox.Api.Services.Identity
 
         [AllowAnyStatusCode]
         [Post("api/identity/sign-up")]
-        Task<object> SignUp([Body] SignUpModel command);
+        Task<object> SignUp([Body] SignUpModel model);
+
+        [AllowAnyStatusCode]
+        [Post("api/tokens/refresh")]
+        Task<object> RefreshToken([Body] TokenModel model);
     }
 }

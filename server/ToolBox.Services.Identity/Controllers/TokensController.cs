@@ -5,12 +5,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ToolBox.Common.Auth;
 using ToolBox.Common.Commands;
+using ToolBox.Services.Identity.Domain.Models;
 using ToolBox.Services.Identity.Messages.Commands;
 using ToolBox.Services.Identity.Services;
 
 namespace ToolBox.Services.Identity.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class TokensController : BaseController
     {
@@ -21,11 +22,9 @@ namespace ToolBox.Services.Identity.Controllers
             _refreshTokenService = refreshTokenService;
         }
 
-        [HttpPost("access-tokens/refresh")]
+        [HttpPost("refresh")]
         [AllowAnonymous]
-        public async Task<IActionResult> RefreshAccessToken(RefreshAccessToken accessToken)
-            => Ok(await _refreshTokenService.CreateAccessTokenAsync(accessToken.Token));
-
-        // => Ok(await _refreshTokenService.CreateAccessTokenAsync(command.Bind(c => c.Token, refreshToken).Token));
+        public async Task<IActionResult> RefreshAccessToken(TokenModel model)
+            => Ok(await _refreshTokenService.CreateAccessTokenAsync(model.Token));
     }
 }

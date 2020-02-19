@@ -17,7 +17,7 @@ namespace ToolBox.Api.Controllers
         private readonly IBusClient _busClient;
         private readonly IIdentityService _identityService;
         private readonly ILogger _logger;
-        public IdentityController(IIdentityService identityService, 
+        public IdentityController(IIdentityService identityService,
             IBusClient busClient,
              ILogger<IdentityController> logger)
         {
@@ -34,7 +34,7 @@ namespace ToolBox.Api.Controllers
         public async Task<IActionResult> SignUp(SignUpModel model)
         {
             Console.WriteLine($"Api gateway signup- {model.Email}");
-           return Ok(await _identityService.SignUp(model));
+            return Ok(await _identityService.SignUp(model));
         }
 
         [AllowAnonymous]
@@ -56,5 +56,10 @@ namespace ToolBox.Api.Controllers
             await _busClient.PublishAsync(command);
             return Accepted();
         }
+
+        [AllowAnonymous]
+        [HttpPost("token-refresh")]
+        public async Task<IActionResult> RefreshAccessToken(TokenModel model)
+            => Ok(await _identityService.RefreshToken(model));
     }
 }
