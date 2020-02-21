@@ -20,7 +20,8 @@ namespace ToolBox.Services.SQLMonitor
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                     .UseUrls("http://localhost:5020/");
                 });
     }
 }
