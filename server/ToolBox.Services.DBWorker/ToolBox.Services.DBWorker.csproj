@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>1c7fb008-4b45-470d-8ee3-42a00daaee4b</UserSecretsId>
+    <UserSecretsId>9af04239-ecda-4abd-827d-1aa5771b31df</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
   </PropertyGroup>
 
@@ -12,10 +12,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Toolbox.Common\Toolbox.Common.csproj" />
   </ItemGroup>
 
 

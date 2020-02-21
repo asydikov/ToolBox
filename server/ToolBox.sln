@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Services.Identity",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Services.Notification", "ToolBox.Services.Notification\ToolBox.Services.Notification.csproj", "{F4D475B8-439A-47F3-8D07-66F715FABE5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Services.SQLMonitor", "ToolBox.Services.SQLMonitor\ToolBox.Services.SQLMonitor.csproj", "{0CB28575-56FE-4500-8F6D-BA0578960024}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Services.SQLMonitor", "ToolBox.Services.SQLMonitor\ToolBox.Services.SQLMonitor.csproj", "{0CB28575-56FE-4500-8F6D-BA0578960024}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Services.DBWorker", "ToolBox.Services.DBWorker\ToolBox.Services.DBWorker.csproj", "{91583912-E101-40B3-82C1-0206FFC2B5D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{0CB28575-56FE-4500-8F6D-BA0578960024}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CB28575-56FE-4500-8F6D-BA0578960024}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CB28575-56FE-4500-8F6D-BA0578960024}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91583912-E101-40B3-82C1-0206FFC2B5D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91583912-E101-40B3-82C1-0206FFC2B5D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91583912-E101-40B3-82C1-0206FFC2B5D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91583912-E101-40B3-82C1-0206FFC2B5D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
