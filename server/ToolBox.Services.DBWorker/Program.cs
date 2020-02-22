@@ -6,22 +6,28 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ToolBox.Services.DBWorker.Messages.Commands;
+using static ToolBox.Common.Services.ServiceHost;
 
 namespace ToolBox.Services.DBWorker
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            await new RabbitmqHostBuilder(CreateHostBuilder(args).Build())
+            .UserRabbitMq()
+              .SubscribeToCommand<SQLStatementQuery>()
+              .SubscribeToCommand<SQLStoredProcedureQuery>()
+             .Build()
+             .Run();
         }
-
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>()
-                     .UseUrls("http://localhost:5040/");
-                });
+                   Host.CreateDefaultBuilder(args)
+                       .ConfigureWebHostDefaults(webBuilder =>
+                       {
+                           webBuilder.UseStartup<Startup>()
+                           .UseUrls("http://localhost:5040/");
+                       });
     }
 }

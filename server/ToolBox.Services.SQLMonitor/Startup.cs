@@ -10,6 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ToolBox.Common.Events;
+using ToolBox.Common.RabbitMq;
+using ToolBox.Services.SQLMonitor.Handlers;
+using ToolBox.Services.SQLMonitor.Messages.Events;
 
 namespace ToolBox.Services.SQLMonitor
 {
@@ -26,6 +30,8 @@ namespace ToolBox.Services.SQLMonitor
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddRabbitMq(Configuration);
+            services.AddScoped<IEventHandler<DbWorkerOperationCompleted>, DbWorkerOperationCompletedHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
