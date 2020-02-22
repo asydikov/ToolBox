@@ -30,22 +30,16 @@ namespace ToolBox.Services.DBWorker.Handlers
         {
             _logger.LogInformation($"DB worker query handler: {command.Id}");
 
-            //try
-            //{
+            try
+            {
                 var result = await _sqlService.SendSQLServerRequest(command.GetConncetionString(), command.Instruction, isProcedure: false);
                 await _busClient.PublishAsync(new DbWorkerOperationCompleted(Guid.NewGuid(), command.SQLServerId, command.DatabaseId, command.Resource, result));
-            //}
-            //catch (ToolBoxException ex)
-            //{
-            //    await _busClient.PublishAsync(new OperationRejected(command.Id, command.UserId, "password-changed", "identity service", ex.Code, ex.Message));
-            //    _logger.LogError(ex.Message);
-            //}
-            //catch (Exception ex)
-            //{
-            //    await _busClient.PublishAsync(new OperationRejected(command.Id, command.UserId, "password-changed", "identity service", "error", ex.Message));
-            //    _logger.LogError(ex.Message);
-            //}
-
+            }
+            catch (Exception ex)
+            {
+                await _busClient.PublishAsync(new DbWorkerOperationRejected(command.Id, command.SQLServerId, command.DatabaseId, "sql statement query execution", "dbworker service", "error", ex.Message));
+                _logger.LogError(ex.Message);
+            }
         }
     }
 }

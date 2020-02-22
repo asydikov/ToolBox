@@ -23,28 +23,23 @@ namespace ToolBox.Services.DBWorker.Handlers
          ILogger<SQLStatementQueryHandler> logger)
         {
             _busClient = busClient;
-             _sqlService = sqlService;
+            _sqlService = sqlService;
             _logger = logger;
         }
         public async Task HandleAsync(SQLStoredProcedureQuery command)
         {
             _logger.LogInformation($"DB worker stored procedure handler: {command.Id}");
 
-            //try
-            //{
-            var result = await _sqlService.SendSQLServerRequest(command.GetConncetionString(), command.StoredProcedureName, isProcedure: true, command.Parameters);
-            await _busClient.PublishAsync(new DbWorkerOperationCompleted(Guid.NewGuid(), command.SQLServerId, command.DatabaseId, command.Resource, result));
-            //}
-            //catch (ToolBoxException ex)
-            //{
-            //    await _busClient.PublishAsync(new OperationRejected(command.Id, command.UserId, "password-changed", "identity service", ex.Code, ex.Message));
-            //    _logger.LogError(ex.Message);
-            //}
-            //catch (Exception ex)
-            //{
-            //    await _busClient.PublishAsync(new OperationRejected(command.Id, command.UserId, "password-changed", "identity service", "error", ex.Message));
-            //    _logger.LogError(ex.Message);
-            //}
+            try
+            {
+                var result = await _sqlService.SendSQLServerRequest(command.GetConncetionString(), command.StoredProcedureName, isProcedure: true, command.Parameters);
+                await _busClient.PublishAsync(new DbWorkerOperationCompleted(Guid.NewGuid(), command.SQLServerId, command.DatabaseId, command.Resource, result));
+            }
+            catch (Exception ex)
+            {
+                await _busClient.PublishAsync(new DbWorkerOperationRejected(command.Id, command.SQLServerId, command.DatabaseId, "sql stored proceure call", "dbworker service", "error", ex.Message));
+                _logger.LogError(ex.Message);
+            }
 
         }
 

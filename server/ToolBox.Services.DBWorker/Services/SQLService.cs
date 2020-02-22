@@ -9,11 +9,10 @@ namespace ToolBox.Services.DBWorker.Services
 {
     public class SQLService : ISQLService
     {
-        //public List<Dictionary<string, string>> SendSQLServerequest(string conncectionString, string instruction, bool isProcedure = false, Dictionary<string, string> parameters = null)
         public async Task<List<Dictionary<string, string>>> SendSQLServerRequest(string conncectionString, 
-                                                                                string instruction, 
-                                                                                bool isProcedure = false,
-                                                                                Dictionary<string, string> parameters = null)
+                                                                                 string instruction, 
+                                                                                 bool isProcedure = false,
+                                                                                 Dictionary<string, string> parameters = null)
         {
             List<Dictionary<string, string>> result = new List<Dictionary<string, string>>();
 

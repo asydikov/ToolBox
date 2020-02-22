@@ -17,7 +17,7 @@ namespace ToolBox.Services.DBWorker.Messages.Commands
         public Dictionary<string, string> Parameters { get; }
         public string Host { get; }
         public int Port { get; }
-        public string UserId { get; }
+        public string DbUserId { get; }
         public string Password { get; }
         public string DatabaseName { get; }
         public Guid SQLServerId { get; }
@@ -25,14 +25,14 @@ namespace ToolBox.Services.DBWorker.Messages.Commands
         public string Resource { get; }
 
         [JsonConstructor]
-        public SQLStoredProcedureQuery(Guid id, string storedProcedureName, Dictionary<string, string> parameters, string host, int port, string userId, string password, string databaseName, Guid sqlServerId, Guid databaseId, string resource)
+        public SQLStoredProcedureQuery(Guid id, string storedProcedureName, Dictionary<string, string> parameters, string host, int port, string dbUserId, string password, string databaseName, Guid sqlServerId, Guid databaseId, string resource)
         {
             Id = id;
             StoredProcedureName = storedProcedureName;
             Parameters = parameters;
             Host = host;
             Port = port;
-            UserId = userId;
+            DbUserId = dbUserId;
             Password = password;
             DatabaseName = databaseName;
             SQLServerId = sqlServerId;
@@ -42,7 +42,7 @@ namespace ToolBox.Services.DBWorker.Messages.Commands
 
         public string GetConncetionString()
         {
-            return $"Server={Host}, {Port}; User Id={UserId}; Password={Password}; Database={DatabaseName}; MultipleActiveResultSets=true";
+            return $"Server={Host}, {Port}; User Id={DbUserId}; Password={Password}; Database={DatabaseName}; MultipleActiveResultSets=true";
         }
     }
 }
