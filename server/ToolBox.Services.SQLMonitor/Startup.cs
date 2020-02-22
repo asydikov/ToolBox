@@ -31,7 +31,7 @@ namespace ToolBox.Services.SQLMonitor
         {
             services.AddControllers();
             services.AddRabbitMq(Configuration);
-            services.AddScoped<IEventHandler<DbWorkerOperationCompleted>, DbWorkerOperationCompletedHandler>();
+            services.AddScoped<IEventHandler<DbWorkerOperationCompleted>, DbWorkerOperationRejectedHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
