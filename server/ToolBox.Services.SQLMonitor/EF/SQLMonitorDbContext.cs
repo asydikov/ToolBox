@@ -15,7 +15,8 @@ namespace ToolBox.Services.SQLMonitor.EF
             _sqlSettings = sqlSettings;
         }
 
-       
+        public DbSet<Server> Servers { get; set; }
+        public DbSet<Database> Databases { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,6 +25,17 @@ namespace ToolBox.Services.SQLMonitor.EF
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Server>().Property(x => x.UserId).IsRequired();
+            modelBuilder.Entity<Server>().Property(x => x.Name).IsRequired();
+            modelBuilder.Entity<Server>().Property(x => x.Host).IsRequired();
+            modelBuilder.Entity<Server>().Property(x => x.Port).IsRequired();
+            modelBuilder.Entity<Server>().Property(x => x.Login).IsRequired();
+            modelBuilder.Entity<Server>().Property(x => x.Password).IsRequired();
+            modelBuilder.Entity<Server>().HasMany(x => x.Databases)
+                                        .WithOne(x => x.Server);
+
+            modelBuilder.Entity<Database>().Property(x => x.ServerId).IsRequired();
+            modelBuilder.Entity<Database>().Property(x => x.Name).IsRequired();
 
             modelBuilder.Seed();
         }
