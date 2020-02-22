@@ -18,6 +18,7 @@ namespace ToolBox.Services.SQLMonitor
             await new RabbitmqHostBuilder(CreateHostBuilder(args).Build())
             .UserRabbitMq()
              .SubscribeToEvent<DbWorkerOperationCompleted>()
+             .SubscribeToEvent<DbWorkerOperationRejected>()
              .Build()
              .Run();
         }

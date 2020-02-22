@@ -1,17 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using ToolBox.Common.Events;
 using ToolBox.Common.RabbitMq;
+using ToolBox.Services.SQLMonitor.EF;
 using ToolBox.Services.SQLMonitor.Handlers;
 using ToolBox.Services.SQLMonitor.Messages.Events;
 
@@ -29,9 +23,13 @@ namespace ToolBox.Services.SQLMonitor
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var sql = Configuration.GetSection("sql");
             services.AddControllers();
             services.AddRabbitMq(Configuration);
-            services.AddScoped<IEventHandler<DbWorkerOperationCompleted>, DbWorkerOperationRejectedHandler>();
+            services.Configure<SqlSettings>(sql);
+            services.AddEntityFrameworkSqlServer().AddDbContext<SQLMonitorDbContext>();
+            services.AddScoped<IEventHandler<DbWorkerOperationCompleted>, DbWorkerOperationCompletedHandler>();
+            services.AddScoped<IEventHandler<DbWorkerOperationRejected>, DbWorkerOperationRejectedHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,8 +39,6 @@ namespace ToolBox.Services.SQLMonitor
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
