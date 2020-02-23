@@ -17,18 +17,30 @@ namespace ToolBox.Services.DBWorker.Controllers
     {
         private readonly IBusClient _busClient;
         private readonly ISQLQueryService _sqlQueryService;
-        public SQLMonitorController(IBusClient busClient, ISQLQueryService sqlQueryService)
+        private readonly IServerService _serverService;
+        public SQLMonitorController(IBusClient busClient,
+            ISQLQueryService sqlQueryService,
+            IServerService serverService)
         {
             _busClient = busClient;
             _sqlQueryService = sqlQueryService;
+            _serverService = serverService;
 
         }
 
         [AllowAnonymous]
-        [HttpPost()]
+        [HttpPost("sql-query")]
         public async Task<IActionResult> Post(SQLQueryModel model)
         {
             var result = await _sqlQueryService.CreateAsync(model);
+            return Ok(result);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("sql-server")]
+        public async Task<IActionResult> SqlServer(ServerModel model)
+        {
+            var result = await _serverService.CreateAsync(model);
             return Ok(result);
         }
 

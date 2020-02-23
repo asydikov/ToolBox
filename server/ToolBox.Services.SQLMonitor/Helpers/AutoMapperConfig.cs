@@ -19,6 +19,10 @@ namespace ToolBox.Services.SQLMonitor.Helpers
                 cfg.CreateMap<SQLQuery, SQLQueryModel>();
                 cfg.CreateMap<SQLQueryModel, SQLQuery>()
                 .AfterMap((model, entity) => entity.Initialize());
+                cfg.CreateMap<ServerModel, Server>()
+                .AfterMap((model, entity) => entity.Initialize());
+                cfg.CreateMap<DatabaseModel, Database>()
+               .AfterMap((model, entity) => entity.Initialize());
 
 
             });
