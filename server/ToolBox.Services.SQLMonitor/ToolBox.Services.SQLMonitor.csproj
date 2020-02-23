@@ -20,5 +20,10 @@
     <ProjectReference Include="..\Toolbox.Common\Toolbox.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Handlers\Notification\" />
+    <Folder Include="Messages\Events\Notification\" />
+  </ItemGroup>
+
 
 </Project>

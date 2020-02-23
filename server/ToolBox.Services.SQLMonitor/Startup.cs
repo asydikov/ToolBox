@@ -8,6 +8,7 @@ using ToolBox.Common.RabbitMq;
 using ToolBox.Services.SQLMonitor.EF;
 using ToolBox.Services.SQLMonitor.Handlers;
 using ToolBox.Services.SQLMonitor.Messages.Events;
+using ToolBox.Services.SQLMonitor.Services;
 
 namespace ToolBox.Services.SQLMonitor
 {
@@ -25,11 +26,14 @@ namespace ToolBox.Services.SQLMonitor
         {
             var sql = Configuration.GetSection("sql");
             services.AddControllers();
+            services.AddHostedService<TimedHostedService>();
             services.AddRabbitMq(Configuration);
             services.Configure<SqlSettings>(sql);
             services.AddEntityFrameworkSqlServer().AddDbContext<SQLMonitorDbContext>();
             services.AddScoped<IEventHandler<DbWorkerOperationCompleted>, DbWorkerOperationCompletedHandler>();
             services.AddScoped<IEventHandler<DbWorkerOperationRejected>, DbWorkerOperationRejectedHandler>();
+            services.AddScoped<IMetrics, Metrics>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
