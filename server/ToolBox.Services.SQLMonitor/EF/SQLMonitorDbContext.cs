@@ -17,6 +17,7 @@ namespace ToolBox.Services.SQLMonitor.EF
 
         public DbSet<Server> Servers { get; set; }
         public DbSet<Database> Databases { get; set; }
+        public DbSet<SQLQuery> SQLQueries { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -36,6 +37,10 @@ namespace ToolBox.Services.SQLMonitor.EF
 
             modelBuilder.Entity<Database>().Property(x => x.ServerId).IsRequired();
             modelBuilder.Entity<Database>().Property(x => x.Name).IsRequired();
+
+            modelBuilder.Entity<SQLQuery>().Property(x => x.Query).IsRequired();
+            modelBuilder.Entity<SQLQuery>().Property(x => x.Name).IsRequired();
+            modelBuilder.Entity<SQLQuery>().Property(x => x.IsStoredProcedure).IsRequired();
 
             modelBuilder.Seed();
         }

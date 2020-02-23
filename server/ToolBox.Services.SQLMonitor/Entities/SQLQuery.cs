@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace ToolBox.Services.SQLMonitor.Entities
 {
-    public class Database : EntityBase
+    public class SQLQuery : EntityBase
     {
-        public Guid ServerId { get; set; }
         public string Name { get; set; }
-        public Server Server { get; set; }
-        
+        public string Query { get; set; }
+        public string Description { get; set; }
+        public bool IsStoredProcedure { get; set; }
     }
 }
