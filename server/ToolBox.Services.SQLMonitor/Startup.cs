@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,7 +8,9 @@ using ToolBox.Common.Events;
 using ToolBox.Common.RabbitMq;
 using ToolBox.Services.SQLMonitor.EF;
 using ToolBox.Services.SQLMonitor.Handlers;
+using ToolBox.Services.SQLMonitor.Helpers;
 using ToolBox.Services.SQLMonitor.Messages.Events;
+using ToolBox.Services.SQLMonitor.Repositories;
 using ToolBox.Services.SQLMonitor.Services;
 
 namespace ToolBox.Services.SQLMonitor
@@ -33,6 +36,11 @@ namespace ToolBox.Services.SQLMonitor
             services.AddScoped<IEventHandler<DbWorkerOperationCompleted>, DbWorkerOperationCompletedHandler>();
             services.AddScoped<IEventHandler<DbWorkerOperationRejected>, DbWorkerOperationRejectedHandler>();
             services.AddScoped<IMetrics, Metrics>();
+
+            services.AddScoped<ISQLQueryService, SQLQueryService>();
+            services.AddScoped<ISQLQueryRepository, SQLQueryRepository>();
+
+            services.AddSingleton<IMapper>(_ => AutoMapperConfig.GetMapper());
 
         }
 

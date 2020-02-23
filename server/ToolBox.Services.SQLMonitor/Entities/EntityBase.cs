@@ -24,5 +24,11 @@ namespace ToolBox.Services.SQLMonitor.Entities
 
         public virtual void SetUpdatedDate()
             => UpdatedDate = DateTime.UtcNow;
+
+        public virtual void Disable()
+           => IsActive = false;
+
+        public virtual void Enable()
+           => IsActive = true;
     }
 }
