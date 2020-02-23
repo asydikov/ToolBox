@@ -43,11 +43,15 @@ namespace ToolBox.Services.SQLMonitor
             services.AddScoped<IServiceBase<SQLQueryModel>, ServiceBase<SQLQueryModel, SQLQuery>>();
             services.AddScoped<IRepositoryBase<Server>, RepositoryBase<Server>>();
             services.AddScoped<IServiceBase<ServerModel>, ServiceBase<ServerModel, Server>>();
+            services.AddScoped<IRepositoryBase<Database>, RepositoryBase<Database>>();
+            services.AddScoped<IServiceBase<DatabaseModel>, ServiceBase<DatabaseModel, Database>>();
 
             services.AddScoped<ISQLQueryService, SQLQueryService>();
             services.AddScoped<ISQLQueryRepository, SQLQueryRepository>();
             services.AddScoped<IServerService, ServerService>();
             services.AddScoped<IServerRepository, ServerRepository>();
+            services.AddScoped<IDatabaseService, DatabaseService>();
+            services.AddScoped<IDatabaseRepository, DatabaseRepository>();
 
             services.AddScoped<IMapper>(_ => AutoMapperConfig.GetMapper());
 
