@@ -17,7 +17,9 @@ namespace ToolBox.Services.SQLMonitor.Helpers
                 //   cfg.CreateMap<User, UserModel>().ForMember(x => x.Password, opt => opt.Ignore());
 
                 cfg.CreateMap<SQLQuery, SQLQueryModel>();
-            
+                cfg.CreateMap<SQLQueryModel, SQLQuery>()
+                .AfterMap((model, entity) => entity.Initialize());
+
 
             });
 

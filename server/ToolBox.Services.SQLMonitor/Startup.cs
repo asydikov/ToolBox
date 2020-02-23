@@ -6,7 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ToolBox.Common.Events;
 using ToolBox.Common.RabbitMq;
+using ToolBox.Services.SQLMonitor.Domain.Models;
 using ToolBox.Services.SQLMonitor.EF;
+using ToolBox.Services.SQLMonitor.Entities;
 using ToolBox.Services.SQLMonitor.Handlers;
 using ToolBox.Services.SQLMonitor.Helpers;
 using ToolBox.Services.SQLMonitor.Messages.Events;
@@ -37,10 +39,12 @@ namespace ToolBox.Services.SQLMonitor
             services.AddScoped<IEventHandler<DbWorkerOperationRejected>, DbWorkerOperationRejectedHandler>();
             services.AddScoped<IMetrics, Metrics>();
 
+            services.AddScoped<IRepositoryBase<SQLQuery>, RepositoryBase<SQLQuery>>();
+            services.AddScoped<IServiceBase<SQLQueryModel>, ServiceBase<SQLQueryModel, SQLQuery>>();
             services.AddScoped<ISQLQueryService, SQLQueryService>();
             services.AddScoped<ISQLQueryRepository, SQLQueryRepository>();
 
-            services.AddSingleton<IMapper>(_ => AutoMapperConfig.GetMapper());
+            services.AddScoped<IMapper>(_ => AutoMapperConfig.GetMapper());
 
         }
 

@@ -22,13 +22,21 @@ namespace ToolBox.Services.SQLMonitor.Entities
             SetUpdatedDate();
         }
 
+        public void Initialize()
+        {
+            Id = Guid.NewGuid();
+            CreatedDate = DateTime.UtcNow;
+            IsActive = true;
+            SetUpdatedDate();
+        }
+
         public virtual void SetUpdatedDate()
             => UpdatedDate = DateTime.UtcNow;
 
-        public virtual void Disable()
+        public void Disable()
            => IsActive = false;
 
-        public virtual void Enable()
+        public void Enable()
            => IsActive = true;
     }
 }
