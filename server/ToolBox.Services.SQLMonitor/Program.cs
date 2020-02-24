@@ -6,7 +6,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ToolBox.Services.SQLMonitor.Handlers;
+using ToolBox.Services.SQLMonitor.Messages.Commands;
 using ToolBox.Services.SQLMonitor.Messages.Events;
+using ToolBox.Services.SQLMonitor.Messages.Events.DbWorker;
 using static ToolBox.Common.Services.ServiceHost;
 
 namespace ToolBox.Services.SQLMonitor
@@ -19,6 +22,7 @@ namespace ToolBox.Services.SQLMonitor
             .UserRabbitMq()
              .SubscribeToEvent<DbWorkerOperationCompleted>()
              .SubscribeToEvent<DbWorkerOperationRejected>()
+             .SubscribeToCommand<ServerCommand>()
              .Build()
              .Run();
         }

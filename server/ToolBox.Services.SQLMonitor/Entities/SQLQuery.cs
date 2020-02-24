@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ToolBox.Services.SQLMonitor.Entities
 {
-    public class SQLQuery : EntityBase
+    public class SqlQuery : EntityBase
     {
         public string Name { get; set; }
         public string Query { get; set; }

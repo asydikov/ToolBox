@@ -13,13 +13,13 @@ namespace ToolBox.Services.DBWorker.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SQLMonitorController : ControllerBase
+    public class SqlMonitorController : ControllerBase
     {
         private readonly IBusClient _busClient;
-        private readonly ISQLQueryService _sqlQueryService;
+        private readonly ISqlQueryService _sqlQueryService;
         private readonly IServerService _serverService;
-        public SQLMonitorController(IBusClient busClient,
-            ISQLQueryService sqlQueryService,
+        public SqlMonitorController(IBusClient busClient,
+            ISqlQueryService sqlQueryService,
             IServerService serverService)
         {
             _busClient = busClient;
@@ -30,19 +30,13 @@ namespace ToolBox.Services.DBWorker.Controllers
 
         [AllowAnonymous]
         [HttpPost("sql-query")]
-        public async Task<IActionResult> Post(SQLQueryModel model)
+        public async Task<IActionResult> Post(SqlQueryModel model)
         {
             var result = await _sqlQueryService.CreateAsync(model);
             return Ok(result);
         }
 
-        [AllowAnonymous]
-        [HttpPost("sql-server")]
-        public async Task<IActionResult> SqlServer(ServerModel model)
-        {
-            var result = await _serverService.CreateAsync(model);
-            return Ok(result);
-        }
+      
 
         [AllowAnonymous]
         [HttpGet("test-connection")]
@@ -50,7 +44,7 @@ namespace ToolBox.Services.DBWorker.Controllers
         {
             var d = new Dictionary<string, string>();
             d.Add("@oneresultset", "1");
-            await _busClient.PublishAsync(new SQLStoredProcedureQuery(
+            await _busClient.PublishAsync(new SqlStoredProcedureQuery(
                   Guid.NewGuid(),
                   "sp_spaceused",
                   d,

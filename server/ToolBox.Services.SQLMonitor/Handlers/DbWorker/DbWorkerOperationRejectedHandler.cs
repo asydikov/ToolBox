@@ -8,7 +8,7 @@ using ToolBox.Common.Commands;
 using ToolBox.Common.Events;
 using ToolBox.Services.SQLMonitor.Messages.Events;
 
-namespace ToolBox.Services.SQLMonitor.Handlers
+namespace ToolBox.Services.SQLMonitor.Handlers.DbWorker
 {
     public class DbWorkerOperationRejectedHandler : IEventHandler<DbWorkerOperationRejected>
     {

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ToolBox.Services.SQLMonitor.Domain.Models;
 using ToolBox.Services.SQLMonitor.Entities;
+using ToolBox.Services.SQLMonitor.Messages.Commands;
 
 namespace ToolBox.Services.SQLMonitor.Helpers
 {
@@ -16,13 +17,16 @@ namespace ToolBox.Services.SQLMonitor.Helpers
             {
                 //   cfg.CreateMap<User, UserModel>().ForMember(x => x.Password, opt => opt.Ignore());
 
-                cfg.CreateMap<SQLQuery, SQLQueryModel>();
-                cfg.CreateMap<SQLQueryModel, SQLQuery>()
+                cfg.CreateMap<SqlQuery, SqlQueryModel>();
+                cfg.CreateMap<SqlQueryModel, SqlQuery>()
                 .AfterMap((model, entity) => entity.Initialize());
                 cfg.CreateMap<ServerModel, Server>()
                 .AfterMap((model, entity) => entity.Initialize());
                 cfg.CreateMap<DatabaseModel, Database>()
                .AfterMap((model, entity) => entity.Initialize());
+
+
+                cfg.CreateMap<ServerCommand, DatabaseModel>();
 
 
             });

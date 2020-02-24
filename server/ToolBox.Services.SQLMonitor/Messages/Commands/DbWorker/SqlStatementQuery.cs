@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using Toolbox.Common.Messages;
 using ToolBox.Common.Commands;
 
-namespace ToolBox.Services.SQLMonitor.Messages.Commands
+namespace ToolBox.Services.SQLMonitor.Messages.Commands.DbWorker
 {
     [MessageNamespace("dbworker")]
-    public class SQLStatementQuery : ICommand
+    public class SqlStatementQuery : ICommand
     {
         public Guid Id { get; }
         public string Instruction { get; }
@@ -25,7 +25,7 @@ namespace ToolBox.Services.SQLMonitor.Messages.Commands
 
 
         [JsonConstructor]
-        public SQLStatementQuery(Guid id, string instruction, string host, int port, string userId, string password, string databaseName, Guid sqlServerId, Guid databaseId, string resource)
+        public SqlStatementQuery(Guid id, string instruction, string host, int port, string userId, string password, string databaseName, Guid sqlServerId, Guid databaseId, string resource)
         {
             Id = id;
             Instruction = instruction;

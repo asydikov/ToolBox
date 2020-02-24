@@ -2,9 +2,9 @@
 using RawRabbit;
 using System.Threading.Tasks;
 using ToolBox.Common.Events;
-using ToolBox.Services.SQLMonitor.Messages.Events;
+using ToolBox.Services.SQLMonitor.Messages.Events.DbWorker;
 
-namespace ToolBox.Services.SQLMonitor.Handlers
+namespace ToolBox.Services.SQLMonitor.Handlers.DbWorker
 {
     public class DbWorkerOperationCompletedHandler : IEventHandler<DbWorkerOperationCompleted>
     {

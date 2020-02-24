@@ -9,7 +9,7 @@ using ToolBox.Services.SQLMonitor.EF;
 
 namespace ToolBox.Services.SQLMonitor.Migrations
 {
-    [DbContext(typeof(SQLMonitorDbContext))]
+    [DbContext(typeof(SqlMonitorDbContext))]
     [Migration("20200222231030_Servers_Databases_Added")]
     partial class Servers_Databases_Added
     {

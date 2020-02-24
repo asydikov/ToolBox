@@ -10,9 +10,9 @@ namespace ToolBox.Services.SQLMonitor.Repositories
 {
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : EntityBase
     {
-        protected readonly SQLMonitorDbContext _context;
+        protected readonly SqlMonitorDbContext _context;
 
-        public RepositoryBase(SQLMonitorDbContext context)
+        public RepositoryBase(SqlMonitorDbContext context)
         {
             _context = context;
         }

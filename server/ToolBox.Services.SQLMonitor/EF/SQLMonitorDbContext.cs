@@ -5,11 +5,11 @@ using ToolBox.Services.SQLMonitor.Entities;
 
 namespace ToolBox.Services.SQLMonitor.EF
 {
-    public class SQLMonitorDbContext : DbContext
+    public class SqlMonitorDbContext : DbContext
     {
         private IOptions<SqlSettings> _sqlSettings;
 
-        public SQLMonitorDbContext(DbContextOptions<SQLMonitorDbContext> options, IOptions<SqlSettings> sqlSettings)
+        public SqlMonitorDbContext(DbContextOptions<SqlMonitorDbContext> options, IOptions<SqlSettings> sqlSettings)
               : base(options)
         {
             _sqlSettings = sqlSettings;
@@ -17,7 +17,7 @@ namespace ToolBox.Services.SQLMonitor.EF
 
         public DbSet<Server> Servers { get; set; }
         public DbSet<Database> Databases { get; set; }
-        public DbSet<SQLQuery> SQLQueries { get; set; }
+        public DbSet<SqlQuery> SQLQueries { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -38,9 +38,9 @@ namespace ToolBox.Services.SQLMonitor.EF
             modelBuilder.Entity<Database>().Property(x => x.ServerId).IsRequired();
             modelBuilder.Entity<Database>().Property(x => x.Name).IsRequired();
 
-            modelBuilder.Entity<SQLQuery>().Property(x => x.Query).IsRequired();
-            modelBuilder.Entity<SQLQuery>().Property(x => x.Name).IsRequired();
-            modelBuilder.Entity<SQLQuery>().Property(x => x.IsStoredProcedure).IsRequired();
+            modelBuilder.Entity<SqlQuery>().Property(x => x.Query).IsRequired();
+            modelBuilder.Entity<SqlQuery>().Property(x => x.Name).IsRequired();
+            modelBuilder.Entity<SqlQuery>().Property(x => x.IsStoredProcedure).IsRequired();
 
             modelBuilder.Seed();
         }

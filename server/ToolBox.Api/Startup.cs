@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Toolbox.Common.RestEase;
+using ToolBox.Api.Services;
 using ToolBox.Api.Services.Identity;
 using ToolBox.Common.Auth;
 using ToolBox.Common.RabbitMq;
@@ -30,6 +31,7 @@ namespace ToolBox.Api
             services.AddJwt(Configuration);
             services.AddRabbitMq(Configuration);
             services.RegisterRestEaseService<IIdentityService>("identity-service");
+            services.RegisterRestEaseService<ISqlMonitorService>("sqlmonitor-service");
             //services.RegisterRestEaseService<IIdentityService>("notification-service");
         }   
 

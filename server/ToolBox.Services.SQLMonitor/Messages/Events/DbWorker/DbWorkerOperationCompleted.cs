@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Toolbox.Common.Messages;
 using ToolBox.Common.Events;
 
-namespace ToolBox.Services.SQLMonitor.Messages.Events
+namespace ToolBox.Services.SQLMonitor.Messages.Events.DbWorker
 {
     [MessageNamespace("dbworker")]
     public class DbWorkerOperationCompleted : IEvent

@@ -9,9 +9,9 @@ using ToolBox.Services.SQLMonitor.Repositories;
 
 namespace ToolBox.Services.SQLMonitor.Services
 {
-    public class SQLQueryService : ServiceBase<SQLQueryModel, SQLQuery>, ISQLQueryService
+    public class SqlQueryService : ServiceBase<SqlQueryModel, SqlQuery>, ISqlQueryService
     {
-        public SQLQueryService(IRepositoryBase<SQLQuery> repository, IMapper mapper) : base(repository, mapper)
+        public SqlQueryService(IRepositoryBase<SqlQuery> repository, IMapper mapper) : base(repository, mapper)
         {
         }
     }

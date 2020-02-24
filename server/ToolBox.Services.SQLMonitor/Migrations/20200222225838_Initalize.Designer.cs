@@ -8,7 +8,7 @@ using ToolBox.Services.SQLMonitor.EF;
 
 namespace ToolBox.Services.SQLMonitor.Migrations
 {
-    [DbContext(typeof(SQLMonitorDbContext))]
+    [DbContext(typeof(SqlMonitorDbContext))]
     [Migration("20200222225838_Initalize")]
     partial class Initalize
     {

@@ -4,14 +4,18 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ToolBox.Common.Commands;
 using ToolBox.Common.Events;
 using ToolBox.Common.RabbitMq;
 using ToolBox.Services.SQLMonitor.Domain.Models;
 using ToolBox.Services.SQLMonitor.EF;
 using ToolBox.Services.SQLMonitor.Entities;
 using ToolBox.Services.SQLMonitor.Handlers;
+using ToolBox.Services.SQLMonitor.Handlers.DbWorker;
 using ToolBox.Services.SQLMonitor.Helpers;
+using ToolBox.Services.SQLMonitor.Messages.Commands;
 using ToolBox.Services.SQLMonitor.Messages.Events;
+using ToolBox.Services.SQLMonitor.Messages.Events.DbWorker;
 using ToolBox.Services.SQLMonitor.Repositories;
 using ToolBox.Services.SQLMonitor.Services;
 
@@ -34,20 +38,21 @@ namespace ToolBox.Services.SQLMonitor
             services.AddHostedService<TimedHostedService>();
             services.AddRabbitMq(Configuration);
             services.Configure<SqlSettings>(sql);
-            services.AddEntityFrameworkSqlServer().AddDbContext<SQLMonitorDbContext>();
+            services.AddEntityFrameworkSqlServer().AddDbContext<SqlMonitorDbContext>();
             services.AddScoped<IEventHandler<DbWorkerOperationCompleted>, DbWorkerOperationCompletedHandler>();
             services.AddScoped<IEventHandler<DbWorkerOperationRejected>, DbWorkerOperationRejectedHandler>();
+            services.AddScoped<ICommandHandler<ServerCommand>, ServerCommandHandler>();
             services.AddScoped<IMetrics, Metrics>();
 
-            services.AddScoped<IRepositoryBase<SQLQuery>, RepositoryBase<SQLQuery>>();
-            services.AddScoped<IServiceBase<SQLQueryModel>, ServiceBase<SQLQueryModel, SQLQuery>>();
+            services.AddScoped<IRepositoryBase<SqlQuery>, RepositoryBase<SqlQuery>>();
+            services.AddScoped<IServiceBase<SqlQueryModel>, ServiceBase<SqlQueryModel, SqlQuery>>();
             services.AddScoped<IRepositoryBase<Server>, RepositoryBase<Server>>();
             services.AddScoped<IServiceBase<ServerModel>, ServiceBase<ServerModel, Server>>();
             services.AddScoped<IRepositoryBase<Database>, RepositoryBase<Database>>();
             services.AddScoped<IServiceBase<DatabaseModel>, ServiceBase<DatabaseModel, Database>>();
 
-            services.AddScoped<ISQLQueryService, SQLQueryService>();
-            services.AddScoped<ISQLQueryRepository, SQLQueryRepository>();
+            services.AddScoped<ISqlQueryService, SqlQueryService>();
+            services.AddScoped<ISqlQueryRepository, SqlQueryRepository>();
             services.AddScoped<IServerService, ServerService>();
             services.AddScoped<IServerRepository, ServerRepository>();
             services.AddScoped<IDatabaseService, DatabaseService>();

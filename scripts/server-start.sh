@@ -1,3 +1,2 @@
 #!/bin/bash
-cd ../server/ToolBox.Api
-dotnet run
+echo "Hello world"

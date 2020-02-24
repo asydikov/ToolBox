@@ -7,10 +7,10 @@ using ToolBox.Services.SQLMonitor.Entities;
 
 namespace ToolBox.Services.SQLMonitor.Repositories
 {
-    public class SQLQueryRepository : RepositoryBase<SQLQuery>, ISQLQueryRepository
+    public class SqlQueryRepository : RepositoryBase<SqlQuery>, ISqlQueryRepository
     {
 
-        public SQLQueryRepository(SQLMonitorDbContext context) : base(context) { }
+        public SqlQueryRepository(SqlMonitorDbContext context) : base(context) { }
 
     }
 }

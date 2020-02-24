@@ -5,6 +5,6 @@ namespace ToolBox.Services.SQLMonitor.Repositories
 {
     public class DatabaseRepository : RepositoryBase<Database>, IDatabaseRepository
     {
-        public DatabaseRepository(SQLMonitorDbContext context) : base(context) { }
+        public DatabaseRepository(SqlMonitorDbContext context) : base(context) { }
     }
 }

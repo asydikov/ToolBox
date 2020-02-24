@@ -8,7 +8,7 @@ using ToolBox.Services.SQLMonitor.EF;
 
 namespace ToolBox.Services.SQLMonitor.Migrations
 {
-    [DbContext(typeof(SQLMonitorDbContext))]
+    [DbContext(typeof(SqlMonitorDbContext))]
     partial class SQLMonitorDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -9,6 +9,6 @@ namespace ToolBox.Services.SQLMonitor.Repositories
 {
     public class ServerRepository : RepositoryBase<Server>, IServerRepository
     {
-        public ServerRepository(SQLMonitorDbContext context) : base(context) { }
+        public ServerRepository(SqlMonitorDbContext context) : base(context) { }
     }
 }

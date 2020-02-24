@@ -6,7 +6,7 @@ using ToolBox.Services.SQLMonitor.Domain.Models;
 
 namespace ToolBox.Services.SQLMonitor.Services
 {
-    public interface ISQLQueryService : IServiceBase<SQLQueryModel>
+    public interface ISqlQueryService : IServiceBase<SqlQueryModel>
     {
     }
 }

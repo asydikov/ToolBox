@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ToolBox.Services.SQLMonitor.Domain.Models
 {
-    public class SQLQueryModel : ModelBase
+    public class SqlQueryModel : ModelBase
     {
         public string Name { get; set; }
         public string Query { get; set; }
