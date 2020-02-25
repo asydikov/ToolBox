@@ -9,7 +9,7 @@ using ToolBox.Common.Commands;
 namespace ToolBox.Services.DBWorker.Messages.Commands
 {
     [MessageNamespace("dbworker")]
-    public class SQLStoredProcedureQuery : ICommand
+    public class SqlStoredProcedureQuery : ICommand
     {
 
         public Guid Id { get; }
@@ -25,7 +25,7 @@ namespace ToolBox.Services.DBWorker.Messages.Commands
         public string Resource { get; }
 
         [JsonConstructor]
-        public SQLStoredProcedureQuery(Guid id, string storedProcedureName, Dictionary<string, string> parameters, string host, int port, string dbUserId, string password, string databaseName, Guid sqlServerId, Guid databaseId, string resource)
+        public SqlStoredProcedureQuery(Guid id, string storedProcedureName, Dictionary<string, string> parameters, string host, int port, string dbUserId, string password, string databaseName, Guid sqlServerId, Guid databaseId, string resource)
         {
             Id = id;
             StoredProcedureName = storedProcedureName;

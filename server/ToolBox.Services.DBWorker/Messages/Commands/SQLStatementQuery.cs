@@ -9,7 +9,7 @@ using ToolBox.Common.Commands;
 namespace ToolBox.Services.DBWorker.Messages.Commands
 {
     [MessageNamespace("dbworker")]
-    public class SQLStatementQuery : ICommand
+    public class SqlStatementQuery : ICommand
     {
         public Guid Id { get; }
         public string Instruction { get; }
@@ -25,7 +25,7 @@ namespace ToolBox.Services.DBWorker.Messages.Commands
 
 
         [JsonConstructor]
-        public SQLStatementQuery(Guid id, string instruction, string host, int port, string dbUserId, string password, string databaseName, Guid sqlServerId, Guid databaseId, string resource)
+        public SqlStatementQuery(Guid id, string instruction, string host, int port, string dbUserId, string password, string databaseName, Guid sqlServerId, Guid databaseId, string resource)
         {
             Id = id;
             Instruction = instruction;
