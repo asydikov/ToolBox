@@ -10,7 +10,7 @@ namespace ToolBox.Services.SQLMonitor.Entities
     {
         public Guid ServerId { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
         public Server Server { get; set; }
-        public virtual ICollection<ScheduleDatabase> ScheduleDatabases { get; set; }
     }
 }

@@ -28,6 +28,9 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -46,6 +49,53 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                     b.HasIndex("ServerId");
 
                     b.ToTable("Databases");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("67a65524-de22-45e7-ab19-6ea6d908084a"),
+                            CreatedDate = new DateTime(2020, 2, 25, 23, 31, 10, 85, DateTimeKind.Utc).AddTicks(5844),
+                            IsActive = true,
+                            Name = "SqlMonitor",
+                            ServerId = new Guid("f8a082a8-c274-4872-a5e1-aa6bf6ac2999"),
+                            UpdatedDate = new DateTime(2020, 2, 25, 23, 31, 10, 85, DateTimeKind.Utc).AddTicks(5863)
+                        },
+                        new
+                        {
+                            Id = new Guid("7c621003-29b4-41c0-bf61-321ce440c324"),
+                            CreatedDate = new DateTime(2020, 2, 25, 23, 31, 10, 85, DateTimeKind.Utc).AddTicks(7825),
+                            IsActive = true,
+                            Name = "SqlMonitor",
+                            ServerId = new Guid("f8a082a8-c274-4872-a5e1-aa6bf6ac2999"),
+                            UpdatedDate = new DateTime(2020, 2, 25, 23, 31, 10, 85, DateTimeKind.Utc).AddTicks(7831)
+                        },
+                        new
+                        {
+                            Id = new Guid("01de20a8-bbec-4230-8a94-1cec2bbe3e5c"),
+                            CreatedDate = new DateTime(2020, 2, 25, 23, 31, 10, 85, DateTimeKind.Utc).AddTicks(7908),
+                            IsActive = true,
+                            Name = "modeldb",
+                            ServerId = new Guid("f8a082a8-c274-4872-a5e1-aa6bf6ac2999"),
+                            UpdatedDate = new DateTime(2020, 2, 25, 23, 31, 10, 85, DateTimeKind.Utc).AddTicks(7909)
+                        },
+                        new
+                        {
+                            Id = new Guid("f59183f2-aa8f-47e9-9623-147193064b72"),
+                            CreatedDate = new DateTime(2020, 2, 25, 23, 31, 10, 85, DateTimeKind.Utc).AddTicks(7934),
+                            IsActive = true,
+                            Name = "msdb",
+                            ServerId = new Guid("f8a082a8-c274-4872-a5e1-aa6bf6ac2999"),
+                            UpdatedDate = new DateTime(2020, 2, 25, 23, 31, 10, 85, DateTimeKind.Utc).AddTicks(7935)
+                        },
+                        new
+                        {
+                            Id = new Guid("a26e1e2d-3372-44fe-acbc-ae3d7ab57a04"),
+                            CreatedDate = new DateTime(2020, 2, 25, 23, 31, 10, 85, DateTimeKind.Utc).AddTicks(8005),
+                            IsActive = true,
+                            Name = "tempdb",
+                            ServerId = new Guid("f8a082a8-c274-4872-a5e1-aa6bf6ac2999"),
+                            UpdatedDate = new DateTime(2020, 2, 25, 23, 31, 10, 85, DateTimeKind.Utc).AddTicks(8006)
+                        });
                 });
 
             modelBuilder.Entity("ToolBox.Services.SQLMonitor.Entities.Schedule", b =>
@@ -75,21 +125,18 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Schedules");
-                });
 
-            modelBuilder.Entity("ToolBox.Services.SQLMonitor.Entities.ScheduleDatabase", b =>
-                {
-                    b.Property<Guid>("ScheduleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("DatabaseId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ScheduleId", "DatabaseId");
-
-                    b.HasIndex("DatabaseId");
-
-                    b.ToTable("ScheduleDatabase");
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("bbc5bcaf-845d-4f90-a3f4-009520687a60"),
+                            CreatedDate = new DateTime(2020, 2, 25, 23, 31, 10, 86, DateTimeKind.Utc).AddTicks(9217),
+                            Interval = 5,
+                            IsActive = true,
+                            IsForServer = true,
+                            LastInvokedDate = new DateTime(2020, 2, 25, 23, 31, 10, 86, DateTimeKind.Local).AddTicks(9830),
+                            UpdatedDate = new DateTime(2020, 2, 25, 23, 31, 10, 86, DateTimeKind.Utc).AddTicks(9224)
+                        });
                 });
 
             modelBuilder.Entity("ToolBox.Services.SQLMonitor.Entities.ScheduleServer", b =>
@@ -105,6 +152,35 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                     b.HasIndex("ServerId");
 
                     b.ToTable("ScheduleServer");
+
+                    b.HasData(
+                        new
+                        {
+                            ScheduleId = new Guid("bbc5bcaf-845d-4f90-a3f4-009520687a60"),
+                            ServerId = new Guid("f8a082a8-c274-4872-a5e1-aa6bf6ac2999")
+                        });
+                });
+
+            modelBuilder.Entity("ToolBox.Services.SQLMonitor.Entities.ScheduleSqlQuery", b =>
+                {
+                    b.Property<Guid>("ScheduleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SqlQueryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ScheduleId", "SqlQueryId");
+
+                    b.HasIndex("SqlQueryId");
+
+                    b.ToTable("ScheduleSqlQuery");
+
+                    b.HasData(
+                        new
+                        {
+                            ScheduleId = new Guid("bbc5bcaf-845d-4f90-a3f4-009520687a60"),
+                            SqlQueryId = new Guid("9edf1682-53af-495b-b99b-ed2513e7a3db")
+                        });
                 });
 
             modelBuilder.Entity("ToolBox.Services.SQLMonitor.Entities.Server", b =>
@@ -115,6 +191,9 @@ namespace ToolBox.Services.SQLMonitor.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Host")
                         .IsRequired()
@@ -147,6 +226,21 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Servers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("f8a082a8-c274-4872-a5e1-aa6bf6ac2999"),
+                            CreatedDate = new DateTime(2020, 2, 25, 23, 31, 10, 83, DateTimeKind.Utc).AddTicks(5049),
+                            Host = "localhost",
+                            IsActive = true,
+                            Login = "sa",
+                            Name = "Sql monitor server",
+                            Password = "Pass_w0rd12",
+                            Port = 1465,
+                            UpdatedDate = new DateTime(2020, 2, 25, 23, 31, 10, 83, DateTimeKind.Utc).AddTicks(6728),
+                            UserId = new Guid("00000000-0000-0000-0000-000000000000")
+                        });
                 });
 
             modelBuilder.Entity("ToolBox.Services.SQLMonitor.Entities.SqlQuery", b =>
@@ -175,29 +269,24 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("ScheduleId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ScheduleId");
 
                     b.ToTable("SQLQueries");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0eaabcad-bea5-4de2-ac61-bd8ed071bf3f"),
-                            CreatedDate = new DateTime(2020, 2, 25, 16, 13, 41, 602, DateTimeKind.Utc).AddTicks(6111),
+                            Id = new Guid("9edf1682-53af-495b-b99b-ed2513e7a3db"),
+                            CreatedDate = new DateTime(2020, 2, 25, 23, 31, 10, 86, DateTimeKind.Utc).AddTicks(1117),
                             Description = "List of Database names in a server",
                             IsActive = true,
                             IsStoredProcedure = true,
                             Name = "sp_databases",
                             Query = "sp_databases",
-                            UpdatedDate = new DateTime(2020, 2, 25, 16, 13, 41, 602, DateTimeKind.Utc).AddTicks(7849)
+                            UpdatedDate = new DateTime(2020, 2, 25, 23, 31, 10, 86, DateTimeKind.Utc).AddTicks(1143)
                         });
                 });
 
@@ -206,21 +295,6 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                     b.HasOne("ToolBox.Services.SQLMonitor.Entities.Server", "Server")
                         .WithMany("Databases")
                         .HasForeignKey("ServerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ToolBox.Services.SQLMonitor.Entities.ScheduleDatabase", b =>
-                {
-                    b.HasOne("ToolBox.Services.SQLMonitor.Entities.Database", "Database")
-                        .WithMany("ScheduleDatabases")
-                        .HasForeignKey("DatabaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ToolBox.Services.SQLMonitor.Entities.Schedule", "Schedule")
-                        .WithMany("ScheduleDatabases")
-                        .HasForeignKey("ScheduleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -240,11 +314,19 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ToolBox.Services.SQLMonitor.Entities.SqlQuery", b =>
+            modelBuilder.Entity("ToolBox.Services.SQLMonitor.Entities.ScheduleSqlQuery", b =>
                 {
-                    b.HasOne("ToolBox.Services.SQLMonitor.Entities.Schedule", null)
-                        .WithMany("SqlQueries")
-                        .HasForeignKey("ScheduleId");
+                    b.HasOne("ToolBox.Services.SQLMonitor.Entities.Schedule", "Schedule")
+                        .WithMany("ScheduleSqlQueries")
+                        .HasForeignKey("ScheduleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ToolBox.Services.SQLMonitor.Entities.SqlQuery", "SqlQuery")
+                        .WithMany("ScheduleSqlQueries")
+                        .HasForeignKey("SqlQueryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

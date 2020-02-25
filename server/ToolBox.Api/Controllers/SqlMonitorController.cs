@@ -17,20 +17,18 @@ namespace ToolBox.Api.Controllers
     public class SqlMonitorController : BaseController
     {
         private readonly IBusClient _busClient;
-        private readonly ISqlMonitorService _identityService;
         private readonly ILogger _logger;
-        public SqlMonitorController(ISqlMonitorService identityService,
+        public SqlMonitorController(
             IBusClient busClient,
              ILogger<SqlMonitorController> logger)
         {
-            _identityService = identityService;
             _busClient = busClient;
             _logger = logger;
         }
 
 
-        [HttpPost()]
-        public async Task<IActionResult> Post(ServerCommand command)
+        [HttpPost("server")]
+        public async Task<IActionResult> ServerAdd(ServerCommand command)
         {
             command.Id = Guid.NewGuid();
             command.UserId = UserId;

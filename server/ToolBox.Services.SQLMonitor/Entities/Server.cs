@@ -13,6 +13,7 @@ namespace ToolBox.Services.SQLMonitor.Entities
         public int Port { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public string Description { get; set; }
         public virtual ICollection<Database> Databases { get; set; }
         public virtual ICollection<ScheduleServer> ScheduleServers { get; set; }
     }

@@ -44,29 +44,34 @@ namespace ToolBox.Services.SQLMonitor.EF
             modelBuilder.Entity<SqlQuery>().Property(x => x.Name).IsRequired();
             modelBuilder.Entity<SqlQuery>().Property(x => x.IsStoredProcedure).IsRequired();
             modelBuilder.Entity<Schedule>().Property(x => x.Interval).IsRequired();
-            modelBuilder.Entity<Schedule>().HasMany(x => x.SqlQueries);
 
             modelBuilder.Entity<ScheduleServer>()
         .HasKey(bc => new { bc.ScheduleId, bc.ServerId });
+
             modelBuilder.Entity<ScheduleServer>()
                 .HasOne(bc => bc.Schedule)
                 .WithMany(b => b.ScheduleServers)
                 .HasForeignKey(bc => bc.ScheduleId);
+
             modelBuilder.Entity<ScheduleServer>()
                 .HasOne(bc => bc.Server)
                 .WithMany(c => c.ScheduleServers)
                 .HasForeignKey(bc => bc.ServerId);
 
-            modelBuilder.Entity<ScheduleDatabase>()
-       .HasKey(bc => new { bc.ScheduleId, bc.DatabaseId });
-            modelBuilder.Entity<ScheduleDatabase>()
+
+            modelBuilder.Entity<ScheduleSqlQuery>()
+       .HasKey(bc => new { bc.ScheduleId, bc.SqlQueryId });
+
+            modelBuilder.Entity<ScheduleSqlQuery>()
                 .HasOne(bc => bc.Schedule)
-                .WithMany(b => b.ScheduleDatabases)
+                .WithMany(b => b.ScheduleSqlQueries)
                 .HasForeignKey(bc => bc.ScheduleId);
-            modelBuilder.Entity<ScheduleDatabase>()
-                .HasOne(bc => bc.Database)
-                .WithMany(c => c.ScheduleDatabases)
-                .HasForeignKey(bc => bc.DatabaseId);
+
+            modelBuilder.Entity<ScheduleSqlQuery>()
+              .HasOne(bc => bc.SqlQuery)
+              .WithMany(c => c.ScheduleSqlQueries)
+              .HasForeignKey(bc => bc.SqlQueryId);
+
 
 
             modelBuilder.Seed();

@@ -12,5 +12,6 @@ namespace ToolBox.Services.SQLMonitor.Entities
         public string Query { get; set; }
         public string Description { get; set; }
         public bool IsStoredProcedure { get; set; }
+        public virtual ICollection<ScheduleSqlQuery> ScheduleSqlQueries { get; set; }
     }
 }
