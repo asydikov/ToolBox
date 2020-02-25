@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ToolBox.Services.SQLMonitor.Domain.Models;
 
 namespace ToolBox.Services.SQLMonitor.Services
 {
-    public interface IMetrics
+    public interface IScheduleService : IServiceBase<ScheduleModel>
     {
-        Task DoWork();
     }
 }

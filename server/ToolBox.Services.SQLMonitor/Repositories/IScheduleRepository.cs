@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ToolBox.Services.SQLMonitor.Services
+namespace ToolBox.Services.SQLMonitor.Repositories
 {
-    public interface IMetrics
+    public interface IScheduleRepository
     {
-        Task DoWork();
     }
 }

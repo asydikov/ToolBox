@@ -18,15 +18,27 @@ namespace ToolBox.Services.DBWorker.Controllers
         private readonly IBusClient _busClient;
         private readonly ISqlQueryService _sqlQueryService;
         private readonly IServerService _serverService;
+        private readonly IScheduleService _scheduleService;
         public SqlMonitorController(IBusClient busClient,
             ISqlQueryService sqlQueryService,
-            IServerService serverService)
+            IServerService serverService,
+            IScheduleService scheduleService)
         {
             _busClient = busClient;
             _sqlQueryService = sqlQueryService;
             _serverService = serverService;
+            _scheduleService = scheduleService;
 
         }
+
+        [AllowAnonymous]
+        [HttpGet("schedule")]
+        public async Task<IActionResult> Post()
+        {
+            var result = await _scheduleService.GetAllAsync();
+            return Ok(result);
+        }
+
 
         [AllowAnonymous]
         [HttpPost("sql-query")]
@@ -36,7 +48,7 @@ namespace ToolBox.Services.DBWorker.Controllers
             return Ok(result);
         }
 
-      
+
 
         [AllowAnonymous]
         [HttpGet("test-connection")]

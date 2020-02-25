@@ -18,6 +18,7 @@ namespace ToolBox.Services.SQLMonitor.EF
         public DbSet<Server> Servers { get; set; }
         public DbSet<Database> Databases { get; set; }
         public DbSet<SqlQuery> SQLQueries { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -38,9 +39,35 @@ namespace ToolBox.Services.SQLMonitor.EF
             modelBuilder.Entity<Database>().Property(x => x.ServerId).IsRequired();
             modelBuilder.Entity<Database>().Property(x => x.Name).IsRequired();
 
+
             modelBuilder.Entity<SqlQuery>().Property(x => x.Query).IsRequired();
             modelBuilder.Entity<SqlQuery>().Property(x => x.Name).IsRequired();
             modelBuilder.Entity<SqlQuery>().Property(x => x.IsStoredProcedure).IsRequired();
+            modelBuilder.Entity<Schedule>().Property(x => x.Interval).IsRequired();
+            modelBuilder.Entity<Schedule>().HasMany(x => x.SqlQueries);
+
+            modelBuilder.Entity<ScheduleServer>()
+        .HasKey(bc => new { bc.ScheduleId, bc.ServerId });
+            modelBuilder.Entity<ScheduleServer>()
+                .HasOne(bc => bc.Schedule)
+                .WithMany(b => b.ScheduleServers)
+                .HasForeignKey(bc => bc.ScheduleId);
+            modelBuilder.Entity<ScheduleServer>()
+                .HasOne(bc => bc.Server)
+                .WithMany(c => c.ScheduleServers)
+                .HasForeignKey(bc => bc.ServerId);
+
+            modelBuilder.Entity<ScheduleDatabase>()
+       .HasKey(bc => new { bc.ScheduleId, bc.DatabaseId });
+            modelBuilder.Entity<ScheduleDatabase>()
+                .HasOne(bc => bc.Schedule)
+                .WithMany(b => b.ScheduleDatabases)
+                .HasForeignKey(bc => bc.ScheduleId);
+            modelBuilder.Entity<ScheduleDatabase>()
+                .HasOne(bc => bc.Database)
+                .WithMany(c => c.ScheduleDatabases)
+                .HasForeignKey(bc => bc.DatabaseId);
+
 
             modelBuilder.Seed();
         }

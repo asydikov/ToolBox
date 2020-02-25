@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using ToolBox.Services.SQLMonitor.EF;
 
 //https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-2.2&tabs=visual-studio#timed-background-tasks
 namespace ToolBox.Services.SQLMonitor.Services
@@ -12,6 +13,7 @@ namespace ToolBox.Services.SQLMonitor.Services
     {
         private readonly ILogger _logger;
         private readonly IServiceProvider _serviceProvider;
+        private readonly IMetrics _metrics;
         private Timer _timer;
 
         public TimedHostedService(IServiceProvider services, ILogger<Metrics> logger)
@@ -25,21 +27,26 @@ namespace ToolBox.Services.SQLMonitor.Services
             _logger.LogInformation("Timed Background Service is starting.");
 
             _timer = new Timer(DoWork, null, TimeSpan.Zero,
-                TimeSpan.FromSeconds(1));
+                TimeSpan.FromSeconds(10));
 
             return Task.CompletedTask;
         }
 
         private void DoWork(object state)
         {
-            //using (var scope = _serviceProvider.CreateScope())
-            //{
-            //    var scopedProcessingService =
-            //       scope.ServiceProvider
-            //           .GetRequiredService<IMetrics>();
+            var t = 1;
+            if (t == 1)
+            {
+                using (var scope = _serviceProvider.CreateScope())
+                {
+                    var metricsService =
+                       scope.ServiceProvider
+                           .GetRequiredService<IMetrics>();
 
-            //    scopedProcessingService.DoWork();
-            //}
+                    metricsService.DoWork();
+                }
+                t = +1;
+            }
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

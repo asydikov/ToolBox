@@ -28,6 +28,7 @@ namespace ToolBox.Services.SQLMonitor.Handlers
             _mapper = mapper;
             _logger = logger;
         }
+
         public async Task HandleAsync(ServerCommand command)
         {
             _logger.LogInformation($"Sql monitor service: {command.Id}");

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToolBox.Services.SQLMonitor.EF;
 
 namespace ToolBox.Services.SQLMonitor.Migrations
 {
     [DbContext(typeof(SqlMonitorDbContext))]
-    partial class SQLMonitorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200225161342_Schedule_Added")]
+    partial class Schedule_Added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

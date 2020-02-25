@@ -14,7 +14,6 @@ namespace ToolBox.Services.SQLMonitor.EF
                 Query = "sp_databases",
                 Description = "List of Database names in a server",
                 IsStoredProcedure = true
-
         };
 
         modelBuilder.Entity<SqlQuery>().HasData(query);

@@ -42,7 +42,7 @@ namespace ToolBox.Services.SQLMonitor
             services.AddScoped<IEventHandler<DbWorkerOperationCompleted>, DbWorkerOperationCompletedHandler>();
             services.AddScoped<IEventHandler<DbWorkerOperationRejected>, DbWorkerOperationRejectedHandler>();
             services.AddScoped<ICommandHandler<ServerCommand>, ServerCommandHandler>();
-            services.AddScoped<IMetrics, Metrics>();
+            services.AddSingleton<IMetrics, Metrics>();
 
             services.AddScoped<IRepositoryBase<SqlQuery>, RepositoryBase<SqlQuery>>();
             services.AddScoped<IServiceBase<SqlQueryModel>, ServiceBase<SqlQueryModel, SqlQuery>>();
@@ -50,6 +50,8 @@ namespace ToolBox.Services.SQLMonitor
             services.AddScoped<IServiceBase<ServerModel>, ServiceBase<ServerModel, Server>>();
             services.AddScoped<IRepositoryBase<Database>, RepositoryBase<Database>>();
             services.AddScoped<IServiceBase<DatabaseModel>, ServiceBase<DatabaseModel, Database>>();
+            services.AddScoped<IRepositoryBase<Schedule>, RepositoryBase<Schedule>>();
+            services.AddScoped<IServiceBase<ScheduleModel>, ServiceBase<ScheduleModel, Schedule>>();
 
             services.AddScoped<ISqlQueryService, SqlQueryService>();
             services.AddScoped<ISqlQueryRepository, SqlQueryRepository>();
@@ -57,6 +59,8 @@ namespace ToolBox.Services.SQLMonitor
             services.AddScoped<IServerRepository, ServerRepository>();
             services.AddScoped<IDatabaseService, DatabaseService>();
             services.AddScoped<IDatabaseRepository, DatabaseRepository>();
+            services.AddScoped<IScheduleService, ScheduleService>();
+            services.AddScoped<IScheduleRepository, ScheduleRepository>();
 
             services.AddScoped<IMapper>(_ => AutoMapperConfig.GetMapper());
 
@@ -78,6 +82,18 @@ namespace ToolBox.Services.SQLMonitor
             {
                 endpoints.MapControllers();
             });
+
+      
+            //{
+            //    using (var scope = app.ApplicationServices.CreateScope())
+            //    {
+            //        var metricsService =
+            //           scope.ServiceProvider
+            //               .GetRequiredService<IMetrics>();
+
+            //        metricsService.DoWork();
+            //    }
+            //}
         }
     }
 }
