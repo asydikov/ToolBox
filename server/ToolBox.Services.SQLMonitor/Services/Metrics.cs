@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ToolBox.Services.SQLMonitor.Domain.Models;
+using ToolBox.Services.SQLMonitor.Entities;
+using ToolBox.Services.SQLMonitor.Messages.Commands;
 using ToolBox.Services.SQLMonitor.Messages.Commands.DbWorker;
 
 namespace ToolBox.Services.SQLMonitor.Services
@@ -38,9 +41,10 @@ namespace ToolBox.Services.SQLMonitor.Services
                 try
                 {
                     var schedules = await scheduleService.GetAllAsync(predicate: null);
+
                     foreach (var schedule in schedules)
                     {
-                        // _busClient.PublishAsync(new SqlStatementQuery());
+                        await ScheduleExecute(schedule);
                     }
 
                 }
@@ -51,8 +55,61 @@ namespace ToolBox.Services.SQLMonitor.Services
                 }
             }
 
+        }
+
+        private async Task ScheduleExecute(ScheduleModel schedule)
+        {
+            foreach (var sqlScheduleQuery in schedule.ScheduleSqlQueries)
+            {
+
+                foreach (var scheduleServer in schedule.ScheduleServers)
+                {
+
+                    if (sqlScheduleQuery.SqlQuery.IsStoredProcedure)
+                    {
+                        await StoredProcedureInvoke(scheduleServer.Server, sqlScheduleQuery.SqlQuery);
+                    }
+                    else
+                    {
+                        await QueryInvoke(scheduleServer.Server, sqlScheduleQuery.SqlQuery);
+                    }
 
 
+                }
+            }
+        }
+
+        private async Task QueryInvoke(ServerModel server, SqlQueryModel sqlQuery)
+        {
+            await _busClient.PublishAsync(new SqlStatementQuery(
+                               Guid.NewGuid(),
+                              sqlQuery.Query,
+                              server.Host,
+                              server.Port,
+                              server.Login,
+                              server.Password,
+                              null,
+                              server.Id,
+                              Guid.Empty,
+                              "sqlmonitor-service"
+                               ));
+        }
+
+        private async Task StoredProcedureInvoke(ServerModel server, SqlQueryModel sqlQuery)
+        {
+            await _busClient.PublishAsync(new SqlStoredProcedureQuery(
+                               Guid.NewGuid(),
+                              sqlQuery.Query,
+                              null,
+                              server.Host,
+                              server.Port,
+                              server.Login,
+                              server.Password,
+                              null,
+                              server.Id,
+                              Guid.Empty,
+                              "sqlmonitor-service"
+                               ));
         }
     }
 }

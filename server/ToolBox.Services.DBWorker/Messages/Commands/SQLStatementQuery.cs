@@ -15,7 +15,7 @@ namespace ToolBox.Services.DBWorker.Messages.Commands
         public string Instruction { get; }
         public string Host { get; }
         public int Port { get; }
-        public string DbUserId { get; }
+        public string Login { get; }
         public string Password { get; }
         public string DatabaseName { get; }
 
@@ -25,13 +25,13 @@ namespace ToolBox.Services.DBWorker.Messages.Commands
 
 
         [JsonConstructor]
-        public SqlStatementQuery(Guid id, string instruction, string host, int port, string dbUserId, string password, string databaseName, Guid sqlServerId, Guid databaseId, string resource)
+        public SqlStatementQuery(Guid id, string instruction, string host, int port, string login, string password, string databaseName, Guid sqlServerId, Guid databaseId, string resource)
         {
             Id = id;
             Instruction = instruction;
             Host = host;
             Port = port;
-            DbUserId = dbUserId;
+            Login = login;
             Password = password;
             DatabaseName = databaseName;
             SQLServerId = sqlServerId;
@@ -41,7 +41,7 @@ namespace ToolBox.Services.DBWorker.Messages.Commands
 
         public string GetConncetionString()
         {
-            return $"Server={Host}, {Port}; User Id={DbUserId}; Password={Password}; Database={DatabaseName}; MultipleActiveResultSets=true";
+            return $"Server={Host}, {Port}; User Id={Login}; Password={Password}; Database={DatabaseName}; MultipleActiveResultSets=true";
         }
 
     }
