@@ -10,8 +10,7 @@ namespace ToolBox.Services.SQLMonitor.Services
     public interface IServiceBase<TModel, TEntity> where TModel : ModelBase
     {
         Task<TModel> GetAsync(Guid id);
-        Task<IEnumerable<TModel>> GetAllAsync();
-        Task<IEnumerable<TModel>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null);
+        Task<IEnumerable<TModel>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null, bool includeAll = false);
 
         Task<Guid> CreateAsync(TModel model);
         Task UpdateAsync(TModel model);

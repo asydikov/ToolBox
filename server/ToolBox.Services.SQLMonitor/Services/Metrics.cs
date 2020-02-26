@@ -32,29 +32,36 @@ namespace ToolBox.Services.SQLMonitor.Services
         {
             _logger.LogInformation("Timed Background Service is working.");
 
-            using (var scope = _services.CreateScope())
+            using var scope = _services.CreateScope();
+
+            var scheduleService = scope.ServiceProvider.GetRequiredService<IScheduleService>();
+            var now = DateTime.Now;
+            try
             {
-                var scheduleService =
-                   scope.ServiceProvider
-                       .GetRequiredService<IScheduleService>();
+                var schedules = await scheduleService.GetAllAsync(schedule =>
+                                      now > schedule.LastInvokedDate.AddSeconds(schedule.Interval),
+                                      includeAll: true);
 
-                try
+                foreach (var schedule in schedules)
                 {
-                    var schedules = await scheduleService.GetAllAsync(predicate: null);
-
-                    foreach (var schedule in schedules)
-                    {
-                        await ScheduleExecute(schedule);
-                    }
-
+                    await ScheduleExecute(schedule);
+                    await ScheduleInvokeDateUpdate(scheduleService, schedule);
                 }
-                catch (Exception ex)
-                {
 
-                    throw;
-                }
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Timed Background Service Error.");
             }
 
+        }
+
+        private async Task ScheduleInvokeDateUpdate(IScheduleService scheduleService, ScheduleModel model)
+        {
+            var tempModel = await scheduleService.GetAsync(model.Id);
+            tempModel.LastInvokedDate = DateTime.Now;
+            await scheduleService.UpdateAsync(tempModel);
         }
 
         private async Task ScheduleExecute(ScheduleModel schedule)

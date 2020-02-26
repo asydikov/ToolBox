@@ -11,11 +11,23 @@ namespace ToolBox.Services.SQLMonitor.Services
 {
     public class ScheduleService : ServiceBase<ScheduleModel, Schedule>, IScheduleService
     {
+        private readonly IRepositoryBase<Schedule> _repository;
+        private readonly IMapper _mapper;
         public ScheduleService(IRepositoryBase<Schedule> repository, IMapper mapper) : base(repository, mapper)
         {
-             
+            _repository = repository;
+            _mapper = mapper;
         }
 
-      
+        public override async Task UpdateAsync(ScheduleModel model)
+        {
+            var entity = await _repository.GetAsync(model.Id);
+
+            entity.Interval = model.Interval;
+            entity.LastInvokedDate = model.LastInvokedDate;
+            entity.IsForServer = model.IsForServer;
+
+            await _repository.UpdateAsync(entity);
+        }
     }
 }

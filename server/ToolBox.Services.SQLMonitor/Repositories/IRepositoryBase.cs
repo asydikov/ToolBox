@@ -11,8 +11,7 @@ namespace ToolBox.Services.SQLMonitor.Repositories
     {
         Task<TEntity> GetAsync(Guid id);
 
-        Task<IEnumerable<TEntity>> GetAllAsync();
-        Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null);
+        Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null, bool includeAll = false);
         Task<Guid> CreateAsync(TEntity entity);
 
         Task UpdateAsync(TEntity entity);

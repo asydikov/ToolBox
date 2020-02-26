@@ -8,5 +8,6 @@ namespace ToolBox.Services.SQLMonitor.Repositories
 {
     public interface IScheduleRepository
     {
+
     }
 }

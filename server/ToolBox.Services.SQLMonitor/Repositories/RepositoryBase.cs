@@ -41,7 +41,6 @@ namespace ToolBox.Services.SQLMonitor.Repositories
         {
             _context.Set<TEntity>().Update(entity);
             await _context.SaveChangesAsync();
-
         }
 
         public virtual async Task DeleteEntityAsync(Guid id)
@@ -51,13 +50,22 @@ namespace ToolBox.Services.SQLMonitor.Repositories
             await UpdateAsync(entity);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null)
+        public virtual async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null, bool includeAll = false)
         {
-            var query = _context.Set<TEntity>()
-                .Include(_context.GetIncludePaths(typeof(TEntity)));
+            var query = _context.Set<TEntity>().AsQueryable();
+
+
+            if (includeAll == true)
+            {
+                query = query.Include(_context.GetIncludePaths(typeof(TEntity)));
+            }
             if (predicate != null)
+            {
                 query = query.Where(predicate);
+            }
+            
             return await query.ToListAsync();
         }
+
     }
 }

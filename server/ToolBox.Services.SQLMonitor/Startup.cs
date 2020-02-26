@@ -46,7 +46,7 @@ namespace ToolBox.Services.SQLMonitor
             services.AddScoped<IEventHandler<DbWorkerOperationCompleted>, DbWorkerOperationCompletedHandler>();
             services.AddScoped<IEventHandler<DbWorkerOperationRejected>, DbWorkerOperationRejectedHandler>();
             services.AddScoped<ICommandHandler<ServerCommand>, ServerCommandHandler>();
-            services.AddSingleton<IMetrics, Metrics>();
+            services.AddScoped<IMetrics, Metrics>();
 
             services.AddScoped<IRepositoryBase<SqlQuery>, RepositoryBase<SqlQuery>>();
             services.AddScoped<IServiceBase<SqlQueryModel, SqlQuery>, ServiceBase<SqlQueryModel, SqlQuery>>();

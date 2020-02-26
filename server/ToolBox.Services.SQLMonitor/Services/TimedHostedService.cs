@@ -27,16 +27,13 @@ namespace ToolBox.Services.SQLMonitor.Services
             _logger.LogInformation("Timed Background Service is starting.");
 
             _timer = new Timer(DoWork, null, TimeSpan.Zero,
-                TimeSpan.FromSeconds(10));
+                TimeSpan.FromSeconds(2));
 
             return Task.CompletedTask;
         }
 
         private void DoWork(object state)
         {
-            var t = 1;
-            if (t == 1)
-            {
                 using (var scope = _serviceProvider.CreateScope())
                 {
                     var metricsService =
@@ -45,8 +42,6 @@ namespace ToolBox.Services.SQLMonitor.Services
 
                     metricsService.DoWork();
                 }
-                t = +1;
-            }
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

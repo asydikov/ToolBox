@@ -29,12 +29,6 @@ namespace ToolBox.Services.SQLMonitor.Services
             return _mapper.Map<TModel>(entity);
         }
 
-        public virtual async Task<IEnumerable<TModel>> GetAllAsync()
-        {
-            IEnumerable<TEntity> entities = await _repository.GetAllAsync();
-            return _mapper.Map<IEnumerable<TEntity>, IEnumerable<TModel>>(entities);
-        }
-
         public virtual async Task<Guid> CreateAsync(TModel model)
         {
             TEntity entity = _mapper.Map<TEntity>(model);
@@ -52,9 +46,9 @@ namespace ToolBox.Services.SQLMonitor.Services
             await _repository.DeleteEntityAsync(id);
         }
 
-        public virtual async Task<IEnumerable<TModel>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null)
+        public virtual async Task<IEnumerable<TModel>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null, bool includeAll = false)
         {
-            IEnumerable<TEntity> entities = await _repository.GetAllAsync(predicate);
+            IEnumerable<TEntity> entities = await _repository.GetAllAsync(predicate, includeAll);
             return _mapper.Map<IEnumerable<TEntity>, IEnumerable<TModel>>(entities);
         }
     }
