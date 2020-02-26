@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using ToolBox.Services.SQLMonitor.EF;
 using ToolBox.Services.SQLMonitor.Entities;
@@ -48,6 +49,15 @@ namespace ToolBox.Services.SQLMonitor.Repositories
             TEntity entity = await _context.Set<TEntity>().FindAsync(id);
             entity.Disable();
             await UpdateAsync(entity);
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null)
+        {
+            var query = _context.Set<TEntity>()
+                .Include(_context.GetIncludePaths(typeof(TEntity)));
+            if (predicate != null)
+                query = query.Where(predicate);
+            return await query.ToListAsync();
         }
     }
 }

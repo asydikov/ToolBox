@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using ToolBox.Services.SQLMonitor.Domain.Models;
 using ToolBox.Services.SQLMonitor.Entities;
@@ -9,7 +10,7 @@ using ToolBox.Services.SQLMonitor.Repositories;
 
 namespace ToolBox.Services.SQLMonitor.Services
 {
-    public class ServiceBase<TModel, TEntity> : IServiceBase<TModel>
+    public class ServiceBase<TModel, TEntity> : IServiceBase<TModel, TEntity>
         where TModel : ModelBase
         where TEntity : EntityBase
     {
@@ -49,6 +50,12 @@ namespace ToolBox.Services.SQLMonitor.Services
         public virtual async Task DeleteEntityAsync(Guid id)
         {
             await _repository.DeleteEntityAsync(id);
+        }
+
+        public virtual async Task<IEnumerable<TModel>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null)
+        {
+            IEnumerable<TEntity> entities = await _repository.GetAllAsync(predicate);
+            return _mapper.Map<IEnumerable<TEntity>, IEnumerable<TModel>>(entities);
         }
     }
 }

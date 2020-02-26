@@ -38,6 +38,10 @@ namespace ToolBox.Services.SQLMonitor
             services.AddHostedService<TimedHostedService>();
             services.AddRabbitMq(Configuration);
             services.Configure<SqlSettings>(sql);
+        //         services.AddMvc()
+        //.AddJsonOptions(
+        //    options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+        //); ;
             services.AddEntityFrameworkSqlServer().AddDbContext<SqlMonitorDbContext>();
             services.AddScoped<IEventHandler<DbWorkerOperationCompleted>, DbWorkerOperationCompletedHandler>();
             services.AddScoped<IEventHandler<DbWorkerOperationRejected>, DbWorkerOperationRejectedHandler>();
@@ -45,13 +49,13 @@ namespace ToolBox.Services.SQLMonitor
             services.AddSingleton<IMetrics, Metrics>();
 
             services.AddScoped<IRepositoryBase<SqlQuery>, RepositoryBase<SqlQuery>>();
-            services.AddScoped<IServiceBase<SqlQueryModel>, ServiceBase<SqlQueryModel, SqlQuery>>();
+            services.AddScoped<IServiceBase<SqlQueryModel, SqlQuery>, ServiceBase<SqlQueryModel, SqlQuery>>();
             services.AddScoped<IRepositoryBase<Server>, RepositoryBase<Server>>();
-            services.AddScoped<IServiceBase<ServerModel>, ServiceBase<ServerModel, Server>>();
+            services.AddScoped<IServiceBase<ServerModel, Server>, ServiceBase<ServerModel, Server>>();
             services.AddScoped<IRepositoryBase<Database>, RepositoryBase<Database>>();
-            services.AddScoped<IServiceBase<DatabaseModel>, ServiceBase<DatabaseModel, Database>>();
+            services.AddScoped<IServiceBase<DatabaseModel, Database>, ServiceBase<DatabaseModel, Database>>();
             services.AddScoped<IRepositoryBase<Schedule>, RepositoryBase<Schedule>>();
-            services.AddScoped<IServiceBase<ScheduleModel>, ServiceBase<ScheduleModel, Schedule>>();
+            services.AddScoped<IServiceBase<ScheduleModel, Schedule>, ServiceBase<ScheduleModel, Schedule>>();
 
             services.AddScoped<ISqlQueryService, SqlQueryService>();
             services.AddScoped<ISqlQueryRepository, SqlQueryRepository>();

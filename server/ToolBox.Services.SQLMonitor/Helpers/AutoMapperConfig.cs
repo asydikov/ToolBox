@@ -15,18 +15,37 @@ namespace ToolBox.Services.SQLMonitor.Helpers
         {
             var config = new MapperConfiguration((cfg) =>
             {
+                cfg.AllowNullCollections = true;
                 //   cfg.CreateMap<User, UserModel>().ForMember(x => x.Password, opt => opt.Ignore());
 
                 cfg.CreateMap<SqlQuery, SqlQueryModel>();
                 cfg.CreateMap<SqlQueryModel, SqlQuery>()
                 .AfterMap((model, entity) => entity.Initialize());
+
+                cfg.CreateMap<Server, ServerModel>();
                 cfg.CreateMap<ServerModel, Server>()
                 .AfterMap((model, entity) => entity.Initialize());
+
+                cfg.CreateMap<Database, DatabaseModel>();
                 cfg.CreateMap<DatabaseModel, Database>()
                .AfterMap((model, entity) => entity.Initialize());
 
+                cfg.CreateMap<Schedule, ScheduleModel>();
+                //.IncludeMembers(x => x.ScheduleServers)
+                //.IncludeMembers(x => x.ScheduleSqlQueries);
+                cfg.CreateMap<ScheduleModel, Schedule>()
+                //.IncludeMembers(x => x.ScheduleServers)
+                //.IncludeMembers(x => x.ScheduleSqlQueries)
+                .AfterMap((model, entity) => entity.Initialize());
 
-                cfg.CreateMap<ServerCommand, DatabaseModel>();
+
+                cfg.CreateMap<ScheduleServer, ScheduleServerModel>();
+                cfg.CreateMap<ScheduleServerModel, ScheduleServer>();
+
+                cfg.CreateMap<ScheduleSqlQuery, ScheduleSqlQueryModel>();
+                cfg.CreateMap<ScheduleSqlQueryModel, ScheduleSqlQuery>();
+
+
 
 
             });

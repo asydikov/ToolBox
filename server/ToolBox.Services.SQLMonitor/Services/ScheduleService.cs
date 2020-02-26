@@ -13,6 +13,9 @@ namespace ToolBox.Services.SQLMonitor.Services
     {
         public ScheduleService(IRepositoryBase<Schedule> repository, IMapper mapper) : base(repository, mapper)
         {
+             
         }
+
+      
     }
 }

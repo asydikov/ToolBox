@@ -31,13 +31,13 @@ namespace ToolBox.Services.SQLMonitor.Services
 
             using (var scope = _services.CreateScope())
             {
-                var metricsService =
+                var scheduleService =
                    scope.ServiceProvider
                        .GetRequiredService<IScheduleService>();
 
                 try
                 {
-                    var schedules = await metricsService.GetAllAsync();
+                    var schedules = await scheduleService.GetAllAsync(predicate: null);
                     foreach (var schedule in schedules)
                     {
                         // _busClient.PublishAsync(new SqlStatementQuery());
