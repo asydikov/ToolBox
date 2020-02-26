@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -9,11 +10,13 @@ namespace ToolBox.Services.Identity.EF
     public class IdentityDbContext : DbContext
     {
         private IOptions<SqlSettings> _sqlSettings;
+        private IServiceProvider _serviceProvider;
 
-        public IdentityDbContext(DbContextOptions<IdentityDbContext> options, IOptions<SqlSettings> sqlSettings)
+        public IdentityDbContext(DbContextOptions<IdentityDbContext> options, IOptions<SqlSettings> sqlSettings, IServiceProvider serviceProvider)
               : base(options)
         {
             _sqlSettings = sqlSettings;
+            _serviceProvider = serviceProvider;
             //https://github.com/Microsoft/mssql-docker/issues/360
             //  Database.EnsureCreatedAsync();
         }
@@ -33,7 +36,7 @@ namespace ToolBox.Services.Identity.EF
                                         .WithOne(x => x.User)
                                         .HasForeignKey<RefreshToken>(x => x.UserId);
 
-            modelBuilder.Seed();
+            modelBuilder.Seed(_serviceProvider);
         }
 
     }

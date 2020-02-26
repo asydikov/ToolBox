@@ -22,6 +22,7 @@ namespace ToolBox.Services.SQLMonitor.EF
         {
             var server = new Server
             {
+                UserId = Guid.Parse("d2b248e2-07a5-4d2c-b4d4-d933a84ee5f6"),
                 Name = "Sql monitor server",
                 Host = "localhost",
                 Port = 1465,

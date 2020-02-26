@@ -74,7 +74,6 @@ namespace ToolBox.Services.SQLMonitor.Services
                         await QueryInvoke(scheduleServer.Server, sqlScheduleQuery.SqlQuery);
                     }
 
-
                 }
             }
         }
