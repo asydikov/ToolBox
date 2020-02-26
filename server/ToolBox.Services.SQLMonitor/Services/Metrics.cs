@@ -2,11 +2,13 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RawRabbit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ToolBox.Services.SQLMonitor.Messages.Commands.DbWorker;
 
 namespace ToolBox.Services.SQLMonitor.Services
 {
@@ -14,15 +16,19 @@ namespace ToolBox.Services.SQLMonitor.Services
     {
         private readonly ILogger _logger;
         private readonly IServiceProvider _services;
+        private readonly IBusClient _busClient;
 
-        public Metrics(ILogger<Metrics> logger, IServiceProvider services)
+        public Metrics(IBusClient busClient, ILogger<Metrics> logger, IServiceProvider services)
         {
+            _busClient = busClient;
             _services = services;
             _logger = logger;
         }
 
         public async Task DoWork()
         {
+            _logger.LogInformation("Timed Background Service is working.");
+
             using (var scope = _services.CreateScope())
             {
                 var metricsService =
@@ -31,7 +37,11 @@ namespace ToolBox.Services.SQLMonitor.Services
 
                 try
                 {
-                    var w = await metricsService.GetAllAsync();
+                    var schedules = await metricsService.GetAllAsync();
+                    foreach (var schedule in schedules)
+                    {
+                        // _busClient.PublishAsync(new SqlStatementQuery());
+                    }
 
                 }
                 catch (Exception ex)
@@ -41,9 +51,8 @@ namespace ToolBox.Services.SQLMonitor.Services
                 }
             }
 
-            _logger.LogInformation("Timed Background Service is working.");
 
-            //var schedules = await _scheduleService.GetAsync(new Guid("5475dd6a-ce84-4c4a-81bd-7fc27b0120ec"));
+
         }
     }
 }

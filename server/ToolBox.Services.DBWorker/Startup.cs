@@ -32,8 +32,8 @@ namespace ToolBox.Services.DBWorker
             services.AddControllers();
             services.AddRabbitMq(Configuration);
             services.AddScoped<ISQLService, SQLService>();
-            services.AddScoped<ICommandHandler<SQLStatementQuery>, SQLStatementQueryHandler>();
-            services.AddScoped<ICommandHandler<SQLStoredProcedureQuery>, SQLStoredProcedureQueryHandler>();
+            services.AddScoped<ICommandHandler<SqlStatementQuery>, SqlStatementQueryHandler>();
+            services.AddScoped<ICommandHandler<SqlStoredProcedureQuery>, SqlStoredProcedureQueryHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

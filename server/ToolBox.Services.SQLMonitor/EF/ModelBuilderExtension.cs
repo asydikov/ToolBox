@@ -17,6 +17,7 @@ namespace ToolBox.Services.SQLMonitor.EF
         }
 
 
+
         private static List<Server> AddServers(ModelBuilder modelBuilder)
         {
             var server = new Server
@@ -66,7 +67,6 @@ namespace ToolBox.Services.SQLMonitor.EF
 
             return new List<Server>() { server };
         }
-
       
         private static List<SqlQuery> AddQueries(ModelBuilder modelBuilder)
         {

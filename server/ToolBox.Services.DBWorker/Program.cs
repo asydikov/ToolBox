@@ -17,8 +17,8 @@ namespace ToolBox.Services.DBWorker
         {
             await new RabbitmqHostBuilder(CreateHostBuilder(args).Build())
             .UserRabbitMq()
-              .SubscribeToCommand<SQLStatementQuery>()
-              .SubscribeToCommand<SQLStoredProcedureQuery>()
+              .SubscribeToCommand<SqlStatementQuery>()
+              .SubscribeToCommand<SqlStoredProcedureQuery>()
              .Build()
              .Run();
         }

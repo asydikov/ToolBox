@@ -13,20 +13,20 @@ using ToolBox.Services.DBWorker.Services;
 
 namespace ToolBox.Services.DBWorker.Handlers
 {
-    public class SQLStatementQueryHandler : ICommandHandler<SQLStatementQuery>
+    public class SqlStatementQueryHandler : ICommandHandler<SqlStatementQuery>
     {
         private readonly IBusClient _busClient;
         private readonly ISQLService _sqlService;
         private readonly ILogger _logger;
-        public SQLStatementQueryHandler(IBusClient busClient,
+        public SqlStatementQueryHandler(IBusClient busClient,
          ISQLService sqlService,
-         ILogger<SQLStatementQueryHandler> logger)
+         ILogger<SqlStatementQueryHandler> logger)
         {
             _busClient = busClient;
             _sqlService = sqlService;
             _logger = logger;
         }
-        public async Task HandleAsync(SQLStatementQuery command)
+        public async Task HandleAsync(SqlStatementQuery command)
         {
             _logger.LogInformation($"DB worker query handler: {command.Id}");
 
