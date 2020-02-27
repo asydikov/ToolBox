@@ -24,10 +24,10 @@ namespace ToolBox.Services.SQLMonitor.Services
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Timed Background Service is starting.");
+            //_logger.LogInformation("Timed Background Service is starting.");
 
             _timer = new Timer(DoWork, null, TimeSpan.Zero,
-                TimeSpan.FromSeconds(2));
+                TimeSpan.FromSeconds(5));
 
             return Task.CompletedTask;
         }

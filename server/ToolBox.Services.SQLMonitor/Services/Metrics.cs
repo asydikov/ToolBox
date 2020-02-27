@@ -30,7 +30,7 @@ namespace ToolBox.Services.SQLMonitor.Services
 
         public async Task DoWork()
         {
-            _logger.LogInformation("Timed Background Service is working.");
+            //_logger.LogInformation("Timed Background Service is working.");
 
             using var scope = _services.CreateScope();
 
