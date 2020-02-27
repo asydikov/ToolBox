@@ -12,6 +12,7 @@ namespace ToolBox.Services.DBWorker.Messages.Commands
     public class SqlStatementQuery : ICommand
     {
         public Guid Id { get; }
+        public Guid UserId { get; set; }
         public string Instruction { get; }
         public string Host { get; }
         public int Port { get; }
@@ -19,22 +20,23 @@ namespace ToolBox.Services.DBWorker.Messages.Commands
         public string Password { get; }
         public string DatabaseName { get; }
 
-        public Guid SQLServerId { get; }
+        public Guid SqlServerId { get; }
         public Guid DatabaseId { get; }
         public string Resource { get; }
 
 
         [JsonConstructor]
-        public SqlStatementQuery(Guid id, string instruction, string host, int port, string login, string password, string databaseName, Guid sqlServerId, Guid databaseId, string resource)
+        public SqlStatementQuery(Guid id, Guid userId, string instruction, string host, int port, string login, string password, string databaseName, Guid sqlServerId, Guid databaseId, string resource)
         {
             Id = id;
+            UserId = userId;
             Instruction = instruction;
             Host = host;
             Port = port;
             Login = login;
             Password = password;
             DatabaseName = databaseName;
-            SQLServerId = sqlServerId;
+            SqlServerId = sqlServerId;
             DatabaseId = databaseId;
             Resource = resource;
         }

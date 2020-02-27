@@ -10,15 +10,17 @@ namespace ToolBox.Services.SQLMonitor.Messages.Events.DbWorker
     public class DbWorkerOperationCompleted : IEvent
     {
         public Guid Id { get; }
+        public Guid UserId { get; set; }
         public Guid SQLServerId { get; }
         public Guid DatabaseId { get; }
         public string Resource { get; }
         public List<Dictionary<string, string>> Result { get; }
 
         [JsonConstructor]
-        public DbWorkerOperationCompleted(Guid id, Guid sqlServerId, Guid databaseId, string resource, List<Dictionary<string, string>> result)
+        public DbWorkerOperationCompleted(Guid id, Guid userId, Guid sqlServerId, Guid databaseId, string resource, List<Dictionary<string, string>> result)
         {
             Id = id;
+            UserId = userId;
             SQLServerId = sqlServerId;
             DatabaseId = databaseId;
             Resource = resource;

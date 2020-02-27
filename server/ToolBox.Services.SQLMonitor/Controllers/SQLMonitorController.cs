@@ -54,20 +54,20 @@ namespace ToolBox.Services.DBWorker.Controllers
         [HttpGet("test-connection")]
         public async Task<IActionResult> TestConnection()
         {
-            var d = new Dictionary<string, string>();
-            d.Add("@oneresultset", "1");
-            await _busClient.PublishAsync(new SqlStoredProcedureQuery(
-                  Guid.NewGuid(),
-                  "sp_spaceused",
-                  d,
-                  "localhost",
-                  1455,
-                  "sa",
-                  "Pass_w0rd12",
-                  "Identity",
-                  Guid.NewGuid(),
-                  Guid.NewGuid(),
-                  "sqlmonitor-service"));
+            //var d = new Dictionary<string, string>();
+            //d.Add("@oneresultset", "1");
+            //await _busClient.PublishAsync(new SqlStoredProcedureQuery(
+            //      Guid.NewGuid(),
+            //      "sp_spaceused",
+            //      d,
+            //      "localhost",
+            //      1455,
+            //      "sa",
+            //      "Pass_w0rd12",
+            //      "Identity",
+            //      Guid.NewGuid(),
+            //      Guid.NewGuid(),
+            //      "sqlmonitor-service"));
 
 
             return Ok();

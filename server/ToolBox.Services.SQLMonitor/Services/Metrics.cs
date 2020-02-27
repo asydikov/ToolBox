@@ -89,6 +89,7 @@ namespace ToolBox.Services.SQLMonitor.Services
         {
             await _busClient.PublishAsync(new SqlStatementQuery(
                                Guid.NewGuid(),
+                               server.UserId,
                               sqlQuery.Query,
                               server.Host,
                               server.Port,
@@ -105,6 +106,7 @@ namespace ToolBox.Services.SQLMonitor.Services
         {
             await _busClient.PublishAsync(new SqlStoredProcedureQuery(
                                Guid.NewGuid(),
+                               server.UserId,
                               sqlQuery.Query,
                               null,
                               server.Host,

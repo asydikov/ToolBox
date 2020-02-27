@@ -12,6 +12,7 @@ namespace ToolBox.Services.SQLMonitor.Messages.Commands
     public class SqlStoredProcedureQuery : ICommand
     {
         public Guid Id { get; }
+        public Guid UserId { get; set; }
         public string StoredProcedureName { get; }
         public Dictionary<string, string> Parameters { get; }
         public string Host { get; }
@@ -25,9 +26,10 @@ namespace ToolBox.Services.SQLMonitor.Messages.Commands
         public string Resource { get; }
 
         [JsonConstructor]
-        public SqlStoredProcedureQuery(Guid id, string storedProcedureName, Dictionary<string, string> parameters, string host, int port, string login, string password, string databaseName, Guid sqlServerId, Guid databaseId, string resource)
+        public SqlStoredProcedureQuery(Guid id, Guid userId, string storedProcedureName, Dictionary<string, string> parameters, string host, int port, string login, string password, string databaseName, Guid sqlServerId, Guid databaseId, string resource)
         {
             Id = id;
+            UserId = userId;
             StoredProcedureName = storedProcedureName;
             Parameters = parameters;
             Host = host;

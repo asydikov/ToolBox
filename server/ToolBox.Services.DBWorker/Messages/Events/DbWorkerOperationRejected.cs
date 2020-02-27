@@ -13,7 +13,8 @@ namespace ToolBox.Services.DBWorker.Messages.Events
     public class DbWorkerOperationRejected : IEvent
     {
         public Guid Id { get; }
-        public Guid SQLServerId { get; }
+        public Guid UserId { get; set; }
+        public Guid SqlServerId { get; }
         public Guid DatabaseId { get; }
         public string Name { get; }
         public string Resource { get; }
@@ -23,11 +24,13 @@ namespace ToolBox.Services.DBWorker.Messages.Events
 
         [JsonConstructor]
         public DbWorkerOperationRejected(Guid id,
+            Guid userId,
             Guid sqlServerId, Guid databaseId, string name, string resource,
             string code, string message)
         {
             Id = id;
-            SQLServerId = sqlServerId;
+            UserId = userId;
+            SqlServerId = sqlServerId;
             DatabaseId = databaseId;
             Name = name;
             Resource = resource;

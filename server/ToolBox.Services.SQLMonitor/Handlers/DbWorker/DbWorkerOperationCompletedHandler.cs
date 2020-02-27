@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ToolBox.Common.Events;
 using ToolBox.Services.SQLMonitor.Messages.Events.DbWorker;
+using ToolBox.Services.SQLMonitor.Messages.Events.Notification;
 
 namespace ToolBox.Services.SQLMonitor.Handlers.DbWorker
 {
@@ -26,6 +27,7 @@ namespace ToolBox.Services.SQLMonitor.Handlers.DbWorker
                 return;
             }
 
+            await _busClient.PublishAsync(new OperationCompleted(command.Id, command.UserId, "sqlmonitor-service", "database-metrics-updated"));
 
 
             _logger.LogInformation($"DbWorkerOperationCompleted: {command.Id}");

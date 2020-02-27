@@ -33,11 +33,11 @@ namespace ToolBox.Services.DBWorker.Handlers
             try
             {
                 var result = await _sqlService.SendSQLServerRequest(command.GetConncetionString(), command.Instruction, isProcedure: false);
-                await _busClient.PublishAsync(new DbWorkerOperationCompleted(Guid.NewGuid(), command.SQLServerId, command.DatabaseId, command.Resource, result));
+                await _busClient.PublishAsync(new DbWorkerOperationCompleted(Guid.NewGuid(), command.UserId, command.SqlServerId, command.DatabaseId, command.Resource, result));
             }
             catch (Exception ex)
             {
-                await _busClient.PublishAsync(new DbWorkerOperationRejected(command.Id, command.SQLServerId, command.DatabaseId, "sql statement query execution", "dbworker-service", "error", ex.Message));
+                await _busClient.PublishAsync(new DbWorkerOperationRejected(command.Id, command.UserId, command.SqlServerId, command.DatabaseId, "sql statement query execution", "dbworker-service", "error", ex.Message));
                 _logger.LogError(ex.Message);
             }
         }
