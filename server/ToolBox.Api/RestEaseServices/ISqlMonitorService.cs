@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ToolBox.Api.Domain.Models.SqlMonitor;
 
-namespace ToolBox.Api.Services
+namespace ToolBox.Api.RestEaseServices
 {
     [SerializationMethods(Query = QuerySerializationMethod.Serialized)]
     public interface ISqlMonitorService

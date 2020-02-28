@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using RawRabbit;
 using ToolBox.Api.Domain.Models.SqlMonitor;
 using ToolBox.Api.Messages.Commands.SqlMonitor;
-using ToolBox.Api.Services;
+using ToolBox.Api.RestEaseServices;
 
 namespace ToolBox.Api.Controllers
 {
@@ -40,7 +40,7 @@ namespace ToolBox.Api.Controllers
         }
 
 
-        [HttpPost("server")]
+        [HttpPost("server-add")]
         public async Task<IActionResult> ServerAdd(ServerCommand command)
         {
             command.Id = Guid.NewGuid();

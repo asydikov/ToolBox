@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using ToolBox.Api.Domain.Models.Identity;
 
-namespace ToolBox.Api.Services.Identity
+namespace ToolBox.Api.RestEaseServices
 {
     [SerializationMethods(Query = QuerySerializationMethod.Serialized)]
     public interface IIdentityService

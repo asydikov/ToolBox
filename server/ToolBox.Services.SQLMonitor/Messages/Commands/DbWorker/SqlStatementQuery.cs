@@ -20,7 +20,7 @@ namespace ToolBox.Services.SQLMonitor.Messages.Commands.DbWorker
         public string Password { get; }
         public string DatabaseName { get; }
 
-        public Guid SQLServerId { get; }
+        public Guid SqlServerId { get; }
         public Guid DatabaseId { get; }
         public string Resource { get; }
 
@@ -36,7 +36,7 @@ namespace ToolBox.Services.SQLMonitor.Messages.Commands.DbWorker
             Login = login;
             Password = password;
             DatabaseName = databaseName;
-            SQLServerId = sqlServerId;
+            SqlServerId = sqlServerId;
             DatabaseId = databaseId;
             Resource = resource;
         }
