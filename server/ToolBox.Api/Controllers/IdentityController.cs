@@ -17,9 +17,10 @@ namespace ToolBox.Api.Controllers
         private readonly IBusClient _busClient;
         private readonly IIdentityService _identityService;
         private readonly ILogger _logger;
-        public IdentityController(IIdentityService identityService,
-            IBusClient busClient,
-             ILogger<IdentityController> logger)
+        public IdentityController(
+              IIdentityService identityService,
+              IBusClient busClient,
+              ILogger<IdentityController> logger)
         {
             _identityService = identityService;
             _busClient = busClient;

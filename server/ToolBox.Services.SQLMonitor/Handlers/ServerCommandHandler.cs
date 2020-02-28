@@ -14,14 +14,14 @@ using ToolBox.Services.SQLMonitor.Services;
 
 namespace ToolBox.Services.SQLMonitor.Handlers
 {
-    public class ServerCommandHandler : ICommandHandler<ServerCommand>
+    public class CheckServerConnectionHandler : ICommandHandler<ServerCommand>
     {
         private readonly IBusClient _busClient;
         private readonly IServerService _serverService;
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
 
-        public ServerCommandHandler(IBusClient busClient, IServerService serverService, IMapper mapper, ILogger<ServerCommandHandler> logger)
+        public CheckServerConnectionHandler(IBusClient busClient, IServerService serverService, IMapper mapper, ILogger<CheckServerConnectionHandler> logger)
         {
             _busClient = busClient;
             _serverService = serverService;

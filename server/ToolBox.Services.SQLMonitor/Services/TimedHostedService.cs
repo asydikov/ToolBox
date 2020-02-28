@@ -13,7 +13,6 @@ namespace ToolBox.Services.SQLMonitor.Services
     {
         private readonly ILogger _logger;
         private readonly IServiceProvider _serviceProvider;
-        private readonly IMetrics _metrics;
         private Timer _timer;
 
         public TimedHostedService(IServiceProvider services, ILogger<Metrics> logger)
@@ -34,14 +33,14 @@ namespace ToolBox.Services.SQLMonitor.Services
 
         private void DoWork(object state)
         {
-                using (var scope = _serviceProvider.CreateScope())
-                {
-                    var metricsService =
-                       scope.ServiceProvider
-                           .GetRequiredService<IMetrics>();
+                //using (var scope = _serviceProvider.CreateScope())
+                //{
+                //    var metricsService =
+                //       scope.ServiceProvider
+                //           .GetRequiredService<IMetrics>();
 
-                    metricsService.DoWork();
-                }
+                //    metricsService.DoWork();
+                //}
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

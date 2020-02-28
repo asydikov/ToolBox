@@ -3,14 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
+using ToolBox.Services.DBWorker.Domain.Models;
+using ToolBox.Services.DBWorker.Helpers;
 
 // https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-code-examples
 namespace ToolBox.Services.DBWorker.Services
 {
-    public class SQLService : ISQLService
+    public class SqlService : ISQLService
     {
-        public async Task<List<Dictionary<string, string>>> SendSQLServerRequest(string conncectionString, 
-                                                                                 string instruction, 
+        public async Task<List<Dictionary<string, string>>> SendSqlServerRequest(string conncectionString,
+                                                                                 string instruction,
                                                                                  bool isProcedure = false,
                                                                                  Dictionary<string, string> parameters = null)
         {
@@ -54,7 +56,28 @@ namespace ToolBox.Services.DBWorker.Services
 
             return result;
         }
-       
+
+
+        public async Task<bool> IsSqlConnected(ConnectionModel сonnectionModel)
+        {
+            var connectionString = ConnectionHelper.GetConncetionStringWithTimeout(сonnectionModel, 1);
+
+            try
+            {
+                await using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+
     }
 
 }

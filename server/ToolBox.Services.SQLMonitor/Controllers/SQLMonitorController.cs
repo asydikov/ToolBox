@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using RawRabbit;
 using ToolBox.Services.SQLMonitor.Domain.Models;
 using ToolBox.Services.SQLMonitor.Messages.Commands;
+using ToolBox.Services.SQLMonitor.RestEaseServices;
 using ToolBox.Services.SQLMonitor.Services;
 
 namespace ToolBox.Services.DBWorker.Controllers
@@ -15,25 +16,37 @@ namespace ToolBox.Services.DBWorker.Controllers
     [ApiController]
     public class SqlMonitorController : ControllerBase
     {
-        private readonly IBusClient _busClient;
         private readonly ISqlQueryService _sqlQueryService;
-        private readonly IServerService _serverService;
+        private readonly IDbWorkerService _dbWorkerService;
         private readonly IScheduleService _scheduleService;
-        public SqlMonitorController(IBusClient busClient,
+        public SqlMonitorController(
+            IDbWorkerService dbWorkerService,
             ISqlQueryService sqlQueryService,
-            IServerService serverService,
             IScheduleService scheduleService)
         {
-            _busClient = busClient;
             _sqlQueryService = sqlQueryService;
-            _serverService = serverService;
+            _dbWorkerService = dbWorkerService;
             _scheduleService = scheduleService;
 
         }
 
+        [HttpGet("server-connection-check")]
+        public async Task<IActionResult> ServerConnectionCheck(ConnectionModel connectionModel)
+        {
+            var result = await _dbWorkerService.ServerConnectionCheck(connectionModel);
+
+            return Ok(result);
+        }
+
+
+
+
+
+
+
         [AllowAnonymous]
         [HttpGet("schedule")]
-        public async Task<IActionResult> Post()
+        public async Task<IActionResult> Get()
         {
             var result = await _scheduleService.GetAllAsync();
             return Ok(result);
@@ -49,29 +62,6 @@ namespace ToolBox.Services.DBWorker.Controllers
         }
 
 
-
-        [AllowAnonymous]
-        [HttpGet("test-connection")]
-        public async Task<IActionResult> TestConnection()
-        {
-            //var d = new Dictionary<string, string>();
-            //d.Add("@oneresultset", "1");
-            //await _busClient.PublishAsync(new SqlStoredProcedureQuery(
-            //      Guid.NewGuid(),
-            //      "sp_spaceused",
-            //      d,
-            //      "localhost",
-            //      1455,
-            //      "sa",
-            //      "Pass_w0rd12",
-            //      "Identity",
-            //      Guid.NewGuid(),
-            //      Guid.NewGuid(),
-            //      "sqlmonitor-service"));
-
-
-            return Ok();
-        }
 
 
 

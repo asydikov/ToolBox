@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Toolbox.Common.Messages;
 using ToolBox.Common.Commands;
 
-namespace ToolBox.Api.Messages.Commands.SQLMonitor
+namespace ToolBox.Api.Messages.Commands.SqlMonitor
 {
     [MessageNamespace("sqlmonitor")]
     public class ServerCommand : ICommand

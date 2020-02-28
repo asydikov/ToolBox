@@ -31,7 +31,7 @@ namespace ToolBox.Services.DBWorker
         {
             services.AddControllers();
             services.AddRabbitMq(Configuration);
-            services.AddScoped<ISQLService, SQLService>();
+            services.AddScoped<ISQLService, SqlService>();
             services.AddScoped<ICommandHandler<SqlStatementQuery>, SqlStatementQueryHandler>();
             services.AddScoped<ICommandHandler<SqlStoredProcedureQuery>, SqlStoredProcedureQueryHandler>();
         }

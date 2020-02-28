@@ -32,8 +32,9 @@ namespace ToolBox.Services.DBWorker.Handlers
 
             try
             {
-                var result = await _sqlService.SendSQLServerRequest(command.GetConncetionString(), command.Instruction, isProcedure: false);
-                await _busClient.PublishAsync(new DbWorkerOperationCompleted(Guid.NewGuid(), command.UserId, command.SqlServerId, command.DatabaseId, command.Resource, result));
+                var result = await _sqlService.SendSqlServerRequest(command.GetConncetionString(), command.Instruction, isProcedure: false);
+
+                await _busClient.PublishAsync(new DbWorkerOperationCompleted<string, string>(Guid.NewGuid(), command.UserId, command.SqlServerId, command.DatabaseId, command.Resource, result));
             }
             catch (Exception ex)
             {

@@ -46,5 +46,9 @@ namespace ToolBox.Services.DBWorker.Messages.Commands
         {
             return $"Server={Host}, {Port}; User Id={Login}; Password={Password}; Database={DatabaseName}; MultipleActiveResultSets=true";
         }
+        public string GetConncetionStringWithTimeout(int timeout = 2)
+        {
+            return $"{GetConncetionString()}; Connection Timeout={timeout}";
+        }
     }
 }
