@@ -16,10 +16,7 @@ import { SqlMonitorModule } from './sql-monitor/sql-monitor.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
-    SqlMonitorModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

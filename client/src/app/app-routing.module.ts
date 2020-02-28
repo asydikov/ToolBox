@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { SqlMonitorModule } from './sql-monitor/sql-monitor.module';
 
 
 const routes: Routes = [
-  {
-    path: 'sqlmonitor',
-    loadChildren: () => import('./sql-monitor/sql-monitor.module').then(m => m.SqlMonitorModule)
-  },
-  { path: '', redirectTo: '', pathMatch: 'full' },
-  // { path: 'cards', component: CardComponent, canActivate: [AuthGuard] },
-  // { path: 'notes', component: NoteComponent, canActivate: [AuthGuard] },
-  // { path: 'notes/:id', component: NoteComponent, canActivate: [AuthGuard] },
+ 
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
    { path: 'login', component: LoginComponent },
-  // { path: 'regirstration', component: RegisterComponent },
-  // { path: '**', component: CardComponent }
+   {
+    path: 'sqlmonitor',
+
+    loadChildren: () => import('./sql-monitor/sql-monitor.module').then(m => m.SqlMonitorModule)
+  }   
 ];
 
 @NgModule({
