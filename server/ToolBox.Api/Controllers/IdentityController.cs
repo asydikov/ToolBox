@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using RawRabbit;
 using ToolBox.Api.Domain.Models.Identity;
 using ToolBox.Api.Messages.Commands.Identity;
-using ToolBox.Api.Services.Identity;
+using ToolBox.Api.RestEaseServices;
 
 namespace ToolBox.Api.Controllers
 {
@@ -51,7 +51,7 @@ namespace ToolBox.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPut("change-password")]
+        [HttpPut("password-change")]
         public async Task<ActionResult> ChangePassword(ChangePassword command)
         {
             await _busClient.PublishAsync(command);

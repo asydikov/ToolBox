@@ -33,14 +33,14 @@ namespace ToolBox.Services.SQLMonitor.Services
 
         private void DoWork(object state)
         {
-                //using (var scope = _serviceProvider.CreateScope())
-                //{
-                //    var metricsService =
-                //       scope.ServiceProvider
-                //           .GetRequiredService<IMetrics>();
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                var metricsService =
+                   scope.ServiceProvider
+                       .GetRequiredService<IMetrics>();
 
-                //    metricsService.DoWork();
-                //}
+                metricsService.DoWork();
+            }
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

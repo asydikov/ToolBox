@@ -87,37 +87,35 @@ namespace ToolBox.Services.SQLMonitor.Services
 
         private async Task QueryInvoke(ServerModel server, SqlQueryModel sqlQuery)
         {
-            await _busClient.PublishAsync(new SqlStatementQuery(
-                               Guid.NewGuid(),
-                               server.UserId,
-                              sqlQuery.Query,
-                              server.Host,
-                              server.Port,
-                              server.Login,
-                              server.Password,
-                              null,
-                              server.Id,
-                              Guid.Empty,
-                              "sqlmonitor-service"
-                               ));
+            await _busClient.PublishAsync(new SqlStatementQuery(Guid.NewGuid(),
+                                                                server.UserId,
+                                                                sqlQuery.Query,
+                                                                server.Host,
+                                                                server.Port,
+                                                                server.Login,
+                                                                server.Password,
+                                                                null,
+                                                                server.Id,
+                                                                Guid.Empty,
+                                                                "sqlmonitor-service"
+                                                                 ));
         }
 
         private async Task StoredProcedureInvoke(ServerModel server, SqlQueryModel sqlQuery)
         {
-            await _busClient.PublishAsync(new SqlStoredProcedureQuery(
-                               Guid.NewGuid(),
-                               server.UserId,
-                              sqlQuery.Query,
-                              null,
-                              server.Host,
-                              server.Port,
-                              server.Login,
-                              server.Password,
-                              null,
-                              server.Id,
-                              Guid.Empty,
-                              "sqlmonitor-service"
-                               ));
+            await _busClient.PublishAsync(new SqlStoredProcedureQuery(Guid.NewGuid(),
+                                                                      server.UserId,
+                                                                      sqlQuery.Query,
+                                                                      null,
+                                                                      server.Host,
+                                                                      server.Port,
+                                                                      server.Login,
+                                                                      server.Password,
+                                                                      null,
+                                                                      server.Id,
+                                                                      Guid.Empty,
+                                                                      "sqlmonitor-service"
+                                                                       ));
         }
     }
 }

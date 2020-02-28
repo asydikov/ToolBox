@@ -6,8 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Toolbox.Common.RestEase;
-using ToolBox.Api.Services;
-using ToolBox.Api.Services.Identity;
+using ToolBox.Api.RestEaseServices;
 using ToolBox.Common.Auth;
 using ToolBox.Common.RabbitMq;
 

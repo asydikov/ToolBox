@@ -43,7 +43,7 @@ namespace ToolBox.Services.DBWorker.Handlers
                                                                     command.Instruction,
                                                                     isProcedure: false);
 
-                await _busClient.PublishAsync(new DbWorkerOperationCompleted<string, string>(Guid.NewGuid(), 
+                await _busClient.PublishAsync(new DbWorkerOperationCompleted(Guid.NewGuid(), 
                                                                                              command.UserId,
                                                                                              command.SqlServerId,
                                                                                              command.DatabaseId, 

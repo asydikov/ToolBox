@@ -44,7 +44,7 @@ namespace ToolBox.Services.DBWorker.Handlers
                                                                     isProcedure: true,
                                                                     command.Parameters);
 
-                await _busClient.PublishAsync(new DbWorkerOperationCompleted<string, string>(
+                await _busClient.PublishAsync(new DbWorkerOperationCompleted(
                                                                                              Guid.NewGuid(),
                                                                                              command.UserId,
                                                                                              command.SqlServerId,

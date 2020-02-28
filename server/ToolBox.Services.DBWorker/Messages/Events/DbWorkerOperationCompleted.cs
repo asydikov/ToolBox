@@ -7,17 +7,17 @@ using ToolBox.Common.Events;
 namespace ToolBox.Services.DBWorker.Messages.Events
 {
     [MessageNamespace("dbworker")]
-    public class DbWorkerOperationCompleted<TKey, TResult> : IEvent
+    public class DbWorkerOperationCompleted : IEvent
     {
         public Guid Id { get; }
         public Guid UserId { get; set; }
         public Guid SqlServerId { get; }
         public Guid DatabaseId { get; }
         public string Resource { get; }
-        public List<Dictionary<TKey, TResult>> Result { get; }
+        public List<Dictionary<string, string>> Result { get; }
 
         [JsonConstructor]
-        public DbWorkerOperationCompleted(Guid id, Guid userId, Guid sqlServerId, Guid databaseId, string resource, List<Dictionary<TKey, TResult>> result)
+        public DbWorkerOperationCompleted(Guid id, Guid userId, Guid sqlServerId, Guid databaseId, string resource, List<Dictionary<string, string>> result)
         {
             Id = id;
             UserId = userId;
