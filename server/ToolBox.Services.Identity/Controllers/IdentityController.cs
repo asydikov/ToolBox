@@ -21,19 +21,13 @@ namespace ToolBox.Services.Identity.Controllers
         [AllowAnonymous]
         [HttpPost("sign-up")]
         public async Task<IActionResult> SignUp(SignUpModel model)
-        {
-            Console.WriteLine($"Identity controller signup- {model.Email}");
-            return Ok(await _identityService.SignUpAsync(model.Email, model.Name, model.Password));
-        }
+            => Ok(await _identityService.SignUpAsync(model.Email, model.Name, model.Password));
 
         [AllowAnonymous]
         [HttpPost("sign-in")]
         public async Task<IActionResult> SignIn(SignInModel model)
-        {
-            Console.WriteLine($"Identity controller - {model.Email}");
-            return Ok(await _identityService.SignInAsync(model.Email, model.Password));
-        }
+            => Ok(await _identityService.SignInAsync(model.Email, model.Password));
 
-       
+
     }
-}   
+}
