@@ -16,16 +16,19 @@ export class IdentityService {
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    let userToken = JSON.parse(localStorage.getItem('userToken')) as JsonWebToken;
+    this.currentUserSubject = new BehaviorSubject<User>(new User(userToken.claims.name, userToken.claims.email));
     this.currentUser = this.currentUserSubject.asObservable();
    }
 
+   public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+}
+
   signIn(email:string, password:string) {
-    debugger
     let signInModel = new SignIn(email, password);
     return this.http.post<JsonWebToken>(`${environment.apiUrl}/${environment.identityService}/sign-in`, signInModel)
         .pipe(map(token => {
-          debugger
             // login successful if there's a jwt token in the response
             if (token && token.accessToken) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -34,32 +37,13 @@ export class IdentityService {
             } else {
               token = null;
             }
-            return token;
+            return token; 
         }));
 }
 
-// register(email: string, password: string, name: string) {
-//     let user = new User();
-//     user.email = email;
-//     user.name = name;
-//     user.password = password;
-//     return this.http.post<User>(`${environment.apiUrl}${UrlEnum.User}user`, user)
-//         .pipe(map(user => {
-//             // login successful if there's a jwt token in the response
-//             if (user && user.token) {
-//                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-//                 localStorage.setItem('currentUser', JSON.stringify(user));
-//                 this.currentUserSubject.next(user);
-//             } else {
-//                 user.token = null;
-//             }
-//             return user;
-//         }));
-// }
-
-// logout() {
-//     // remove user from local storage to log user out
-//     localStorage.removeItem('currentUser');
-//     this.currentUserSubject.next(null);
-// }
+logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('userToken');
+    this.currentUserSubject.next(null);
+}
  }
