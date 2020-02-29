@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationService } from 'src/app/_services/notification.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private notificationService: NotificationService) {
+    notificationService.messageReceived.subscribe(msg=>{
+      console.log(msg);
+
+    })
+   }
 
   ngOnInit(): void {
   }

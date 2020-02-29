@@ -26,7 +26,7 @@ namespace ToolBox.Services.SQLMonitor.Services
             //_logger.LogInformation("Timed Background Service is starting.");
 
             _timer = new Timer(DoWork, null, TimeSpan.Zero,
-                TimeSpan.FromSeconds(3));
+                TimeSpan.FromSeconds(2));
 
             return Task.CompletedTask;
         }
