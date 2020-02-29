@@ -16,6 +16,9 @@ import { NavComponent } from './nav/nav.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule    
   ],
   providers: [],

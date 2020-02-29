@@ -32,18 +32,18 @@ namespace ToolBox.Api.Controllers
 
         [AllowAnonymous]
         [HttpPost("sign-up")]
-        public async Task<IActionResult> SignUp(SignUpModel model)
+        public async Task<IActionResult> SignUp(SignUpModel signUpModel)
         {
-            Console.WriteLine($"Api gateway signup- {model.Email}");
-            return Ok(await _identityService.SignUp(model));
+            Console.WriteLine($"Api gateway signup- {signUpModel.Email}");
+            return Ok(await _identityService.SignUp(signUpModel));
         }
 
         [AllowAnonymous]
         [HttpPost("sign-in")]
-        public async Task<IActionResult> SignIn(SignInModel model)
+        public async Task<IActionResult> SignIn(SignInModel signInModel)
         {
-            Console.WriteLine($"Api controller - {model.Email}");
-            var result = await _identityService.SignIn(model);
+            Console.WriteLine($"Api controller - {signInModel.Email}");
+            var result = await _identityService.SignIn(signInModel);
 
             if (result is null)
                 return NotFound();

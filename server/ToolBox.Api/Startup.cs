@@ -31,7 +31,14 @@ namespace ToolBox.Api
             services.AddRabbitMq(Configuration);
             services.RegisterRestEaseService<IIdentityService>("identity-service");
             services.RegisterRestEaseService<ISqlMonitorService>("sqlmonitor-service");
-            //services.RegisterRestEaseService<IIdentityService>("notification-service");
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", cors =>
+                        cors.AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowAnyOrigin());
+            });
         }   
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +48,8 @@ namespace ToolBox.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("CorsPolicy");
 
             app.UseRouting();
 

@@ -59,14 +59,15 @@ namespace ToolBox.Services.Identity.Services
                 throw new ToolBoxException(Codes.RefreshTokenNotFound,
                     "Refresh token was not found.");
             }
-
+            //var user = await _userRepository.GetAsync(refreshToken.UserId);
             if (refreshToken.User == null || refreshToken.UserId == null || refreshToken.UserId == Guid.Empty)
             {
                 throw new ToolBoxException(Codes.UserNotFound,
                     $"User: '{refreshToken.UserId}' was not found.");
             }
-            var claims = await _claimsProvider.GetAsync(refreshToken.UserId);
-            var jwt = _jwtHandler.CreateToken(refreshToken.UserId.ToString("N"), null, claims);
+           
+            var claims = await _claimsProvider.GetAsync(refreshToken.User);
+            var jwt = _jwtHandler.CreateToken(refreshToken.UserId.ToString(), null, claims);
             jwt.RefreshToken = refreshToken.Token;
             await _busClient.PublishAsync(new AccessTokenRefreshed(Guid.NewGuid(),refreshToken.UserId));
             // await _busClient.PublishAsync(new AccessTokenRefreshed(user.Id), CorrelationContext.Empty);

@@ -74,8 +74,8 @@ namespace ToolBox.Services.Identity.Services
             }
             var refreshToken = new RefreshToken();
             refreshToken.SetToken(user, _passwordHasher);
-            var claims = await _claimsProvider.GetAsync(user.Id);
-            var jwt = _jwtHandler.CreateToken(user.Id.ToString("N"), null, claims);
+            var claims = await _claimsProvider.GetAsync(user);
+            var jwt = _jwtHandler.CreateToken(user.Id.ToString(), null, claims);
             jwt.RefreshToken = refreshToken.Token;
 
             if (user.RefreshToken != null)
@@ -106,10 +106,10 @@ namespace ToolBox.Services.Identity.Services
                 throw new ToolBoxException(Codes.InvalidCurrentPassword,
                     "Invalid current password.");
             }
-          //  throw new Exception();
+            //  throw new Exception();
             user.SetPassword(newPassword, _passwordHasher);
             await _userRepository.UpdateAsync(user);
-            await _busClient.PublishAsync(new PasswordChanged(Guid.NewGuid(),userId));
+            await _busClient.PublishAsync(new PasswordChanged(Guid.NewGuid(), userId));
         }
     }
 }

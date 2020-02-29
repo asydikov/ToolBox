@@ -10,7 +10,6 @@ const routes: Routes = [
    { path: 'login', component: LoginComponent },
    {
     path: 'sqlmonitor',
-
     loadChildren: () => import('./sql-monitor/sql-monitor.module').then(m => m.SqlMonitorModule)
   }   
 ];
