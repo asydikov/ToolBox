@@ -42,7 +42,7 @@ private get userFromLocalStorage():User{
   {
     return null;
   }
-return new User(userName, userEmail);
+return new User(userEmail, userName);
 }
 
 private get userTokenFromLocalStorage():JsonWebToken{

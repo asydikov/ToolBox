@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { IdentityService } from './_services/identity.service';
+import { User } from './_models/User';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'client';
+  currentUser: User;
+  
+  constructor(private identityService: IdentityService) {
+      this.identityService.currentUser.subscribe(user => this.currentUser = user);
+     }
 }
+
+
+
+

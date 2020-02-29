@@ -1,14 +1,14 @@
 $font-primary: 'Poppins',Arial, sans-serif;
 
 
-body{
-	font-family: $font-primary;
-	font-size: 14px;
-	line-height: 1.8;
-	font-weight: normal;
-	background: #fff;
-	color: lighten(black,50%);
-}
+// body{
+// 	font-family: $font-primary;
+// 	font-size: 14px;
+// 	line-height: 1.8;
+// 	font-weight: normal;
+// 	background: #fff;
+// 	color: lighten(black,50%);
+// }
 a {
 	transition: .3s all ease;
 	color: #2f89fc;
@@ -49,6 +49,7 @@ h1, h2, h3, h4, h5,
 }
 
 #sidebar {
+    height: 100%;
   min-width: 300px;
   max-width: 300px;
   background: #32373d;
@@ -58,21 +59,21 @@ h1, h2, h3, h4, h5,
   .h6{
   	color: white;
   }
-  &.active{
-  	margin-left: -300px;
-	  .btn{
-			&.btn-primary{
-				&:before{
-					content: "\f054";
-				  font-family: "FontAwesome";
-				  left: 2px !important;
-				}
-				&:after{
-					display: none;
-				}
-			}
-		}
-  }
+//   &.active{
+//   	margin-left: -300px;
+// 	  .btn{
+// 			&.btn-primary{
+// 				&:before{
+// 					content: "\f054";
+// 				  font-family: "FontAwesome";
+// 				  left: 2px !important;
+// 				}
+// 				&:after{
+// 					display: none;
+// 				}
+// 			}
+// 		}
+//   }
   h1{
   	margin-bottom: 20px;
   	font-weight: 700;
@@ -172,17 +173,17 @@ h1, h2, h3, h4, h5,
 
 
 
-a[data-toggle="collapse"] {
-    position: relative;
-}
+// a[data-toggle="collapse"] {
+//     position: relative;
+// }
 
-.dropdown-toggle::after {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-}
+// .dropdown-toggle::after {
+//   display: block;
+//   position: absolute;
+//   top: 50%;
+//   right: 0;
+//   transform: translateY(-50%);
+// }
 
 
 #content {

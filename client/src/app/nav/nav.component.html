@@ -1,17 +1,3 @@
-<!-- <nav *ngIf="currentUser" class="navbar navbar-expand-lg navbar-light bg-light mb-5">
-    <div class="navbar-nav flex-fill">
-        <div class="d-flex flex-fill flex-row justify-content-between">
-            <div class="d-flex flex-fill">
-                <a class="nav-item nav-link active" [routerLink]="'/sqlmonitor'">Cards <span
-                        class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link active logout-btn" (click)="logout()">Logout</a>
-            </div>
-            <div class="d-flex align-items-center">
-                <span><strong>Hi {{currentUser.name}} !</strong></span>
-            </div>
-        </div>
-    </div>
-</nav> -->
 
 
 <nav id="sidebar" *ngIf="currentUser">
@@ -19,12 +5,12 @@
   <div class="img bg-wrap text-center py-4" style="background-image: url(images/bg_1.jpg);">
       <div class="user-logo">
           <div class="img" style="background-image: url(images/logo.jpg);"></div>
-          <h3>Catriona Henderson</h3>
+          <h3>{{currentUser.name}}</h3>
       </div>
   </div>
 <ul class="list-unstyled components mb-5">
 <li class="active">
-<a href="#"><span class="fa fa-home mr-3"></span> Home</a>
+<a [routerLink]="'/sqlmonitor'"><span class="fa fa-home mr-3"></span> Dashboard</a>
 </li>
 <li>
   <a href="#"><span class="fa fa-download mr-3 notif"><small class="d-flex align-items-center justify-content-center">5</small></span> Download</a>
@@ -42,7 +28,7 @@
 <a href="#"><span class="fa fa-support mr-3"></span> Support</a>
 </li>
 <li>
-<a href="#"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
+<a href="#"><span class="fa fa-sign-out mr-3" (click)="logout()"></span> Sign Out</a>
 </li>
 </ul>
 
