@@ -17,12 +17,23 @@ export class IdentityService {
 
   constructor(private http: HttpClient) {
     let userToken = JSON.parse(localStorage.getItem('userToken')) as JsonWebToken;
-    this.currentUserSubject = new BehaviorSubject<User>(new User(userToken.claims.name, userToken.claims.email));
+    this.currentUserSubject = new BehaviorSubject<User>(this.userFromLocalStorage);
     this.currentUser = this.currentUserSubject.asObservable();
    }
 
    public get currentUserValue(): User {
     return this.currentUserSubject.value;
+}
+
+private get userFromLocalStorage():User{
+  let userToken = JSON.parse(localStorage.getItem('userToken')) as JsonWebToken;
+  let userName = userToken?.claims.name ??'';
+  let userEmail =  userToken?.claims.email ?? '';
+  if(!userToken || !userName || !userEmail)
+  {
+    return null;
+  }
+return new User(userName, userEmail);
 }
 
   signIn(email:string, password:string) {

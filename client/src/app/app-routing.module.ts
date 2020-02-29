@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { SqlMonitorModule } from './sql-monitor/sql-monitor.module';
+import { AuthGuard } from './_helpers/auth-guard';
 
 
 const routes: Routes = [
@@ -10,7 +11,8 @@ const routes: Routes = [
    { path: 'login', component: LoginComponent },
    {
     path: 'sqlmonitor',
-    loadChildren: () => import('./sql-monitor/sql-monitor.module').then(m => m.SqlMonitorModule)
+    loadChildren: () => import('./sql-monitor/sql-monitor.module').then(m => m.SqlMonitorModule),
+    canActivate: [AuthGuard]
   }   
 ];
 
