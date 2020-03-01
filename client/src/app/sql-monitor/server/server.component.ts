@@ -49,20 +49,23 @@ export class ServerComponent implements OnInit {
     if(this.onSubmitted()){
       return;
     }
+    this.requestModeOn();
+    this.sqlServerService.serverAdd(this.getSqlServer()).subscribe(result=>{
+    this.requestModeOff();
+  });
   }
 
   onSubmitted():boolean{
+    this.submitted = true;
     return this.serverForm.invalid;
   }
 
   requestModeOn(){
-    this.submitted = true;
     this.loading = true;
     this.showConnectionStatus = false;
   }
 
   requestModeOff(){
-    this.submitted = false;
     this.loading = false;
     this.showConnectionStatus = true;
   }

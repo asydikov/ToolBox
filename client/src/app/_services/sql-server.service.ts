@@ -17,7 +17,7 @@ export class SqlServerService {
   }
 
   
-  add(sqlServer:SqlServer):Observable<boolean>{
-    return this.http.post<boolean>(`${environment.apiUrl}/${environment.sqlmonitoryService}/server-connection-check`, sqlServer)
+  serverAdd(sqlServer:SqlServer){
+    return this.http.post(`${environment.apiUrl}/${environment.sqlmonitoryService}/server-add`, sqlServer)
   }
 }

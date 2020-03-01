@@ -40,7 +40,8 @@ namespace ToolBox.Services.SQLMonitor.Handlers
                 Host = command.Host,
                 Port = command.Port,
                 Login = command.Login,
-                Password = command.Password
+                Password = command.Password,
+                Description = command.Description
             });
 
             // check connection to a server

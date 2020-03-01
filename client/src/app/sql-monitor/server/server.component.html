@@ -1,4 +1,7 @@
-<div class="col-sm-6">
+
+    <div class="col-sm-12">
+        <div class="col-sm-6 offset-sm-3">
+    <h2 class="text-muted text-center">Adding SQL Server instance</h2>
 <form  [formGroup]="serverForm">
 
     <div class="form-group">
@@ -66,4 +69,5 @@
      
     <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
   </form>
+</div>
 </div>

@@ -18,11 +18,12 @@ namespace ToolBox.Api.Messages.Commands.SqlMonitor
         public int Port { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public string Description { get; set; }
         public List<Guid> DatabaseIdList { get; set; }
 
 
         [JsonConstructor]
-        public ServerCommand(Guid id, Guid userId, string name, string host, int port, string login, string password, List<Guid> databaseIdList)
+        public ServerCommand(Guid id, Guid userId, string name, string host, int port, string login, string password, string description, List<Guid> databaseIdList)
         {
             Id = id;
             UserId = userId;
@@ -31,6 +32,7 @@ namespace ToolBox.Api.Messages.Commands.SqlMonitor
             Port = port;
             Login = login;
             Password = password;
+            Description = description;
             DatabaseIdList = databaseIdList;
         }
     }
