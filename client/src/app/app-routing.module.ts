@@ -12,6 +12,7 @@ const routes: Routes = [
    {
     path: 'sqlmonitor',
     loadChildren: () => import('./sql-monitor/sql-monitor.module').then(m => m.SqlMonitorModule),
+    data: { title: 'Dashboard' },
     canActivate: [AuthGuard]
   }   
 ];

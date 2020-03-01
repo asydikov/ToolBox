@@ -8,8 +8,8 @@ import { DatabaseComponent } from './database/database.component';
 const routes: Routes = [
  
   { path: '' , component: DashboardComponent},
-  { path: 'server', component: ServerComponent},
-  { path: 'database', component: DatabaseComponent},
+  { path: 'server', component: ServerComponent, data: { title: 'Servers' },},
+  { path: 'database', component: DatabaseComponent, data: { title: 'Databases' },},
 ];
 
 @NgModule({
