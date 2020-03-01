@@ -9,12 +9,14 @@ import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';
 import { JwtInterceptor } from './_helpers/jwt-interceptor';
 import { ErrorInterceptor } from './_helpers/error-interceptor';
+import { HorizontalNavComponent } from './horizontal-nav/horizontal-nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    NavComponent
+    NavComponent,
+    HorizontalNavComponent
   ],
   imports: [
     BrowserModule,

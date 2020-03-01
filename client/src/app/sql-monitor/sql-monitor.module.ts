@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ServerComponent } from './server/server.component';
 import { DatabaseComponent } from './database/database.component';
 import { SqlMonitorRoutingModule } from './sql-monitor-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -15,6 +16,8 @@ import { SqlMonitorRoutingModule } from './sql-monitor-routing.module';
     ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     SqlMonitorRoutingModule
   ]
 })

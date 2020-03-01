@@ -1,13 +1,13 @@
-
-
 <div class="row app-row">
         <app-nav></app-nav>
-    <div *ngIf="currentUser" class="col-sm-8">
-        <router-outlet></router-outlet> 
+    <div *ngIf="currentUser" class="flex-fill">
+        <app-horizontal-nav></app-horizontal-nav>
+        <div class="router-outlet">
+            <router-outlet></router-outlet> 
+        </div>
     </div>
     <div *ngIf="!currentUser" class="col-sm-12">
         <router-outlet></router-outlet> 
     </div>
-      
 </div>
 

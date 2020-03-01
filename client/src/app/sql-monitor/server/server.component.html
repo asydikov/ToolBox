@@ -1,1 +1,39 @@
-<p>server works!</p>
+<div class="col-sm-6">
+<form  [formGroup]="serverForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+        <input formControlName="name" placeholder="Name" type="text" class="form-control" >
+      </div>
+
+      <div class="form-group">
+        <input formControlName="host" placeholder="Host" type="text" class="form-control" >
+      </div>
+
+      <div class="form-group">
+        <input formControlName="port" placeholder="Port" type="number" class="form-control" >
+      </div>
+
+      <div class="form-group">
+        <input formControlName="login" placeholder="Login" type="text" class="form-control" >
+      </div>
+
+      <div class="form-group">
+        <input formControlName="password" placeholder="Password" type="text" class="form-control" >
+      </div>
+
+      <div class="form-group">
+        <input formControlName="description" placeholder="Description" type="text" class="form-control" >
+      </div>
+     
+      <button [disabled]="loading" class="btn btn-outline-primary col-sm-3 ">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Test
+        </button>
+        <button [disabled]="loading" class="btn btn-outline-primary col-sm-3 ml-4">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Add
+        </button>
+     
+    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+  </form>
+</div>
