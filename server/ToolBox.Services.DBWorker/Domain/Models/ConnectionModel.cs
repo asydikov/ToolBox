@@ -17,6 +17,8 @@ namespace ToolBox.Services.DBWorker.Domain.Models
             DatabaseName = databaseName;
         }
 
+        public ConnectionModel() { }
+
         public string Host { get; set; }
         public int Port { get; set; }
         public string Login { get; set; }

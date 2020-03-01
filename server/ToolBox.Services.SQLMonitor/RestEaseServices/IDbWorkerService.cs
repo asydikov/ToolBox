@@ -8,7 +8,7 @@ namespace ToolBox.Services.SQLMonitor.RestEaseServices
     public interface IDbWorkerService
     {
         [AllowAnyStatusCode]
-        [Get("api/dbWorker/server-connection-check")]
+        [Post("api/dbWorker/server-connection-check")]
         Task<bool> ServerConnectionCheck([Body] ConnectionModel connectionModel);
     }
 }

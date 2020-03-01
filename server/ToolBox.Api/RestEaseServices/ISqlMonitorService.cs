@@ -1,7 +1,4 @@
 ﻿using RestEase;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using ToolBox.Api.Domain.Models.SqlMonitor;
 
@@ -11,7 +8,7 @@ namespace ToolBox.Api.RestEaseServices
     public interface ISqlMonitorService
     {
         [AllowAnyStatusCode]
-        [Get("api/sqlmonitor/server-connection-check")]
-        Task<object> ServerConnectionCheck([Body] ConnectionModel connectionModel);
+        [Post("api/sqlmonitor/server-connection-check")]
+        Task<bool> ServerConnectionCheck([Body] ConnectionModel connectionModel);
     }
 }

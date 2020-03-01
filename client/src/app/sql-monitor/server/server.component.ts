@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SqlServerService } from 'src/app/_services/sql-server.service';
+import { SqlServer } from 'src/app/_models/sql-server';
+import { SqlServerConnection } from 'src/app/_models/sql-server-connection';
 
 @Component({
   selector: 'app-server',
@@ -11,9 +14,11 @@ export class ServerComponent implements OnInit {
   submitted = false;
   loading = false;
   error = '';
+  connectionSucceded = false;
+  showConnectionStatus=false;
   serverForm: FormGroup;
 
-  constructor( private formBuilder: FormBuilder) { }
+  constructor( private formBuilder: FormBuilder, private sqlServerService: SqlServerService) { }
 
   ngOnInit(): void {
     this.serverForm = this.formBuilder.group({
@@ -29,4 +34,59 @@ export class ServerComponent implements OnInit {
   // convenience getter for easy access to form fields
   get form() { return this.serverForm.controls; }
 
+  connectionCheck(){
+    if(this.onSubmitted()){
+      return;
+    }
+    this.requestModeOn();
+    this.sqlServerService.connectionCheck(this.getSqlServerConnection()).subscribe(result=>{
+    this.connectionSucceded = result;
+    this.requestModeOff();
+  });
+  }
+
+  add(){
+    if(this.onSubmitted()){
+      return;
+    }
+  }
+
+  onSubmitted():boolean{
+    return this.serverForm.invalid;
+  }
+
+  requestModeOn(){
+    this.submitted = true;
+    this.loading = true;
+    this.showConnectionStatus = false;
+  }
+
+  requestModeOff(){
+    this.submitted = false;
+    this.loading = false;
+    this.showConnectionStatus = true;
+  }
+
+  private getSqlServer():SqlServer{
+    let sqlServer = new SqlServer();
+    sqlServer.name = this.form.name.value;
+    sqlServer.host = this.form.host.value;
+    sqlServer.port = this.form.port.value;
+    sqlServer.login = this.form.login.value;
+    sqlServer.password = this.form.password.value;
+    sqlServer.description = this.form.description.value;
+    return sqlServer;
+
+  }
+
+  private getSqlServerConnection():SqlServerConnection{
+    let sqlServerConnection = new SqlServerConnection();
+    sqlServerConnection.host = this.form.host.value;
+    sqlServerConnection.port = this.form.port.value;
+    sqlServerConnection.login = this.form.login.value;
+    sqlServerConnection.password = this.form.password.value;
+    sqlServerConnection.databaseName = '';
+    return sqlServerConnection;
+
+  }
 }

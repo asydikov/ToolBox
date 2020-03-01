@@ -14,6 +14,9 @@ namespace ToolBox.Api.Domain.Models.SqlMonitor
         public string Password {  get;  set;}
         public string DatabaseName {  get;  set;}
 
-   
+        public ConnectionModel()
+        {
+
+        }
     }
 }

@@ -1,38 +1,68 @@
 <div class="col-sm-6">
-<form  [formGroup]="serverForm" (ngSubmit)="onSubmit()">
+<form  [formGroup]="serverForm">
 
     <div class="form-group">
-        <input formControlName="name" placeholder="Name" type="text" class="form-control" >
+        <input formControlName="name" placeholder="Name" type="text" class="form-control" 
+         [ngClass]="{ 'is-invalid': submitted && form.name.errors }">
       </div>
+      <div *ngIf="submitted && form.name.errors" class="invalid-custom-feedback">
+        <div *ngIf="form.name.errors.required">Name is required</div>
+    </div>
 
       <div class="form-group">
-        <input formControlName="host" placeholder="Host" type="text" class="form-control" >
+        <input formControlName="host" placeholder="Host" type="text" class="form-control"  
+        [ngClass]="{ 'is-invalid': submitted && form.host.errors }">
       </div>
+      <div *ngIf="submitted && form.host.errors" class="invalid-custom-feedback">
+        <div *ngIf="form.host.errors.required">Host name is required</div>
+    </div>
 
       <div class="form-group">
-        <input formControlName="port" placeholder="Port" type="number" class="form-control" >
+        <input formControlName="port" placeholder="Port" type="number" class="form-control" 
+         [ngClass]="{ 'is-invalid': submitted && form.port.errors }">
       </div>
-
+      <div *ngIf="submitted && form.port.errors" class="invalid-custom-feedback">
+        <div *ngIf="form.port.errors.required">Port number is required</div>
+    </div>
       <div class="form-group">
-        <input formControlName="login" placeholder="Login" type="text" class="form-control" >
+        <input formControlName="login" placeholder="Login" type="text" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && form.login.errors }">
       </div>
-
+      <div *ngIf="submitted && form.login.errors" class="invalid-custom-feedback">
+        <div *ngIf="form.login.errors.required">Login is required</div>
+    </div>
       <div class="form-group">
-        <input formControlName="password" placeholder="Password" type="text" class="form-control" >
+        <input formControlName="password" placeholder="Password" type="text" class="form-control" 
+         [ngClass]="{ 'is-invalid': submitted && form.password.errors }">
       </div>
-
+      <div *ngIf="submitted && form.password.errors" class="invalid-custom-feedback">
+        <div *ngIf="form.password.errors.required">Password is required</div>
+    </div>
       <div class="form-group">
         <input formControlName="description" placeholder="Description" type="text" class="form-control" >
       </div>
-     
-      <button [disabled]="loading" class="btn btn-outline-primary col-sm-3 ">
+
+     <div class="text-right">
+
+        <span *ngIf="connectionSucceded && showConnectionStatus" class="label label-success mr-4 align-middle">
+            <i class="fa fa-check fa-1x" style="color: White;"></i>
+            Connection succeeded</span>
+
+            <span *ngIf="!connectionSucceded && showConnectionStatus" class="label label-danger mr-4 align-middle">
+                <i class="fa fa-exclamation-triangle fa-1x" style="color: White;"></i>
+                Connection failed</span>
+        
+        <button (click)="connectionCheck()" [disabled]="loading" class="btn btn-primary col-sm-3">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
             Test
         </button>
-        <button [disabled]="loading" class="btn btn-outline-primary col-sm-3 ml-4">
+
+        <button (click)="add()" [disabled]="loading" class="btn btn-primary col-sm-3 ml-4">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
             Add
         </button>
+     </div>
+     
      
     <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
   </form>

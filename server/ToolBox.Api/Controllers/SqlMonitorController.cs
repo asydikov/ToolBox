@@ -31,7 +31,7 @@ namespace ToolBox.Api.Controllers
         }
 
 
-        [HttpGet("server-connection-check")]
+        [HttpPost("server-connection-check")]
         public async Task<IActionResult> ServerConnectionCheck(ConnectionModel connectionModel)
         {
             var result = await _sqlMonitorService.ServerConnectionCheck(connectionModel);

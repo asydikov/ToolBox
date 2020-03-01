@@ -21,7 +21,7 @@ namespace ToolBox.Services.DBWorker.Controllers
             _sqlService = sqlService;
         }
 
-        [HttpGet("server-connection-check")]
+        [HttpPost("server-connection-check")]
         public async Task<IActionResult> ServerConnectionCheck(ConnectionModel connectionModel)
         {
             var result = await _sqlService.IsSqlConnected(connectionModel);

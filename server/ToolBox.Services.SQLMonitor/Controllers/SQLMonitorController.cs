@@ -30,7 +30,7 @@ namespace ToolBox.Services.DBWorker.Controllers
 
         }
 
-        [HttpGet("server-connection-check")]
+        [HttpPost("server-connection-check")]
         public async Task<IActionResult> ServerConnectionCheck(ConnectionModel connectionModel)
         {
             var result = await _dbWorkerService.ServerConnectionCheck(connectionModel);

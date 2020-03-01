@@ -1,6 +1,6 @@
 import { Database } from './database';
 
-export class Server{
+export class SqlServer{
 id:string;
 userId:string;
 name:string;
@@ -10,4 +10,11 @@ login:string;
 password:string;
 description:string;
 databases: Database[];
+
+/**
+ *
+ */
+constructor() {
+    
+}
 }
