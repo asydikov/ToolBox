@@ -10,13 +10,15 @@ import { NavComponent } from './nav/nav.component';
 import { JwtInterceptor } from './_helpers/jwt-interceptor';
 import { ErrorInterceptor } from './_helpers/error-interceptor';
 import { HorizontalNavComponent } from './horizontal-nav/horizontal-nav.component';
+import { ClickStopPropagation } from './_directives/click-stop-propagation';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NavComponent,
-    HorizontalNavComponent
+    HorizontalNavComponent,
+    ClickStopPropagation
   ],
   imports: [
     BrowserModule,
