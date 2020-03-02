@@ -22,7 +22,7 @@ namespace ToolBox.Services.DBWorker.Handlers
         private readonly ILogger _logger;
         public SqlStoredProcedureQueryHandler(IBusClient busClient,
          ISQLService sqlService,
-         ILogger<SqlStatementQueryHandler> logger)
+         ILogger<SqlStoredProcedureQueryHandler> logger)
         {
             _busClient = busClient;
             _sqlService = sqlService;

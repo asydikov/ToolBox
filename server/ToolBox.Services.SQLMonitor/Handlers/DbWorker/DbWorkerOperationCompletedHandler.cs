@@ -32,7 +32,7 @@ namespace ToolBox.Services.SQLMonitor.Handlers.DbWorker
             }
             await _metricsProcessingService.ProcessMetrics(command);
 
-            _logger.LogInformation($"sqlmonitor DbWorkerOperationCompleted: {command.SqlQueryName}");
+            //_logger.LogInformation($"sqlmonitor DbWorkerOperationCompleted: {command.SqlQueryName}");
 
             await _busClient.PublishAsync(new OperationCompleted(command.Id, command.UserId, "sqlmonitor-service", "database-metrics-updated"));
         }

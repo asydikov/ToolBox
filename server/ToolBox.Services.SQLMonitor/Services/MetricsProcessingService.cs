@@ -13,22 +13,22 @@ namespace ToolBox.Services.SQLMonitor.Services
         {
             if (command.SqlQueryName == (int)SqlQueryNames.DatabaseSpaceStatus)
             {
-
+                Console.WriteLine(SqlQueryNames.DatabaseSpaceStatus);
             }
 
             if (command.SqlQueryName == (int)SqlQueryNames.DatabasesBackupStatus)
             {
-
+                Console.WriteLine(SqlQueryNames.DatabasesBackupStatus);
             }
 
             if (command.SqlQueryName == (int)SqlQueryNames.ConnectedUsers)
             {
-
+                Console.WriteLine(SqlQueryNames.ConnectedUsers);
             }
 
             if (command.SqlQueryName == (int)SqlQueryNames.MemoryUsage)
             {
-
+                Console.WriteLine(SqlQueryNames.MemoryUsage);
             }
 
 

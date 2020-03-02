@@ -17,7 +17,10 @@ namespace ToolBox.Services.DBWorker.Services
                                                                                  Dictionary<string, string> parameters = null)
         {
             List<Dictionary<string, string>> result = new List<Dictionary<string, string>>();
-
+            if (instruction.Contains("EXEC sp_spaceused"))
+            {
+                var d = 1;
+            }
             using (SqlConnection connection = new SqlConnection(conncectionString))
             {
                 await connection.OpenAsync();
@@ -35,6 +38,8 @@ namespace ToolBox.Services.DBWorker.Services
                             adapter.SelectCommand.Parameters.AddWithValue(param.Key, Convert.ToInt32(param.Value));
                         }
                     }
+
+                 
 
                     DataTable dataTable = new DataTable();
 

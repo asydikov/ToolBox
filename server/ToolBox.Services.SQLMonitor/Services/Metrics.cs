@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ToolBox.Services.SQLMonitor.Domain.Enums;
 using ToolBox.Services.SQLMonitor.Domain.Models;
 using ToolBox.Services.SQLMonitor.Entities;
 using ToolBox.Services.SQLMonitor.Messages.Commands;
@@ -74,7 +75,15 @@ namespace ToolBox.Services.SQLMonitor.Services
 
                     if (sqlScheduleQuery.SqlQuery.IsStoredProcedure)
                     {
-                        await StoredProcedureInvoke(scheduleServer.Server, sqlScheduleQuery.SqlQuery);
+                        if (sqlScheduleQuery.SqlQuery.Name == SqlQueryNames.DatabaseSpaceStatus)
+                        {
+                            // Execute query on each databases
+                            await DbStoredProcedureInvoke(scheduleServer.Server, sqlScheduleQuery.SqlQuery);
+                        }
+                        else
+                        {
+                            await StoredProcedureInvoke(scheduleServer.Server, sqlScheduleQuery.SqlQuery);
+                        }
                     }
                     else
                     {
@@ -85,9 +94,31 @@ namespace ToolBox.Services.SQLMonitor.Services
             }
         }
 
+        private async Task DbStoredProcedureInvoke(ServerModel server, SqlQueryModel sqlQuery)
+        {
+            foreach (var database in server.Databases)
+            {
+                var sp = $"use [{database.Name}] {sqlQuery.Query}";
+                await _busClient.PublishAsync(new SqlStoredProcedureQuery(Guid.NewGuid(),
+                                                                     server.UserId,
+                                                                     sqlQuery.Query,
+                                                                     null,
+                                                                     server.Host,
+                                                                     server.Port,
+                                                                     server.Login,
+                                                                     server.Password,
+                                                                     database.Name,
+                                                                     (int)sqlQuery.Name,
+                                                                     server.Id,
+                                                                     database.Id,
+                                                                     "sqlmonitor-service"
+                                                                      ));
+            }
+        }
+
         private async Task QueryInvoke(ServerModel server, SqlQueryModel sqlQuery)
         {
-            _logger.LogInformation($"-------------------------------------: {sqlQuery.Name}");
+
             await _busClient.PublishAsync(new SqlStatementQuery(Guid.NewGuid(),
                                                                 server.UserId,
                                                                 sqlQuery.Query,
@@ -105,7 +136,6 @@ namespace ToolBox.Services.SQLMonitor.Services
 
         private async Task StoredProcedureInvoke(ServerModel server, SqlQueryModel sqlQuery)
         {
-            _logger.LogInformation($"----------------------------------->>>: {sqlQuery.Name}");
             await _busClient.PublishAsync(new SqlStoredProcedureQuery(Guid.NewGuid(),
                                                                       server.UserId,
                                                                       sqlQuery.Query,
@@ -115,7 +145,7 @@ namespace ToolBox.Services.SQLMonitor.Services
                                                                       server.Login,
                                                                       server.Password,
                                                                       null,
-                                                                      (int) sqlQuery.Name,
+                                                                      (int)sqlQuery.Name,
                                                                       server.Id,
                                                                       Guid.Empty,
                                                                       "sqlmonitor-service"
