@@ -21,12 +21,25 @@ namespace ToolBox.Services.DBWorker.Messages.Commands
         public string Login { get; }
         public string Password { get; }
         public string DatabaseName { get; }
+        public int SqlQueryName { get; set; }
         public Guid SqlServerId { get; }
         public Guid DatabaseId { get; }
         public string Resource { get; }
 
         [JsonConstructor]
-        public SqlStoredProcedureQuery(Guid id, Guid userId, string storedProcedureName, Dictionary<string, string> parameters, string host, int port, string login, string password, string databaseName, Guid sqlServerId, Guid databaseId, string resource)
+        public SqlStoredProcedureQuery(Guid id,
+            Guid userId, 
+            string storedProcedureName,
+            Dictionary<string, string> parameters, 
+            string host, 
+            int port, 
+            string login, 
+            string password, 
+            string databaseName,
+             int sqlQueryName,
+            Guid sqlServerId,
+            Guid databaseId,
+            string resource)
         {
             Id = id;
             UserId = userId;
@@ -37,6 +50,7 @@ namespace ToolBox.Services.DBWorker.Messages.Commands
             Login = login;
             Password = password;
             DatabaseName = databaseName;
+            SqlQueryName = sqlQueryName;
             SqlServerId = sqlServerId;
             DatabaseId = databaseId;
             Resource = resource;

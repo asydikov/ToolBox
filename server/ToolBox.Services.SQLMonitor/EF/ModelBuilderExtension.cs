@@ -80,14 +80,6 @@ namespace ToolBox.Services.SQLMonitor.EF
                 IsStoredProcedure = false
             };
 
-            var query = new SqlQuery()
-            {
-                Name = SqlQueryNames.DatabaseNames,
-                Query = "EXEC sp_databases",
-                Description = "List of Database names in a server",
-                IsStoredProcedure = true
-            };
-
             var dbSpaceStatus = new SqlQuery()
             {
                 Name = SqlQueryNames.DatabaseSpaceStatus,
@@ -123,6 +115,14 @@ namespace ToolBox.Services.SQLMonitor.EF
                 IsStoredProcedure = false
             };
 
+            var query = new SqlQuery()
+            {
+                Name = SqlQueryNames.DatabaseNames,
+                Query = "EXEC sp_databases",
+                Description = "List of Database names in a server",
+                IsStoredProcedure = true
+            };
+
             var twentyCpuConsumedQueries = new SqlQuery()
             {
                 Name = SqlQueryNames.TwentyCPUConsumedQueries,
@@ -146,7 +146,7 @@ namespace ToolBox.Services.SQLMonitor.EF
             };
 
 
-            var memoryUse = new SqlQuery()
+            var memoryUsage = new SqlQuery()
             {
                 Name = SqlQueryNames.MemoryUsage,
                 Query = @"SELECT object_name, counter_name, cntr_value
@@ -160,14 +160,14 @@ namespace ToolBox.Services.SQLMonitor.EF
 
 
             
-            modelBuilder.Entity<SqlQuery>().HasData(query);
             modelBuilder.Entity<SqlQuery>().HasData(dbSpaceStatus);
             modelBuilder.Entity<SqlQuery>().HasData(dbBackupStatus);
             modelBuilder.Entity<SqlQuery>().HasData(serverConnectedUsers);
-            modelBuilder.Entity<SqlQuery>().HasData(memoryUse);
+            modelBuilder.Entity<SqlQuery>().HasData(memoryUsage);
+            modelBuilder.Entity<SqlQuery>().HasData(query);
             modelBuilder.Entity<SqlQuery>().HasData(twentyCpuConsumedQueries);
             modelBuilder.Entity<SqlQuery>().HasData(serverName);
-            return new List<SqlQuery>() { query, dbSpaceStatus, dbBackupStatus, serverConnectedUsers, memoryUse };
+            return new List<SqlQuery>() { dbSpaceStatus, dbBackupStatus, serverConnectedUsers, memoryUsage };
         }
 
         private static List<Schedule> AddSchedule(ModelBuilder modelBuilder, List<Server> servers, List<SqlQuery> sqlQueries)

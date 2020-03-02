@@ -107,9 +107,9 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                 columns: new[] { "Id", "CreatedDate", "Description", "IsActive", "IsStoredProcedure", "Name", "Query", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { new Guid("5494a8a6-2405-4ce8-81a5-350e0bb20315"), new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6866), "List of Database names in a server", true, true, 1, "EXEC sp_databases", new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6871) },
-                    { new Guid("59cc09b9-f281-4a33-ad49-f20ae7a7da38"), new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6924), "Needs to be executed with keyword use [DATABASE_NAME]. Database space information", true, true, 3, "EXEC sp_spaceused @oneresultset = 1", new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6925) },
-                    { new Guid("86f9424d-87cf-46f7-8346-9c676766b30a"), new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6928), "Databases backup status", true, false, 2, @"SELECT d.name AS 'DATABASE_Name',
+                    { new Guid("e30573c0-c2fb-4a12-b79b-8891f30f41e3"), new DateTime(2020, 3, 2, 20, 42, 5, 815, DateTimeKind.Utc).AddTicks(7677), "List of Database names in a server", true, true, 1, "EXEC sp_databases", new DateTime(2020, 3, 2, 20, 42, 5, 815, DateTimeKind.Utc).AddTicks(7683) },
+                    { new Guid("5ce58f94-3d76-4218-9968-a08eedbe4794"), new DateTime(2020, 3, 2, 20, 42, 5, 815, DateTimeKind.Utc).AddTicks(7739), "Needs to be executed with keyword use [DATABASE_NAME]. Database space information", true, true, 3, "EXEC sp_spaceused @oneresultset = 1", new DateTime(2020, 3, 2, 20, 42, 5, 815, DateTimeKind.Utc).AddTicks(7740) },
+                    { new Guid("1c1ea729-9210-43bb-85f4-854005bf107a"), new DateTime(2020, 3, 2, 20, 42, 5, 815, DateTimeKind.Utc).AddTicks(7743), "Databases backup status", true, false, 2, @"SELECT d.name AS 'DATABASE_Name',
                                           MAX(CASE WHEN bu.TYPE = 'D' THEN bu.LastBackupDate END) AS 'Full DB Backup Status',
                                           MAX(CASE WHEN bu.TYPE = 'I' THEN bu.LastBackupDate END) AS 'Differential DB Backup Status',
                                           MAX(CASE WHEN bu.TYPE = 'L' THEN bu.LastBackupDate END) AS 'Transaction DB Backup Status',
@@ -118,16 +118,16 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                                           LEFT OUTER JOIN (SELECT database_name, TYPE, MAX(backup_start_date) AS LastBackupDate
                                           FROM msdb.dbo.backupset
                                           GROUP BY database_name, TYPE) AS bu ON d.name = bu.database_name
-                                          GROUP BY d.Name, d.recovery_model", new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6929) },
-                    { new Guid("55b6f3a3-6729-424c-9c38-630d95bc71ea"), new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6931), "Finding users that are connected to the server", true, false, 4, @"SELECT login_name ,COUNT(session_id) AS session_count   
+                                          GROUP BY d.Name, d.recovery_model", new DateTime(2020, 3, 2, 20, 42, 5, 815, DateTimeKind.Utc).AddTicks(7745) },
+                    { new Guid("27604b4f-19e4-4ff6-a8de-ba42ff5aab5e"), new DateTime(2020, 3, 2, 20, 42, 5, 815, DateTimeKind.Utc).AddTicks(7747), "Finding users that are connected to the server", true, false, 4, @"SELECT login_name ,COUNT(session_id) AS session_count   
                                           FROM sys.dm_exec_sessions
-                                          GROUP BY login_name; ", new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6932) },
-                    { new Guid("0baa8e48-34c0-48e1-9e91-2514d0a17f50"), new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6937), "Memory usage", true, false, 6, @"SELECT object_name, counter_name, cntr_value
+                                          GROUP BY login_name; ", new DateTime(2020, 3, 2, 20, 42, 5, 815, DateTimeKind.Utc).AddTicks(7748) },
+                    { new Guid("f590683f-c347-4bf5-ab73-c8911c7469db"), new DateTime(2020, 3, 2, 20, 42, 5, 815, DateTimeKind.Utc).AddTicks(7754), "Memory usage", true, false, 6, @"SELECT object_name, counter_name, cntr_value
                                             FROM sys.dm_os_performance_counters
                                             WHERE [object_name] LIKE '%Buffer Manager%'
                                             AND [counter_name] in ('Page life expectancy','Free list stalls/sec',
-                                            'Page reads/sec')", new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6938) },
-                    { new Guid("01d70006-675f-43c3-9152-b98166780f49"), new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6934), "The most CPU consumed 20 queries", true, false, 5, @"SELECT TOP 20 query_stats.query_hash AS 'Query Hash',   
+                                            'Page reads/sec')", new DateTime(2020, 3, 2, 20, 42, 5, 815, DateTimeKind.Utc).AddTicks(7755) },
+                    { new Guid("d6e7476d-3bce-4fa5-afcd-88965a976096"), new DateTime(2020, 3, 2, 20, 42, 5, 815, DateTimeKind.Utc).AddTicks(7751), "The most CPU consumed 20 queries", true, false, 5, @"SELECT TOP 20 query_stats.query_hash AS 'Query Hash',   
                 	                        	SUM(query_stats.total_worker_time) / SUM(query_stats.execution_count) AS 'Avg CPU Time',  
                 	                        	MIN(query_stats.statement_text) AS 'Statement Text'  
                 	                        FROM   
@@ -141,47 +141,47 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                 	                        	 CROSS APPLY sys.dm_exec_sql_text(QS.sql_handle) as ST) as query_stats  
                 	                        GROUP BY query_stats.query_hash  
                 	                        ORDER BY 2 DESC;  
-                                        ", new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6935) },
-                    { new Guid("4cc67ee2-0d51-4eb7-9050-adc57fc06df3"), new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(4594), "The name of a server", true, false, 0, "SELECT SERVERPROPERTY('Servername') as ServerName", new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(4621) }
+                                        ", new DateTime(2020, 3, 2, 20, 42, 5, 815, DateTimeKind.Utc).AddTicks(7752) },
+                    { new Guid("d1f1ff22-2f9f-409d-b229-a967e67259a4"), new DateTime(2020, 3, 2, 20, 42, 5, 815, DateTimeKind.Utc).AddTicks(5586), "The name of a server", true, false, 0, "SELECT SERVERPROPERTY('Servername') as ServerName", new DateTime(2020, 3, 2, 20, 42, 5, 815, DateTimeKind.Utc).AddTicks(5614) }
                 });
 
             migrationBuilder.InsertData(
                 table: "Schedules",
                 columns: new[] { "Id", "CreatedDate", "Interval", "IsActive", "IsForServer", "LastInvokedDate", "UpdatedDate" },
-                values: new object[] { new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"), new DateTime(2020, 3, 2, 20, 24, 52, 866, DateTimeKind.Utc).AddTicks(3036), 4, true, true, new DateTime(2020, 3, 2, 20, 24, 52, 866, DateTimeKind.Local).AddTicks(3654), new DateTime(2020, 3, 2, 20, 24, 52, 866, DateTimeKind.Utc).AddTicks(3043) });
+                values: new object[] { new Guid("ba8059a7-5a93-4a4a-a063-5fd57355812a"), new DateTime(2020, 3, 2, 20, 42, 5, 816, DateTimeKind.Utc).AddTicks(4004), 4, true, true, new DateTime(2020, 3, 2, 20, 42, 5, 816, DateTimeKind.Local).AddTicks(4672), new DateTime(2020, 3, 2, 20, 42, 5, 816, DateTimeKind.Utc).AddTicks(4010) });
 
             migrationBuilder.InsertData(
                 table: "Servers",
                 columns: new[] { "Id", "CreatedDate", "Description", "Host", "IsActive", "Login", "Name", "Password", "Port", "UpdatedDate", "UserId" },
-                values: new object[] { new Guid("bf736e19-1aeb-4205-850e-b15bfd9c1138"), new DateTime(2020, 3, 2, 20, 24, 52, 862, DateTimeKind.Utc).AddTicks(4219), null, "localhost", true, "sa", "Sql monitor server", "Pass_w0rd12", 1465, new DateTime(2020, 3, 2, 20, 24, 52, 862, DateTimeKind.Utc).AddTicks(6119), new Guid("d2b248e2-07a5-4d2c-b4d4-d933a84ee5f6") });
+                values: new object[] { new Guid("eadc77bc-01f5-4910-86a1-09787ca5daf8"), new DateTime(2020, 3, 2, 20, 42, 5, 812, DateTimeKind.Utc).AddTicks(2138), null, "localhost", true, "sa", "Sql monitor server", "Pass_w0rd12", 1465, new DateTime(2020, 3, 2, 20, 42, 5, 812, DateTimeKind.Utc).AddTicks(3814), new Guid("d2b248e2-07a5-4d2c-b4d4-d933a84ee5f6") });
 
             migrationBuilder.InsertData(
                 table: "Databases",
                 columns: new[] { "Id", "CreatedDate", "Description", "IsActive", "Name", "ServerId", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { new Guid("f085547b-3081-4d08-acbf-fc5495fefd0b"), new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(5898), null, true, "SqlMonitor", new Guid("bf736e19-1aeb-4205-850e-b15bfd9c1138"), new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(5923) },
-                    { new Guid("27df32e3-4cad-4ebf-a207-90061560d155"), new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(7863), null, true, "SqlMonitor", new Guid("bf736e19-1aeb-4205-850e-b15bfd9c1138"), new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(7868) },
-                    { new Guid("c2a03d2c-73dc-4598-b20f-76c28bcb0cec"), new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(7949), null, true, "modeldb", new Guid("bf736e19-1aeb-4205-850e-b15bfd9c1138"), new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(7950) },
-                    { new Guid("e5792303-30e6-4995-9e2d-6b135a0b45a2"), new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(7973), null, true, "msdb", new Guid("bf736e19-1aeb-4205-850e-b15bfd9c1138"), new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(7974) },
-                    { new Guid("6846fe3e-8f43-4686-9995-23760462f37b"), new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(7996), null, true, "tempdb", new Guid("bf736e19-1aeb-4205-850e-b15bfd9c1138"), new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(7997) }
+                    { new Guid("a6a8bf00-83e9-4541-ba85-a616c8166122"), new DateTime(2020, 3, 2, 20, 42, 5, 814, DateTimeKind.Utc).AddTicks(6747), null, true, "SqlMonitor", new Guid("eadc77bc-01f5-4910-86a1-09787ca5daf8"), new DateTime(2020, 3, 2, 20, 42, 5, 814, DateTimeKind.Utc).AddTicks(6771) },
+                    { new Guid("b1843653-ccf3-457f-bcb3-6040bf2f0fbe"), new DateTime(2020, 3, 2, 20, 42, 5, 814, DateTimeKind.Utc).AddTicks(8875), null, true, "SqlMonitor", new Guid("eadc77bc-01f5-4910-86a1-09787ca5daf8"), new DateTime(2020, 3, 2, 20, 42, 5, 814, DateTimeKind.Utc).AddTicks(8882) },
+                    { new Guid("d961c3a4-c027-4c28-8afc-449d55472806"), new DateTime(2020, 3, 2, 20, 42, 5, 814, DateTimeKind.Utc).AddTicks(8962), null, true, "modeldb", new Guid("eadc77bc-01f5-4910-86a1-09787ca5daf8"), new DateTime(2020, 3, 2, 20, 42, 5, 814, DateTimeKind.Utc).AddTicks(8963) },
+                    { new Guid("9915d74b-a3ba-4e55-9446-edd2c493d134"), new DateTime(2020, 3, 2, 20, 42, 5, 814, DateTimeKind.Utc).AddTicks(8987), null, true, "msdb", new Guid("eadc77bc-01f5-4910-86a1-09787ca5daf8"), new DateTime(2020, 3, 2, 20, 42, 5, 814, DateTimeKind.Utc).AddTicks(8988) },
+                    { new Guid("b63d70da-5ae2-4b9a-bc31-5edb2cc7b3ab"), new DateTime(2020, 3, 2, 20, 42, 5, 814, DateTimeKind.Utc).AddTicks(9009), null, true, "tempdb", new Guid("eadc77bc-01f5-4910-86a1-09787ca5daf8"), new DateTime(2020, 3, 2, 20, 42, 5, 814, DateTimeKind.Utc).AddTicks(9010) }
                 });
 
             migrationBuilder.InsertData(
                 table: "ScheduleServer",
                 columns: new[] { "ScheduleId", "ServerId" },
-                values: new object[] { new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"), new Guid("bf736e19-1aeb-4205-850e-b15bfd9c1138") });
+                values: new object[] { new Guid("ba8059a7-5a93-4a4a-a063-5fd57355812a"), new Guid("eadc77bc-01f5-4910-86a1-09787ca5daf8") });
 
             migrationBuilder.InsertData(
                 table: "ScheduleSqlQuery",
                 columns: new[] { "ScheduleId", "SqlQueryId" },
                 values: new object[,]
                 {
-                    { new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"), new Guid("5494a8a6-2405-4ce8-81a5-350e0bb20315") },
-                    { new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"), new Guid("59cc09b9-f281-4a33-ad49-f20ae7a7da38") },
-                    { new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"), new Guid("86f9424d-87cf-46f7-8346-9c676766b30a") },
-                    { new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"), new Guid("55b6f3a3-6729-424c-9c38-630d95bc71ea") },
-                    { new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"), new Guid("0baa8e48-34c0-48e1-9e91-2514d0a17f50") }
+                    { new Guid("ba8059a7-5a93-4a4a-a063-5fd57355812a"), new Guid("e30573c0-c2fb-4a12-b79b-8891f30f41e3") },
+                    { new Guid("ba8059a7-5a93-4a4a-a063-5fd57355812a"), new Guid("5ce58f94-3d76-4218-9968-a08eedbe4794") },
+                    { new Guid("ba8059a7-5a93-4a4a-a063-5fd57355812a"), new Guid("1c1ea729-9210-43bb-85f4-854005bf107a") },
+                    { new Guid("ba8059a7-5a93-4a4a-a063-5fd57355812a"), new Guid("27604b4f-19e4-4ff6-a8de-ba42ff5aab5e") },
+                    { new Guid("ba8059a7-5a93-4a4a-a063-5fd57355812a"), new Guid("f590683f-c347-4bf5-ab73-c8911c7469db") }
                 });
         }
 
@@ -190,102 +190,102 @@ namespace ToolBox.Services.SQLMonitor.Migrations
             migrationBuilder.DeleteData(
                 table: "Databases",
                 keyColumn: "Id",
-                keyValue: new Guid("27df32e3-4cad-4ebf-a207-90061560d155"));
+                keyValue: new Guid("9915d74b-a3ba-4e55-9446-edd2c493d134"));
 
             migrationBuilder.DeleteData(
                 table: "Databases",
                 keyColumn: "Id",
-                keyValue: new Guid("6846fe3e-8f43-4686-9995-23760462f37b"));
+                keyValue: new Guid("a6a8bf00-83e9-4541-ba85-a616c8166122"));
 
             migrationBuilder.DeleteData(
                 table: "Databases",
                 keyColumn: "Id",
-                keyValue: new Guid("c2a03d2c-73dc-4598-b20f-76c28bcb0cec"));
+                keyValue: new Guid("b1843653-ccf3-457f-bcb3-6040bf2f0fbe"));
 
             migrationBuilder.DeleteData(
                 table: "Databases",
                 keyColumn: "Id",
-                keyValue: new Guid("e5792303-30e6-4995-9e2d-6b135a0b45a2"));
+                keyValue: new Guid("b63d70da-5ae2-4b9a-bc31-5edb2cc7b3ab"));
 
             migrationBuilder.DeleteData(
                 table: "Databases",
                 keyColumn: "Id",
-                keyValue: new Guid("f085547b-3081-4d08-acbf-fc5495fefd0b"));
+                keyValue: new Guid("d961c3a4-c027-4c28-8afc-449d55472806"));
 
             migrationBuilder.DeleteData(
                 table: "SQLQueries",
                 keyColumn: "Id",
-                keyValue: new Guid("01d70006-675f-43c3-9152-b98166780f49"));
+                keyValue: new Guid("d1f1ff22-2f9f-409d-b229-a967e67259a4"));
 
             migrationBuilder.DeleteData(
                 table: "SQLQueries",
                 keyColumn: "Id",
-                keyValue: new Guid("4cc67ee2-0d51-4eb7-9050-adc57fc06df3"));
+                keyValue: new Guid("d6e7476d-3bce-4fa5-afcd-88965a976096"));
 
             migrationBuilder.DeleteData(
                 table: "ScheduleServer",
                 keyColumns: new[] { "ScheduleId", "ServerId" },
-                keyValues: new object[] { new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"), new Guid("bf736e19-1aeb-4205-850e-b15bfd9c1138") });
+                keyValues: new object[] { new Guid("ba8059a7-5a93-4a4a-a063-5fd57355812a"), new Guid("eadc77bc-01f5-4910-86a1-09787ca5daf8") });
 
             migrationBuilder.DeleteData(
                 table: "ScheduleSqlQuery",
                 keyColumns: new[] { "ScheduleId", "SqlQueryId" },
-                keyValues: new object[] { new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"), new Guid("0baa8e48-34c0-48e1-9e91-2514d0a17f50") });
+                keyValues: new object[] { new Guid("ba8059a7-5a93-4a4a-a063-5fd57355812a"), new Guid("1c1ea729-9210-43bb-85f4-854005bf107a") });
 
             migrationBuilder.DeleteData(
                 table: "ScheduleSqlQuery",
                 keyColumns: new[] { "ScheduleId", "SqlQueryId" },
-                keyValues: new object[] { new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"), new Guid("5494a8a6-2405-4ce8-81a5-350e0bb20315") });
+                keyValues: new object[] { new Guid("ba8059a7-5a93-4a4a-a063-5fd57355812a"), new Guid("27604b4f-19e4-4ff6-a8de-ba42ff5aab5e") });
 
             migrationBuilder.DeleteData(
                 table: "ScheduleSqlQuery",
                 keyColumns: new[] { "ScheduleId", "SqlQueryId" },
-                keyValues: new object[] { new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"), new Guid("55b6f3a3-6729-424c-9c38-630d95bc71ea") });
+                keyValues: new object[] { new Guid("ba8059a7-5a93-4a4a-a063-5fd57355812a"), new Guid("5ce58f94-3d76-4218-9968-a08eedbe4794") });
 
             migrationBuilder.DeleteData(
                 table: "ScheduleSqlQuery",
                 keyColumns: new[] { "ScheduleId", "SqlQueryId" },
-                keyValues: new object[] { new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"), new Guid("59cc09b9-f281-4a33-ad49-f20ae7a7da38") });
+                keyValues: new object[] { new Guid("ba8059a7-5a93-4a4a-a063-5fd57355812a"), new Guid("e30573c0-c2fb-4a12-b79b-8891f30f41e3") });
 
             migrationBuilder.DeleteData(
                 table: "ScheduleSqlQuery",
                 keyColumns: new[] { "ScheduleId", "SqlQueryId" },
-                keyValues: new object[] { new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"), new Guid("86f9424d-87cf-46f7-8346-9c676766b30a") });
+                keyValues: new object[] { new Guid("ba8059a7-5a93-4a4a-a063-5fd57355812a"), new Guid("f590683f-c347-4bf5-ab73-c8911c7469db") });
 
             migrationBuilder.DeleteData(
                 table: "SQLQueries",
                 keyColumn: "Id",
-                keyValue: new Guid("0baa8e48-34c0-48e1-9e91-2514d0a17f50"));
+                keyValue: new Guid("1c1ea729-9210-43bb-85f4-854005bf107a"));
 
             migrationBuilder.DeleteData(
                 table: "SQLQueries",
                 keyColumn: "Id",
-                keyValue: new Guid("5494a8a6-2405-4ce8-81a5-350e0bb20315"));
+                keyValue: new Guid("27604b4f-19e4-4ff6-a8de-ba42ff5aab5e"));
 
             migrationBuilder.DeleteData(
                 table: "SQLQueries",
                 keyColumn: "Id",
-                keyValue: new Guid("55b6f3a3-6729-424c-9c38-630d95bc71ea"));
+                keyValue: new Guid("5ce58f94-3d76-4218-9968-a08eedbe4794"));
 
             migrationBuilder.DeleteData(
                 table: "SQLQueries",
                 keyColumn: "Id",
-                keyValue: new Guid("59cc09b9-f281-4a33-ad49-f20ae7a7da38"));
+                keyValue: new Guid("e30573c0-c2fb-4a12-b79b-8891f30f41e3"));
 
             migrationBuilder.DeleteData(
                 table: "SQLQueries",
                 keyColumn: "Id",
-                keyValue: new Guid("86f9424d-87cf-46f7-8346-9c676766b30a"));
+                keyValue: new Guid("f590683f-c347-4bf5-ab73-c8911c7469db"));
 
             migrationBuilder.DeleteData(
                 table: "Schedules",
                 keyColumn: "Id",
-                keyValue: new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"));
+                keyValue: new Guid("ba8059a7-5a93-4a4a-a063-5fd57355812a"));
 
             migrationBuilder.DeleteData(
                 table: "Servers",
                 keyColumn: "Id",
-                keyValue: new Guid("bf736e19-1aeb-4205-850e-b15bfd9c1138"));
+                keyValue: new Guid("eadc77bc-01f5-4910-86a1-09787ca5daf8"));
 
             migrationBuilder.InsertData(
                 table: "SQLQueries",

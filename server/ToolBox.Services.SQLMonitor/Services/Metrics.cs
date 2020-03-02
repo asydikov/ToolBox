@@ -87,6 +87,7 @@ namespace ToolBox.Services.SQLMonitor.Services
 
         private async Task QueryInvoke(ServerModel server, SqlQueryModel sqlQuery)
         {
+            _logger.LogInformation($"-------------------------------------: {sqlQuery.Name}");
             await _busClient.PublishAsync(new SqlStatementQuery(Guid.NewGuid(),
                                                                 server.UserId,
                                                                 sqlQuery.Query,
@@ -95,6 +96,7 @@ namespace ToolBox.Services.SQLMonitor.Services
                                                                 server.Login,
                                                                 server.Password,
                                                                 null,
+                                                                (int)sqlQuery.Name,
                                                                 server.Id,
                                                                 Guid.Empty,
                                                                 "sqlmonitor-service"
@@ -103,6 +105,7 @@ namespace ToolBox.Services.SQLMonitor.Services
 
         private async Task StoredProcedureInvoke(ServerModel server, SqlQueryModel sqlQuery)
         {
+            _logger.LogInformation($"----------------------------------->>>: {sqlQuery.Name}");
             await _busClient.PublishAsync(new SqlStoredProcedureQuery(Guid.NewGuid(),
                                                                       server.UserId,
                                                                       sqlQuery.Query,
@@ -112,6 +115,7 @@ namespace ToolBox.Services.SQLMonitor.Services
                                                                       server.Login,
                                                                       server.Password,
                                                                       null,
+                                                                      (int) sqlQuery.Name,
                                                                       server.Id,
                                                                       Guid.Empty,
                                                                       "sqlmonitor-service"

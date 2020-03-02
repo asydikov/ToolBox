@@ -13,16 +13,18 @@ namespace ToolBox.Services.DBWorker.Messages.Events
         public Guid UserId { get; set; }
         public Guid SqlServerId { get; }
         public Guid DatabaseId { get; }
+        public int SqlQueryName { get; }
         public string Resource { get; }
         public List<Dictionary<string, string>> Result { get; }
 
         [JsonConstructor]
-        public DbWorkerOperationCompleted(Guid id, Guid userId, Guid sqlServerId, Guid databaseId, string resource, List<Dictionary<string, string>> result)
+        public DbWorkerOperationCompleted(Guid id, Guid userId, Guid sqlServerId, Guid databaseId, int sqlQueryName, string resource, List<Dictionary<string, string>> result)
         {
             Id = id;
             UserId = userId;
             SqlServerId = sqlServerId;
             DatabaseId = databaseId;
+            SqlQueryName = sqlQueryName;
             Resource = resource;
             Result = result;
         }

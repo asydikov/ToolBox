@@ -70,6 +70,7 @@ namespace ToolBox.Services.SQLMonitor
             services.AddScoped<IDatabaseRepository, DatabaseRepository>();
             services.AddScoped<IScheduleService, ScheduleService>();
             services.AddScoped<IScheduleRepository, ScheduleRepository>();
+            services.AddScoped<IMetricsProcessingService, MetricsProcessingService>();
 
             services.AddScoped<IMapper>(_ => AutoMapperConfig.GetMapper());
 
