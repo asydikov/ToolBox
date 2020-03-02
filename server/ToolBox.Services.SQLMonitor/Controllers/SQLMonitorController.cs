@@ -19,15 +19,17 @@ namespace ToolBox.Services.DBWorker.Controllers
         private readonly ISqlQueryService _sqlQueryService;
         private readonly IDbWorkerService _dbWorkerService;
         private readonly IScheduleService _scheduleService;
+        private readonly IServerService _serverService;
         public SqlMonitorController(
             IDbWorkerService dbWorkerService,
             ISqlQueryService sqlQueryService,
-            IScheduleService scheduleService)
+            IScheduleService scheduleService,
+            IServerService serverService)
         {
             _sqlQueryService = sqlQueryService;
             _dbWorkerService = dbWorkerService;
             _scheduleService = scheduleService;
-
+            _serverService = serverService;
         }
 
         [HttpPost("server-connection-check")]
@@ -38,11 +40,13 @@ namespace ToolBox.Services.DBWorker.Controllers
             return Ok(result);
         }
 
+        [HttpGet("servers")]
+        public async Task<IActionResult> Servers(Guid userId)
+        {
+            var result = await _serverService.GetAllAsync(x=>x.UserId == userId);
 
-
-
-
-
+            return Ok(result);
+        }
 
 
 

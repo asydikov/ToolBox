@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using ToolBox.Services.SQLMonitor.Domain.Enums;
 using ToolBox.Services.SQLMonitor.Entities;
 
 namespace ToolBox.Services.SQLMonitor.EF
@@ -68,19 +69,58 @@ namespace ToolBox.Services.SQLMonitor.EF
 
             return new List<Server>() { server };
         }
-      
+
         private static List<SqlQuery> AddQueries(ModelBuilder modelBuilder)
         {
+            var serverName = new SqlQuery()
+            {
+                Name = SqlQueryNames.ServerName,
+                Query = "SELECT SERVERPROPERTY('Servername') as ServerName",
+                Description = "The name of a server",
+                IsStoredProcedure = false
+            };
+
             var query = new SqlQuery()
             {
-                Name = "sp_databases",
-                Query = "sp_databases",
+                Name = SqlQueryNames.DatabaseNames,
+                Query = "EXEC sp_databases",
                 Description = "List of Database names in a server",
+                IsStoredProcedure = true
+            }; 
+            
+            var dbSpaceStatus = new SqlQuery()
+            {
+                Name = SqlQueryNames.DatabaseSpaceStatus,
+                Query = "EXEC sp_spaceused @oneresultset = 1",
+                Description = "Needs to be executed with keyword use [DATABASE_NAME]. Database space information",
                 IsStoredProcedure = true
             };
 
+            var dbBackupStatus = new SqlQuery()
+            {
+                Name = SqlQueryNames.DatabasesBackupStatus,
+                Query = @"SELECT d.name AS 'DATABASE_Name',
+                          MAX(CASE WHEN bu.TYPE = 'D' THEN bu.LastBackupDate END) AS 'Full DB Backup Status',
+                          MAX(CASE WHEN bu.TYPE = 'I' THEN bu.LastBackupDate END) AS 'Differential DB Backup Status',
+                          MAX(CASE WHEN bu.TYPE = 'L' THEN bu.LastBackupDate END) AS 'Transaction DB Backup Status',
+                          CASE d.recovery_model WHEN 1 THEN 'Full' WHEN 2 THEN 'Bulk Logged' WHEN 3 THEN 'Simple' END RecoveryModel
+                          FROM MASTER.sys.databases d
+                          LEFT OUTER JOIN (SELECT database_name, TYPE, MAX(backup_start_date) AS LastBackupDate
+                          FROM msdb.dbo.backupset
+                          GROUP BY database_name, TYPE) AS bu ON d.name = bu.database_name
+                          GROUP BY d.Name, d.recovery_model",
+                Description = "Databases backup status",
+                IsStoredProcedure = false
+            };
+
+
+
+            modelBuilder.Entity<SqlQuery>().HasData(serverName);
             modelBuilder.Entity<SqlQuery>().HasData(query);
-            return new List<SqlQuery>() { query };
+            modelBuilder.Entity<SqlQuery>().HasData(dbSpaceStatus);
+            modelBuilder.Entity<SqlQuery>().HasData(dbBackupStatus);
+       
+            return new List<SqlQuery>() { serverName, query, dbSpaceStatus, dbBackupStatus };
         }
 
         private static List<Schedule> AddSchedule(ModelBuilder modelBuilder, List<Server> servers, List<SqlQuery> sqlQueries)

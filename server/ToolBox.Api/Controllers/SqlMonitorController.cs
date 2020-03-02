@@ -30,6 +30,13 @@ namespace ToolBox.Api.Controllers
             _logger = logger;
         }
 
+        [HttpGet("servers")]
+        public async Task<IActionResult> Servers()
+        {
+            var result = await _sqlMonitorService.Servers(UserId);
+
+            return Ok(result);
+        }
 
         [HttpPost("server-connection-check")]
         public async Task<IActionResult> ServerConnectionCheck(ConnectionModel connectionModel)
