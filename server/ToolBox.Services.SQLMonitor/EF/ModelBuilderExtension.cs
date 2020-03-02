@@ -86,8 +86,8 @@ namespace ToolBox.Services.SQLMonitor.EF
                 Query = "EXEC sp_databases",
                 Description = "List of Database names in a server",
                 IsStoredProcedure = true
-            }; 
-            
+            };
+
             var dbSpaceStatus = new SqlQuery()
             {
                 Name = SqlQueryNames.DatabaseSpaceStatus,
@@ -113,14 +113,61 @@ namespace ToolBox.Services.SQLMonitor.EF
                 IsStoredProcedure = false
             };
 
+            var serverConnectedUsers = new SqlQuery()
+            {
+                Name = SqlQueryNames.ConnectedUsers,
+                Query = @"SELECT login_name ,COUNT(session_id) AS session_count   
+                          FROM sys.dm_exec_sessions
+                          GROUP BY login_name; ",
+                Description = "Finding users that are connected to the server",
+                IsStoredProcedure = false
+            };
+
+            var twentyCpuConsumedQueries = new SqlQuery()
+            {
+                Name = SqlQueryNames.TwentyCPUConsumedQueries,
+                Query = @"SELECT TOP 20 query_stats.query_hash AS 'Query Hash',   
+	                        	SUM(query_stats.total_worker_time) / SUM(query_stats.execution_count) AS 'Avg CPU Time',  
+	                        	MIN(query_stats.statement_text) AS 'Statement Text'  
+	                        FROM   
+	                        	(SELECT QS.*,   
+	                        	SUBSTRING(ST.text, (QS.statement_start_offset/2) + 1,  
+	                        	((CASE statement_end_offset   
+	                        		WHEN -1 THEN DATALENGTH(ST.text)  
+	                        		ELSE QS.statement_end_offset END   
+	                        			- QS.statement_start_offset)/2) + 1) AS statement_text  
+	                        	 FROM sys.dm_exec_query_stats AS QS  
+	                        	 CROSS APPLY sys.dm_exec_sql_text(QS.sql_handle) as ST) as query_stats  
+	                        GROUP BY query_stats.query_hash  
+	                        ORDER BY 2 DESC;  
+                        ",
+                Description = "The most CPU consumed 20 queries",
+                IsStoredProcedure = false
+            };
 
 
-            modelBuilder.Entity<SqlQuery>().HasData(serverName);
+            var memoryUse = new SqlQuery()
+            {
+                Name = SqlQueryNames.MemoryUsage,
+                Query = @"SELECT object_name, counter_name, cntr_value
+                            FROM sys.dm_os_performance_counters
+                            WHERE [object_name] LIKE '%Buffer Manager%'
+                            AND [counter_name] in ('Page life expectancy','Free list stalls/sec',
+                            'Page reads/sec')",
+                Description = "Memory usage",
+                IsStoredProcedure = false
+            };
+
+
+            
             modelBuilder.Entity<SqlQuery>().HasData(query);
             modelBuilder.Entity<SqlQuery>().HasData(dbSpaceStatus);
             modelBuilder.Entity<SqlQuery>().HasData(dbBackupStatus);
-       
-            return new List<SqlQuery>() { serverName, query, dbSpaceStatus, dbBackupStatus };
+            modelBuilder.Entity<SqlQuery>().HasData(serverConnectedUsers);
+            modelBuilder.Entity<SqlQuery>().HasData(memoryUse);
+            modelBuilder.Entity<SqlQuery>().HasData(twentyCpuConsumedQueries);
+            modelBuilder.Entity<SqlQuery>().HasData(serverName);
+            return new List<SqlQuery>() { query, dbSpaceStatus, dbBackupStatus, serverConnectedUsers, memoryUse };
         }
 
         private static List<Schedule> AddSchedule(ModelBuilder modelBuilder, List<Server> servers, List<SqlQuery> sqlQueries)
@@ -128,7 +175,7 @@ namespace ToolBox.Services.SQLMonitor.EF
 
             var schedule = new Schedule()
             {
-                Interval = 5,
+                Interval = 4,
                 LastInvokedDate = DateTime.Now,
                 IsForServer = true
             };

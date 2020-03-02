@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToolBox.Services.SQLMonitor.EF;
 
 namespace ToolBox.Services.SQLMonitor.Migrations
 {
     [DbContext(typeof(SqlMonitorDbContext))]
-    partial class SQLMonitorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200302200951_Added_new_SqlQueries")]
+    partial class Added_new_SqlQueries
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,48 +55,48 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f085547b-3081-4d08-acbf-fc5495fefd0b"),
-                            CreatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(5898),
+                            Id = new Guid("f1d30005-182e-4274-8607-55dd7b3c4ed8"),
+                            CreatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 876, DateTimeKind.Utc).AddTicks(5639),
                             IsActive = true,
                             Name = "SqlMonitor",
-                            ServerId = new Guid("bf736e19-1aeb-4205-850e-b15bfd9c1138"),
-                            UpdatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(5923)
+                            ServerId = new Guid("59a75aa0-c958-4604-aa7b-3ffa21686c94"),
+                            UpdatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 876, DateTimeKind.Utc).AddTicks(5670)
                         },
                         new
                         {
-                            Id = new Guid("27df32e3-4cad-4ebf-a207-90061560d155"),
-                            CreatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(7863),
+                            Id = new Guid("71801f2d-223b-4efe-adf9-2e7b59a80f80"),
+                            CreatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 876, DateTimeKind.Utc).AddTicks(8585),
                             IsActive = true,
                             Name = "SqlMonitor",
-                            ServerId = new Guid("bf736e19-1aeb-4205-850e-b15bfd9c1138"),
-                            UpdatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(7868)
+                            ServerId = new Guid("59a75aa0-c958-4604-aa7b-3ffa21686c94"),
+                            UpdatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 876, DateTimeKind.Utc).AddTicks(8593)
                         },
                         new
                         {
-                            Id = new Guid("c2a03d2c-73dc-4598-b20f-76c28bcb0cec"),
-                            CreatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(7949),
+                            Id = new Guid("3fb03345-59c3-4aca-adc7-19c476aca7c1"),
+                            CreatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 876, DateTimeKind.Utc).AddTicks(8675),
                             IsActive = true,
                             Name = "modeldb",
-                            ServerId = new Guid("bf736e19-1aeb-4205-850e-b15bfd9c1138"),
-                            UpdatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(7950)
+                            ServerId = new Guid("59a75aa0-c958-4604-aa7b-3ffa21686c94"),
+                            UpdatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 876, DateTimeKind.Utc).AddTicks(8676)
                         },
                         new
                         {
-                            Id = new Guid("e5792303-30e6-4995-9e2d-6b135a0b45a2"),
-                            CreatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(7973),
+                            Id = new Guid("93b86968-9da3-42ff-b1b7-85c91c6bb990"),
+                            CreatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 876, DateTimeKind.Utc).AddTicks(8719),
                             IsActive = true,
                             Name = "msdb",
-                            ServerId = new Guid("bf736e19-1aeb-4205-850e-b15bfd9c1138"),
-                            UpdatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(7974)
+                            ServerId = new Guid("59a75aa0-c958-4604-aa7b-3ffa21686c94"),
+                            UpdatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 876, DateTimeKind.Utc).AddTicks(8721)
                         },
                         new
                         {
-                            Id = new Guid("6846fe3e-8f43-4686-9995-23760462f37b"),
-                            CreatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(7996),
+                            Id = new Guid("691dfcce-dec5-40c3-8d8b-6d3250a2121d"),
+                            CreatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 876, DateTimeKind.Utc).AddTicks(8744),
                             IsActive = true,
                             Name = "tempdb",
-                            ServerId = new Guid("bf736e19-1aeb-4205-850e-b15bfd9c1138"),
-                            UpdatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 864, DateTimeKind.Utc).AddTicks(7997)
+                            ServerId = new Guid("59a75aa0-c958-4604-aa7b-3ffa21686c94"),
+                            UpdatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 876, DateTimeKind.Utc).AddTicks(8745)
                         });
                 });
 
@@ -129,13 +131,13 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"),
-                            CreatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 866, DateTimeKind.Utc).AddTicks(3036),
-                            Interval = 4,
+                            Id = new Guid("75db5b1d-a996-4523-90a9-33ac84eb7126"),
+                            CreatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 878, DateTimeKind.Utc).AddTicks(4264),
+                            Interval = 5,
                             IsActive = true,
                             IsForServer = true,
-                            LastInvokedDate = new DateTime(2020, 3, 2, 20, 24, 52, 866, DateTimeKind.Local).AddTicks(3654),
-                            UpdatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 866, DateTimeKind.Utc).AddTicks(3043)
+                            LastInvokedDate = new DateTime(2020, 3, 2, 20, 9, 50, 878, DateTimeKind.Local).AddTicks(4889),
+                            UpdatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 878, DateTimeKind.Utc).AddTicks(4271)
                         });
                 });
 
@@ -156,8 +158,8 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                     b.HasData(
                         new
                         {
-                            ScheduleId = new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"),
-                            ServerId = new Guid("bf736e19-1aeb-4205-850e-b15bfd9c1138")
+                            ScheduleId = new Guid("75db5b1d-a996-4523-90a9-33ac84eb7126"),
+                            ServerId = new Guid("59a75aa0-c958-4604-aa7b-3ffa21686c94")
                         });
                 });
 
@@ -178,28 +180,23 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                     b.HasData(
                         new
                         {
-                            ScheduleId = new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"),
-                            SqlQueryId = new Guid("5494a8a6-2405-4ce8-81a5-350e0bb20315")
+                            ScheduleId = new Guid("75db5b1d-a996-4523-90a9-33ac84eb7126"),
+                            SqlQueryId = new Guid("56fd19f8-c997-4887-b6a1-5e9361e12f69")
                         },
                         new
                         {
-                            ScheduleId = new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"),
-                            SqlQueryId = new Guid("59cc09b9-f281-4a33-ad49-f20ae7a7da38")
+                            ScheduleId = new Guid("75db5b1d-a996-4523-90a9-33ac84eb7126"),
+                            SqlQueryId = new Guid("03e66313-3755-4190-a974-b053af085806")
                         },
                         new
                         {
-                            ScheduleId = new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"),
-                            SqlQueryId = new Guid("86f9424d-87cf-46f7-8346-9c676766b30a")
+                            ScheduleId = new Guid("75db5b1d-a996-4523-90a9-33ac84eb7126"),
+                            SqlQueryId = new Guid("95c7f8e0-4c84-4f18-a4c2-5f7a77b00ad3")
                         },
                         new
                         {
-                            ScheduleId = new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"),
-                            SqlQueryId = new Guid("55b6f3a3-6729-424c-9c38-630d95bc71ea")
-                        },
-                        new
-                        {
-                            ScheduleId = new Guid("5445f44c-1055-4c51-b231-2be0ca64c2ab"),
-                            SqlQueryId = new Guid("0baa8e48-34c0-48e1-9e91-2514d0a17f50")
+                            ScheduleId = new Guid("75db5b1d-a996-4523-90a9-33ac84eb7126"),
+                            SqlQueryId = new Guid("78fedfb9-3e4e-4658-ab63-897663bc3559")
                         });
                 });
 
@@ -250,15 +247,15 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("bf736e19-1aeb-4205-850e-b15bfd9c1138"),
-                            CreatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 862, DateTimeKind.Utc).AddTicks(4219),
+                            Id = new Guid("59a75aa0-c958-4604-aa7b-3ffa21686c94"),
+                            CreatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 874, DateTimeKind.Utc).AddTicks(6850),
                             Host = "localhost",
                             IsActive = true,
                             Login = "sa",
                             Name = "Sql monitor server",
                             Password = "Pass_w0rd12",
                             Port = 1465,
-                            UpdatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 862, DateTimeKind.Utc).AddTicks(6119),
+                            UpdatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 874, DateTimeKind.Utc).AddTicks(8577),
                             UserId = new Guid("d2b248e2-07a5-4d2c-b4d4-d933a84ee5f6")
                         });
                 });
@@ -298,30 +295,41 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5494a8a6-2405-4ce8-81a5-350e0bb20315"),
-                            CreatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6866),
+                            Id = new Guid("56fd19f8-c997-4887-b6a1-5e9361e12f69"),
+                            CreatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 877, DateTimeKind.Utc).AddTicks(6008),
+                            Description = "The name of a server",
+                            IsActive = true,
+                            IsStoredProcedure = false,
+                            Name = 0,
+                            Query = "SELECT SERVERPROPERTY('Servername') as ServerName",
+                            UpdatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 877, DateTimeKind.Utc).AddTicks(6046)
+                        },
+                        new
+                        {
+                            Id = new Guid("03e66313-3755-4190-a974-b053af085806"),
+                            CreatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 877, DateTimeKind.Utc).AddTicks(8115),
                             Description = "List of Database names in a server",
                             IsActive = true,
                             IsStoredProcedure = true,
                             Name = 1,
                             Query = "EXEC sp_databases",
-                            UpdatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6871)
+                            UpdatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 877, DateTimeKind.Utc).AddTicks(8122)
                         },
                         new
                         {
-                            Id = new Guid("59cc09b9-f281-4a33-ad49-f20ae7a7da38"),
-                            CreatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6924),
+                            Id = new Guid("95c7f8e0-4c84-4f18-a4c2-5f7a77b00ad3"),
+                            CreatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 877, DateTimeKind.Utc).AddTicks(8167),
                             Description = "Needs to be executed with keyword use [DATABASE_NAME]. Database space information",
                             IsActive = true,
                             IsStoredProcedure = true,
                             Name = 3,
                             Query = "EXEC sp_spaceused @oneresultset = 1",
-                            UpdatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6925)
+                            UpdatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 877, DateTimeKind.Utc).AddTicks(8168)
                         },
                         new
                         {
-                            Id = new Guid("86f9424d-87cf-46f7-8346-9c676766b30a"),
-                            CreatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6928),
+                            Id = new Guid("78fedfb9-3e4e-4658-ab63-897663bc3559"),
+                            CreatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 877, DateTimeKind.Utc).AddTicks(8170),
                             Description = "Databases backup status",
                             IsActive = true,
                             IsStoredProcedure = false,
@@ -336,12 +344,12 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                           FROM msdb.dbo.backupset
                           GROUP BY database_name, TYPE) AS bu ON d.name = bu.database_name
                           GROUP BY d.Name, d.recovery_model",
-                            UpdatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6929)
+                            UpdatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 877, DateTimeKind.Utc).AddTicks(8171)
                         },
                         new
                         {
-                            Id = new Guid("55b6f3a3-6729-424c-9c38-630d95bc71ea"),
-                            CreatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6931),
+                            Id = new Guid("37f8d10d-6d71-4968-9145-4ed49e68b653"),
+                            CreatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 877, DateTimeKind.Utc).AddTicks(8174),
                             Description = "Finding users that are connected to the server",
                             IsActive = true,
                             IsStoredProcedure = false,
@@ -349,27 +357,12 @@ namespace ToolBox.Services.SQLMonitor.Migrations
                             Query = @"SELECT login_name ,COUNT(session_id) AS session_count   
                           FROM sys.dm_exec_sessions
                           GROUP BY login_name; ",
-                            UpdatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6932)
+                            UpdatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 877, DateTimeKind.Utc).AddTicks(8175)
                         },
                         new
                         {
-                            Id = new Guid("0baa8e48-34c0-48e1-9e91-2514d0a17f50"),
-                            CreatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6937),
-                            Description = "Memory usage",
-                            IsActive = true,
-                            IsStoredProcedure = false,
-                            Name = 6,
-                            Query = @"SELECT object_name, counter_name, cntr_value
-                            FROM sys.dm_os_performance_counters
-                            WHERE [object_name] LIKE '%Buffer Manager%'
-                            AND [counter_name] in ('Page life expectancy','Free list stalls/sec',
-                            'Page reads/sec')",
-                            UpdatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6938)
-                        },
-                        new
-                        {
-                            Id = new Guid("01d70006-675f-43c3-9152-b98166780f49"),
-                            CreatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6934),
+                            Id = new Guid("0ee5ebee-a851-41a3-adbc-e7e7b4118cf8"),
+                            CreatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 877, DateTimeKind.Utc).AddTicks(8177),
                             Description = "The most CPU consumed 20 queries",
                             IsActive = true,
                             IsStoredProcedure = false,
@@ -389,18 +382,22 @@ namespace ToolBox.Services.SQLMonitor.Migrations
 	                        GROUP BY query_stats.query_hash  
 	                        ORDER BY 2 DESC;  
                         ",
-                            UpdatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(6935)
+                            UpdatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 877, DateTimeKind.Utc).AddTicks(8178)
                         },
                         new
                         {
-                            Id = new Guid("4cc67ee2-0d51-4eb7-9050-adc57fc06df3"),
-                            CreatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(4594),
-                            Description = "The name of a server",
+                            Id = new Guid("27ec8cb9-71a2-44c7-8189-1c1f94b74e2f"),
+                            CreatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 877, DateTimeKind.Utc).AddTicks(8188),
+                            Description = "Memory usage",
                             IsActive = true,
                             IsStoredProcedure = false,
-                            Name = 0,
-                            Query = "SELECT SERVERPROPERTY('Servername') as ServerName",
-                            UpdatedDate = new DateTime(2020, 3, 2, 20, 24, 52, 865, DateTimeKind.Utc).AddTicks(4621)
+                            Name = 6,
+                            Query = @"SELECT object_name, counter_name, cntr_value
+                            FROM sys.dm_os_performance_counters
+                            WHERE [object_name] LIKE '%Buffer Manager%'
+                            AND [counter_name] in ('Page life expectancy','Free list stalls/sec',
+                            'Page reads/sec')",
+                            UpdatedDate = new DateTime(2020, 3, 2, 20, 9, 50, 877, DateTimeKind.Utc).AddTicks(8189)
                         });
                 });
 

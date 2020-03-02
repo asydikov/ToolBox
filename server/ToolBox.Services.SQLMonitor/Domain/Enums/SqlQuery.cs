@@ -11,6 +11,9 @@ namespace ToolBox.Services.SQLMonitor.Domain.Enums
         DatabaseNames,
         DatabasesBackupStatus,
         DatabaseSpaceStatus,
+        ConnectedUsers,
+        TwentyCPUConsumedQueries,
+        MemoryUsage
 
     }
 }
