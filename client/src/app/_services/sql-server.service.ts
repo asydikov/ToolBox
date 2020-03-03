@@ -12,10 +12,9 @@ export class SqlServerService {
 
   constructor(private http: HttpClient) { }
 
-  connectionCheck(serverConnection:SqlServerConnection):Observable<boolean>{
-    return this.http.post<boolean>(`${environment.apiUrl}/${environment.sqlmonitoryService}/server-connection-check`, serverConnection)
+  connectionCheck(serverConnection:SqlServerConnection){
+    return this.http.post(`${environment.apiUrl}/${environment.sqlmonitoryService}/server-connection-check`, serverConnection)
   }
-
   
   serverAdd(sqlServer:SqlServer){
     return this.http.post(`${environment.apiUrl}/${environment.sqlmonitoryService}/server-add`, sqlServer)
