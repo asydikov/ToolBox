@@ -42,8 +42,7 @@ namespace ToolBox.Api.Controllers
         public async Task<IActionResult> ServerConnectionCheck(ConnectionModel connectionModel)
         {
             var result = await _sqlMonitorService.ServerConnectionCheck(connectionModel);
-
-            return Ok(result);
+            return Ok(new { Name=result});
         }
 
 

@@ -10,7 +10,7 @@ namespace ToolBox.Api.RestEaseServices
     {
         [AllowAnyStatusCode]
         [Post("api/sqlmonitor/server-connection-check")]
-        Task<bool> ServerConnectionCheck([Body] ConnectionModel connectionModel);
+        Task<string> ServerConnectionCheck([Body] ConnectionModel connectionModel);
 
         [AllowAnyStatusCode]
         [Get("api/sqlmonitor/servers")]

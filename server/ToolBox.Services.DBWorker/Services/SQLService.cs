@@ -21,49 +21,60 @@ namespace ToolBox.Services.DBWorker.Services
             {
                 var d = 1;
             }
-            using (SqlConnection connection = new SqlConnection(conncectionString))
+            try
             {
-                await connection.OpenAsync();
 
-                using (SqlCommand command = new SqlCommand(instruction, connection))
+
+                using (SqlConnection connection = new SqlConnection(conncectionString))
                 {
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    await connection.OpenAsync();
 
-                    adapter.SelectCommand.CommandType = isProcedure ? CommandType.StoredProcedure : CommandType.Text;
-
-                    if (isProcedure == true && parameters != null)
+                    using (SqlCommand command = new SqlCommand(instruction, connection))
                     {
-                        foreach (var param in parameters)
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                        adapter.SelectCommand.CommandType = isProcedure ? CommandType.StoredProcedure : CommandType.Text;
+
+                        if (isProcedure == true && parameters != null)
                         {
-                            adapter.SelectCommand.Parameters.AddWithValue(param.Key, Convert.ToInt32(param.Value));
-                        }
-                    }
-
-                 
-
-                    DataTable dataTable = new DataTable();
-
-                    adapter.Fill(dataTable);
-
-                    foreach (DataRow dtRow in dataTable.Rows)
-                    {
-                        Dictionary<string, string> tempDictionarydic = new Dictionary<string, string>();
-
-                        foreach (DataColumn dc in dataTable.Columns)
-                        {
-                            tempDictionarydic.Add(dc.ColumnName, dtRow[dc] == null ? String.Empty : dtRow[dc].ToString());
+                            foreach (var param in parameters)
+                            {
+                                adapter.SelectCommand.Parameters.AddWithValue(param.Key, Convert.ToInt32(param.Value));
+                            }
                         }
 
-                        result.Add(tempDictionarydic);
+
+
+                        DataTable dataTable = new DataTable();
+
+                        adapter.Fill(dataTable);
+
+                        foreach (DataRow dtRow in dataTable.Rows)
+                        {
+                            Dictionary<string, string> tempDictionarydic = new Dictionary<string, string>();
+
+                            foreach (DataColumn dc in dataTable.Columns)
+                            {
+                                tempDictionarydic.Add(dc.ColumnName, dtRow[dc] == null ? String.Empty : dtRow[dc].ToString());
+                            }
+
+                            result.Add(tempDictionarydic);
+                        }
                     }
                 }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
 
             return result;
         }
 
 
-        public async Task<bool> IsSqlConnected(ConnectionModel сonnectionModel)
+        public async Task<string> IsSqlConnected(ConnectionModel сonnectionModel)
         {
             var connectionString = ConnectionHelper.GetConncetionStringWithTimeout(сonnectionModel, 1);
 
@@ -74,11 +85,13 @@ namespace ToolBox.Services.DBWorker.Services
                     connection.Open();
                 }
 
-                return true;
+                var result = await SendSqlServerRequest(connectionString, "select  SERVERPROPERTY('Servername') as ServerName");
+
+                return result[0]["ServerName"];
             }
             catch (Exception e)
             {
-                return false;
+                return String.Empty;
             }
         }
 

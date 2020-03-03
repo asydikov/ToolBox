@@ -11,6 +11,6 @@ namespace ToolBox.Services.DBWorker.Services
                                                                     bool isProcedure = false,
                                                                     Dictionary<string, string> parameters = null);
 
-        Task<bool> IsSqlConnected(ConnectionModel connectionModel);
+        Task<string> IsSqlConnected(ConnectionModel connectionModel);
     }
 }

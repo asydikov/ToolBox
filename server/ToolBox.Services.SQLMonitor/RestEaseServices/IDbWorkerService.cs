@@ -9,6 +9,6 @@ namespace ToolBox.Services.SQLMonitor.RestEaseServices
     {
         [AllowAnyStatusCode]
         [Post("api/dbWorker/server-connection-check")]
-        Task<bool> ServerConnectionCheck([Body] ConnectionModel connectionModel);
+        Task<string> ServerConnectionCheck([Body] ConnectionModel connectionModel);
     }
 }
