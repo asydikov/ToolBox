@@ -43,28 +43,25 @@
       </div>
 
      <div class="text-right">
+  <span *ngIf="connectionSucceded && showConnectionStatus" class="label label-success mr-2 align-middle">
+    <i class="fa fa-check fa-1x" style="color: White;"></i>
+    Successful Connection</span>
 
-        <span *ngIf="connectionSucceded && showConnectionStatus" class="label label-success mr-4 align-middle">
-            <i class="fa fa-check fa-1x" style="color: White;"></i>
-            Connection succeeded</span>
+    <span *ngIf="!connectionSucceded && showConnectionStatus" class="label label-danger mr-2 align-middle">
+        <i class="fa fa-exclamation-triangle fa-1x" style="color: White;"></i>
+        Connection failed</span>
 
-            <span *ngIf="!connectionSucceded && showConnectionStatus" class="label label-danger mr-4 align-middle">
-                <i class="fa fa-exclamation-triangle fa-1x" style="color: White;"></i>
-                Connection failed</span>
-        
-        <button (click)="connectionCheck()" [disabled]="loading" class="btn btn-primary col-sm-3">
-            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Test
-        </button>
+  <button (click)="connectionCheck()" [disabled]="loading" class="btn btn-primary col-sm-3">
+    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+    Test
+</button>
 
-        <button (click)="add()" [disabled]="loading" class="btn btn-primary col-sm-3 ml-4">
-            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Add
-        </button>
-     </div>
-     
-     
-    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+<button (click)="add()" [disabled]="loading" class="btn btn-primary col-sm-3 ml-2">
+    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+    Add
+</button>
+
+</div>
   </form>
 </div>
 </div>
