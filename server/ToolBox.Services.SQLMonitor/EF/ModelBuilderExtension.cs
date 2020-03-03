@@ -83,8 +83,8 @@ namespace ToolBox.Services.SQLMonitor.EF
             var dbSpaceStatus = new SqlQuery()
             {
                 Name = SqlQueryNames.DatabaseSpaceStatus,
-                Query = "EXEC sp_spaceused @oneresultset = 1",
-                Description = "Needs to be executed with keyword use [DATABASE_NAME]. Database space information",
+                Query = "sp_spaceused",
+                Description = "Database space information",
                 IsStoredProcedure = true
             };
 
@@ -118,7 +118,7 @@ namespace ToolBox.Services.SQLMonitor.EF
             var query = new SqlQuery()
             {
                 Name = SqlQueryNames.DatabaseNames,
-                Query = "EXEC sp_databases",
+                Query = "sp_databases",
                 Description = "List of Database names in a server",
                 IsStoredProcedure = true
             };

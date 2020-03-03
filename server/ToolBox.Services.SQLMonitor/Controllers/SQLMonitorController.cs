@@ -36,14 +36,13 @@ namespace ToolBox.Services.DBWorker.Controllers
         public async Task<IActionResult> ServerConnectionCheck(ConnectionModel connectionModel)
         {
             var result = await _dbWorkerService.ServerConnectionCheck(connectionModel);
-
             return Ok(result);
         }
 
         [HttpGet("servers")]
         public async Task<IActionResult> Servers(Guid userId)
         {
-            var result = await _serverService.GetAllAsync(x=>x.UserId == userId);
+            var result = await _serverService.GetAllAsync(x => x.UserId == userId);
 
             return Ok(result);
         }
