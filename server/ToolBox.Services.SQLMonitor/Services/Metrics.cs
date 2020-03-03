@@ -98,11 +98,10 @@ namespace ToolBox.Services.SQLMonitor.Services
         {
             foreach (var database in server.Databases)
             {
-                var sp = $"use [{database.Name}] {sqlQuery.Query}";
                 await _busClient.PublishAsync(new SqlStoredProcedureQuery(Guid.NewGuid(),
                                                                      server.UserId,
                                                                      sqlQuery.Query,
-                                                                     null,
+                                                                     new Dictionary<string, string> { { "@oneresultset", "1" } },
                                                                      server.Host,
                                                                      server.Port,
                                                                      server.Login,
