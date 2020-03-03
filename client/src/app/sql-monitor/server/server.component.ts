@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SqlServerService } from 'src/app/_services/sql-server.service';
 import { SqlServer } from 'src/app/_models/sql-server';
 import { SqlServerConnection } from 'src/app/_models/sql-server-connection';
+import { ResourceLoader } from '@angular/compiler';
 
 @Component({
   selector: 'app-server',
@@ -22,7 +23,7 @@ export class ServerComponent implements OnInit {
 
   ngOnInit(): void {
     this.serverForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      name: [''],
       host: ['', Validators.required],
       port: ['',Validators.required],
       login: ['', Validators.required],
@@ -40,9 +41,12 @@ export class ServerComponent implements OnInit {
     }
     this.requestModeOn();
     this.sqlServerService.connectionCheck(this.getSqlServerConnection()).subscribe(result=>{
-    this.connectionSucceded = result;
+        this.connectionSucceded = result['name']!='';
+    
+    this.serverForm.get('name').setValue(result['name']);
     this.requestModeOff();
-  });
+  }
+  );
   }
 
   add(){

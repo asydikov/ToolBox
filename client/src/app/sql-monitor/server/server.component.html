@@ -5,12 +5,9 @@
 <form  [formGroup]="serverForm">
 
     <div class="form-group">
-        <input formControlName="name" placeholder="Name" type="text" class="form-control" 
-         [ngClass]="{ 'is-invalid': submitted && form.name.errors }">
+        <input disabled formControlName="name" placeholder="Name" type="text" class="form-control">
       </div>
-      <div *ngIf="submitted && form.name.errors" class="invalid-custom-feedback">
-        <div *ngIf="form.name.errors.required">Name is required</div>
-    </div>
+   
 
       <div class="form-group">
         <input formControlName="host" placeholder="Host" type="text" class="form-control"  
