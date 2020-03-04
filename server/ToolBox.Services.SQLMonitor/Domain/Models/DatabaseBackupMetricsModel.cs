@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ToolBox.Services.SQLMonitor.Entities
+namespace ToolBox.Services.SQLMonitor.Domain.Models
 {
-    public class DatabaseBackupMetrics:EntityBase
+    public class DatabaseBackupMetricsModel:ModelBase
     {
         public Guid DatabaseId { get; set; }
-        public Database Database { get; set; }
         public DateTime? Full { get; set; }
         public DateTime? Differential { get; set; }
         public DateTime? Transaction { get; set; }

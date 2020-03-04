@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ToolBox.Services.SQLMonitor.Entities
+namespace ToolBox.Services.SQLMonitor.Domain.Models
 {
-    public class MemoryUsageMetrics:EntityBase
+    public class MemoryUsageMetricsModel: ModelBase
     {
         public Guid ServerId { get; set; }
-        public Server Server { get; set; }
         public int PageLifetime { get; set; }
         public int RequestsCount { get; set; }
         public int PageReadsCount { get; set; }

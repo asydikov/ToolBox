@@ -62,6 +62,15 @@ namespace ToolBox.Services.SQLMonitor
             services.AddScoped<IRepositoryBase<Schedule>, RepositoryBase<Schedule>>();
             services.AddScoped<IServiceBase<ScheduleModel, Schedule>, ServiceBase<ScheduleModel, Schedule>>();
 
+            services.AddScoped<IRepositoryBase<DatabaseBackupMetrics>, RepositoryBase<DatabaseBackupMetrics>>();
+            services.AddScoped<IServiceBase<DatabaseBackupMetricsModel, DatabaseBackupMetrics>, ServiceBase<DatabaseBackupMetricsModel, DatabaseBackupMetrics>>();
+
+            services.AddScoped<IRepositoryBase<DatabaseSpaceMetrics>, RepositoryBase<DatabaseSpaceMetrics>>();
+            services.AddScoped<IServiceBase<DatabaseSpaceMetricsModel, DatabaseSpaceMetrics>, ServiceBase<DatabaseSpaceMetricsModel, DatabaseSpaceMetrics>>();
+
+            services.AddScoped<IRepositoryBase<MemoryUsageMetrics>, RepositoryBase<MemoryUsageMetrics>>();
+            services.AddScoped<IServiceBase<MemoryUsageMetricsModel, MemoryUsageMetrics>, ServiceBase<MemoryUsageMetricsModel, MemoryUsageMetrics>>();
+
             services.AddScoped<ISqlQueryService, SqlQueryService>();
             services.AddScoped<ISqlQueryRepository, SqlQueryRepository>();
             services.AddScoped<IServerService, ServerService>();
@@ -71,6 +80,12 @@ namespace ToolBox.Services.SQLMonitor
             services.AddScoped<IScheduleService, ScheduleService>();
             services.AddScoped<IScheduleRepository, ScheduleRepository>();
             services.AddScoped<IMetricsProcessingService, MetricsProcessingService>();
+
+            services.AddScoped<IDatabaseBackupMetricsService, DatabaseBackupMetricsService>();
+            services.AddScoped<IDatabaseSpaceMetricsService, DatabaseSpaceMetricsService>();
+            services.AddScoped<IMemoryUsageMetricsService, MemoryUsageMetricsService>();
+
+
 
             services.AddScoped<IMapper>(_ => AutoMapperConfig.GetMapper());
 

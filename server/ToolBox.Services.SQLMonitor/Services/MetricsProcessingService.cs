@@ -8,17 +8,30 @@ using ToolBox.Services.SQLMonitor.Messages.Events.DbWorker;
 
 namespace ToolBox.Services.SQLMonitor.Services
 {
-    
+
     public class MetricsProcessingService : IMetricsProcessingService
     {
         private readonly IServerService _serverService;
         private readonly IDatabaseService _databaseService;
+
+        private readonly IDatabaseBackupMetricsService _databaseBackupMetricsService;
+        private readonly IDatabaseSpaceMetricsService _databaseSpaceMetricsService;
+        private readonly IMemoryUsageMetricsService _memoryUsageMetricsService;
+
         public MetricsProcessingService(
             IServerService serverService,
-            IDatabaseService databaseService)
+            IDatabaseService databaseService,
+            IDatabaseBackupMetricsService databaseBackupMetricsService,
+            IDatabaseSpaceMetricsService databaseSpaceMetricsService,
+            IMemoryUsageMetricsService memoryUsageMetricsService
+            )
         {
             _serverService = serverService;
             _databaseService = databaseService;
+            _databaseBackupMetricsService = databaseBackupMetricsService;
+            _databaseSpaceMetricsService = databaseSpaceMetricsService;
+            _memoryUsageMetricsService = memoryUsageMetricsService;
+
         }
         public async Task ProcessMetrics(DbWorkerOperationCompleted command)
         {

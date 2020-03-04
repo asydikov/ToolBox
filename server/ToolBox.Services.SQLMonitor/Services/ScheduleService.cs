@@ -11,12 +11,8 @@ namespace ToolBox.Services.SQLMonitor.Services
 {
     public class ScheduleService : ServiceBase<ScheduleModel, Schedule>, IScheduleService
     {
-        private readonly IRepositoryBase<Schedule> _repository;
-        private readonly IMapper _mapper;
         public ScheduleService(IRepositoryBase<Schedule> repository, IMapper mapper) : base(repository, mapper)
         {
-            _repository = repository;
-            _mapper = mapper;
         }
 
         public override async Task UpdateAsync(ScheduleModel model)
