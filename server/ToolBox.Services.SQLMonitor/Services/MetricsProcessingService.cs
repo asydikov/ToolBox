@@ -8,46 +8,14 @@ using ToolBox.Services.SQLMonitor.Messages.Events.DbWorker;
 
 namespace ToolBox.Services.SQLMonitor.Services
 {
-    public class DatabaseSpaceMetrics
-    {
-        public Guid DatabaseId { get; set; }
-        public Database Database { get; set; }
-        public double Space { get; set; }
-        public double UnallocatedSpace { get; set; }
-        public string Unit { get; set; }
-    }
-
-    public class DatabaseBackupMetrics
-    {
-        public Guid DatabaseId { get; set; }
-        public Database Database { get; set; }
-        public DateTime? Full { get; set; }
-        public DateTime? Differential { get; set; }
-        public DateTime? Transaction { get; set; }
-        public string RecoveryModel { get; set; }
-    }
-
-    public class UserSessionMetrics
-    {
-        public Guid ServerId { get; set; }
-        public Server Server { get; set; }
-        public string UserLoginName { get; set; }
-    }
-
-    public class MemoryUsageMetrics
-    {
-        public Guid ServerId { get; set; }
-        public Server Server { get; set; }
-        public int PageLifetime { get; set; }
-        public int RequestsCount { get; set; }
-        public int PageReadsCount { get; set; }
-    }
-
+    
     public class MetricsProcessingService : IMetricsProcessingService
     {
         private readonly IServerService _serverService;
         private readonly IDatabaseService _databaseService;
-        public MetricsProcessingService(IServerService serverService, IDatabaseService databaseService)
+        public MetricsProcessingService(
+            IServerService serverService,
+            IDatabaseService databaseService)
         {
             _serverService = serverService;
             _databaseService = databaseService;

@@ -23,7 +23,6 @@ namespace ToolBox.Services.SQLMonitor.EF
         public DbSet<DatabaseBackupMetrics> DatabaseBackupMetrics { get; set; }
         public DbSet<DatabaseSpaceMetrics> DatabaseSpaceMetrics { get; set; }
         public DbSet<MemoryUsageMetrics> MemoryUsageMetrics { get; set; }
-        public DbSet<UserSessionMetrics> UserSessionMetrics { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,6 +31,11 @@ namespace ToolBox.Services.SQLMonitor.EF
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<DatabaseBackupMetrics>().Property(x => x.Id).IsRequired();
+            modelBuilder.Entity<DatabaseSpaceMetrics>().Property(x => x.Id).IsRequired();
+            modelBuilder.Entity<MemoryUsageMetrics>().Property(x => x.Id).IsRequired();
+
+
             modelBuilder.Entity<Server>().Property(x => x.UserId).IsRequired();
             modelBuilder.Entity<Server>().Property(x => x.Name).IsRequired();
             modelBuilder.Entity<Server>().Property(x => x.Host).IsRequired();

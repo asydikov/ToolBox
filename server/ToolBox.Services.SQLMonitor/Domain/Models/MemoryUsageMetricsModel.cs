@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 
 namespace ToolBox.Services.SQLMonitor.Entities
 {
-    public class UserSessionMetrics:EntityBase
+    public class MemoryUsageMetrics:EntityBase
     {
         public Guid ServerId { get; set; }
         public Server Server { get; set; }
-        public string UserLoginName { get; set; }
+        public int PageLifetime { get; set; }
+        public int RequestsCount { get; set; }
+        public int PageReadsCount { get; set; }
     }
 }
