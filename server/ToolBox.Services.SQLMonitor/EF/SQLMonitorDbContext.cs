@@ -20,6 +20,11 @@ namespace ToolBox.Services.SQLMonitor.EF
         public DbSet<SqlQuery> SQLQueries { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
 
+        public DbSet<DatabaseBackupMetrics> DatabaseBackupMetrics { get; set; }
+        public DbSet<DatabaseSpaceMetrics> DatabaseSpaceMetrics { get; set; }
+        public DbSet<MemoryUsageMetrics> MemoryUsageMetrics { get; set; }
+        public DbSet<UserSessionMetrics> UserSessionMetrics { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.EnableSensitiveDataLogging();

@@ -89,22 +89,22 @@ namespace ToolBox.Services.SQLMonitor.Services
 
         private async Task DatabaseBackupMetricCollect(DbWorkerOperationCompleted command)
         {
-            //var databases = await _databaseService.GetAllAsync(x => x.ServerId == command.SqlServerId);
+            var databases = await _databaseService.GetAllAsync(x => x.ServerId == command.SqlServerId);
 
-            //foreach (var result in command.Result)
-            //{
-            //    var databaseBackupMetrics = new DatabaseBackupMetrics();
-            //    var full = result["full DB Backup Status"];
-            //    var transaction = result["transaction DB Backup Status"];
-            //    var differential = result["differential DB Backup Status"];
-            //    var dbName = result["databasE_Name"];
+            foreach (var result in command.Result)
+            {
+                var databaseBackupMetrics = new DatabaseBackupMetrics();
+                var full = result["full DB Backup Status"];
+                var transaction = result["transaction DB Backup Status"];
+                var differential = result["differential DB Backup Status"];
+                var dbName = result["databasE_Name"];
 
-            //    databaseBackupMetrics.Full = !string.IsNullOrWhiteSpace(full) ? DateTime.Parse(full) : (DateTime?)null;
-            //    databaseBackupMetrics.Transaction = !string.IsNullOrWhiteSpace(transaction) ? DateTime.Parse(transaction) : (DateTime?)null;
-            //    databaseBackupMetrics.Differential = !string.IsNullOrWhiteSpace(differential) ? DateTime.Parse(differential) : (DateTime?)null;
-            //    databaseBackupMetrics.RecoveryModel = result["recoveryModel"];
-            //    databaseBackupMetrics.DatabaseId = databases.FirstOrDefault(x => x.Name == dbName).ServerId;
-            //}
+                databaseBackupMetrics.Full = !string.IsNullOrWhiteSpace(full) ? DateTime.Parse(full) : (DateTime?)null;
+                databaseBackupMetrics.Transaction = !string.IsNullOrWhiteSpace(transaction) ? DateTime.Parse(transaction) : (DateTime?)null;
+                databaseBackupMetrics.Differential = !string.IsNullOrWhiteSpace(differential) ? DateTime.Parse(differential) : (DateTime?)null;
+                databaseBackupMetrics.RecoveryModel = result["recoveryModel"];
+                databaseBackupMetrics.DatabaseId = databases.FirstOrDefault(x => x.Name == dbName).ServerId;
+            }
         }
 
         private static void USerSessionMetricCollect(DbWorkerOperationCompleted command)
