@@ -31,11 +31,7 @@ namespace ToolBox.Services.SQLMonitor.Helpers
                .AfterMap((model, entity) => entity.Initialize());
 
                 cfg.CreateMap<Schedule, ScheduleModel>();
-                //.IncludeMembers(x => x.ScheduleServers)
-                //.IncludeMembers(x => x.ScheduleSqlQueries);
                 cfg.CreateMap<ScheduleModel, Schedule>()
-                //.IncludeMembers(x => x.ScheduleServers)
-                //.IncludeMembers(x => x.ScheduleSqlQueries)
                 .AfterMap((model, entity) => entity.Initialize());
 
 

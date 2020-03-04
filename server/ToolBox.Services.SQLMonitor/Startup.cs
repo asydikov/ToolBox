@@ -50,7 +50,7 @@ namespace ToolBox.Services.SQLMonitor
             services.AddEntityFrameworkSqlServer().AddDbContext<SqlMonitorDbContext>();
             services.AddScoped<IEventHandler<DbWorkerOperationCompleted>, DbWorkerOperationCompletedHandler>();
             services.AddScoped<IEventHandler<DbWorkerOperationRejected>, DbWorkerOperationRejectedHandler>();
-            services.AddScoped<ICommandHandler<ServerCommand>, CheckServerConnectionHandler>();
+            services.AddScoped<ICommandHandler<ServerCommand>, ServerCommandHandler>();
             services.AddScoped<IMetrics, Metrics>();
 
             services.AddScoped<IRepositoryBase<SqlQuery>, RepositoryBase<SqlQuery>>();

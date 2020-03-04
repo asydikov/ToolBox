@@ -12,63 +12,11 @@ namespace ToolBox.Services.SQLMonitor.EF
         public static void Seed(this ModelBuilder modelBuilder)
         {
 
-            var servers = AddServers(modelBuilder);
             var queries = AddQueries(modelBuilder);
-            var schedules = AddSchedule(modelBuilder, servers, queries);
+            var schedules = AddSchedule(modelBuilder, queries);
         }
 
 
-
-        private static List<Server> AddServers(ModelBuilder modelBuilder)
-        {
-            var server = new Server
-            {
-                UserId = Guid.Parse("d2b248e2-07a5-4d2c-b4d4-d933a84ee5f6"),
-                Name = "Sql monitor server",
-                Host = "localhost",
-                Port = 1465,
-                Login = "sa",
-                Password = "Pass_w0rd12",
-            };
-            modelBuilder.Entity<Server>().HasData(server);
-
-            var sqlMonitorDb = new Database
-            {
-                ServerId = server.Id,
-                Name = "SqlMonitor"
-            };
-            modelBuilder.Entity<Database>().HasData(sqlMonitorDb);
-
-            var masterDb = new Database
-            {
-                ServerId = server.Id,
-                Name = "SqlMonitor"
-            };
-            modelBuilder.Entity<Database>().HasData(masterDb);
-
-            var modelDb = new Database
-            {
-                ServerId = server.Id,
-                Name = "modeldb"
-            };
-            modelBuilder.Entity<Database>().HasData(modelDb);
-
-            var msDb = new Database
-            {
-                ServerId = server.Id,
-                Name = "msdb"
-            };
-            modelBuilder.Entity<Database>().HasData(msDb);
-
-            var tempDb = new Database
-            {
-                ServerId = server.Id,
-                Name = "tempdb"
-            };
-            modelBuilder.Entity<Database>().HasData(tempDb);
-
-            return new List<Server>() { server };
-        }
 
         private static List<SqlQuery> AddQueries(ModelBuilder modelBuilder)
         {
@@ -115,7 +63,7 @@ namespace ToolBox.Services.SQLMonitor.EF
                 IsStoredProcedure = false
             };
 
-            var query = new SqlQuery()
+            var databaseNames = new SqlQuery()
             {
                 Name = SqlQueryNames.DatabaseNames,
                 Query = "sp_databases",
@@ -157,20 +105,18 @@ namespace ToolBox.Services.SQLMonitor.EF
                 Description = "Memory usage",
                 IsStoredProcedure = false
             };
-
-
             
             modelBuilder.Entity<SqlQuery>().HasData(dbSpaceStatus);
             modelBuilder.Entity<SqlQuery>().HasData(dbBackupStatus);
             modelBuilder.Entity<SqlQuery>().HasData(serverConnectedUsers);
             modelBuilder.Entity<SqlQuery>().HasData(memoryUsage);
-            modelBuilder.Entity<SqlQuery>().HasData(query);
+            modelBuilder.Entity<SqlQuery>().HasData(databaseNames);
             modelBuilder.Entity<SqlQuery>().HasData(twentyCpuConsumedQueries);
             modelBuilder.Entity<SqlQuery>().HasData(serverName);
             return new List<SqlQuery>() { dbSpaceStatus, dbBackupStatus, serverConnectedUsers, memoryUsage };
         }
 
-        private static List<Schedule> AddSchedule(ModelBuilder modelBuilder, List<Server> servers, List<SqlQuery> sqlQueries)
+        private static List<Schedule> AddSchedule(ModelBuilder modelBuilder, List<SqlQuery> sqlQueries)
         {
 
             var schedule = new Schedule()
@@ -189,17 +135,6 @@ namespace ToolBox.Services.SQLMonitor.EF
                     SqlQueryId = sqlQuery.Id
                 };
                 modelBuilder.Entity<ScheduleSqlQuery>().HasData(scheduleSqlQuery);
-            };
-
-
-            foreach (var server in servers)
-            {
-                var scheduleServer = new ScheduleServer
-                {
-                    ScheduleId = schedule.Id,
-                    ServerId = server.Id
-                };
-                modelBuilder.Entity<ScheduleServer>().HasData(scheduleServer);
             };
 
             return new List<Schedule>() { schedule };

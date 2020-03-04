@@ -63,9 +63,14 @@ namespace ToolBox.Services.SQLMonitor.Repositories
             {
                 query = query.Where(predicate);
             }
-            
+
             return await query.ToListAsync();
         }
 
+        public async Task AddRangeAsync(List<TEntity> entities)
+        {
+             _context.Set<TEntity>().AddRange(entities);
+            await _context.SaveChangesAsync();
+        }
     }
 }

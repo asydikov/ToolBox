@@ -8,7 +8,7 @@ using ToolBox.Services.SQLMonitor.Messages.Events.DbWorker;
 
 namespace ToolBox.Services.SQLMonitor.Services
 {
-    public class DatabaseSpaceMetric
+    public class DatabaseSpaceMetrics
     {
         public Guid DatabaseId { get; set; }
         public Database Database { get; set; }
@@ -17,7 +17,7 @@ namespace ToolBox.Services.SQLMonitor.Services
         public string Unit { get; set; }
     }
 
-    public class DatabaseBackupMetric
+    public class DatabaseBackupMetrics
     {
         public Guid DatabaseId { get; set; }
         public Database Database { get; set; }
@@ -27,14 +27,14 @@ namespace ToolBox.Services.SQLMonitor.Services
         public string RecoveryModel { get; set; }
     }
 
-    public class UserSessionMetric
+    public class UserSessionMetrics
     {
         public Guid ServerId { get; set; }
         public Server Server { get; set; }
         public string UserLoginName { get; set; }
     }
 
-    public class MemoryUsageMetric
+    public class MemoryUsageMetrics
     {
         public Guid ServerId { get; set; }
         public Server Server { get; set; }
@@ -78,33 +78,33 @@ namespace ToolBox.Services.SQLMonitor.Services
 
         private static void DatabaseSpaceMetricCollect(DbWorkerOperationCompleted command)
         {
-            var databaseSpaceMetric = new DatabaseSpaceMetric();
+            var databaseSpaceMetrics = new DatabaseSpaceMetrics();
             var flatResult = command.Result.SelectMany(x => x).Where(x => x.Key == "database_size" || x.Key == "unallocated space");
             var databaseSize = flatResult.FirstOrDefault(x => x.Key == "database_size").Value.Split();
-            databaseSpaceMetric.DatabaseId = command.DatabaseId;
-            databaseSpaceMetric.Space = Convert.ToDouble(flatResult.FirstOrDefault(x => x.Key == "database_size").Value.Split()[0]);
-            databaseSpaceMetric.UnallocatedSpace = Convert.ToDouble(flatResult.FirstOrDefault(x => x.Key == "unallocated space").Value.Split()[0]);
-            databaseSpaceMetric.Unit = "MB";
+            databaseSpaceMetrics.DatabaseId = command.DatabaseId;
+            databaseSpaceMetrics.Space = Convert.ToDouble(flatResult.FirstOrDefault(x => x.Key == "database_size").Value.Split()[0]);
+            databaseSpaceMetrics.UnallocatedSpace = Convert.ToDouble(flatResult.FirstOrDefault(x => x.Key == "unallocated space").Value.Split()[0]);
+            databaseSpaceMetrics.Unit = "MB";
         }
 
         private async Task DatabaseBackupMetricCollect(DbWorkerOperationCompleted command)
         {
-            var databases = await _databaseService.GetAllAsync(x => x.ServerId == command.SQLServerId);
+            //var databases = await _databaseService.GetAllAsync(x => x.ServerId == command.SqlServerId);
 
-            foreach (var result in command.Result)
-            {
-                var databaseBackupMetric = new DatabaseBackupMetric();
-                var full = result["full DB Backup Status"];
-                var transaction = result["transaction DB Backup Status"];
-                var differential = result["differential DB Backup Status"];
-                var dbName = result["databasE_Name"];
+            //foreach (var result in command.Result)
+            //{
+            //    var databaseBackupMetrics = new DatabaseBackupMetrics();
+            //    var full = result["full DB Backup Status"];
+            //    var transaction = result["transaction DB Backup Status"];
+            //    var differential = result["differential DB Backup Status"];
+            //    var dbName = result["databasE_Name"];
 
-                databaseBackupMetric.Full = !string.IsNullOrWhiteSpace(full) ? DateTime.Parse(full) : (DateTime?)null;
-                databaseBackupMetric.Transaction = !string.IsNullOrWhiteSpace(transaction) ? DateTime.Parse(transaction) : (DateTime?)null;
-                databaseBackupMetric.Differential = !string.IsNullOrWhiteSpace(differential) ? DateTime.Parse(differential) : (DateTime?)null;
-                databaseBackupMetric.RecoveryModel = result["recoveryModel"];
-                databaseBackupMetric.DatabaseId = databases.FirstOrDefault(x => x.Name == dbName).ServerId;
-            }
+            //    databaseBackupMetrics.Full = !string.IsNullOrWhiteSpace(full) ? DateTime.Parse(full) : (DateTime?)null;
+            //    databaseBackupMetrics.Transaction = !string.IsNullOrWhiteSpace(transaction) ? DateTime.Parse(transaction) : (DateTime?)null;
+            //    databaseBackupMetrics.Differential = !string.IsNullOrWhiteSpace(differential) ? DateTime.Parse(differential) : (DateTime?)null;
+            //    databaseBackupMetrics.RecoveryModel = result["recoveryModel"];
+            //    databaseBackupMetrics.DatabaseId = databases.FirstOrDefault(x => x.Name == dbName).ServerId;
+            //}
         }
 
         private static void USerSessionMetricCollect(DbWorkerOperationCompleted command)
@@ -113,20 +113,20 @@ namespace ToolBox.Services.SQLMonitor.Services
 
             foreach (var result in flatResults)
             {
-                var userSessionMetric = new UserSessionMetric();
-                userSessionMetric.ServerId = command.SQLServerId;
-                userSessionMetric.UserLoginName = result.Value;
+                var userSessionMetrics = new UserSessionMetrics();
+                userSessionMetrics.ServerId = command.SqlServerId;
+                userSessionMetrics.UserLoginName = result.Value;
             }
         }
 
         private static void MemoryUsageMetricCollect(DbWorkerOperationCompleted command)
         {
-            var memoryUsageMetric = new MemoryUsageMetric();
+            var memoryUsageMetrics = new MemoryUsageMetrics();
 
-            memoryUsageMetric.RequestsCount = Convert.ToInt32(command.Result[0]["cntr_value"]);
-            memoryUsageMetric.PageReadsCount = Convert.ToInt32(command.Result[1]["cntr_value"]);
-            memoryUsageMetric.PageLifetime = Convert.ToInt32(command.Result[2]["cntr_value"]);
-            memoryUsageMetric.ServerId = command.SQLServerId;
+            memoryUsageMetrics.RequestsCount = Convert.ToInt32(command.Result[0]["cntr_value"]);
+            memoryUsageMetrics.PageReadsCount = Convert.ToInt32(command.Result[1]["cntr_value"]);
+            memoryUsageMetrics.PageLifetime = Convert.ToInt32(command.Result[2]["cntr_value"]);
+            memoryUsageMetrics.ServerId = command.SqlServerId;
         }
     }
 }

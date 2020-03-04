@@ -15,5 +15,6 @@ namespace ToolBox.Services.SQLMonitor.Domain.Models
         public string Password { get; set; }
         public string  Description { get; set; }
         public List<DatabaseModel> Databases { get; set; }
+        public  List<ScheduleServerModel> ScheduleServers { get; set; }
     }
 }

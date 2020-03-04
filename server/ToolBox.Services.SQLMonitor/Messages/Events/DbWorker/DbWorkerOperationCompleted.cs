@@ -11,7 +11,7 @@ namespace ToolBox.Services.SQLMonitor.Messages.Events.DbWorker
     {
         public Guid Id { get; }
         public Guid UserId { get; set; }
-        public Guid SQLServerId { get; }
+        public Guid SqlServerId { get; }
         public Guid DatabaseId { get; }
         public int SqlQueryName { get; }
         public string Resource { get; }
@@ -22,7 +22,7 @@ namespace ToolBox.Services.SQLMonitor.Messages.Events.DbWorker
         {
             Id = id;
             UserId = userId;
-            SQLServerId = sqlServerId;
+            SqlServerId = sqlServerId;
             DatabaseId = databaseId;
             SqlQueryName = sqlQueryName;
             Resource = resource;

@@ -14,8 +14,8 @@ namespace ToolBox.Services.SQLMonitor.Services
         where TModel : ModelBase
         where TEntity : EntityBase
     {
-        private readonly IRepositoryBase<TEntity> _repository;
-        private readonly IMapper _mapper;
+        protected readonly IRepositoryBase<TEntity> _repository;
+        protected readonly IMapper _mapper;
 
         public ServiceBase(IRepositoryBase<TEntity> repository, IMapper mapper)
         {
