@@ -55,7 +55,14 @@ namespace ToolBox.Api.Controllers
             return Accepted();
         }
 
+        [HttpGet("time-consuming-queries")]
+        public async Task<IActionResult> TimeConsumingQueries(ServerModel model)
+        {
+            var result = await _sqlMonitorService.TimeConsumingQueries(model.Id);
 
+            return Ok(result);
+        }
+     
 
 
     }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RawRabbit;
+using ToolBox.Services.SQLMonitor.Domain.Enums;
 using ToolBox.Services.SQLMonitor.Domain.Models;
 using ToolBox.Services.SQLMonitor.Messages.Commands;
 using ToolBox.Services.SQLMonitor.RestEaseServices;
@@ -46,6 +48,37 @@ namespace ToolBox.Services.DBWorker.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("time-consuming-queries")]
+        public async Task<IActionResult> TimeConsumingQueries(Guid id)
+        {
+            Console.WriteLine(id);
+            var server = await _serverService.GetAsync(id);
+            var query = await _sqlQueryService.GetAsync(x => x.Name == SqlQueryNames.TwentyCPUConsumedQueries);
+            var connectionModel = new ConnectionModel
+            {
+                Host = server.Host,
+                Port = server.Port,
+                Login = server.Login,
+                Password = server.Password,
+                QueryString = query.Query
+            };
+            var dbWorkeResult = await _dbWorkerService.TimeConsumingQueries(connectionModel);
+
+            var result = new List<TimeConsumingQueriesModel>();
+
+            dbWorkeResult.ForEach(x => result.Add(new TimeConsumingQueriesModel
+            {
+                StatementText = x["Statement Text"],
+                AvgCPUTime = Convert.ToInt32(x["Avg CPU Time"])
+            }));
+
+            result =  result.OrderBy(x => x.AvgCPUTime).ToList();
+
+            return Ok(result);
+        }
+
+
 
 
 

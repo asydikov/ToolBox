@@ -24,6 +24,7 @@ namespace ToolBox.Services.DBWorker.Domain.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public string DatabaseName { get; set; }
+        public string QueryString { get; set; }
 
 
     }

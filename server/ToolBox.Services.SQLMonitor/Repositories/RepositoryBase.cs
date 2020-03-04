@@ -24,6 +24,13 @@ namespace ToolBox.Services.SQLMonitor.Repositories
             return entity;
         }
 
+        public virtual async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            TEntity entity = await _context.Set<TEntity>().Where(predicate).FirstOrDefaultAsync();
+            return entity;
+        }
+
+
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             IEnumerable<TEntity> entities = await _context.Set<TEntity>().ToListAsync();
@@ -69,7 +76,7 @@ namespace ToolBox.Services.SQLMonitor.Repositories
 
         public async Task AddRangeAsync(List<TEntity> entities)
         {
-             _context.Set<TEntity>().AddRange(entities);
+            _context.Set<TEntity>().AddRange(entities);
             await _context.SaveChangesAsync();
         }
     }

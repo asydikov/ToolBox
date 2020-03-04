@@ -1,4 +1,6 @@
 ﻿using RestEase;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ToolBox.Services.SQLMonitor.Domain.Models;
 
@@ -10,5 +12,9 @@ namespace ToolBox.Services.SQLMonitor.RestEaseServices
         [AllowAnyStatusCode]
         [Post("api/dbWorker/server-connection-check")]
         Task<string> ServerConnectionCheck([Body] ConnectionModel connectionModel);
+
+        [AllowAnyStatusCode]
+        [Get("api/dbWorker/time-consuming-queries")]
+        Task<List<Dictionary<string, string>>> TimeConsumingQueries([Body]ConnectionModel model);
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RawRabbit;
 using ToolBox.Services.DBWorker.Domain.Models;
+using ToolBox.Services.DBWorker.Helpers;
 using ToolBox.Services.DBWorker.Services;
 
 namespace ToolBox.Services.DBWorker.Controllers
@@ -25,6 +26,15 @@ namespace ToolBox.Services.DBWorker.Controllers
         public async Task<IActionResult> ServerConnectionCheck(ConnectionModel connectionModel)
         {
             var result = await _sqlService.IsSqlConnected(connectionModel);
+
+            return Ok(result);
+        }
+
+        [HttpGet("time-consuming-queries")]
+        public async Task<IActionResult> TimeConsumingQueries(ConnectionModel model)
+        {
+            var connectionString = ConnectionHelper.GetConncetionString(model);
+            var result = await _sqlService.SendSqlServerRequest(connectionString, model.QueryString);
 
             return Ok(result);
         }
