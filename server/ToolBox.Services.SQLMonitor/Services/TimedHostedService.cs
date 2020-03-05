@@ -14,7 +14,6 @@ namespace ToolBox.Services.SQLMonitor.Services
         private readonly ILogger _logger;
         private readonly IServiceProvider _serviceProvider;
         private Timer _timer;
-
         public TimedHostedService(IServiceProvider services, ILogger<Metrics> logger)
         {
             _logger = logger;

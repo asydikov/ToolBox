@@ -4,6 +4,7 @@ import { SqlServerService } from 'src/app/_services/sql-server.service';
 import { SqlServer } from 'src/app/_models/sql-server';
 import { SqlServerConnection } from 'src/app/_models/sql-server-connection';
 import { ResourceLoader } from '@angular/compiler';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-server',
@@ -19,7 +20,7 @@ export class ServerComponent implements OnInit {
   showConnectionStatus=false;
   serverForm: FormGroup;
 
-  constructor( private formBuilder: FormBuilder, private sqlServerService: SqlServerService) { }
+  constructor( private formBuilder: FormBuilder,  private router: Router, private sqlServerService: SqlServerService) { }
 
   ngOnInit(): void {
     this.serverForm = this.formBuilder.group({
@@ -56,6 +57,7 @@ export class ServerComponent implements OnInit {
     this.requestModeOn();
     this.sqlServerService.serverAdd(this.getSqlServer()).subscribe(result=>{
     this.requestModeOff();
+    this.router.navigate(['sqlmonitor']);
   });
   }
 

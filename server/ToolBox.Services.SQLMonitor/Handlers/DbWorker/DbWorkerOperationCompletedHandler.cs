@@ -12,6 +12,8 @@ using ToolBox.Services.SQLMonitor.Services;
 
 namespace ToolBox.Services.SQLMonitor.Handlers.DbWorker
 {
+
+  //  201 Compass House -> wednesday  12:50
     public class DbWorkerOperationCompletedHandler : IEventHandler<DbWorkerOperationCompleted>
     {
         private readonly IBusClient _busClient;
@@ -44,7 +46,7 @@ namespace ToolBox.Services.SQLMonitor.Handlers.DbWorker
                 await _metricsProcessingService.ProcessMetrics(command);
             }
 
-            await _busClient.PublishAsync(new OperationCompleted(command.Id, command.UserId, "sqlmonitor-service", "database-metrics-updated"));
+         //   await _busClient.PublishAsync(new OperationCompleted(command.Id, command.UserId, "sqlmonitor-service", "database-metrics-updated"));
         }
     }
 }
