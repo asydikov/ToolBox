@@ -40,14 +40,14 @@ namespace ToolBox.Services.SQLMonitor.Repositories
         public virtual async Task<Guid> CreateAsync(TEntity entity)
         {
             await _context.Set<TEntity>().AddAsync(entity);
-            await _context.SaveChangesAsync();
+             _context.SaveChanges();
             return entity.Id;
         }
 
         public virtual async Task UpdateAsync(TEntity entity)
         {
             _context.Set<TEntity>().Update(entity);
-            await _context.SaveChangesAsync();
+             _context.SaveChanges();
         }
 
         public virtual async Task DeleteEntityAsync(Guid id)
@@ -71,13 +71,13 @@ namespace ToolBox.Services.SQLMonitor.Repositories
                 query = query.Where(predicate);
             }
 
-            return await query.ToListAsync();
+            return  query.ToList();
         }
 
         public async Task AddRangeAsync(List<TEntity> entities)
         {
             _context.Set<TEntity>().AddRange(entities);
-            await _context.SaveChangesAsync();
+             _context.SaveChanges();
         }
     }
 }
