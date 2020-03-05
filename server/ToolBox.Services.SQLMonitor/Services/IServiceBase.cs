@@ -13,6 +13,7 @@ namespace ToolBox.Services.SQLMonitor.Services
         Task<TModel> GetAsync(Expression<Func<TEntity, bool>> predicate);
         Task<IEnumerable<TModel>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null, bool includeAll = false);
         Task<Guid> CreateAsync(TModel model);
+        Task AddRangeAsync(List<TModel> models);
         Task UpdateAsync(TModel model);
         Task DeleteEntityAsync(Guid id);
     }

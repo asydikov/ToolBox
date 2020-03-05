@@ -41,6 +41,19 @@ namespace ToolBox.Services.SQLMonitor.Services
             return await _repository.CreateAsync(entity);
         }
 
+        public virtual async Task AddRangeAsync(List<TModel> models)
+        {
+            List<TEntity> entities = new List<TEntity>();
+
+            foreach (var model in models)
+            {
+                TEntity entity = _mapper.Map<TEntity>(model);
+                entities.Add(entity);
+            }
+
+            await _repository.AddRangeAsync(entities);
+        }
+
         public virtual async Task UpdateAsync(TModel model)
         {
             TEntity entity = _mapper.Map<TEntity>(model);
@@ -58,6 +71,6 @@ namespace ToolBox.Services.SQLMonitor.Services
             return _mapper.Map<IEnumerable<TEntity>, IEnumerable<TModel>>(entities);
         }
 
-       
+
     }
 }
