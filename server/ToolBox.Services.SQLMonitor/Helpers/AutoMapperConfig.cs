@@ -38,8 +38,22 @@ namespace ToolBox.Services.SQLMonitor.Helpers
                 cfg.CreateMap<ScheduleServer, ScheduleServerModel>();
                 cfg.CreateMap<ScheduleServerModel, ScheduleServer>();
 
+
                 cfg.CreateMap<ScheduleSqlQuery, ScheduleSqlQueryModel>();
                 cfg.CreateMap<ScheduleSqlQueryModel, ScheduleSqlQuery>();
+
+
+                cfg.CreateMap<DatabaseBackupMetrics, DatabaseBackupMetricsModel>();
+                cfg.CreateMap<DatabaseBackupMetricsModel, DatabaseBackupMetrics>()
+                 .AfterMap((model, entity) => entity.Initialize());
+
+                cfg.CreateMap<DatabaseSpaceMetrics, DatabaseSpaceMetricsModel>();
+                cfg.CreateMap<DatabaseSpaceMetricsModel, DatabaseSpaceMetrics>()
+                 .AfterMap((model, entity) => entity.Initialize());
+
+                cfg.CreateMap<MemoryUsageMetrics, MemoryUsageMetricsModel>();
+                cfg.CreateMap<MemoryUsageMetricsModel, MemoryUsageMetrics>()
+                 .AfterMap((model, entity) => entity.Initialize());
 
 
 
