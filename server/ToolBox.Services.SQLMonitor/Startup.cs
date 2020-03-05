@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -40,13 +41,7 @@ namespace ToolBox.Services.SQLMonitor
             services.AddHostedService<TimedHostedService>();
             services.AddRabbitMq(Configuration);
             services.Configure<SqlSettings>(sql);
-            //         services.AddMvc()
-            //.AddJsonOptions(
-            //    options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            //); ;
-            //services.RegisterRestEaseService<IIdentityService>("identity-service");
             services.RegisterRestEaseService<IDbWorkerService>("dbworker-service");
-
             services.AddEntityFrameworkSqlServer().AddDbContext<SqlMonitorDbContext>();
             services.AddScoped<IEventHandler<DbWorkerOperationCompleted>, DbWorkerOperationCompletedHandler>();
             services.AddScoped<IEventHandler<DbWorkerOperationRejected>, DbWorkerOperationRejectedHandler>();
@@ -107,18 +102,6 @@ namespace ToolBox.Services.SQLMonitor
             {
                 endpoints.MapControllers();
             });
-
-
-            //{
-            //    using (var scope = app.ApplicationServices.CreateScope())
-            //    {
-            //        var metricsService =
-            //           scope.ServiceProvider
-            //               .GetRequiredService<IMetrics>();
-
-            //        metricsService.DoWork();
-            //    }
-            //}
         }
     }
 }
