@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SqlServer } from 'src/app/_models/sql-server';
 
 @Component({
   selector: 'app-server-badge',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./server-badge.component.scss']
 })
 export class ServerBadgeComponent implements OnInit {
+
+  @Input() server: SqlServer;
 
   constructor() { }
 
