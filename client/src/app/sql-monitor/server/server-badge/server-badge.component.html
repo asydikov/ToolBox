@@ -1,14 +1,23 @@
 
-    <div class="card border-primary mb-3 ml-4 mr-4" style="max-width: 18rem;">
+    <div class="card border-primary mb-3 ml-4 mr-4" style="max-width: 18rem; min-height:360px;">
         <div class="card-header bg-transparent border-primary">
             <i class="fa fa-server fa-2x mr-2" style="color: gray;" aria-hidden="true"></i>
             <h5 class="font-weight-bold" style="display: contents;">{{server.name}}</h5>
         </div>
-        <div class="card-body text-primary">
-          <h5 class="card-title">Success card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <div class="card-body">
+          <p class="text-monospace font-weight-bold font-weight-normal"><span class="color-gray">Address:</span> {{server.host}}:{{server.port}}</p>
+          <p class="text-monospace font-weight-bold font-weight-normal"><span class="color-gray">Page Reads Count:</span> 55</p>
+          <p class="text-monospace font-weight-bold font-weight-normal"><span class="color-gray">Page Lifetime:</span> 55</p>
+          <p class="text-monospace font-weight-bold color-gray font-weight-normal mb-0">{{server.description}}</p>
         </div>
-        <div class="card-footer bg-transparent border-primary">Footer</div>
+        <div class="card-footer bg-transparent border-primary">
+            <button class="btn btn-danger mb-3 col-sm-12">
+                Time Consuming Queries
+            </button> 
+            <button class="btn btn-success col-sm-12">
+                Databases
+            </button> 
+        </div>
       </div>
 
 
