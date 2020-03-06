@@ -1,1 +1,6 @@
-<p>servers works!</p>
+
+<div class="row">
+<div *ngFor="let server of servers">
+<app-server-badge [server]="server"></app-server-badge>
+</div>
+</div>

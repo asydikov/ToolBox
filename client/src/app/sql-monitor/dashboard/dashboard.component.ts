@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from 'src/app/_services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,14 +9,14 @@ import { NotificationService } from 'src/app/_services/notification.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private notificationService: NotificationService) {
+  constructor(private notificationService: NotificationService,  private router: Router) {
     notificationService.messageReceived.subscribe(msg=>{
       console.log(msg);
-
-    })
+    });
    }
 
   ngOnInit(): void {
+    
   }
 
 }
