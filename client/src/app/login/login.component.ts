@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['sqlmonitor']);
+          this.router.navigate(['dashboard']);
         },
         error => {
           this.error = error;
