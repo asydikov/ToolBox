@@ -5,6 +5,8 @@ import { ServerComponent } from './server/server.component';
 import { DatabaseComponent } from './database/database.component';
 import { SqlMonitorRoutingModule } from './sql-monitor-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ServersComponent } from './server/servers/servers.component';
+import { ServerBadgeComponent } from './server/server-badge/server-badge.component';
 
 
 
@@ -12,7 +14,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     DashboardComponent, 
     ServerComponent,
-     DatabaseComponent
+     DatabaseComponent,
+     ServersComponent,
+     ServerBadgeComponent
     ],
   imports: [
     CommonModule,

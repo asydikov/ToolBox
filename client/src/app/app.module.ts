@@ -11,6 +11,9 @@ import { JwtInterceptor } from './_helpers/jwt-interceptor';
 import { ErrorInterceptor } from './_helpers/error-interceptor';
 import { HorizontalNavComponent } from './horizontal-nav/horizontal-nav.component';
 import { ClickStopPropagation } from './_directives/click-stop-propagation';
+import { ServerBadgeComponent } from './sql-monitor/server/server-badge/server-badge.component';
+import { ServersComponent } from './sql-monitor/server/servers/servers.component';
+import { SqlMonitorModule } from './sql-monitor/sql-monitor.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,7 @@ import { ClickStopPropagation } from './_directives/click-stop-propagation';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule    
+    AppRoutingModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

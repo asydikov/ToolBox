@@ -21,6 +21,6 @@ export class SqlServerService {
   }
 
   getServers(){
-    return this.http.get(`${environment.apiUrl}/${environment.sqlmonitoryService}/servers`)
+    return this.http.get<SqlServer[]>(`${environment.apiUrl}/${environment.sqlmonitoryService}/servers`)
   }
 }

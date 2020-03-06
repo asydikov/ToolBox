@@ -14,9 +14,9 @@ export class NotificationService {
   private _hubConnection: HubConnection;  
   
   constructor(private identityService: IdentityService) {  
-    this.createConnection();  
-    this.registerOnServerEvents();  
-    this.startConnection();  
+    // this.createConnection();  
+    // this.registerOnServerEvents();  
+    // this.startConnection();  
     
   }  
   
