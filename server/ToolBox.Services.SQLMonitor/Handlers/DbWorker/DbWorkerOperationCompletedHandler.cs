@@ -46,7 +46,7 @@ namespace ToolBox.Services.SQLMonitor.Handlers.DbWorker
                 await _metricsProcessingService.ProcessMetrics(command);
             }
 
-         //   await _busClient.PublishAsync(new OperationCompleted(command.Id, command.UserId, "sqlmonitor-service", "database-metrics-updated"));
+            //   await _busClient.PublishAsync(new OperationCompleted(command.Id, command.UserId, "sqlmonitor-service", "database-metrics-updated"));
         }
     }
 }

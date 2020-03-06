@@ -19,4 +19,8 @@ export class SqlServerService {
   serverAdd(sqlServer:SqlServer){
     return this.http.post(`${environment.apiUrl}/${environment.sqlmonitoryService}/server-add`, sqlServer)
   }
+
+  getServers(){
+    return this.http.get(`${environment.apiUrl}/${environment.sqlmonitoryService}/servers`)
+  }
 }
