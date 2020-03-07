@@ -71,5 +71,15 @@ namespace ToolBox.Services.Notification.Services
                     serverId = @event.ServerId,
                     data = @event.ConnectedUsers
                 });
+
+        public async Task PublishDatabaseSpaceMetricsEventAsync(DatabaseSpaceMetricsEvent @event)
+            => await _hubContextWrapper.PublishToUserAsync(@event.UserId,
+                "database-space-metrics",
+                new
+                {
+                    id = @event.Id,
+                    databaseId = @event.DatabaseId,
+                    data = new { @event.Space, @event.UnallocatedSpace, @event.Unit }
+                });
     };
 }

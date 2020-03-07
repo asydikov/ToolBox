@@ -13,6 +13,7 @@ namespace ToolBox.Services.Notification.Services
         Task PublishOperationRejectedAsync(OperationRejected @event);
         Task PublishServerMemoryUsageMetricsAsync(ServerMemoryUsageMetrics @event);
         Task PublishUserSessionMetricsAsync(UserSessionMetrics @event);
+        Task PublishDatabaseSpaceMetricsEventAsync(DatabaseSpaceMetricsEvent @event);
 
     }
 }

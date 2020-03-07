@@ -52,7 +52,7 @@ namespace ToolBox.Services.SQLMonitor.Services
 
             if (command.SqlQueryName == (int)SqlQueryNames.ConnectedUsers)
             {
-                UserSessionMetricCollect(command);
+                await UserSessionMetricCollect(command);
             }
 
             if (command.SqlQueryName == (int)SqlQueryNames.MemoryUsage)
@@ -72,6 +72,15 @@ namespace ToolBox.Services.SQLMonitor.Services
             databaseSpaceMetrics.Unit = "MB";
 
             await _databaseSpaceMetricsService.CreateAsync(databaseSpaceMetrics);
+
+            await _busClient.PublishAsync(new DatabaseSpaceMetricsEvent(
+                command.Id,
+                command.UserId,
+                databaseSpaceMetrics.DatabaseId,
+                databaseSpaceMetrics.Space,
+                databaseSpaceMetrics.UnallocatedSpace,
+                databaseSpaceMetrics.Unit
+                ));
         }
 
         private async Task DatabaseBackupMetricCollect(DbWorkerOperationCompleted command)

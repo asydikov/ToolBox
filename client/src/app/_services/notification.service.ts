@@ -50,7 +50,8 @@ export class NotificationService {
   
   private registerOnServerEvents(): void {  
   //  this.operationCompletedEvent();
-   this.connectedUsersEvent();
+  //  this.connectedUsersEvent();
+  this.databaseSpaceEvent();
   //  this.serverMemoryUsageEvent();
   };
 
@@ -67,6 +68,14 @@ export class NotificationService {
     this.messageReceived.emit(operation);
     });
   }  
+
+  private databaseSpaceEvent(): void {  
+    this._hubConnection.on('database-space-metrics', (operation) => {
+      console.log(operation);
+    this.messageReceived.emit(operation);
+    });
+  }  
+  
 
   private serverUserSessionsEvent(): void {  
     this._hubConnection.on('server-user-sessions-metrics', (operation) => {
