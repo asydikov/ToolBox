@@ -14,6 +14,7 @@ import { ClickStopPropagation } from './_directives/click-stop-propagation';
 import { ServerBadgeComponent } from './sql-monitor/server/server-badge/server-badge.component';
 import { ServersComponent } from './sql-monitor/server/servers/servers.component';
 import { SqlMonitorModule } from './sql-monitor/sql-monitor.module';
+import { QueryComponent } from './query/query.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SqlMonitorModule } from './sql-monitor/sql-monitor.module';
     LoginComponent,
     NavComponent,
     HorizontalNavComponent,
-    ClickStopPropagation
+    ClickStopPropagation,
+    QueryComponent
   ],
   imports: [
     BrowserModule,
