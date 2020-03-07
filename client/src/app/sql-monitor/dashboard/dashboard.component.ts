@@ -10,9 +10,6 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
 
   constructor(private notificationService: NotificationService,  private router: Router) {
-    notificationService.messageReceived.subscribe(msg=>{
-      console.log(msg);
-    });
    }
 
   ngOnInit(): void {

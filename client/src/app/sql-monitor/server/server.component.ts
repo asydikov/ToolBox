@@ -57,7 +57,7 @@ export class ServerComponent implements OnInit {
     this.requestModeOn();
     this.sqlServerService.serverAdd(this.getSqlServer()).subscribe(result=>{
     this.requestModeOff();
-    this.router.navigate(['sqlmonitor']);
+    this.router.navigate(['dashboard']);
   });
   }
 

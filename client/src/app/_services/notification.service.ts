@@ -14,9 +14,9 @@ export class NotificationService {
   private _hubConnection: HubConnection;  
   
   constructor(private identityService: IdentityService) {  
-    // this.createConnection();  
-    // this.registerOnServerEvents();  
-    // this.startConnection();  
+    this.createConnection();  
+    this.registerOnServerEvents();  
+    this.startConnection();  
     
   }  
   
@@ -37,7 +37,7 @@ export class NotificationService {
     this._hubConnection  
       .start()  
       .then(() => {  
-        this._hubConnection.invoke('initializeAsync',this.identityService.tokenFromLocalStorage);
+        this._hubConnection.invoke('initializeAsync',this.identityService.accesTokenFromLocalStorage);
         this.connectionIsEstablished = true;  
         console.log('Hub connection started');  
         this.connectionEstablished.emit(true);  
@@ -49,12 +49,34 @@ export class NotificationService {
   }  
   
   private registerOnServerEvents(): void {  
+  //  this.operationCompletedEvent();
+   this.connectedUsersEvent();
+   this.serverMemoryUsageMetrics();
+  };
+
+  private operationCompletedEvent(): void {  
     this._hubConnection.on('operation_completed', (operation) => {
+      console.log(operation);
     this.messageReceived.emit(operation);
-  });
+    });
+  }  
+
+  private connectedUsersEvent(): void {  
+    this._hubConnection.on('connected_users_metrics', (operation) => {
+    this.messageReceived.emit(operation);
+    });
+  }  
+
+  private serverMemoryUsageMetrics(): void {  
+    this._hubConnection.on('server-memory-usage-metrics', (operation) => {
+      console.log(operation);
+    this.messageReceived.emit(operation);
+    });
+  }  
+  
 
   // this._hubConnection.on('operation_rejected', (operation) => {
   //     appendMessage('Operation rejected.', "danger", operation);
   // });
-  }  
+  //}  
 }

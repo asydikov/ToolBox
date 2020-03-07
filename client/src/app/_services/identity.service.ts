@@ -6,6 +6,7 @@ import { SignIn } from '../_models/sign-in';
 import { User } from '../_models/User';
 import { environment } from 'src/environments/environment';
 import { JsonWebToken } from '../_models/json-web-token';
+import { RefreshToken } from '../_models/refresh-token';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class IdentityService {
     return this.currentUserSubject.value;
 }
 
-public get tokenFromLocalStorage():string{
+public get accesTokenFromLocalStorage():string{
   let userToken = this.userTokenFromLocalStorage;
   let token = userToken?.accessToken;
   if(!userToken || !token )
@@ -32,6 +33,11 @@ public get tokenFromLocalStorage():string{
     return null;
   }
 return token;
+}
+
+public get refreshTokenFromLocalStorage():string{
+  let userToken = this.userTokenFromLocalStorage;
+  return userToken?.refreshToken;
 }
 
 private get userFromLocalStorage():User{
@@ -69,5 +75,21 @@ logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('userToken');
     this.currentUserSubject.next(null);
+}
+
+
+refreshToken(){
+  let refreshToken = new RefreshToken(this.refreshTokenFromLocalStorage);
+  return this.http.post<JsonWebToken>(`${environment.apiUrl}/${environment.identityService}/token-refresh`, refreshToken)
+  .pipe(map(token => {
+      if (token && token.accessToken) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('userToken', JSON.stringify(token));
+          this.currentUserSubject.next(new User(token.claims.email, token.claims.name));
+      } else {
+        token = null;
+      }
+      return token; 
+  }));
 }
  }

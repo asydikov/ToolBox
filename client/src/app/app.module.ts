@@ -32,7 +32,7 @@ import { SqlMonitorModule } from './sql-monitor/sql-monitor.module';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-   // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
