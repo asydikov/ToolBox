@@ -56,8 +56,20 @@ namespace ToolBox.Services.Notification.Services
                 new
                 {
                     id = @event.Id,
-                    data = new { @event.ServerId, @event.RequestsCount, @event.PageReadsCount, @event.PageLifetime }
-                }
-            );
-    }
+                    data = new { 
+                        @event.ServerId, @event.RequestsCount, 
+                        @event.PageReadsCount, @event.PageLifetime
+                    }
+                });
+
+        public async Task PublishUserSessionMetricsAsync(UserSessionMetrics @event)
+            => await _hubContextWrapper.PublishToUserAsync(@event.UserId,
+                "connected_users_metrics",
+                new
+                {
+                    id = @event.Id,
+                    serverId = @event.ServerId,
+                    data = @event.ConnectedUsers
+                });
+    };
 }

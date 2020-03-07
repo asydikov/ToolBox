@@ -52,7 +52,7 @@ namespace ToolBox.Services.SQLMonitor.Services
 
             if (command.SqlQueryName == (int)SqlQueryNames.ConnectedUsers)
             {
-                USerSessionMetricCollect(command);
+                UserSessionMetricCollect(command);
             }
 
             if (command.SqlQueryName == (int)SqlQueryNames.MemoryUsage)
@@ -71,7 +71,7 @@ namespace ToolBox.Services.SQLMonitor.Services
             databaseSpaceMetrics.UnallocatedSpace = Convert.ToDouble(flatResult.FirstOrDefault(x => x.Key == "unallocated space").Value.Split()[0]);
             databaseSpaceMetrics.Unit = "MB";
 
-           await _databaseSpaceMetricsService.CreateAsync(databaseSpaceMetrics);
+            await _databaseSpaceMetricsService.CreateAsync(databaseSpaceMetrics);
         }
 
         private async Task DatabaseBackupMetricCollect(DbWorkerOperationCompleted command)
@@ -98,17 +98,25 @@ namespace ToolBox.Services.SQLMonitor.Services
             await _databaseBackupMetricsService.AddRangeAsync(models);
         }
 
-        private static void USerSessionMetricCollect(DbWorkerOperationCompleted command)
+        private async Task UserSessionMetricCollect(DbWorkerOperationCompleted command)
         {
-            var flatResults = command.Result.SelectMany(x => x).Where(x => x.Key == "login_name" && x.Value != "");
+            var flatResults =
+                command.Result.SelectMany(x => x)
+                    .Where(x => x.Key == "login_name" && x.Value != "");
+
+            var connectedUsers = new List<string>();
 
             foreach (var result in flatResults)
             {
-                var userSessionMetrics = new UserSessionMetrics
-                {
-                    ServerId = command.SqlServerId, UserLoginName = result.Value
-                };
+                connectedUsers.Add(result.Value);
             }
+
+            await _busClient.PublishAsync(new UserSessionMetrics(
+                command.Id,
+                command.UserId,
+                command.SqlServerId,
+                connectedUsers
+            ));
         }
 
         private async Task MemoryUsageMetricCollect(DbWorkerOperationCompleted command)
@@ -125,7 +133,7 @@ namespace ToolBox.Services.SQLMonitor.Services
 
             await _busClient.PublishAsync(new ServerMemoryUsageMetrics(
                 command.Id,
-                command.UserId, 
+                command.UserId,
                 memoryUsageMetrics.ServerId,
                 memoryUsageMetrics.RequestsCount,
                 memoryUsageMetrics.PageReadsCount,

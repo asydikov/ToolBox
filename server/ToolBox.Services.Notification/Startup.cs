@@ -38,6 +38,7 @@ namespace ToolBox.Services.Notification
             services.AddScoped<IHubService, HubService>();
             services.AddScoped<IHubWrapper, HubWrapper>();
             services.AddScoped<IEventHandler<ServerMemoryUsageMetrics>, ServerMemoryUsageMetricsHandler>();
+            services.AddScoped<IEventHandler<UserSessionMetrics>, UserSessionMetricsHandler>();
             services.AddScoped<IEventHandler<OperationCompleted>, OperationCompletedHandler>();
             services.AddScoped<IEventHandler<OperationRejected>, OperationRejectedHandler>();
             services.AddCors(options =>

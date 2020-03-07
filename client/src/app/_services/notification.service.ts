@@ -51,7 +51,7 @@ export class NotificationService {
   private registerOnServerEvents(): void {  
   //  this.operationCompletedEvent();
    this.connectedUsersEvent();
-   this.serverMemoryUsageMetrics();
+  //  this.serverMemoryUsageEvent();
   };
 
   private operationCompletedEvent(): void {  
@@ -63,16 +63,17 @@ export class NotificationService {
 
   private connectedUsersEvent(): void {  
     this._hubConnection.on('connected_users_metrics', (operation) => {
-    this.messageReceived.emit(operation);
-    });
-  }  
-
-  private serverMemoryUsageMetrics(): void {  
-    this._hubConnection.on('server-memory-usage-metrics', (operation) => {
       console.log(operation);
     this.messageReceived.emit(operation);
     });
   }  
+
+  private serverUserSessionsEvent(): void {  
+    this._hubConnection.on('server-user-sessions-metrics', (operation) => {
+      console.log(operation);
+    this.messageReceived.emit(operation);
+    });
+  }
   
 
   // this._hubConnection.on('operation_rejected', (operation) => {

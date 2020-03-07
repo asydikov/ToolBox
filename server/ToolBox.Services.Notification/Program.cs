@@ -17,6 +17,7 @@ namespace ToolBox.Services.Notification
            .UserRabbitMq()
            //.SubscribeToEvent<OperationPending>()
            .SubscribeToEvent<ServerMemoryUsageMetrics>()
+           .SubscribeToEvent<UserSessionMetrics>()
            .SubscribeToEvent<OperationCompleted>()
            .SubscribeToEvent<OperationRejected>()
            .Build()
