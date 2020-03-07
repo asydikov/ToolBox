@@ -15,6 +15,7 @@ import { ServerBadgeComponent } from './sql-monitor/server/server-badge/server-b
 import { ServersComponent } from './sql-monitor/server/servers/servers.component';
 import { SqlMonitorModule } from './sql-monitor/sql-monitor.module';
 import { QueryComponent } from './query/query.component';
+import { QueriesComponent } from './queries/queries.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { QueryComponent } from './query/query.component';
     NavComponent,
     HorizontalNavComponent,
     ClickStopPropagation,
-    QueryComponent
+    QueryComponent,
+    QueriesComponent
   ],
   imports: [
     BrowserModule,
