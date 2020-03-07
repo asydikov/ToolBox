@@ -18,6 +18,11 @@ namespace ToolBox.Api.RestEaseServices
 
         [AllowAnyStatusCode]
         [Get("api/sqlmonitor/time-consuming-queries")]
-        Task<object> TimeConsumingQueries(Guid id);
+        Task<object> TimeConsumingQueries(Guid id);   
+        
+        [AllowAnyStatusCode]
+        [Get("api/sqlmonitor/dashboard")]
+        Task<object> Dashboard(Guid userId);
+        
     }
 }

@@ -22,16 +22,20 @@ namespace ToolBox.Services.DBWorker.Controllers
         private readonly IDbWorkerService _dbWorkerService;
         private readonly IScheduleService _scheduleService;
         private readonly IServerService _serverService;
+
+        private readonly IMemoryUsageMetricsService _memoryUsageMetricsService;
         public SqlMonitorController(
             IDbWorkerService dbWorkerService,
             ISqlQueryService sqlQueryService,
             IScheduleService scheduleService,
-            IServerService serverService)
+            IServerService serverService,
+            IMemoryUsageMetricsService memoryUsageMetricsService)
         {
             _sqlQueryService = sqlQueryService;
             _dbWorkerService = dbWorkerService;
             _scheduleService = scheduleService;
             _serverService = serverService;
+            _memoryUsageMetricsService = memoryUsageMetricsService;
         }
 
         [HttpPost("server-connection-check")]
@@ -41,11 +45,43 @@ namespace ToolBox.Services.DBWorker.Controllers
             return Ok(result);
         }
 
+
         [HttpGet("servers")]
         public async Task<IActionResult> Servers(Guid userId)
         {
             var result = await _serverService.GetAllAsync(x => x.UserId == userId);
 
+            return Ok(result);
+        }
+
+
+        [HttpGet("dashboard")]
+        public async Task<IActionResult> Dashboard(Guid userId)
+        {
+            var servers = await _serverService.GetAllAsync(x => x.UserId == userId);
+            var memoryUsageMetrics = await _memoryUsageMetricsService.GetAllAsync(x => servers.Select(s => s.Id).Contains(x.ServerId));
+            var result = new List<ServerBadge>();
+
+            foreach (var server in servers)
+            {
+                var memoryUsageMetric = memoryUsageMetrics.LastOrDefault(x => x.ServerId == server.Id);
+                if (memoryUsageMetric == null)
+                {
+                    continue;
+                }
+                var serverBadge = new ServerBadge
+                {
+                    ServerId = server.Id,
+                    PageLifetime = memoryUsageMetric.PageLifetime,
+                    PageReadsCounts = memoryUsageMetric.PageReadsCount,
+                    RequestCount = memoryUsageMetric.RequestsCount,
+                    Description = server.Description,
+                    ServerAddress = $"{server.Host}:{server.Port}",
+
+                };
+
+                result.Add(serverBadge);
+            }
             return Ok(result);
         }
 
@@ -73,13 +109,10 @@ namespace ToolBox.Services.DBWorker.Controllers
                 AvgCPUTime = Convert.ToInt32(x["Avg CPU Time"])
             }));
 
-            result =  result.OrderBy(x => x.AvgCPUTime).ToList();
+            result = result.OrderBy(x => x.AvgCPUTime).ToList();
 
             return Ok(result);
         }
-
-
-
 
 
         [AllowAnonymous]

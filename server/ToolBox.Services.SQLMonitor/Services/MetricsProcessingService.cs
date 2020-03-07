@@ -11,7 +11,6 @@ using ToolBox.Services.SQLMonitor.Messages.Events.Notification;
 
 namespace ToolBox.Services.SQLMonitor.Services
 {
-
     public class MetricsProcessingService : IMetricsProcessingService
     {
         private readonly IBusClient _busClient;

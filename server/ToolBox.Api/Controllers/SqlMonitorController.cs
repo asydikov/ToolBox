@@ -30,6 +30,13 @@ namespace ToolBox.Api.Controllers
             _logger = logger;
         }
 
+        [HttpGet("dashboard")]
+        public async Task<IActionResult> Dashboard(Guid userId)
+        {
+            var result = await _sqlMonitorService.Dashboard(UserId);
+            return Ok(result);
+        }
+
         [HttpGet("servers")]
         public async Task<IActionResult> Servers()
         {
@@ -42,7 +49,7 @@ namespace ToolBox.Api.Controllers
         public async Task<IActionResult> ServerConnectionCheck(ConnectionModel connectionModel)
         {
             var result = await _sqlMonitorService.ServerConnectionCheck(connectionModel);
-            return Ok(new { Name=result});
+            return Ok(new { Name = result });
         }
 
 
@@ -62,7 +69,7 @@ namespace ToolBox.Api.Controllers
 
             return Ok(result);
         }
-     
+
 
 
     }
