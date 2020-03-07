@@ -5,11 +5,14 @@
             <h5 class="font-weight-bold" style="display: contents;">{{server.name}}</h5>
         </div>
         <div class="card-body">
-          <p class="text-monospace font-weight-bold font-weight-normal"><span class="color-gray">Address:</span> {{server.host}}:{{server.port}}</p>
-          <p class="text-monospace font-weight-bold font-weight-normal"><span class="color-gray">Page Reads Count:</span> 55</p>
-          <p class="text-monospace font-weight-bold font-weight-normal"><span class="color-gray">Page Lifetime:</span> 55</p>
+          <p class="text-monospace font-weight-bold font-weight-normal"><span class="color-gray">Address:</span> {{server.serverAddress}}</p>
+          <p class="text-monospace font-weight-bold font-weight-normal"><span class="color-gray">Page Reads Count:</span> {{pageReadsCounts}}</p>
+          <p class="text-monospace font-weight-bold font-weight-normal"><span class="color-gray">Page Lifetime:</span> {{pageLifetime}}</p>
           <p class="text-monospace font-weight-bold color-gray font-weight-normal mb-0">{{server.description}}</p>
+          <p class="text-monospace font-weight-bold color-gray font-weight-normal mb-0">
+            Connected users  {{server.connectedUsers}}</p>
         </div>
+        
         <div class="card-footer bg-transparent border-primary">
             <button class="btn btn-danger mb-3 col-sm-12">
                 Time Consuming Queries

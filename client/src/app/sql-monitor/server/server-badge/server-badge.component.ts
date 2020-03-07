@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SqlServer } from 'src/app/_models/sql-server';
+import { SqlServerBadge } from 'src/app/_models/sql-server-badge';
 
 @Component({
   selector: 'app-server-badge',
@@ -8,11 +8,14 @@ import { SqlServer } from 'src/app/_models/sql-server';
 })
 export class ServerBadgeComponent implements OnInit {
 
-  @Input() server: SqlServer;
-
+  @Input() server: SqlServerBadge;
+  @Input()pageReadsCounts:number;
+  @Input()pageLifetime:number;
   constructor() { }
 
   ngOnInit(): void {
+    this.pageReadsCounts=this.server.pageReadsCounts;
+    this.pageLifetime=this.server.pageLifetime;
   }
 
 }

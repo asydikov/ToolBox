@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SqlServerService } from 'src/app/_services/sql-server.service';
 import { SqlServer } from 'src/app/_models/sql-server';
+import { SqlServerBadge } from 'src/app/_models/sql-server-badge';
 
 @Component({
   selector: 'app-servers',
@@ -8,17 +9,10 @@ import { SqlServer } from 'src/app/_models/sql-server';
   styleUrls: ['./servers.component.scss']
 })
 export class ServersComponent implements OnInit {
-
-  servers:SqlServer[]
+  @Input() sqlServerBadges: SqlServerBadge[];
   constructor(private sqlServerService: SqlServerService) { }
 
   ngOnInit(): void {
-    this.getUserServers();
   }
 
-  getUserServers(){
-    this.sqlServerService.getServers().subscribe(servers=>{
-      this.servers = servers;
-    });
-  }
 }

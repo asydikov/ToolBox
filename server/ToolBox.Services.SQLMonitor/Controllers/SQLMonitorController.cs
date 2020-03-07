@@ -60,7 +60,7 @@ namespace ToolBox.Services.DBWorker.Controllers
         {
             var servers = await _serverService.GetAllAsync(x => x.UserId == userId);
             var memoryUsageMetrics = await _memoryUsageMetricsService.GetAllAsync(x => servers.Select(s => s.Id).Contains(x.ServerId));
-            var result = new List<ServerBadge>();
+            var result = new List<SqlServerBadge>();
 
             foreach (var server in servers)
             {
@@ -69,15 +69,15 @@ namespace ToolBox.Services.DBWorker.Controllers
                 {
                     continue;
                 }
-                var serverBadge = new ServerBadge
+                var serverBadge = new SqlServerBadge
                 {
                     ServerId = server.Id,
+                    Name = server.Name,
                     PageLifetime = memoryUsageMetric.PageLifetime,
                     PageReadsCounts = memoryUsageMetric.PageReadsCount,
                     RequestCount = memoryUsageMetric.RequestsCount,
                     Description = server.Description,
-                    ServerAddress = $"{server.Host}:{server.Port}",
-
+                    ServerAddress = $"{server.Host}: {server.Port}",
                 };
 
                 result.Add(serverBadge);

@@ -8,6 +8,7 @@ import { IdentityService } from './identity.service';
 export class NotificationService {
 
   messageReceived = new EventEmitter<any>();  
+  connectedUsersReceived = new EventEmitter<any>();  
   connectionEstablished = new EventEmitter<Boolean>();  
   
   private connectionIsEstablished = false;  
@@ -15,7 +16,7 @@ export class NotificationService {
   
   constructor(private identityService: IdentityService) {  
     this.createConnection();  
-   // this.registerOnServerEvents();  
+    this.registerOnServerEvents();  
     this.startConnection();  
     
   }  
@@ -49,10 +50,10 @@ export class NotificationService {
   }  
   
   private registerOnServerEvents(): void {  
-   this.operationCompletedEvent();
+  // this.operationCompletedEvent();
    this.connectedUsersEvent();
-  this.databaseSpaceEvent();
-   this.serverMemoryUsageEvent();
+   //this.databaseSpaceEvent();
+   // this.serverMemoryUsageEvent();
   };
 
   private operationCompletedEvent(): void {  
@@ -71,8 +72,7 @@ export class NotificationService {
 
   private connectedUsersEvent(): void {  
     this._hubConnection.on('connected_users_metrics', (operation) => {
-      console.log(operation);
-    this.messageReceived.emit(operation);
+    this.connectedUsersReceived.emit(operation);
     });
   }  
 

@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace ToolBox.Services.SQLMonitor.Domain.Models
 {
-    public class ServerBadge
+    public class SqlServerBadge
     {
         public Guid ServerId { get; set; }
+        public string Name { get; set; }
         public string ServerAddress { get; set; }
         public string Description { get; set; }
         public double PageReadsCounts { get; set; }
