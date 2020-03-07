@@ -66,7 +66,7 @@ namespace ToolBox.Services.SQLMonitor.Handlers
                                                                       ));
 
             // check connection to a server
-            await _busClient.PublishAsync(new OperationCompleted(command.Id, command.UserId, "sql-monitor", result.ToString()));
+           // await _busClient.PublishAsync(new OperationCompleted(command.Id, command.UserId, "sql-monitor", result.ToString()));
         }
     }
 }

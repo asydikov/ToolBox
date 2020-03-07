@@ -49,5 +49,15 @@ namespace ToolBox.Services.Notification.Services
                     reason = @event.Message
                 }
             );
+
+        public async Task PublishServerMemoryUsageMetricsAsync(ServerMemoryUsageMetrics @event)
+            => await _hubContextWrapper.PublishToUserAsync(@event.UserId,
+                "server-memory-usage-metrics",
+                new
+                {
+                    id = @event.Id,
+                    data = new { @event.ServerId, @event.RequestsCount, @event.PageReadsCount, @event.PageLifetime }
+                }
+            );
     }
 }

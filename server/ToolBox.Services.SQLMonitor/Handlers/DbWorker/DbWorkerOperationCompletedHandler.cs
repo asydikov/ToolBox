@@ -23,7 +23,7 @@ namespace ToolBox.Services.SQLMonitor.Handlers.DbWorker
         public DbWorkerOperationCompletedHandler(IBusClient busClient,
             IMetricsProcessingService metricsProcessingService,
             IDatabaseService databaseService,
-         ILogger<DbWorkerOperationCompleted> logger)
+            ILogger<DbWorkerOperationCompleted> logger)
         {
             _busClient = busClient;
             _metricsProcessingService = metricsProcessingService;
@@ -45,8 +45,8 @@ namespace ToolBox.Services.SQLMonitor.Handlers.DbWorker
             {
                 await _metricsProcessingService.ProcessMetrics(command);
             }
-
-            //   await _busClient.PublishAsync(new OperationCompleted(command.Id, command.UserId, "sqlmonitor-service", "database-metrics-updated"));
+          
+            //  await _busClient.PublishAsync(new OperationCompleted(command.Id, command.UserId, "sqlmonitor-service", "database-metrics-updated"));
         }
     }
 }

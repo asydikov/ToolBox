@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using ToolBox.Services.Notification.Messages.Events;
 using static ToolBox.Common.Services.ServiceHost;
 
@@ -18,6 +16,7 @@ namespace ToolBox.Services.Notification
             await new RabbitmqHostBuilder(CreateHostBuilder(args).Build())
            .UserRabbitMq()
            //.SubscribeToEvent<OperationPending>()
+           .SubscribeToEvent<ServerMemoryUsageMetrics>()
            .SubscribeToEvent<OperationCompleted>()
            .SubscribeToEvent<OperationRejected>()
            .Build()

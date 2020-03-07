@@ -11,23 +11,22 @@ using ToolBox.Services.Notification.Services;
 
 namespace ToolBox.Services.Notification.Handlers
 {
-    public class OperationCompletedHandler : IEventHandler<OperationCompleted>
+    public class ServerMemoryUsageMetricsHandler : IEventHandler<ServerMemoryUsageMetrics>
     {
         private readonly IHubService _hubService;
         private readonly ILogger _logger;
-        public OperationCompletedHandler(
+        public ServerMemoryUsageMetricsHandler(
          IHubService hubService,
-         ILogger<OperationCompletedHandler> logger)
+         ILogger<ServerMemoryUsageMetricsHandler> logger)
         {
             _hubService = hubService;
             _logger = logger;
         }
 
 
-        public async Task HandleAsync(OperationCompleted @event)
+        public async Task HandleAsync(ServerMemoryUsageMetrics @event)
         {
-            _logger.LogInformation($"Notification is sending to user -> {@event.UserId}");
-            await _hubService.PublishOperationCompletedAsync(@event);
+            await _hubService.PublishServerMemoryUsageMetricsAsync(@event);
         }
     }
 }

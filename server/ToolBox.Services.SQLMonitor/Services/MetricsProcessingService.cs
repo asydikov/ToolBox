@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RawRabbit;
 using ToolBox.Services.SQLMonitor.Domain.Enums;
 using ToolBox.Services.SQLMonitor.Domain.Models;
 using ToolBox.Services.SQLMonitor.Entities;
 using ToolBox.Services.SQLMonitor.Messages.Events.DbWorker;
+using ToolBox.Services.SQLMonitor.Messages.Events.Notification;
 
 namespace ToolBox.Services.SQLMonitor.Services
 {
 
     public class MetricsProcessingService : IMetricsProcessingService
     {
+        private readonly IBusClient _busClient;
         private readonly IServerService _serverService;
         private readonly IDatabaseService _databaseService;
 
@@ -20,6 +23,7 @@ namespace ToolBox.Services.SQLMonitor.Services
         private readonly IMemoryUsageMetricsService _memoryUsageMetricsService;
 
         public MetricsProcessingService(
+            IBusClient busClient,
             IServerService serverService,
             IDatabaseService databaseService,
             IDatabaseBackupMetricsService databaseBackupMetricsService,
@@ -27,12 +31,12 @@ namespace ToolBox.Services.SQLMonitor.Services
             IMemoryUsageMetricsService memoryUsageMetricsService
             )
         {
+            _busClient = busClient;
             _serverService = serverService;
             _databaseService = databaseService;
             _databaseBackupMetricsService = databaseBackupMetricsService;
             _databaseSpaceMetricsService = databaseSpaceMetricsService;
             _memoryUsageMetricsService = memoryUsageMetricsService;
-
         }
         public async Task ProcessMetrics(DbWorkerOperationCompleted command)
         {
@@ -55,7 +59,6 @@ namespace ToolBox.Services.SQLMonitor.Services
             {
                 await MemoryUsageMetricCollect(command);
             }
-
         }
 
         private async Task DatabaseSpaceMetricCollect(DbWorkerOperationCompleted command)
@@ -101,22 +104,33 @@ namespace ToolBox.Services.SQLMonitor.Services
 
             foreach (var result in flatResults)
             {
-                var userSessionMetrics = new UserSessionMetrics();
-                userSessionMetrics.ServerId = command.SqlServerId;
-                userSessionMetrics.UserLoginName = result.Value;
+                var userSessionMetrics = new UserSessionMetrics
+                {
+                    ServerId = command.SqlServerId, UserLoginName = result.Value
+                };
             }
         }
 
         private async Task MemoryUsageMetricCollect(DbWorkerOperationCompleted command)
         {
-            var memoryUsageMetrics = new MemoryUsageMetricsModel();
+            var memoryUsageMetrics = new MemoryUsageMetricsModel
+            {
+                RequestsCount = Convert.ToInt32(command.Result[0]["cntr_value"]),
+                PageReadsCount = Convert.ToInt32(command.Result[1]["cntr_value"]),
+                PageLifetime = Convert.ToInt32(command.Result[2]["cntr_value"]),
+                ServerId = command.SqlServerId
+            };
 
-            memoryUsageMetrics.RequestsCount = Convert.ToInt32(command.Result[0]["cntr_value"]);
-            memoryUsageMetrics.PageReadsCount = Convert.ToInt32(command.Result[1]["cntr_value"]);
-            memoryUsageMetrics.PageLifetime = Convert.ToInt32(command.Result[2]["cntr_value"]);
-            memoryUsageMetrics.ServerId = command.SqlServerId;
+            await _memoryUsageMetricsService.CreateAsync(memoryUsageMetrics);
 
-           await _memoryUsageMetricsService.CreateAsync(memoryUsageMetrics);
+            await _busClient.PublishAsync(new ServerMemoryUsageMetrics(
+                command.Id,
+                command.UserId, 
+                memoryUsageMetrics.ServerId,
+                memoryUsageMetrics.RequestsCount,
+                memoryUsageMetrics.PageReadsCount,
+                memoryUsageMetrics.PageLifetime
+            ));
         }
     }
 }
