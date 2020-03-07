@@ -14,8 +14,6 @@ export class ServerBadgeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.pageReadsCounts=this.server.pageReadsCounts;
-    this.pageLifetime=this.server.pageLifetime;
   }
 
 }

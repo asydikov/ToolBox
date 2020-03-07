@@ -56,9 +56,11 @@ namespace ToolBox.Services.Notification.Services
                 new
                 {
                     id = @event.Id,
+                    serverId = @event.ServerId,
                     data = new { 
-                        @event.ServerId, @event.RequestsCount, 
-                        @event.PageReadsCount, @event.PageLifetime
+                        @event.RequestsCount, 
+                        @event.PageReadsCount, 
+                        @event.PageLifetime
                     }
                 });
 

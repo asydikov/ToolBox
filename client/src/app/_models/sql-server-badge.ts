@@ -3,7 +3,7 @@ export class SqlServerBadge{
      name:string;
      serverAddress:string; 
      description :string;
-     pageReadsCounts :number;
+     pageReadsCount :number;
      requestCount :number;
      pageLifetime :number;
      connectedUsers:number;

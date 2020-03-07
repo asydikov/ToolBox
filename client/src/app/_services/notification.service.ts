@@ -9,6 +9,7 @@ export class NotificationService {
 
   messageReceived = new EventEmitter<any>();  
   connectedUsersReceived = new EventEmitter<any>();  
+  serverMemoryUsageReceived= new EventEmitter<any>();  
   connectionEstablished = new EventEmitter<Boolean>();  
   
   private connectionIsEstablished = false;  
@@ -51,9 +52,9 @@ export class NotificationService {
   
   private registerOnServerEvents(): void {  
   // this.operationCompletedEvent();
+   this.serverMemoryUsageEvent();
    this.connectedUsersEvent();
    //this.databaseSpaceEvent();
-   // this.serverMemoryUsageEvent();
   };
 
   private operationCompletedEvent(): void {  
@@ -64,8 +65,7 @@ export class NotificationService {
   }  
   private serverMemoryUsageEvent(): void {  
     this._hubConnection.on('server-memory-usage-metrics', (operation) => {
-      console.log(operation);
-    this.messageReceived.emit(operation);
+    this.serverMemoryUsageReceived.emit(operation);
     });
   }  
 

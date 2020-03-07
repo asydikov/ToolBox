@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
       this.sqlServerBadges = data;
     });
     this.userConnectionsEvent();
+    this.serverMemoryUsageEvent();
   }
 
  userConnectionsEvent(){
@@ -29,4 +30,12 @@ export class DashboardComponent implements OnInit {
     server.connectedUsers = data['data'].length;
    });
  }
+
+ serverMemoryUsageEvent(){
+  this.notificationService.serverMemoryUsageReceived.subscribe(data=>{
+ let server = this.sqlServerBadges.find(x=>x.serverId == data['serverId']);
+ server.pageReadsCount=data['data'].pageReadsCount;
+ server.pageLifetime = data['data'].pageLifetime;
+  });
+}
 }
