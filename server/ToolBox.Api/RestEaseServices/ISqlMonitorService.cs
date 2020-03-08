@@ -23,6 +23,9 @@ namespace ToolBox.Api.RestEaseServices
         [AllowAnyStatusCode]
         [Get("api/sqlmonitor/dashboard")]
         Task<object> Dashboard(Guid userId);
-        
+
+        [AllowAnyStatusCode]
+        [Get("api/sqlmonitor/server-databases")]
+        Task<object> ServerDatabases(Guid id);
     }
 }

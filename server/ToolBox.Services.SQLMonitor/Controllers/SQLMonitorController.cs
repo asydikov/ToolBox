@@ -22,6 +22,9 @@ namespace ToolBox.Services.DBWorker.Controllers
         private readonly IDbWorkerService _dbWorkerService;
         private readonly IScheduleService _scheduleService;
         private readonly IServerService _serverService;
+        private readonly IDatabaseService _databaseService;
+        private readonly IDatabaseBackupMetricsService _databaseBackupMetricsService;
+        private readonly IDatabaseSpaceMetricsService _databaseSpaceMetricsService;
 
         private readonly IMemoryUsageMetricsService _memoryUsageMetricsService;
         public SqlMonitorController(
@@ -29,13 +32,19 @@ namespace ToolBox.Services.DBWorker.Controllers
             ISqlQueryService sqlQueryService,
             IScheduleService scheduleService,
             IServerService serverService,
-            IMemoryUsageMetricsService memoryUsageMetricsService)
+            IMemoryUsageMetricsService memoryUsageMetricsService,
+            IDatabaseService databaseService,
+            IDatabaseBackupMetricsService databaseBackupMetricsService,
+                IDatabaseSpaceMetricsService databaseSpaceMetricsService)
         {
             _sqlQueryService = sqlQueryService;
             _dbWorkerService = dbWorkerService;
             _scheduleService = scheduleService;
             _serverService = serverService;
             _memoryUsageMetricsService = memoryUsageMetricsService;
+            _databaseService = databaseService;
+            _databaseBackupMetricsService = databaseBackupMetricsService;
+            _databaseSpaceMetricsService = databaseSpaceMetricsService;
         }
 
         [HttpPost("server-connection-check")]
@@ -85,6 +94,37 @@ namespace ToolBox.Services.DBWorker.Controllers
             return Ok(result);
         }
 
+        [HttpGet("server-databases")]
+        public async Task<IActionResult> ServerDatabases(Guid id)
+        {
+            var result = new List<DatabaseBadge>();
+            var databases = await _databaseService.GetAllAsync(x => x.ServerId == id);
+
+            foreach (var database in databases)
+            {
+                var dbBackups = await _databaseBackupMetricsService.GetAllAsync(x => x.DatabaseId == database.Id);
+                var dbBackup = dbBackups.LastOrDefault();
+                var dbMetricsAll = await _databaseSpaceMetricsService.GetAllAsync(x => x.DatabaseId == database.Id);
+                var dbMetrics = dbMetricsAll.LastOrDefault();
+
+                result.Add(
+                    new DatabaseBadge
+                    {
+                        Id = database.Id,
+                        Name = database.Name,
+                        DifferentialBackupTime = dbBackup.Differential,
+                        FullBackupTime = dbBackup.Full,
+                        TransactionLogBackupTime = dbBackup.Transaction,
+                        RecoveryModel = dbBackup.RecoveryModel,
+                        Space = dbMetrics.Space,
+                        UnallocatedSpace = dbMetrics.UnallocatedSpace,
+                        Unit = dbMetrics.Unit
+                    });
+
+            }
+            return Ok(result);
+        }
+
         [HttpGet("time-consuming-queries")]
         public async Task<IActionResult> TimeConsumingQueries(Guid id)
         {
@@ -106,7 +146,7 @@ namespace ToolBox.Services.DBWorker.Controllers
             dbWorkeResult.ForEach(x => result.Add(new TimeConsumingQueriesModel
             {
                 StatementText = x["Statement Text"],
-                AvgCPUTime = Convert.ToDouble(Convert.ToDouble(x["Avg CPU Time"])/100000)
+                AvgCPUTime = Convert.ToDouble(Convert.ToDouble(x["Avg CPU Time"]) / 100000)
             }));
 
             result = result.OrderByDescending(x => x.AvgCPUTime).ToList();

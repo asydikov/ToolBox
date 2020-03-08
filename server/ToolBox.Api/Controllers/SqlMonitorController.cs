@@ -69,6 +69,15 @@ namespace ToolBox.Api.Controllers
             return Ok(result);
         }
 
+        [HttpPost("server-databases")]
+        public async Task<IActionResult> ServerDatabases(ServerModel model)
+        {
+            var result = await _sqlMonitorService.ServerDatabases(model.Id);
+
+            return Ok(result);
+            
+        }
+
 
 
     }
