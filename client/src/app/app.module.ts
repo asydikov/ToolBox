@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +16,7 @@ import { ClickStopPropagation } from './_directives/click-stop-propagation';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    LoginComponent, 
     NavComponent,
     HorizontalNavComponent,
     ClickStopPropagation,
@@ -27,6 +28,7 @@ import { ClickStopPropagation } from './_directives/click-stop-propagation';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

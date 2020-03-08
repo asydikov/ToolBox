@@ -12,8 +12,7 @@ import { SqlServerBadge } from 'src/app/_models/sql-server-badge';
 export class DashboardComponent implements OnInit {
 
   sqlServerBadges: SqlServerBadge[];
-  constructor(private notificationService: NotificationService, private sqlService:SqlServerService, 
-     private router: Router) {
+  constructor(private notificationService: NotificationService, private sqlService:SqlServerService) {
    }
 
   ngOnInit(): void {

@@ -1,1 +1,7 @@
-<p>query works!</p>
+  <ngb-accordion #acc="ngbAccordion">
+    <ngb-panel id="toggle-1" title=" {{query.avgCPUTime}} ms">
+      <ng-template ngbPanelContent>
+        {{query.statementText}}
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>

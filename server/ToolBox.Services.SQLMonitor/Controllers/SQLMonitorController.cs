@@ -106,10 +106,10 @@ namespace ToolBox.Services.DBWorker.Controllers
             dbWorkeResult.ForEach(x => result.Add(new TimeConsumingQueriesModel
             {
                 StatementText = x["Statement Text"],
-                AvgCPUTime = Convert.ToInt32(x["Avg CPU Time"])
+                AvgCPUTime = Convert.ToDouble(Convert.ToDouble(x["Avg CPU Time"])/100000)
             }));
 
-            result = result.OrderBy(x => x.AvgCPUTime).ToList();
+            result = result.OrderByDescending(x => x.AvgCPUTime).ToList();
 
             return Ok(result);
         }

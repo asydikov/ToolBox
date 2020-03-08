@@ -16,6 +16,9 @@ export class ServerBadgeComponent implements OnInit {
   }
 
   goToDatabases(){
-    this.router.navigate(['dashboard/databases'] );
+    this.router.navigate(['dashboard/server/databases'] );
+  }
+  goToQueries(){
+    this.router.navigate(['dashboard/server/queries', this.server.serverId] );
   }
 }

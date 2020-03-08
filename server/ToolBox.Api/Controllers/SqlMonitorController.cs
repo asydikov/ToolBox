@@ -52,7 +52,6 @@ namespace ToolBox.Api.Controllers
             return Ok(new { Name = result });
         }
 
-
         [HttpPost("server-add")]
         public async Task<IActionResult> ServerAdd(ServerCommand command)
         {
@@ -62,7 +61,7 @@ namespace ToolBox.Api.Controllers
             return Accepted();
         }
 
-        [HttpGet("time-consuming-queries")]
+        [HttpPost("time-consuming-queries")]
         public async Task<IActionResult> TimeConsumingQueries(ServerModel model)
         {
             var result = await _sqlMonitorService.TimeConsumingQueries(model.Id);

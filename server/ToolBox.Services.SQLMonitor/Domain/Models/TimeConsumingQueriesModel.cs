@@ -7,7 +7,7 @@ namespace ToolBox.Services.SQLMonitor.Domain.Models
 {
     public class TimeConsumingQueriesModel
     {
-        public int AvgCPUTime { get; set; }
+        public double AvgCPUTime { get; set; }
         public string StatementText { get; set; }
     }
 }

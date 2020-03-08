@@ -10,6 +10,7 @@ import { DatabaseComponent } from './databases/database/database.component';
 import { QueryComponent } from './query/query.component';
 import { QueriesComponent } from './query/queries/queries.component';
 import { DatabasesComponent } from './databases/databases.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -26,6 +27,7 @@ import { DatabasesComponent } from './databases/databases.component';
     ],
   imports: [
     CommonModule,
+    NgbModule,
     FormsModule,
     ReactiveFormsModule,
     SqlMonitorRoutingModule

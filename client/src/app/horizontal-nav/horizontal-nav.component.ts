@@ -19,7 +19,6 @@ currentUser: User;
     }
 
   ngOnInit(): void {
- //   this.title = this.route.data['title'];
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       map(() => this.activatedRoute),

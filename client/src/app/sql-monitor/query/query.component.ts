@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { TimeConsumingQueries } from 'src/app/_models/time-consuming-queries';
 
 @Component({
   selector: 'app-query',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./query.component.scss']
 })
 export class QueryComponent implements OnInit {
+
+  @Input() query: TimeConsumingQueries;
 
   constructor() { }
 
