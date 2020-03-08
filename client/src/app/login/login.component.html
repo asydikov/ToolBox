@@ -1,7 +1,7 @@
 
 <h2 class="text-monospace font-weight-bold text-center col-sm-12 mb-4" style="padding-top: 100px;">ToolBox</h2>
 <div class="d-flex justify-content-center login-container col-sm-12">  
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="col-sm-6">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="col-sm-4">
     <div class="form-group">
       <input type="email" placeholder="Email address" formControlName="email" class="form-control"
        [ngClass]="{ 'is-invalid': submitted && form.email.errors }" >

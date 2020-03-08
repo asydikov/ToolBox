@@ -1,6 +1,6 @@
 <div class="row app-row">
     <app-nav class="col-lg-2 horizontal-nav-container" *ngIf="currentUser"></app-nav>
-    <div class="col-lg-10 body-container">
+    <div [ngClass]="{ 'col-lg-12': !currentUser,  'col-lg-10': currentUser}" class="body-container">
         <app-horizontal-nav *ngIf="currentUser"></app-horizontal-nav>
         <div class="router-outlet-container">
             <router-outlet></router-outlet> 
