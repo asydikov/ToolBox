@@ -44,7 +44,7 @@ namespace ToolBox.Services.DBWorker.Handlers
             catch (Exception ex)
             {
                 await _busClient.PublishAsync(new DbWorkerOperationRejected(command.Id, command.UserId, command.SqlServerId,
-                      command.DatabaseId, "sql stored proceure call", "dbworker-service", "error", ex.Message));
+                      command.DatabaseId, "sql stored procedure call", "dbworker-service", "error", ex.Message));
 
                 _logger.LogError(ex.Message);
             }

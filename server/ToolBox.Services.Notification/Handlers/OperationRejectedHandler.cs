@@ -22,7 +22,7 @@ namespace ToolBox.Services.Notification.Handlers
 
         public async Task HandleAsync(OperationRejected @event)
         {
-            _logger.LogError($"Notification service rejected event handler. Sending notificationto user: {@event.UserId}");
+            _logger.LogError($"Operation rejected: {@event.UserId}");
             await _hubService.PublishOperationRejectedAsync(@event);
         }
     }

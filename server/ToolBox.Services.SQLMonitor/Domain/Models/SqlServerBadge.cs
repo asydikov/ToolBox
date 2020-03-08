@@ -14,6 +14,7 @@ namespace ToolBox.Services.SQLMonitor.Domain.Models
         public double PageReadsCounts { get; set; }
         public double RequestCount { get; set; }
         public double PageLifetime { get; set; }
+        public bool IsAlive = true;
 
         public int ConnectedUsers = 0;
     }

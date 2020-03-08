@@ -66,7 +66,6 @@ namespace ToolBox.Services.DBWorker.Services
             }
             catch (Exception ex)
             {
-
                 throw;
             }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Toolbox.Common.Messages;
 using ToolBox.Common.Events;
 
-namespace ToolBox.Services.SQLMonitor.Messages.Events
+namespace ToolBox.Services.SQLMonitor.Messages.Events.DbWorker
 {
     [MessageNamespace("dbworker")]
 
@@ -14,7 +14,7 @@ namespace ToolBox.Services.SQLMonitor.Messages.Events
     {
         public Guid Id { get; }
         public Guid UserId { get; set; }
-        public Guid SQLServerId { get; }
+        public Guid SqlServerId { get; }
         public Guid DatabaseId { get; }
         public string Name { get; }
         public string Resource { get; }
@@ -30,7 +30,7 @@ namespace ToolBox.Services.SQLMonitor.Messages.Events
         {
             Id = id;
             UserId = userId;
-            SQLServerId = sqlServerId;
+            SqlServerId = sqlServerId;
             DatabaseId = databaseId;
             Name = name;
             Resource = resource;

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using ToolBox.Common.Commands;
 using ToolBox.Common.Events;
 using ToolBox.Services.SQLMonitor.Messages.Events;
+using ToolBox.Services.SQLMonitor.Messages.Events.DbWorker;
+using ToolBox.Services.SQLMonitor.Messages.Events.Notification;
 
 namespace ToolBox.Services.SQLMonitor.Handlers.DbWorker
 {
@@ -22,10 +24,15 @@ namespace ToolBox.Services.SQLMonitor.Handlers.DbWorker
         }
         public async Task HandleAsync(DbWorkerOperationRejected command)
         {
-            if (command.Resource != "sqlmonitor-service")
-            {
-                return;
-            }
+            await _busClient.PublishAsync(new OperationRejected(
+                command.Id,
+                command.UserId,
+                command.SqlServerId,
+                command.Message,
+                "sqlmonitor",
+                "login_failed",
+                command.Message
+            ));
 
             _logger.LogError($"DbWorkerOperationRejected: {command.Id}, {command.Message}");
 
