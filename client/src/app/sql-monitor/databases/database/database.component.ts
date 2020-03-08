@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DatabaseBadge } from 'src/app/_models/database-badge';
 
 @Component({
   selector: 'app-database',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./database.component.scss']
 })
 export class DatabaseComponent implements OnInit {
+
+@Input() databaseBadge: DatabaseBadge;
 
   constructor() { }
 

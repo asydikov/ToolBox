@@ -6,6 +6,7 @@ import { SqlServerConnection } from '../_models/sql-server-connection';
 import { SqlServer } from '../_models/sql-server';
 import { SqlServerBadge } from '../_models/sql-server-badge';
 import { TimeConsumingQueries } from '../_models/time-consuming-queries';
+import { DatabaseBadge } from '../_models/database-badge';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,9 @@ export class SqlServerService {
 
   getTimeConsumingQueries(serverId: string){
     return this.http.post<TimeConsumingQueries[]>(`${environment.apiUrl}/${environment.sqlmonitoryService}/time-consuming-queries`, {id: serverId})
+  }
+
+  getServerDatabases(serverId: string){
+    return this.http.post<DatabaseBadge[]>(`${environment.apiUrl}/${environment.sqlmonitoryService}/server-databases`, {id: serverId})
   }
 }

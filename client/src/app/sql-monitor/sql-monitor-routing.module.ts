@@ -11,7 +11,7 @@ const routes: Routes = [
  
   { path: '' , component: DashboardComponent,data: { title: 'Dashboard' }},
   { path: 'servers/add', component: ServerComponent, data: { title: 'Monitored Servers' }},
-  { path: 'server/databases', component: DatabasesComponent, data: { title: 'Monitored Databases' }},
+  { path: 'server/databases/:serverId', component: DatabasesComponent, data: { title: 'Monitored Databases' }},
   { path: 'database', component: DatabaseComponent, data: { title: 'Monitored Database' }},
   { path: 'server', component: ServerBadgeComponent, data: { title: 'Monitored Server' }},
   { path: 'server/queries/:serverId', component: QueriesComponent, data: { title: 'Time consuming queries' }},
