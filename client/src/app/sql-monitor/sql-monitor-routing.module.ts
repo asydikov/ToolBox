@@ -2,15 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ServerComponent } from './server/server.component';
-import { DatabaseComponent } from './database/database.component';
 import { ServerBadgeComponent } from './server/server-badge/server-badge.component';
-
+import { DatabasesComponent } from './databases/databases.component';
+import { DatabaseComponent } from './databases/database/database.component';
 
 const routes: Routes = [
  
   { path: '' , component: DashboardComponent,data: { title: 'Dashboard' }},
   { path: 'servers/add', component: ServerComponent, data: { title: 'Monitored Servers' }},
-  { path: 'database', component: DatabaseComponent, data: { title: 'Monitored Servers' }},
+  { path: 'databases', component: DatabasesComponent, data: { title: 'Monitored Databases' }},
+  { path: 'database', component: DatabaseComponent, data: { title: 'Monitored Database' }},
   { path: 'server', component: ServerBadgeComponent, data: { title: 'Monitored Server' }},
 ];
 

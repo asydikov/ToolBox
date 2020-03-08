@@ -1,6 +1,6 @@
 <nav id="sidebar" *ngIf="currentUser">
   
-  <div class="img bg-wrap text-center py-4" style="background-image: url(images/bg_1.jpg);">
+  <div class="img bg-wrap text-center py-4">
       <div class="user-logo">
         <i class="fa fa-database fa-5x mb-3" style="color:red"></i>
           <h2 class="text-monospace" style="color: white;">ToolBox</h2>
@@ -12,20 +12,10 @@
 </li>
 <li>
   <a [routerLink]="'dashboard/servers/add'">
-    <span class="fa fa-download mr-3 notif">
-      <small class="d-flex align-items-center justify-content-center">5</small>
+    <span class="fa  fa-server mr-3 notif">
     </span> Add Server</a>
 </li>
 <li>
-<!-- <a href="#"><span class="fa fa-gift mr-3"></span> Alerts</a>
-</li>
-<li>
-<a href="#"><span class="fa fa-trophy mr-3"></span> Top Queries</a>
-</li>
-<li>
-<a href="#"><span class="fa fa-cog mr-3"></span> Settings</a>
-</li> -->
-
 <li >
 <a [routerLink]="" (click)="logout()"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
 </li>

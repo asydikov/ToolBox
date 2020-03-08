@@ -7,6 +7,7 @@ import { User } from '../_models/User';
 import { environment } from 'src/environments/environment';
 import { JsonWebToken } from '../_models/json-web-token';
 import { RefreshToken } from '../_models/refresh-token';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class IdentityService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,  private router: Router,) {
     this.currentUserSubject = new BehaviorSubject<User>(this.userFromLocalStorage);
     this.currentUser = this.currentUserSubject.asObservable();
    }
@@ -74,6 +75,7 @@ private get userTokenFromLocalStorage():JsonWebToken{
 logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('userToken');
+    this.router.navigate(['login']);
     this.currentUserSubject.next(null);
 }
 

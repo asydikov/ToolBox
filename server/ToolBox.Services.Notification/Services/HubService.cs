@@ -43,6 +43,7 @@ namespace ToolBox.Services.Notification.Services
                 new
                 {
                     id = @event.Id,
+                    serverId = @event.ServerId,
                     name = @event.Name,
                     resource = @event.Resource,
                     code = @event.Code,

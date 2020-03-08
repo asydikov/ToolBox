@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute, Route } from '@angular/router';
 import { filter,map, mergeMap } from 'rxjs/operators';
 import { User } from '../_models/User';
 import { IdentityService } from '../_services/identity.service';
@@ -19,6 +19,7 @@ currentUser: User;
     }
 
   ngOnInit(): void {
+ //   this.title = this.route.data['title'];
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       map(() => this.activatedRoute),

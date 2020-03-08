@@ -8,7 +8,7 @@ export class ClickStopPropagation
     @HostListener("click", ["$event"])
     public onClick(event: any): void
     {
-        event.stopPropagation();
-       event.preventDefault();
+    //     event.stopPropagation();
+    //    event.preventDefault();
     }
 }
