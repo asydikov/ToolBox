@@ -1,23 +1,24 @@
 
-    <div class="card border-primary mb-3 ml-4 mr-4" style="max-width: 18rem; min-height:360px;">
+    <div  [ngClass]="{'server-connection-lost': !server.isAlive }" class="card border-primary mb-3 ml-4 mr-4 sever-badge-container" style="max-width: 18rem; min-height:360px;">
         <div class="card-header bg-transparent border-primary">
             <i class="fa fa-server fa-2x mr-2" style="color: gray;" aria-hidden="true"></i>
             <h5 class="font-weight-bold" style="display: contents;">{{server.name}}</h5>
+            <p class="text-monospace font-weight-bold color-gray font-weight-normal mb-0">
+                Connected users  {{server.connectedUsers}}</p>
         </div>
         <div class="card-body">
           <p class="text-monospace font-weight-bold font-weight-normal"><span class="color-gray">Address:</span> {{server.serverAddress}}</p>
-          <p class="text-monospace font-weight-bold font-weight-normal"><span class="color-gray">Page Reads Count:</span> {{server.pageReadsCount}}</p>
+          <p class="text-monospace font-weight-bold font-weight-normal"><span class="color-gray">Page reads/sec:</span> {{server.pageReadsCount}}</p>
           <p class="text-monospace font-weight-bold font-weight-normal"><span class="color-gray">Page Lifetime:</span> {{server.pageLifetime}}</p>
           <p class="text-monospace font-weight-bold color-gray font-weight-normal mb-0">{{server.description}}</p>
-          <p class="text-monospace font-weight-bold color-gray font-weight-normal mb-0">
-            Connected users  {{server.connectedUsers}}</p>
+        
         </div>
         
         <div class="card-footer bg-transparent border-primary">
             <button class="btn btn-danger mb-3 col-sm-12">
                 Time Consuming Queries
             </button> 
-            <button class="btn btn-success col-sm-12">
+            <button class="btn btn-success col-sm-12" (click)="goToDatabases()">
                 Databases
             </button> 
         </div>

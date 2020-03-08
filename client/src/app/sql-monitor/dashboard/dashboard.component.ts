@@ -12,8 +12,8 @@ import { SqlServerBadge } from 'src/app/_models/sql-server-badge';
 export class DashboardComponent implements OnInit {
 
   sqlServerBadges: SqlServerBadge[];
-
-  constructor(private notificationService: NotificationService, private sqlService:SqlServerService,  private router: Router) {
+  constructor(private notificationService: NotificationService, private sqlService:SqlServerService, 
+     private router: Router) {
    }
 
   ngOnInit(): void {
@@ -22,12 +22,14 @@ export class DashboardComponent implements OnInit {
     });
     this.userConnectionsEvent();
     this.serverMemoryUsageEvent();
+    this.serverUnreachableEvent();
   }
 
  userConnectionsEvent(){
    this.notificationService.connectedUsersReceived.subscribe(data=>{
     let server = this.sqlServerBadges.find(x=>x.serverId == data['serverId']);
     server.connectedUsers = data['data'].length;
+    server.isAlive = true;
    });
  }
 
@@ -36,6 +38,17 @@ export class DashboardComponent implements OnInit {
  let server = this.sqlServerBadges.find(x=>x.serverId == data['serverId']);
  server.pageReadsCount=data['data'].pageReadsCount;
  server.pageLifetime = data['data'].pageLifetime;
+ server.isAlive = true;
+  });
+}
+
+serverUnreachableEvent(){
+  this.notificationService.serverUnreachableReceived.subscribe(data=>{
+    let server = this.sqlServerBadges.find(x=>x.serverId == data['serverId']);
+    if(server){
+      server.isAlive = false;
+    }
+    
   });
 }
 }

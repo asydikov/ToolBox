@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SqlServerBadge } from 'src/app/_models/sql-server-badge';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-server-badge',
@@ -9,11 +10,12 @@ import { SqlServerBadge } from 'src/app/_models/sql-server-badge';
 export class ServerBadgeComponent implements OnInit {
 
   @Input() server: SqlServerBadge;
-  @Input()pageReadsCounts:number;
-  @Input()pageLifetime:number;
-  constructor() { }
+  constructor( private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  goToDatabases(){
+    this.router.navigate(['dashboard/databases'] );
+  }
 }

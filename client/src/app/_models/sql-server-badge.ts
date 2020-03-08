@@ -7,4 +7,5 @@ export class SqlServerBadge{
      requestCount :number;
      pageLifetime :number;
      connectedUsers:number;
+     isAlive:boolean = true;
 }

@@ -10,6 +10,7 @@ export class NotificationService {
   messageReceived = new EventEmitter<any>();  
   connectedUsersReceived = new EventEmitter<any>();  
   serverMemoryUsageReceived= new EventEmitter<any>();  
+  serverUnreachableReceived= new EventEmitter<any>();  
   connectionEstablished = new EventEmitter<Boolean>();  
   
   private connectionIsEstablished = false;  
@@ -54,6 +55,7 @@ export class NotificationService {
   // this.operationCompletedEvent();
    this.serverMemoryUsageEvent();
    this.connectedUsersEvent();
+   this.errorEvent();
    //this.databaseSpaceEvent();
   };
 
@@ -83,9 +85,12 @@ export class NotificationService {
     });
   }  
   
-
-  // this._hubConnection.on('operation_rejected', (operation) => {
-  //     appendMessage('Operation rejected.', "danger", operation);
-  // });
-  //}  
+private errorEvent(){
+  this._hubConnection.on('operation_rejected', (operation) => {
+    if(operation['code'] && operation['code']=='login_failed'){
+      this.serverUnreachableReceived.emit(operation);
+    }
+});
+}  
 }
+
