@@ -1,44 +1,65 @@
-<div>{{databaseBadge.name}}</div>
-
-<div  [ngClass]="{'server-connection-lost': !server.isAlive }" class="card border-primary mb-3 ml-4 mr-4 sever-badge-container" style="max-width: 18rem; min-height:422px;">
-        <div [ngClass]="{'server-connection-lost': !server.isAlive }" class="card-header bg-transparent border-primary">
-            <div class="row">
-                <div class="col-sm-3 mr-4 d-flex align-items-center">
-                <i class="fa fa-server fa-2x mr-2 " style="color: gray;" aria-hidden="true"></i>
+<div [ngClass]="{'databaseBadge-connection-lost': !databaseBadge.isAlive }"
+    class="card border-primary mb-3 sever-badge-container">
+    <div [ngClass]="{'databaseBadge-connection-lost': !databaseBadge.isAlive }"
+        class="card-header bg-transparent border-primary">
+        <div class="row">
+            <div class="mr-4 d-flex align-items-center">
+                <i class="fa fa-database fa-2x mr-2 ml-3" style="color: #007bff;" aria-hidden="true"></i>
+            </div>
+            <div class="sol-sm-9">
+                <div class="row">
+                    <h5 class="font-weight-bold" style="display: contents;">{{databaseBadge.name}}</h5>
                 </div>
-               <div class="sol-sm-9">
-                   <div class="row"> <h5 class="font-weight-bold" style="display: contents;">{{server.name}}</h5></div>
-                   <div class="row"> <small>{{server.serverAddress}}</small></div>
-               </div>
+                <!-- <div class="row"> <small>{{databaseBadge.serverAddress}}</small></div> -->
             </div>
         </div>
-        <div class="card-body">
-          <p *ngIf="server.isAlive" class="d-flex justify-content-between align-items-center">
-              Server status: 
-               <span  class="badge badge-success" style="font-size: 17px;">Connected</span>
-            </p>
-            <p *ngIf="!server.isAlive" class="d-flex justify-content-between align-items-center">
-                 <span *ngIf="!server.isAlive" class="badge badge-warning" style="font-size: 17px; width: 100%;">Connecting</span>
-              </p>
-            <div [ngClass]="{'connection': !server.isAlive }">
-          <p class="d-flex justify-content-between align-items-center"><span class="">Page reads/sec:  </span> <span class="color-gray text-monospace badge-indicator">{{server.pageReadsCount}}</span></p>
-          <p class="d-flex justify-content-between align-items-center"><span class="">Page Lifetime:  </span> <span class="color-gray text-monospace badge-indicator">{{server.pageLifetime}}</span></p>
-          <p class="d-flex justify-content-between align-items-center"> Connected users:  <span class="color-gray text-monospace badge-indicator">{{server.connectedUsers}}</span></p>
-          <p class="mb-0 font-weight-bold">{{server.description}}</p>
+    </div>
+    <div class="card-body">
+        <p *ngIf="databaseBadge.isAlive" class="d-flex justify-content-between align-items-center">
+            databaseBadge status:
+            <span class="badge badge-success" style="font-size: 17px;">Connected</span>
+        </p>
+        <p *ngIf="!databaseBadge.isAlive" class="d-flex justify-content-between align-items-center">
+            <span *ngIf="!databaseBadge.isAlive" class="badge badge-warning"
+                style="font-size: 17px; width: 100%;">Connecting</span>
+        </p>
+        <div [ngClass]="{'connection': !databaseBadge.isAlive }">
+            <div class="row" style="margin-right: 0; margin-left: 0px;">
+                <div class="col-lg-12 text-center mb-2"  style="background-color: lightgray; border-radius: 5px; font-weight: bold; font-size: 18px;">
+                    Backups
+                </div>
+                <div class="col-lg-12 d-flex justify-content-between align-items-center">
+                    <div class="col-lg-4 text-center">Full</div>
+                    <div class="col-lg-4 text-center">Differential</div>
+                    <div class="col-lg-4 text-center">Transaction</div>
+                    <!-- <div class="col-lg-3">Recovery</div> -->
+                </div>
+                <div class="col-lg-12 d-flex justify-content-between mb-2 mt-2 align-items-center">
+                    <div class="col-lg-4 value-size text-center color-gray text-monospace connection-lost">{{databaseBadge.fullBackupTime  | customDate}}
+                    </div>
+                    <div class="col-lg-4 value-size text-center color-gray text-monospace connection-lost">
+                        {{databaseBadge.differentialBackupTime | customDate}}</div>
+                    <div class="col-lg-4 value-size text-center color-gray text-monospace connection-lost">
+                        {{databaseBadge.transactionLogBackupTime | customDate}}</div>
+                    <!-- <div class="col-lg-3 color-gray text-monospace connection-lost">{{databaseBadge.recoveryModel}}</div> -->
+                </div>
+            
+            <div class="col-lg-12 text-center mb-2"  style="background-color: lightgray; border-radius: 5px; font-weight: bold; font-size: 18px;">
+                Space
+            </div>
+            <div class="col-lg-12  d-flex justify-content-between align-items-center">
+                <div class="col-lg-4  text-center">Used</div>
+                <div class="col-lg-4  text-center">Free</div>
+            </div>
+            <div class="col-lg-12  d-flex justify-content-between align-items-center">
+                <div class="col-lg-4 text-center color-gray text-monospace">
+                    <span class="db-space-value-size text-center">{{databaseBadge.space}}</span>  {{databaseBadge.unit}}
+                </div>
+                <div class="col-lg-4  text-center color-gray text-monospace connection-lost">
+                    <span class="db-space-value-size text-center">{{databaseBadge.unallocatedSpace}}</span>  {{databaseBadge.unit}}
+                </div>
+            </div>
+            </div>
         </div>
-        </div>
-        <div class="card-footer" [ngClass]="{'connection': !server.isAlive }">
-            <button [disabled]="!server.isAlive" class="btn btn-danger col-sm-6" (click)=goToQueries()>
-                Slow Queries
-            </button> 
-            <button [disabled]="!server.isAlive" class="btn btn-success ml-3 col-sm-5" (click)="goToDatabases()">
-                Databases
-            </button> 
-        </div>
-      </div>
-
-
-
-
-
-  
+    </div>
+</div>
