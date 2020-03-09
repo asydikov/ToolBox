@@ -1,5 +1,5 @@
 
-    <div  [ngClass]="{'server-connection-lost': !server.isAlive }" class="card border-primary mb-3 ml-4 mr-4 sever-badge-container" style="max-width: 18rem; min-height:160px;">
+    <div  [ngClass]="{'server-connection-lost': !server.isAlive }" class="card border-primary mb-3 ml-4 mr-4 sever-badge-container" style="max-width: 18rem; min-height:422px;">
         <div class="card-header bg-transparent border-primary">
             <div class="row">
                 <div class="col-sm-3 mr-4 d-flex align-items-center">
@@ -15,17 +15,21 @@
           
         </div>
         <div class="card-body">
-            <p class="text-muted">Server status:  <span class="badge badge-success">Connected</span></p>
-          <p class="text-monospace font-weight-bold font-weight-normal"><span class="color-gray">Page reads/sec:</span> {{server.pageReadsCount}}</p>
-          <p class="text-monospace font-weight-bold font-weight-normal"><span class="color-gray">Page Lifetime:</span> {{server.pageLifetime}}</p>
-          <p class="text-monospace font-weight-bold color-gray font-weight-normal mb-0"> Connected users:  {{server.connectedUsers}}</p>
-          <p class="text-monospace font-weight-bold color-gray font-weight-normal mb-0">{{server.description}}</p>
+          <p class="d-flex justify-content-between align-items-center">
+              Server status: 
+               <span *ngIf="server.isAlive" class="badge badge-success" style="font-size: 17px;">Connected</span>
+               <span *ngIf="!server.isAlive" class="badge badge-danger" style="font-size: 17px;">Disconnected</span>
+            </p>
+          <p class="d-flex justify-content-between align-items-center"><span class="">Page reads/sec:  </span> <span class="color-gray text-monospace badge-indicator">{{server.pageReadsCount}}</span></p>
+          <p class="d-flex justify-content-between align-items-center"><span class="">Page Lifetime:  </span> <span class="color-gray text-monospace badge-indicator">{{server.pageLifetime}}</span></p>
+          <p class="d-flex justify-content-between align-items-center"> Connected users:  <span class="color-gray text-monospace badge-indicator">{{server.connectedUsers}}</span></p>
+          <p class="mb-0"><small>{{server.description}}</small></p>
         </div>
         <div class="card-footer">
-            <button class="btn btn-outline-danger  col-sm-6" (click)=goToQueries()>
+            <button [disabled]="!server.isAlive" class="btn btn-danger col-sm-6" (click)=goToQueries()>
                 Slow Queries
             </button> 
-            <button class="btn btn-outline-success col-sm-6" (click)="goToDatabases()">
+            <button [disabled]="!server.isAlive" class="btn btn-success ml-3 col-sm-5" (click)="goToDatabases()">
                 Databases
             </button> 
         </div>

@@ -3,9 +3,9 @@ export class SqlServerBadge{
      name:string;
      serverAddress:string; 
      description :string;
-     pageReadsCount :number;
-     requestCount :number;
-     pageLifetime :number;
-     connectedUsers:number;
+     pageReadsCount :number = 0;
+     requestCount :number = 0;
+     pageLifetime :number = 0;
+     connectedUsers:number = 0;
      isAlive:boolean = true;
 }
