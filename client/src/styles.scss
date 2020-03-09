@@ -15,3 +15,16 @@ body{
 .color-gray{
     color: gray;
 }
+
+.connection-lost{
+    border-color: red!important;
+}
+
+.connection{
+    // filter: blur(8px);
+    // -webkit-filter: blur(8px);
+}
+
+.badge-indicator{
+    font-size: 30px;
+}
