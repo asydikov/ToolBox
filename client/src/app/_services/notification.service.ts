@@ -12,16 +12,18 @@ export class NotificationService {
   serverMemoryUsageReceived = new EventEmitter<any>();
   serverUnreachableReceived = new EventEmitter<any>();
   databaseSpaceReceived = new EventEmitter<any>();
-//sql-server-added
+  serverAddedReceived = new EventEmitter<any>();
+  //sql-server-added
   connectionEstablished = new EventEmitter<Boolean>();
 
-  private connectionIsEstablished = false;
+  private IsconnectionEstablished = false;
   private _hubConnection: HubConnection;
 
   constructor(private identityService: IdentityService) {
     this.createConnection();
     this.registerOnServerEvents();
-    this.startConnection();
+    if (!this.IsconnectionEstablished)
+      this.startConnection();
     identityService.currentUser.subscribe(user => {
       if (!user)
         this.endConnection();
@@ -39,6 +41,7 @@ export class NotificationService {
 
   private endConnection() {
     this._hubConnection.stop();
+    this.IsconnectionEstablished = false;
   }
 
   private startConnection(): void {
@@ -46,7 +49,7 @@ export class NotificationService {
       .start()
       .then(() => {
         this._hubConnection.invoke('initializeAsync', this.identityService.accesTokenFromLocalStorage);
-        this.connectionIsEstablished = true;
+        this.IsconnectionEstablished = true;
         console.log('Hub connection started');
         this.connectionEstablished.emit(true);
       })
@@ -57,7 +60,7 @@ export class NotificationService {
   }
 
   private registerOnServerEvents(): void {
-    // this.operationCompletedEvent();
+    this.operationCompletedEvent();
     this.serverMemoryUsageEvent();
     this.connectedUsersEvent();
     this.errorEvent();
@@ -66,7 +69,8 @@ export class NotificationService {
 
   private operationCompletedEvent(): void {
     this._hubConnection.on('operation_completed', (operation) => {
-      console.log(operation);
+      if (operation['name'] === 'sql-server-added')
+        this.serverAddedReceived.emit(operation);
       this.messageReceived.emit(operation);
     });
   }

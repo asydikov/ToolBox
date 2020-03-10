@@ -11,11 +11,11 @@ import { SqlServerBadge } from 'src/app/_models/sql-server-badge';
 })
 export class DashboardComponent implements OnInit {
   sqlServerBadges: SqlServerBadge[];
-  constructor(private notificationService: NotificationService, private sqlService:SqlServerService) {
-   }
+  constructor(private notificationService: NotificationService, private sqlService: SqlServerService) {
+  }
 
   ngOnInit(): void {
-    this.sqlService.getDashboard().subscribe(data=>{
+    this.sqlService.getDashboard().subscribe(data => {
       this.sqlServerBadges = data;
     });
     this.userConnectionsEvent();
@@ -23,30 +23,36 @@ export class DashboardComponent implements OnInit {
     this.serverUnreachableEvent();
   }
 
- userConnectionsEvent(){
-   this.notificationService.connectedUsersReceived.subscribe(data=>{
-    let server = this.sqlServerBadges.find(x=>x.serverId == data['serverId']);
-    server.connectedUsers = data['data'].length;
-    server.isAlive = true;
-   });
- }
+  userConnectionsEvent() {
+    this.notificationService.connectedUsersReceived.subscribe(data => {
+      if(!this.sqlServerBadges)
+        return;
+      let server = this.sqlServerBadges.find(x => x.serverId == data['serverId']);
+      if (server == undefined || server.connectedUsers == undefined)
+          return;
+      server.connectedUsers = data['data'].length ?? 0;
+      server.isAlive = true;
+    });
+  }
 
- serverMemoryUsageEvent(){
-  this.notificationService.serverMemoryUsageReceived.subscribe(data=>{
- let server = this.sqlServerBadges.find(x=>x.serverId == data['serverId']);
- server.pageReadsCount=data['data'].pageReadsCount;
- server.pageLifetime = data['data'].pageLifetime;
- server.isAlive = true;
-  });
-}
+  serverMemoryUsageEvent() {
+    this.notificationService.serverMemoryUsageReceived.subscribe(data => {
+      let server = this.sqlServerBadges.find(x => x.serverId == data['serverId']);
+      if (server == undefined || server.pageReadsCount== undefined)
+          return;
+      server.pageReadsCount = data['data']?.pageReadsCount ?? 0;
+      server.pageLifetime = data['data']?.pageLifetime ?? 0;
+      server.isAlive = true;
+    });
+  }
 
-serverUnreachableEvent(){
-  this.notificationService.serverUnreachableReceived.subscribe(data=>{
-    let server = this.sqlServerBadges.find(x=>x.serverId == data['serverId']);
-    if(server){
-      server.isAlive = false;
-    }
-    
-  });
-}
+  serverUnreachableEvent() {
+    this.notificationService.serverUnreachableReceived.subscribe(data => {
+      let server = this.sqlServerBadges.find(x => x.serverId == data['serverId']);
+      if (server) {
+        server.isAlive = false;
+      }
+
+    });
+  }
 }

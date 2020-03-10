@@ -14,7 +14,7 @@ namespace ToolBox.Services.Notification.Handlers
         private readonly ILogger _logger;
         public OperationRejectedHandler(
          IHubService hubService,
-         ILogger<OperationCompletedHandler> logger)
+         ILogger<OperationRejectedHandler> logger)
         {
             _hubService = hubService;
             _logger = logger;

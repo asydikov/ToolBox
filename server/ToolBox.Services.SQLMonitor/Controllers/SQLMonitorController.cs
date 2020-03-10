@@ -71,22 +71,21 @@ namespace ToolBox.Services.DBWorker.Controllers
             var memoryUsageMetrics = await _memoryUsageMetricsService.GetAllAsync(x => servers.Select(s => s.Id).Contains(x.ServerId));
             var result = new List<SqlServerBadge>();
 
-            foreach (var server in servers)
+            foreach (var server in servers.OrderBy(x=>x.CreatedDate))
             {
                 var memoryUsageMetric = memoryUsageMetrics.LastOrDefault(x => x.ServerId == server.Id);
-                if (memoryUsageMetric == null)
-                {
-                    continue;
-                }
+              
                 var serverBadge = new SqlServerBadge
                 {
                     ServerId = server.Id,
                     Name = server.Name,
-                    PageLifetime = memoryUsageMetric.PageLifetime,
-                    PageReadsCounts = memoryUsageMetric.PageReadsCount,
-                    RequestCount = memoryUsageMetric.RequestsCount,
+                    PageLifetime = memoryUsageMetric?.PageLifetime??0,
+                    PageReadsCount = memoryUsageMetric?.PageReadsCount??0,
+                    RequestCount = memoryUsageMetric?.RequestsCount??0,
                     Description = server.Description,
                     ServerAddress = $"{server.Host}: {server.Port}",
+                    ConnectedUsers = 0,
+                    IsAlive = true
                 };
 
                 result.Add(serverBadge);

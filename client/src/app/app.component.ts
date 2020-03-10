@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IdentityService } from './_services/identity.service';
 import { User } from './_models/User';
+import { NotificationService } from './_services/notification.service';
 
 @Component({
   selector: 'app-root',

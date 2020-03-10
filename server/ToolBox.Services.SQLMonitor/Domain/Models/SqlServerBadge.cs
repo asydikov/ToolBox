@@ -11,11 +11,10 @@ namespace ToolBox.Services.SQLMonitor.Domain.Models
         public string Name { get; set; }
         public string ServerAddress { get; set; }
         public string Description { get; set; }
-        public double PageReadsCounts { get; set; }
+        public double PageReadsCount { get; set; }
         public double RequestCount { get; set; }
         public double PageLifetime { get; set; }
-        public bool IsAlive = true;
-
-        public int ConnectedUsers = 0;
+        public bool IsAlive { get; set; }
+        public int ConnectedUsers { get; set; }
     }
 }

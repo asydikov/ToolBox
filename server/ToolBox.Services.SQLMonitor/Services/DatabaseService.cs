@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ToolBox.Services.SQLMonitor.Domain.Models;
@@ -12,8 +10,10 @@ namespace ToolBox.Services.SQLMonitor.Services
 {
     public class DatabaseService : ServiceBase<DatabaseModel, Database>, IDatabaseService
     {
-        public DatabaseService(IRepositoryBase<Database> repository, IMapper mapper) : base(repository, mapper)
+
+        public DatabaseService(IRepositoryBase<Database> repository,  IMapper mapper) : base(repository, mapper)
         {
+           
         }
 
         public async Task AddDatabases(DbWorkerOperationCompleted command)
@@ -26,6 +26,8 @@ namespace ToolBox.Services.SQLMonitor.Services
             new Database { Name = x.DatabaseName, ServerId = command.SqlServerId }).ToList();
 
             await _repository.AddRangeAsync(databases);
+
+           
         }
     }
 }

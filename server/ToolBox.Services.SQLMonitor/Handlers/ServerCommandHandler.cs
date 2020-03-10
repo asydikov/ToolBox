@@ -23,7 +23,7 @@ namespace ToolBox.Services.SQLMonitor.Handlers
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
 
-        public ServerCommandHandler(IBusClient busClient, 
+        public ServerCommandHandler(IBusClient busClient,
             IServerService serverService,
             IDatabaseService databaseService,
             IMapper mapper,
@@ -69,8 +69,8 @@ namespace ToolBox.Services.SQLMonitor.Handlers
                     "sqlmonitor-service"
                 ));
 
-                // check connection to a server
                 await _busClient.PublishAsync(new OperationCompleted(command.Id, command.UserId, "sql-server-added", result.ToString()));
+
             }
             catch (Exception ex)
             {
