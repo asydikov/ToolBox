@@ -3,10 +3,10 @@
         <div [ngClass]="{'connection-lost': !server.isAlive }" class="card-header bg-transparent border-primary">
             <div class="row">
                 <div class="col-sm-3 mr-4 d-flex align-items-center">
-                <i class="fa fa-server fa-2x mr-2 " style="color: gray;" aria-hidden="true"></i>
+                <i class="fa fa-server fa-2x mr-2 online" [ngClass]="{'offline': !server.isAlive }" aria-hidden="true"></i>
                 </div>
                <div class="sol-sm-9">
-                   <div class="row"> <h5 class="font-weight-bold" style="display: contents;">{{server.name}}</h5></div>
+                   <div class="row"> <h5 class="font-weight-bold online" [ngClass]="{'offline': !server.isAlive }" style="display: contents;">{{server.name}}</h5></div>
                    <div class="row"> <small>{{server.serverAddress}}</small></div>
                </div>
             </div>
