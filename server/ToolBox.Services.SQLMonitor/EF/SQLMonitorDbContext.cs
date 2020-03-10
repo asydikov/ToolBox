@@ -26,7 +26,6 @@ namespace ToolBox.Services.SQLMonitor.EF
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.EnableSensitiveDataLogging();
             optionsBuilder.UseSqlServer(_sqlSettings.Value.ConnectionString);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

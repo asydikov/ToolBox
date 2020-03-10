@@ -17,14 +17,11 @@ namespace ToolBox.Services.Identity.EF
         {
             _sqlSettings = sqlSettings;
             _serviceProvider = serviceProvider;
-            //https://github.com/Microsoft/mssql-docker/issues/360
-            //  Database.EnsureCreatedAsync();
         }
         public DbSet<User> Users { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.EnableSensitiveDataLogging();
             optionsBuilder.UseSqlServer(_sqlSettings.Value.ConnectionString);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
