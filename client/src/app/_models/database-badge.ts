@@ -8,5 +8,5 @@ export class DatabaseBadge{
          space:number;
          unallocatedSpace:number;
          unit :string;
-         isAlive:boolean;
+         isAlive:boolean = true;
 }

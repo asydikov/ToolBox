@@ -25,6 +25,7 @@ export class DatabasesComponent implements OnInit {
   getServerDatabases(serverId: string) {
     this.sqlService.getServerDatabases(serverId).subscribe(data => {
       this.databaseBadges = data;
+      this.databaseBadges.forEach(x=>x.isAlive = true);
       this.databaseSpaceUsageEvent();
     });
   }
