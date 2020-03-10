@@ -12,7 +12,7 @@ namespace ToolBox.Services.Identity.EF
     {
         public static void Seed(this ModelBuilder modelBuilder, IServiceProvider services)
         {
-            var user = new User(Guid.Parse("d2b248e2-07a5-4d2c-b4d4-d933a84ee5f6"), "test@test.com", "Bart Simpson");
+            var user = new User(Guid.Parse("d2b248e2-07a5-4d2c-b4d4-d933a84ee5f6"), "test@test.com", "User");
             PasswordGenerate(services, user);
             modelBuilder.Entity<User>().HasData(user);
         }
