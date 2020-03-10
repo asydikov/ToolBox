@@ -26,8 +26,15 @@ namespace ToolBox.Services.Notification.Handlers
 
         public async Task HandleAsync(OperationCompleted @event)
         {
-            _logger.LogInformation($"Notification is sending to user -> {@event.UserId}");
-            await _hubService.PublishOperationCompletedAsync(@event);
+            _logger.LogInformation($"Processing event: {@event.Id}");
+            try
+            {
+                await _hubService.PublishOperationCompletedAsync(@event);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(@event.Id.ToString(), ex.Message);
+            }
         }
     }
 }

@@ -1,10 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
-using RawRabbit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
-using ToolBox.Common.Commands;
+using Microsoft.Extensions.Logging;
 using ToolBox.Common.Events;
 using ToolBox.Services.Notification.Messages.Events;
 using ToolBox.Services.Notification.Services;
@@ -26,7 +22,15 @@ namespace ToolBox.Services.Notification.Handlers
 
         public async Task HandleAsync(UserSessionMetrics @event)
         {
-            await _hubService.PublishUserSessionMetricsAsync(@event);
+            _logger.LogInformation($"Processing event: {@event.Id}");
+            try
+            {
+                await _hubService.PublishUserSessionMetricsAsync(@event);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(@event.Id.ToString(), ex.Message);
+            }
         }
     }
 }

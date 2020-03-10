@@ -33,9 +33,6 @@ namespace ToolBox.Services.SQLMonitor.Handlers.DbWorker
                 "login_failed",
                 command.Message
             ));
-
-            _logger.LogError($"DbWorkerOperationRejected: {command.Id}, {command.Message}");
-
         }
     }
 }

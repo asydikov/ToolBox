@@ -26,7 +26,16 @@ namespace ToolBox.Services.Notification.Handlers
 
         public async Task HandleAsync(DatabaseSpaceMetricsEvent @event)
         {
-            await _hubService.PublishDatabaseSpaceMetricsEventAsync(@event);
+            _logger.LogInformation($"Processing event: {@event.Id}");
+
+            try
+            {
+                await _hubService.PublishDatabaseSpaceMetricsEventAsync(@event);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(@event.Id.ToString(), ex.Message);
+            }
         }
     }
 }

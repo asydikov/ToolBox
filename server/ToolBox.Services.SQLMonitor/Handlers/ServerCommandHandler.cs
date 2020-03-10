@@ -38,35 +38,44 @@ namespace ToolBox.Services.SQLMonitor.Handlers
 
         public async Task HandleAsync(ServerCommand command)
         {
-            var result = await _serverService.AddServerWithSchedule(new ServerModel
+            _logger.LogInformation($"Processing: {command.Id}");
+
+            try
             {
-                UserId = command.UserId,
-                Name = command.Name,
-                Host = command.Host,
-                Port = command.Port,
-                Login = command.Login,
-                Password = command.Password,
-                Description = command.Description
-            });
+                var result = await _serverService.AddServerWithSchedule(new ServerModel
+                {
+                    UserId = command.UserId,
+                    Name = command.Name,
+                    Host = command.Host,
+                    Port = command.Port,
+                    Login = command.Login,
+                    Password = command.Password,
+                    Description = command.Description
+                });
 
-            // command to add databases
-            await _busClient.PublishAsync(new SqlStoredProcedureQuery(Guid.NewGuid(),
-                                                                     command.UserId,
-                                                                     "sp_databases",
-                                                                     null,
-                                                                     command.Host,
-                                                                     command.Port,
-                                                                     command.Login,
-                                                                     command.Password,
-                                                                     null,
-                                                                     (int)SqlQueryNames.DatabaseNames,
-                                                                     result,
-                                                                     Guid.Empty,
-                                                                     "sqlmonitor-service"
-                                                                      ));
+                // command to add databases
+                await _busClient.PublishAsync(new SqlStoredProcedureQuery(Guid.NewGuid(),
+                    command.UserId,
+                    "sp_databases",
+                    null,
+                    command.Host,
+                    command.Port,
+                    command.Login,
+                    command.Password,
+                    null,
+                    (int)SqlQueryNames.DatabaseNames,
+                    result,
+                    Guid.Empty,
+                    "sqlmonitor-service"
+                ));
 
-            // check connection to a server
-           // await _busClient.PublishAsync(new OperationCompleted(command.Id, command.UserId, "sql-monitor", result.ToString()));
+                // check connection to a server
+                await _busClient.PublishAsync(new OperationCompleted(command.Id, command.UserId, "sql-server-added", result.ToString()));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(command.Id.ToString(), ex.Message);
+            }
         }
     }
 }

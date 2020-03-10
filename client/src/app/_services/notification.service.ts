@@ -12,7 +12,7 @@ export class NotificationService {
   serverMemoryUsageReceived = new EventEmitter<any>();
   serverUnreachableReceived = new EventEmitter<any>();
   databaseSpaceReceived = new EventEmitter<any>();
-
+//sql-server-added
   connectionEstablished = new EventEmitter<Boolean>();
 
   private connectionIsEstablished = false;

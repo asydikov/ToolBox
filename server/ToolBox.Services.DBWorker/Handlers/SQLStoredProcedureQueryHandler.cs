@@ -30,7 +30,7 @@ namespace ToolBox.Services.DBWorker.Handlers
         }
         public async Task HandleAsync(SqlStoredProcedureQuery command)
         {
-            _logger.LogInformation($"DB worker stored procedure handler: {command.SqlQueryName}");
+            _logger.LogInformation($"Processing: {command.Id}");
 
             try
             {
@@ -46,7 +46,7 @@ namespace ToolBox.Services.DBWorker.Handlers
                 await _busClient.PublishAsync(new DbWorkerOperationRejected(command.Id, command.UserId, command.SqlServerId,
                       command.DatabaseId, "sql stored procedure call", "dbworker-service", "error", ex.Message));
 
-                _logger.LogError(ex.Message);
+                _logger.LogError(command.Id.ToString(), ex.Message);
             }
 
         }
