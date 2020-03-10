@@ -1,5 +1,5 @@
 export class DatabaseBadge{
-     id:string;
+         id:string;
          name:string;
          fullBackupTime:Date;
          differentialBackupTime:Date;
@@ -8,5 +8,5 @@ export class DatabaseBadge{
          space:number;
          unallocatedSpace:number;
          unit :string;
-         isAlive:false;
+         isAlive:boolean;
 }

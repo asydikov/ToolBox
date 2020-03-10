@@ -11,6 +11,8 @@ export class NotificationService {
   connectedUsersReceived = new EventEmitter<any>();
   serverMemoryUsageReceived = new EventEmitter<any>();
   serverUnreachableReceived = new EventEmitter<any>();
+  databaseSpaceReceived = new EventEmitter<any>();
+
   connectionEstablished = new EventEmitter<Boolean>();
 
   private connectionIsEstablished = false;
@@ -59,7 +61,7 @@ export class NotificationService {
     this.serverMemoryUsageEvent();
     this.connectedUsersEvent();
     this.errorEvent();
-    //this.databaseSpaceEvent();
+    this.databaseSpaceEvent();
   };
 
   private operationCompletedEvent(): void {
@@ -68,12 +70,12 @@ export class NotificationService {
       this.messageReceived.emit(operation);
     });
   }
+
   private serverMemoryUsageEvent(): void {
     this._hubConnection.on('server-memory-usage-metrics', (operation) => {
       this.serverMemoryUsageReceived.emit(operation);
     });
   }
-
 
   private connectedUsersEvent(): void {
     this._hubConnection.on('connected_users_metrics', (operation) => {
@@ -83,8 +85,7 @@ export class NotificationService {
 
   private databaseSpaceEvent(): void {
     this._hubConnection.on('database-space-metrics', (operation) => {
-      console.log(operation);
-      this.messageReceived.emit(operation);
+      this.databaseSpaceReceived.emit(operation);
     });
   }
 

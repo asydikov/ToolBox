@@ -10,7 +10,7 @@ import { SqlServerBadge } from 'src/app/_models/sql-server-badge';
 })
 export class ServersComponent implements OnInit {
   @Input() sqlServerBadges: SqlServerBadge[];
-  constructor(private sqlServerService: SqlServerService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
