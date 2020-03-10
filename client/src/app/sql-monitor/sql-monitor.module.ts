@@ -11,6 +11,7 @@ import { QueryComponent } from './query/query.component';
 import { QueriesComponent } from './query/queries/queries.component';
 import { DatabasesComponent } from './databases/databases.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CustomDatePipe } from '../_pipes/custom-date.pipe';
 
 
 
@@ -23,7 +24,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
      ServerBadgeComponent,
      QueryComponent,
      QueriesComponent,
-     DatabasesComponent
+     DatabasesComponent,
+    CustomDatePipe
+
     ],
   imports: [
     CommonModule,
