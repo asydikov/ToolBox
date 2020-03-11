@@ -35,7 +35,7 @@ namespace ToolBox.Services.DBWorker.Controllers
             IMemoryUsageMetricsService memoryUsageMetricsService,
             IDatabaseService databaseService,
             IDatabaseBackupMetricsService databaseBackupMetricsService,
-                IDatabaseSpaceMetricsService databaseSpaceMetricsService)
+            IDatabaseSpaceMetricsService databaseSpaceMetricsService)
         {
             _sqlQueryService = sqlQueryService;
             _dbWorkerService = dbWorkerService;
@@ -54,7 +54,6 @@ namespace ToolBox.Services.DBWorker.Controllers
             return Ok(result);
         }
 
-
         [HttpGet("servers")]
         public async Task<IActionResult> Servers(Guid userId)
         {
@@ -63,7 +62,6 @@ namespace ToolBox.Services.DBWorker.Controllers
             return Ok(result);
         }
 
-
         [HttpGet("dashboard")]
         public async Task<IActionResult> Dashboard(Guid userId)
         {
@@ -71,17 +69,17 @@ namespace ToolBox.Services.DBWorker.Controllers
             var memoryUsageMetrics = await _memoryUsageMetricsService.GetAllAsync(x => servers.Select(s => s.Id).Contains(x.ServerId));
             var result = new List<SqlServerBadge>();
 
-            foreach (var server in servers.OrderBy(x=>x.CreatedDate))
+            foreach (var server in servers.OrderBy(x => x.CreatedDate))
             {
                 var memoryUsageMetric = memoryUsageMetrics.LastOrDefault(x => x.ServerId == server.Id);
-              
+
                 var serverBadge = new SqlServerBadge
                 {
                     ServerId = server.Id,
                     Name = server.Name,
-                    PageLifetime = memoryUsageMetric?.PageLifetime??0,
-                    PageReadsCount = memoryUsageMetric?.PageReadsCount??0,
-                    RequestCount = memoryUsageMetric?.RequestsCount??0,
+                    PageLifetime = memoryUsageMetric?.PageLifetime ?? 0,
+                    PageReadsCount = memoryUsageMetric?.PageReadsCount ?? 0,
+                    RequestCount = memoryUsageMetric?.RequestsCount ?? 0,
                     Description = server.Description,
                     ServerAddress = $"{server.Host}: {server.Port}",
                     ConnectedUsers = 0,
@@ -153,7 +151,6 @@ namespace ToolBox.Services.DBWorker.Controllers
             return Ok(result);
         }
 
-
         [AllowAnonymous]
         [HttpGet("schedule")]
         public async Task<IActionResult> Get()
@@ -162,7 +159,6 @@ namespace ToolBox.Services.DBWorker.Controllers
             return Ok(result);
         }
 
-
         [AllowAnonymous]
         [HttpPost("sql-query")]
         public async Task<IActionResult> Post(SqlQueryModel model)
@@ -170,12 +166,6 @@ namespace ToolBox.Services.DBWorker.Controllers
             var result = await _sqlQueryService.CreateAsync(model);
             return Ok(result);
         }
-
-
-
-
-
-
     }
 
 }

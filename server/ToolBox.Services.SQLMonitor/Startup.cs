@@ -1,7 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,7 +15,6 @@ using ToolBox.Services.SQLMonitor.Handlers;
 using ToolBox.Services.SQLMonitor.Handlers.DbWorker;
 using ToolBox.Services.SQLMonitor.Helpers;
 using ToolBox.Services.SQLMonitor.Messages.Commands;
-using ToolBox.Services.SQLMonitor.Messages.Events;
 using ToolBox.Services.SQLMonitor.Messages.Events.DbWorker;
 using ToolBox.Services.SQLMonitor.Repositories;
 using ToolBox.Services.SQLMonitor.RestEaseServices;
@@ -93,7 +91,7 @@ namespace ToolBox.Services.SQLMonitor
             {
                 app.UseDeveloperExceptionPage();
             }
-
+         
             app.UseRouting();
 
             app.UseAuthorization();
