@@ -40,7 +40,10 @@ namespace ToolBox.Services.SQLMonitor.Services
                 var schedules = await scheduleService.GetAllAsync(schedule =>
                                       now > schedule.LastInvokedDate.AddSeconds(schedule.Interval),
                                       includeAll: true);
-
+                if (schedules.Any(x => x.ScheduleServers.Any()) == false)
+                {
+                    return;
+                }
                 foreach (var schedule in schedules)
                 {
                     await ScheduleExecute(schedule);
