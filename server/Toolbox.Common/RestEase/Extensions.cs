@@ -17,18 +17,6 @@ namespace Toolbox.Common.RestEase
             var clientName = typeof(T).ToString();
             var options = ConfigureOptions(services);
             ConfigureDefaultClient(services, clientName, serviceName, options);
-            /*  switch (options.LoadBalancer?.ToLowerInvariant())
-              {
-                  case "consul":
-                      ConfigureConsulClient(services, clientName, serviceName);
-                      break;
-                  case "fabio":
-                      ConfigureFabioClient(services, clientName, serviceName);
-                      break;
-                  default:
-                      ConfigureDefaultClient(services, clientName, serviceName, options);
-                      break;
-              }*/
 
             ConfigureService<T>(services, clientName);
         }

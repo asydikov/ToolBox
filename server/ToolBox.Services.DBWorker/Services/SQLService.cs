@@ -43,8 +43,6 @@ namespace ToolBox.Services.DBWorker.Services
                             }
                         }
 
-
-
                         DataTable dataTable = new DataTable();
 
                         adapter.Fill(dataTable);

@@ -53,7 +53,7 @@ namespace ToolBox.Api.Controllers
         }
 
         [HttpPost("server-add")]
-        public async Task<IActionResult> ServerAdd(ServerCommand command)
+        public async Task<IActionResult> ServerAdd(ServerCreation command)
         {
             command.Id = Guid.NewGuid();
             command.UserId = UserId;

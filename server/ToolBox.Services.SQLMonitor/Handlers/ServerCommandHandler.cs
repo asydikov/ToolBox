@@ -15,7 +15,7 @@ using ToolBox.Services.SQLMonitor.Services;
 
 namespace ToolBox.Services.SQLMonitor.Handlers
 {
-    public class ServerCommandHandler : ICommandHandler<ServerCommand>
+    public class ServerCommandHandler : ICommandHandler<ServerCreation>
     {
         private readonly IBusClient _busClient;
         private readonly IServerService _serverService;
@@ -36,7 +36,7 @@ namespace ToolBox.Services.SQLMonitor.Handlers
             _logger = logger;
         }
 
-        public async Task HandleAsync(ServerCommand command)
+        public async Task HandleAsync(ServerCreation command)
         {
             _logger.LogInformation($"Processing: {command.Id}");
 

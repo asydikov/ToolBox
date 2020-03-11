@@ -9,7 +9,7 @@ using ToolBox.Common.Commands;
 namespace ToolBox.Services.SQLMonitor.Messages.Commands
 {
     [MessageNamespace("sqlmonitor")]
-    public class ServerCommand : ICommand
+    public class ServerCreation : ICommand
     {
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
@@ -23,7 +23,7 @@ namespace ToolBox.Services.SQLMonitor.Messages.Commands
 
 
         [JsonConstructor]
-        public ServerCommand(Guid id, Guid userId, string name, string host, int port, string login, string password, string description, List<Guid> databaseIdList)
+        public ServerCreation(Guid id, Guid userId, string name, string host, int port, string login, string password, string description, List<Guid> databaseIdList)
         {
             Id = id;
             UserId = userId;

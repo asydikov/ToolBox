@@ -1,12 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using RawRabbit;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using ToolBox.Common.Commands;
-using ToolBox.Common.Exceptions;
-using ToolBox.Services.DBWorker.Domain.Models;
 using ToolBox.Services.DBWorker.Helpers;
 using ToolBox.Services.DBWorker.Messages.Commands;
 using ToolBox.Services.DBWorker.Messages.Events;
