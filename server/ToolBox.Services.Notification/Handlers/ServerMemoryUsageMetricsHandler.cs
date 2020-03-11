@@ -11,7 +11,7 @@ using ToolBox.Services.Notification.Services;
 
 namespace ToolBox.Services.Notification.Handlers
 {
-    public class ServerMemoryUsageMetricsHandler : IEventHandler<ServerMemoryUsageMetrics>
+    public class ServerMemoryUsageMetricsHandler : IEventHandler<ServerMemoryUsageMetricsCompleted>
     {
         private readonly IHubService _hubService;
         private readonly ILogger _logger;
@@ -24,7 +24,7 @@ namespace ToolBox.Services.Notification.Handlers
         }
 
 
-        public async Task HandleAsync(ServerMemoryUsageMetrics @event)
+        public async Task HandleAsync(ServerMemoryUsageMetricsCompleted @event)
         {
             _logger.LogInformation($"Processing event: {@event.Id}");
 

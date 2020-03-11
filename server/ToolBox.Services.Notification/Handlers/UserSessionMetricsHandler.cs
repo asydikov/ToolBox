@@ -7,7 +7,7 @@ using ToolBox.Services.Notification.Services;
 
 namespace ToolBox.Services.Notification.Handlers
 {
-    public class UserSessionMetricsHandler : IEventHandler<UserSessionMetrics>
+    public class UserSessionMetricsHandler : IEventHandler<UserSessionMetricsCompleted>
     {
         private readonly IHubService _hubService;
         private readonly ILogger _logger;
@@ -20,7 +20,7 @@ namespace ToolBox.Services.Notification.Handlers
         }
 
 
-        public async Task HandleAsync(UserSessionMetrics @event)
+        public async Task HandleAsync(UserSessionMetricsCompleted @event)
         {
             _logger.LogInformation($"Processing event: {@event.Id}");
             try

@@ -51,7 +51,7 @@ namespace ToolBox.Services.Notification.Services
                 }
             );
 
-        public async Task PublishServerMemoryUsageMetricsAsync(ServerMemoryUsageMetrics @event)
+        public async Task PublishServerMemoryUsageMetricsAsync(ServerMemoryUsageMetricsCompleted @event)
             => await _hubContextWrapper.PublishToUserAsync(@event.UserId,
                 "server-memory-usage-metrics",
                 new
@@ -65,7 +65,7 @@ namespace ToolBox.Services.Notification.Services
                     }
                 });
 
-        public async Task PublishUserSessionMetricsAsync(UserSessionMetrics @event)
+        public async Task PublishUserSessionMetricsAsync(UserSessionMetricsCompleted @event)
             => await _hubContextWrapper.PublishToUserAsync(@event.UserId,
                 "connected_users_metrics",
                 new
@@ -75,7 +75,7 @@ namespace ToolBox.Services.Notification.Services
                     data = @event.ConnectedUsers
                 });
 
-        public async Task PublishDatabaseSpaceMetricsEventAsync(DatabaseSpaceMetricsEvent @event)
+        public async Task PublishDatabaseSpaceMetricsEventAsync(DatabaseSpaceUsageMetricsCompleted @event)
             => await _hubContextWrapper.PublishToUserAsync(@event.UserId,
                 "database-space-metrics",
                 new

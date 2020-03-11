@@ -6,7 +6,7 @@ using Toolbox.Common.Messages;
 namespace ToolBox.Services.Notification.Messages.Events
 {
     [MessageNamespace("notification")]
-    public class ServerMemoryUsageMetrics : IEvent
+    public class ServerMemoryUsageMetricsCompleted : IEvent
     {
         public Guid Id { get; }
         public Guid UserId { get; }
@@ -16,7 +16,7 @@ namespace ToolBox.Services.Notification.Messages.Events
         public int PageLifetime { get; }
 
         [JsonConstructor]
-        public ServerMemoryUsageMetrics(Guid id, Guid userId, Guid serverId, int requestsCount, int pageReadsCount, int pageLifetime)
+        public ServerMemoryUsageMetricsCompleted(Guid id, Guid userId, Guid serverId, int requestsCount, int pageReadsCount, int pageLifetime)
         {
             Id = id;
             UserId = userId;

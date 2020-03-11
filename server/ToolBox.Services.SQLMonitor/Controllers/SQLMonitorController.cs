@@ -150,22 +150,6 @@ namespace ToolBox.Services.DBWorker.Controllers
 
             return Ok(result);
         }
-
-        [AllowAnonymous]
-        [HttpGet("schedule")]
-        public async Task<IActionResult> Get()
-        {
-            var result = await _scheduleService.GetAllAsync();
-            return Ok(result);
-        }
-
-        [AllowAnonymous]
-        [HttpPost("sql-query")]
-        public async Task<IActionResult> Post(SqlQueryModel model)
-        {
-            var result = await _sqlQueryService.CreateAsync(model);
-            return Ok(result);
-        }
     }
 
 }
