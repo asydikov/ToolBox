@@ -11,9 +11,9 @@ namespace ToolBox.Services.Notification.Services
         Task PublishOperationPendingAsync(OperationPending @event);
         Task PublishOperationCompletedAsync(OperationCompleted @event);
         Task PublishOperationRejectedAsync(OperationRejected @event);
-        Task PublishServerMemoryUsageMetricsAsync(ServerMemoryUsageMetrics @event);
-        Task PublishUserSessionMetricsAsync(UserSessionMetrics @event);
-        Task PublishDatabaseSpaceMetricsEventAsync(DatabaseSpaceMetricsEvent @event);
+        Task PublishServerMemoryUsageMetricsAsync(ServerMemoryUsageMetricsCompleted @event);
+        Task PublishUserSessionMetricsAsync(UserSessionMetricsCompleted @event);
+        Task PublishDatabaseSpaceMetricsEventAsync(DatabaseSpaceUsageMetricsCompleted @event);
 
     }
 }

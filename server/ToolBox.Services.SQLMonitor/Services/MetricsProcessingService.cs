@@ -72,7 +72,7 @@ namespace ToolBox.Services.SQLMonitor.Services
 
             await _databaseSpaceMetricsService.CreateAsync(databaseSpaceMetrics);
 
-            await _busClient.PublishAsync(new DatabaseSpaceMetricsEvent(
+            await _busClient.PublishAsync(new DatabaseSpaceUsageMetricsCompleted(
                 command.Id,
                 command.UserId,
                 databaseSpaceMetrics.DatabaseId,
@@ -119,7 +119,7 @@ namespace ToolBox.Services.SQLMonitor.Services
                 connectedUsers.Add(result.Value);
             }
 
-            await _busClient.PublishAsync(new UserSessionMetrics(
+            await _busClient.PublishAsync(new UserSessionMetricsCompleted(
                 command.Id,
                 command.UserId,
                 command.SqlServerId,
@@ -139,7 +139,7 @@ namespace ToolBox.Services.SQLMonitor.Services
 
             await _memoryUsageMetricsService.CreateAsync(memoryUsageMetrics);
 
-            await _busClient.PublishAsync(new ServerMemoryUsageMetrics(
+            await _busClient.PublishAsync(new ServerMemoryUsageMetricsCompleted(
                 command.Id,
                 command.UserId,
                 memoryUsageMetrics.ServerId,

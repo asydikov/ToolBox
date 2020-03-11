@@ -9,7 +9,7 @@ using Toolbox.Common.Messages;
 namespace ToolBox.Services.Notification.Messages.Events
 {
     [MessageNamespace("notification")]
-    public class DatabaseSpaceMetricsEvent : IEvent
+    public class DatabaseSpaceUsageMetricsCompleted : IEvent
     {
         public Guid Id { get; }
         public Guid UserId { get; }
@@ -19,7 +19,7 @@ namespace ToolBox.Services.Notification.Messages.Events
         public string Unit { get; set; }
 
         [JsonConstructor]
-        public DatabaseSpaceMetricsEvent(Guid id, Guid userId, Guid databaseId, double space, double unallocatedSpace, string unit)
+        public DatabaseSpaceUsageMetricsCompleted(Guid id, Guid userId, Guid databaseId, double space, double unallocatedSpace, string unit)
         {
             Id = id;
             UserId = userId;

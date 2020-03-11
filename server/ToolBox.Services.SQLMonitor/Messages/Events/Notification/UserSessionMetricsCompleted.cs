@@ -10,7 +10,7 @@ using ToolBox.Services.SQLMonitor.Entities;
 namespace ToolBox.Services.SQLMonitor.Messages.Events.Notification
 {
     [MessageNamespace("notification")]
-    public class UserSessionMetrics : IEvent
+    public class UserSessionMetricsCompleted : IEvent
     {
         public Guid Id { get; }
         public Guid UserId { get; }
@@ -18,7 +18,7 @@ namespace ToolBox.Services.SQLMonitor.Messages.Events.Notification
         public List<string> ConnectedUsers { get; set; }
 
         [JsonConstructor]
-        public UserSessionMetrics(Guid id, Guid userId, Guid serverId, List<string> connectedUsers)
+        public UserSessionMetricsCompleted(Guid id, Guid userId, Guid serverId, List<string> connectedUsers)
         {
             Id = id;
             UserId = userId;

@@ -11,20 +11,20 @@ using ToolBox.Services.Notification.Services;
 
 namespace ToolBox.Services.Notification.Handlers
 {
-    public class DatabaseSpaceMetricsEventHandler : IEventHandler<DatabaseSpaceMetricsEvent>
+    public class DatabaseSpaceUsageMetricsHandler : IEventHandler<DatabaseSpaceUsageMetricsCompleted>
     {
         private readonly IHubService _hubService;
         private readonly ILogger _logger;
-        public DatabaseSpaceMetricsEventHandler(
+        public DatabaseSpaceUsageMetricsHandler(
          IHubService hubService,
-         ILogger<DatabaseSpaceMetricsEventHandler> logger)
+         ILogger<DatabaseSpaceUsageMetricsHandler> logger)
         {
             _hubService = hubService;
             _logger = logger;
         }
 
 
-        public async Task HandleAsync(DatabaseSpaceMetricsEvent @event)
+        public async Task HandleAsync(DatabaseSpaceUsageMetricsCompleted @event)
         {
             _logger.LogInformation($"Processing event: {@event.Id}");
 

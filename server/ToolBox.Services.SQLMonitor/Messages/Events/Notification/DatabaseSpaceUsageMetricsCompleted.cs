@@ -6,7 +6,7 @@ using Toolbox.Common.Messages;
 namespace ToolBox.Services.SQLMonitor.Messages.Events.Notification
 {
     [MessageNamespace("notification")]
-    public class DatabaseSpaceMetricsEvent : IEvent
+    public class DatabaseSpaceUsageMetricsCompleted : IEvent
     {
         public Guid Id { get; }
         public Guid UserId { get; }
@@ -16,7 +16,7 @@ namespace ToolBox.Services.SQLMonitor.Messages.Events.Notification
         public string Unit { get; set; }
 
         [JsonConstructor]
-        public DatabaseSpaceMetricsEvent(Guid id, Guid userId, Guid databaseId, double space, double unallocatedSpace, string unit)
+        public DatabaseSpaceUsageMetricsCompleted(Guid id, Guid userId, Guid databaseId, double space, double unallocatedSpace, string unit)
         {
             Id = id;
             UserId = userId;

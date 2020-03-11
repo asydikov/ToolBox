@@ -6,7 +6,7 @@ using Toolbox.Common.Messages;
 namespace ToolBox.Services.SQLMonitor.Messages.Events.Notification
 {
     [MessageNamespace("notification")]
-    public class ServerMemoryUsageMetrics : IEvent
+    public class ServerMemoryUsageMetricsCompleted : IEvent
     {
         public Guid Id { get; }
         public Guid UserId { get; }
@@ -17,7 +17,7 @@ namespace ToolBox.Services.SQLMonitor.Messages.Events.Notification
 
 
         [JsonConstructor]
-        public ServerMemoryUsageMetrics(
+        public ServerMemoryUsageMetricsCompleted(
             Guid id, Guid userId, Guid serverId, int requestsCount, int pageReadsCount, int pageLifetime)
         {
             Id = id;
