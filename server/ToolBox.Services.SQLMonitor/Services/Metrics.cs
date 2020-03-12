@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.DataProtection;
 using ToolBox.Services.SQLMonitor.Domain.Enums;
 using ToolBox.Services.SQLMonitor.Domain.Models;
 using ToolBox.Services.SQLMonitor.Entities;
@@ -21,12 +22,14 @@ namespace ToolBox.Services.SQLMonitor.Services
         private readonly ILogger _logger;
         private readonly IServiceProvider _services;
         private readonly IBusClient _busClient;
+        private readonly IDataProtector _protector;
 
-        public Metrics(IBusClient busClient, ILogger<Metrics> logger, IServiceProvider services)
+        public Metrics(IBusClient busClient, ILogger<Metrics> logger, IServiceProvider services, IDataProtectionProvider dataProtector)
         {
             _busClient = busClient;
             _services = services;
             _logger = logger;
+            _protector = dataProtector.CreateProtector("sql-server-pass-protector");
         }
 
         public async Task DoWork()
@@ -106,7 +109,7 @@ namespace ToolBox.Services.SQLMonitor.Services
                                                                      server.Host,
                                                                      server.Port,
                                                                      server.Login,
-                                                                     server.Password,
+                                                                     _protector.Unprotect(server.Password),
                                                                      database.Name,
                                                                      (int)sqlQuery.Name,
                                                                      server.Id,
@@ -125,7 +128,7 @@ namespace ToolBox.Services.SQLMonitor.Services
                                                                 server.Host,
                                                                 server.Port,
                                                                 server.Login,
-                                                                server.Password,
+                                                                _protector.Unprotect(server.Password),
                                                                 null,
                                                                 (int)sqlQuery.Name,
                                                                 server.Id,
@@ -143,7 +146,7 @@ namespace ToolBox.Services.SQLMonitor.Services
                                                                       server.Host,
                                                                       server.Port,
                                                                       server.Login,
-                                                                      server.Password,
+                                                                      _protector.Unprotect(server.Password),
                                                                       null,
                                                                       (int)sqlQuery.Name,
                                                                       server.Id,
