@@ -36,6 +36,8 @@ namespace ToolBox.Services.SQLMonitor
         {
             var sql = Configuration.GetSection("sql");
             services.AddControllers();
+            services.AddDataProtection();
+
             services.AddHostedService<TimedHostedService>();
             services.AddRabbitMq(Configuration);
             services.Configure<SqlSettings>(sql);
@@ -93,7 +95,6 @@ namespace ToolBox.Services.SQLMonitor
             }
          
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
