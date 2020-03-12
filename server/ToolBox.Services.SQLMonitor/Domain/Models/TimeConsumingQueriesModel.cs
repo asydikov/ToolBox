@@ -9,5 +9,6 @@ namespace ToolBox.Services.SQLMonitor.Domain.Models
     {
         public double AvgCPUTime { get; set; }
         public string StatementText { get; set; }
+        public string Selector { get; set; }
     }
 }

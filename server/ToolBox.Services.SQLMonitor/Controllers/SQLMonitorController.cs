@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using RawRabbit;
 using ToolBox.Services.SQLMonitor.Domain.Enums;
@@ -25,6 +26,7 @@ namespace ToolBox.Services.DBWorker.Controllers
         private readonly IDatabaseService _databaseService;
         private readonly IDatabaseBackupMetricsService _databaseBackupMetricsService;
         private readonly IDatabaseSpaceMetricsService _databaseSpaceMetricsService;
+        private readonly IDataProtector _protector;
 
         private readonly IMemoryUsageMetricsService _memoryUsageMetricsService;
         public SqlMonitorController(
@@ -35,7 +37,8 @@ namespace ToolBox.Services.DBWorker.Controllers
             IMemoryUsageMetricsService memoryUsageMetricsService,
             IDatabaseService databaseService,
             IDatabaseBackupMetricsService databaseBackupMetricsService,
-            IDatabaseSpaceMetricsService databaseSpaceMetricsService)
+            IDatabaseSpaceMetricsService databaseSpaceMetricsService,
+            IDataProtectionProvider dataProtector)
         {
             _sqlQueryService = sqlQueryService;
             _dbWorkerService = dbWorkerService;
@@ -45,6 +48,7 @@ namespace ToolBox.Services.DBWorker.Controllers
             _databaseService = databaseService;
             _databaseBackupMetricsService = databaseBackupMetricsService;
             _databaseSpaceMetricsService = databaseSpaceMetricsService;
+            _protector = dataProtector.CreateProtector("sql-server-pass-protector");
         }
 
         [HttpPost("server-connection-check")]
@@ -100,7 +104,7 @@ namespace ToolBox.Services.DBWorker.Controllers
             foreach (var database in databases)
             {
                 var dbBackups = await _databaseBackupMetricsService.GetAllAsync(x => x.DatabaseId == database.Id);
-                var dbBackup = dbBackups.OrderBy(x=>x.CreatedDate).LastOrDefault();
+                var dbBackup = dbBackups.OrderBy(x => x.CreatedDate).LastOrDefault();
                 var dbMetricsAll = await _databaseSpaceMetricsService.GetAllAsync(x => x.DatabaseId == database.Id);
                 var dbMetrics = dbMetricsAll.OrderBy(x => x.CreatedDate).LastOrDefault();
 
@@ -125,15 +129,16 @@ namespace ToolBox.Services.DBWorker.Controllers
         [HttpGet("time-consuming-queries")]
         public async Task<IActionResult> TimeConsumingQueries(Guid id)
         {
-            Console.WriteLine(id);
             var server = await _serverService.GetAsync(id);
             var query = await _sqlQueryService.GetAsync(x => x.Name == SqlQueryNames.TwentyCPUConsumedQueries);
+
+
             var connectionModel = new ConnectionModel
             {
                 Host = server.Host,
                 Port = server.Port,
                 Login = server.Login,
-                Password = server.Password,
+                Password = _protector.Unprotect(server.Password),
                 QueryString = query.Query
             };
             var dbWorkeResult = await _dbWorkerService.TimeConsumingQueries(connectionModel);
@@ -143,7 +148,8 @@ namespace ToolBox.Services.DBWorker.Controllers
             dbWorkeResult.ForEach(x => result.Add(new TimeConsumingQueriesModel
             {
                 StatementText = x["Statement Text"],
-                AvgCPUTime = Convert.ToDouble(Convert.ToDouble(x["Avg CPU Time"]) / 100000)
+                AvgCPUTime = Convert.ToDouble(Convert.ToDouble(x["Avg CPU Time"]) / 100000),
+                Selector = x["Statement Text"].Split().FirstOrDefault()?.ToUpper()
             }));
 
             result = result.OrderByDescending(x => x.AvgCPUTime).ToList();
