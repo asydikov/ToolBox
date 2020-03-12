@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.Extensions.DependencyInjection;
 using RawRabbit;
 using ToolBox.Services.SQLMonitor.Domain.Models;
 using ToolBox.Services.SQLMonitor.Entities;
@@ -15,19 +17,20 @@ namespace ToolBox.Services.SQLMonitor.Services
     public class ServerService : ServiceBase<ServerModel, Server>, IServerService
     {
         private readonly IScheduleService _scheduleService;
-        private readonly IBusClient _busClient;
+        private readonly IDataProtector _protector;
 
         public ServerService(IRepositoryBase<Server> repository,
             IScheduleService scheduleService,
-            IBusClient busClient,
-        IMapper mapper) : base(repository, mapper)
+            IDataProtectionProvider dataProtector,
+            IMapper mapper) : base(repository, mapper)
         {
             _scheduleService = scheduleService;
-            _busClient = busClient;
+            _protector = dataProtector.CreateProtector("sql-server-pass-protector");
         }
 
         public async Task<Guid> AddServerWithSchedule(ServerModel model)
         {
+            model.Password = _protector.Protect(model.Password);
             Server entity = _mapper.Map<Server>(model);
 
             var schedules = await _scheduleService.GetAllAsync();
@@ -39,7 +42,6 @@ namespace ToolBox.Services.SQLMonitor.Services
             } };
 
           return await _repository.CreateAsync(entity);
-         
         }
 
     }
