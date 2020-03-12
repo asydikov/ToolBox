@@ -11,6 +11,7 @@ using ToolBox.Services.SQLMonitor.Entities;
 using ToolBox.Services.SQLMonitor.Messages.Events.DbWorker;
 using ToolBox.Services.SQLMonitor.Messages.Events.Notification;
 using ToolBox.Services.SQLMonitor.Repositories;
+// https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/using-data-protection?view=aspnetcore-3.1
 
 namespace ToolBox.Services.SQLMonitor.Services
 {
