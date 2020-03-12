@@ -100,9 +100,9 @@ namespace ToolBox.Services.DBWorker.Controllers
             foreach (var database in databases)
             {
                 var dbBackups = await _databaseBackupMetricsService.GetAllAsync(x => x.DatabaseId == database.Id);
-                var dbBackup = dbBackups.LastOrDefault();
+                var dbBackup = dbBackups.OrderBy(x=>x.CreatedDate).LastOrDefault();
                 var dbMetricsAll = await _databaseSpaceMetricsService.GetAllAsync(x => x.DatabaseId == database.Id);
-                var dbMetrics = dbMetricsAll.LastOrDefault();
+                var dbMetrics = dbMetricsAll.OrderBy(x => x.CreatedDate).LastOrDefault();
 
                 result.Add(
                     new DatabaseBadge
