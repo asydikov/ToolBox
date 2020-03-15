@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  api:
+    hostname: 'api'
+    container_name: 'api'
+    networks:
+      - boxnet
+    ports:
+      - 5000:5000
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    links: 
+      - rabbitmq
+   
+    
+  rabbitmq:
+    hostname: 'rabbitmq'
+    container_name: 'rabbitmq'
+    networks:
+      - 'boxnet'
+    expose:
+      - 5672
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "5672" ]
+      interval: 5s
+      timeout: 15s
+      retries: 1
+    ports:
+      - '5672:5672'
+
+  
