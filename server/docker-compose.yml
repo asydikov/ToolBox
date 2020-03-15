@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  api:
+    image: ${DOCKER_REGISTRY-}toolboxapi
+    build:
+      context: .
+      dockerfile: ToolBox.Api\Dockerfile
+
+  rabbitmq:
+    image: 'rabbitmq:3.7.15'
+
+networks:
+   boxnet:
+    driver: 'nat'
