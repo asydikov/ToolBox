@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Services.Notificati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Services.SQLMonitor", "ToolBox.Services.SQLMonitor\ToolBox.Services.SQLMonitor.csproj", "{0CB28575-56FE-4500-8F6D-BA0578960024}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox.Services.DBWorker", "ToolBox.Services.DBWorker\ToolBox.Services.DBWorker.csproj", "{91583912-E101-40B3-82C1-0206FFC2B5D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolBox.Services.DBWorker", "ToolBox.Services.DBWorker\ToolBox.Services.DBWorker.csproj", "{91583912-E101-40B3-82C1-0206FFC2B5D2}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C8582C7F-1CA8-4C7D-A2E6-840DE4E6B201}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{91583912-E101-40B3-82C1-0206FFC2B5D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91583912-E101-40B3-82C1-0206FFC2B5D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91583912-E101-40B3-82C1-0206FFC2B5D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8582C7F-1CA8-4C7D-A2E6-840DE4E6B201}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8582C7F-1CA8-4C7D-A2E6-840DE4E6B201}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8582C7F-1CA8-4C7D-A2E6-840DE4E6B201}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8582C7F-1CA8-4C7D-A2E6-840DE4E6B201}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
