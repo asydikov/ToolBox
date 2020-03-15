@@ -8,6 +8,7 @@ using ToolBox.Common.Events;
 using System.Reflection;
 using RawRabbit.Common;
 using System;
+using System.Net;
 using Toolbox.Common.Messages;
 using Toolbox.Common;
 
@@ -29,16 +30,15 @@ namespace ToolBox.Common.RabbitMq
             var section = configuration.GetSection("rabbitmq");
             var namingConventions = new CustomNamingConventions(options.Namespace);
             section.Bind(options);
-            var client = RawRabbitFactory.CreateSingleton(new RawRabbitOptions
+            var rawRabbitOptions = new RawRabbitOptions
             {
-
+                ClientConfiguration = options,
                 DependencyInjection = ioc =>
                 {
                     ioc.AddSingleton<INamingConventions>(namingConventions);
-                    ioc.AddSingleton(options);
-                    ioc.AddSingleton(configuration);
                 }
-            });
+            };
+            var client = RawRabbitFactory.CreateSingleton(rawRabbitOptions);
             services.AddSingleton<IBusClient>(_ => client);
         }
     }
