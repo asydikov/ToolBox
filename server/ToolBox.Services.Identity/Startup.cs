@@ -68,6 +68,11 @@ namespace ToolBox.Services.Identity
             {
                 endpoints.MapControllers();
             });
+
+            using var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
+            var context = serviceScope.ServiceProvider.GetRequiredService<IdentityDbContext>();
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
         }
     }
 }
