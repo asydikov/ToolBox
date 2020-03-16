@@ -13,8 +13,63 @@ services:
       - rabbitmq
     links: 
       - rabbitmq
-   
-    
+
+  identity:
+    hostname: 'identity'
+    container_name: 'identity'
+    networks:
+      - boxnet
+    ports:
+      - 5010:5010
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+      - identity-sql
+    links: 
+      - rabbitmq
+      - identity-sql
+
+  dbworker:
+    hostname: 'dbworker'
+    container_name: 'dbworker'
+    networks:
+      - boxnet
+    ports:
+      - 5030:5030
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    links: 
+      - rabbitmq
+  
+  notification:
+    hostname: 'notification'
+    container_name: 'notification'
+    networks:
+      - boxnet
+    ports:
+      - 5050:5050
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    links: 
+      - rabbitmq
+  
+  sqlmonitor:
+    hostname: 'sqlmonitor'
+    container_name: 'sqlmonitor'
+    networks:
+      - boxnet
+    ports:
+      - 5020:5020
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+      - sqlmonitor-sql
+    links: 
+      - rabbitmq
+      - sqlmonitor-sql
+
   rabbitmq:
     hostname: 'rabbitmq'
     container_name: 'rabbitmq'
@@ -30,4 +85,24 @@ services:
     ports:
       - '5672:5672'
 
-  
+  identity-sql:
+    hostname: 'identity-sql'
+    container_name: 'identity-sql'
+    environment:
+      - 'ACCEPT_EULA:Y'
+      - 'SA_PASSWORD:Pass_w0rd12'
+    networks:
+      - 'boxnet'
+    ports:
+      - '1455:1433'
+
+  sqlmonitor-sql:
+    hostname: 'sqlmonitor-sql'
+    container_name: 'sqlmonitor-sql'
+    environment:
+      - 'ACCEPT_EULA:Y'
+      - 'SA_PASSWORD:Pass_w0rd12'
+    networks:
+      - 'boxnet'
+    ports:
+      - '1465:1433'
