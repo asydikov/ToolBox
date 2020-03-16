@@ -17,10 +17,7 @@ namespace ToolBox.Services.DBWorker.Services
                                                                                  Dictionary<string, string> parameters = null)
         {
             List<Dictionary<string, string>> result = new List<Dictionary<string, string>>();
-            if (instruction.Contains("EXEC sp_spaceused"))
-            {
-                var d = 1;
-            }
+           
             try
             {
 
@@ -64,7 +61,7 @@ namespace ToolBox.Services.DBWorker.Services
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             return result;
@@ -86,7 +83,7 @@ namespace ToolBox.Services.DBWorker.Services
 
                 return result[0]["ServerName"];
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return String.Empty;
             }
