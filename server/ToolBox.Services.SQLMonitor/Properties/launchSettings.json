@@ -2,8 +2,7 @@
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
     "ToolBox.Services.SQLMonitor": {
-      "commandName": "Project",
-      "launchBrowser": false,
+      "commandName": "sqlmonitor",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -12,9 +11,7 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": false,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/",
-      "publishAllPorts": true,
-      "useSSL": true
+      "publishAllPorts": true
     }
   }
 }
