@@ -1,5 +1,5 @@
-using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using ToolBox.Services.SQLMonitor.Entities;
 
@@ -7,12 +7,9 @@ namespace ToolBox.Services.SQLMonitor.EF
 {
     public class SqlMonitorDbContext : DbContext
     {
-        private IOptions<SqlSettings> _sqlSettings;
-
-        public SqlMonitorDbContext(DbContextOptions<SqlMonitorDbContext> options, IOptions<SqlSettings> sqlSettings)
+        public SqlMonitorDbContext(DbContextOptions<SqlMonitorDbContext> options)
               : base(options)
         {
-            _sqlSettings = sqlSettings;
         }
 
         public DbSet<Server> Servers { get; set; }
@@ -26,7 +23,6 @@ namespace ToolBox.Services.SQLMonitor.EF
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_sqlSettings.Value.ConnectionString);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
