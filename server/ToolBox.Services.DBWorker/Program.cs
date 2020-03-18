@@ -22,7 +22,7 @@ namespace ToolBox.Services.DBWorker
                        .ConfigureWebHostDefaults(webBuilder =>
                        {
                            webBuilder.UseStartup<Startup>()
-                           .UseUrls("http://localhost:5030/");
+                           .UseUrls("http://dbworker:5030/");
                        });
     }
 }
