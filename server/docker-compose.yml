@@ -1,60 +1,44 @@
-version: '3.7'
+version: '3.4'
 
 services:
   api:
     image: ${DOCKER_REGISTRY-}api
     build:
       context: .
-      dockerfile: ToolBox.Api\Dockerfile
+      dockerfile: ToolBox.Api/Dockerfile
 
   identity:
     image: ${DOCKER_REGISTRY-}identity
     build:
       context: .
-      dockerfile: ToolBox.Services.Identity\Dockerfile
+      dockerfile: ToolBox.Services.Identity/Dockerfile
 
   dbworker:
     image: ${DOCKER_REGISTRY-}dbworker
     build:
       context: .
-      dockerfile: ToolBox.Services.DBWorker\Dockerfile
+      dockerfile: ToolBox.Services.DBWorker/Dockerfile
 
   notification:
     image: ${DOCKER_REGISTRY-}notification
     build:
       context: .
-      dockerfile: ToolBox.Services.Notification\Dockerfile
+      dockerfile: ToolBox.Services.Notification/Dockerfile
 
   sqlmonitor:
     image: ${DOCKER_REGISTRY-}sqlmonitor
     build:
       context: .
-      dockerfile: ToolBox.Services.SQLMonitor\Dockerfile
+      dockerfile: ToolBox.Services.SQLMonitor/Dockerfile
 
   rabbitmq:
-    image: 'rabbitmq:3.7.15'
+    image: 'rabbitmq:3'
 
-  identity-sql:
-    image: 'mcr.microsoft.com/mssql/server:2017-latest'
-    deploy:
-      resources:
-        limits:
-          memory: 2100M
-        reservations:
-          memory: 2100M
+  identitydb:
+    image: 'mcr.microsoft.com/mssql/server:2017-CU8-ubuntu'
 
-  sqlmonitor-sql:
-    image: 'mcr.microsoft.com/mssql/server:2017-latest'
-    deploy:
-      resources:
-        limits:
-          memory: 2100M
-        reservations:
-          memory: 2100M
-
-networks:
-   boxnet:
-    driver: 'nat'
+  sqlmonitordb:
+    image: 'mcr.microsoft.com/mssql/server:2017-CU8-ubuntu'
 
 
 
