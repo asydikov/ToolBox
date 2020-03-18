@@ -30,7 +30,7 @@ namespace ToolBox.Services.Notification
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>()
-                      .UseUrls("http://localhost:5050"); ;
+                      .UseUrls("http://notification:5050"); ;
                 });
     }
 }
