@@ -20,7 +20,7 @@ namespace ToolBox.Api
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>()
-                    .UseUrls("http://localhost:5000/");
+                    .UseUrls("http://api:5000/");
                 });
     }
 }
