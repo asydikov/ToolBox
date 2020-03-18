@@ -9,20 +9,17 @@ namespace ToolBox.Services.Identity.EF
 {
     public class IdentityDbContext : DbContext
     {
-        private IOptions<SqlSettings> _sqlSettings;
         private IServiceProvider _serviceProvider;
 
-        public IdentityDbContext(DbContextOptions<IdentityDbContext> options, IOptions<SqlSettings> sqlSettings, IServiceProvider serviceProvider)
+        public IdentityDbContext(DbContextOptions<IdentityDbContext> options, IServiceProvider serviceProvider)
               : base(options)
         {
-            _sqlSettings = sqlSettings;
             _serviceProvider = serviceProvider;
         }
         public DbSet<User> Users { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_sqlSettings.Value.ConnectionString);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

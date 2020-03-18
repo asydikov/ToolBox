@@ -1,7 +1,9 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,13 +33,12 @@ namespace ToolBox.Services.Identity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var jwt = Configuration.GetSection("jwt");
             var sql = Configuration.GetSection("sql");
             services.AddControllers();
             services.AddJwt(Configuration);
             services.AddRabbitMq(Configuration);
-            services.Configure<SqlSettings>(sql);
-            services.AddEntityFrameworkSqlServer().AddDbContext<IdentityDbContext>();
+            services.AddEntityFrameworkSqlServer().AddDbContext<IdentityDbContext>(options =>
+                options.UseSqlServer(sql.GetConnectionString("identity")));
             services.AddScoped<ICommandHandler<ChangePassword>, ChangePasswordHandler>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();

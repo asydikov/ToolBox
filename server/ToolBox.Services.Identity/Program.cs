@@ -21,7 +21,7 @@ namespace ToolBox.Services.Identity
                        .ConfigureWebHostDefaults(webBuilder =>
                        {
                            webBuilder.UseStartup<Startup>()
-                           .UseUrls("http://localhost:5010/");
+                           .UseUrls("http://identity:5010/");
                        });
     }
 }
