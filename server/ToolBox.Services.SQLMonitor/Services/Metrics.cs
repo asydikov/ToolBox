@@ -35,11 +35,12 @@ namespace ToolBox.Services.SQLMonitor.Services
         public async Task DoWork()
         {
             using var scope = _services.CreateScope();
-
-            var scheduleService = scope.ServiceProvider.GetRequiredService<IScheduleService>();
-            var now = DateTime.Now;
+          
             try
             {
+                var scheduleService = scope.ServiceProvider.GetRequiredService<IScheduleService>();
+                var now = DateTime.Now;
+
                 var schedules = await scheduleService.GetAllAsync(schedule =>
                                       now > schedule.LastInvokedDate.AddSeconds(schedule.Interval),
                                       includeAll: true);
@@ -52,12 +53,10 @@ namespace ToolBox.Services.SQLMonitor.Services
                     await ScheduleExecute(schedule);
                     await ScheduleInvokeDateUpdate(scheduleService, schedule);
                 }
-
-
             }
             catch (Exception ex)
             {
-                _logger.LogError("Timed Background Service Error.");
+                _logger.LogError("Establishing connection...");
             }
 
         }

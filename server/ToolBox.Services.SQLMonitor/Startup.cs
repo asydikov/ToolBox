@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -37,10 +38,10 @@ namespace ToolBox.Services.SQLMonitor
             var sql = Configuration.GetSection("sql");
             services.AddControllers();
             services.AddDataProtection();
-
             services.AddHostedService<TimedHostedService>();
             services.AddRabbitMq(Configuration);
-            services.Configure<SqlSettings>(sql);
+            services.AddEntityFrameworkSqlServer().AddDbContext<SqlMonitorDbContext>(options =>
+                options.UseSqlServer(sql.GetConnectionString("sqlmonitor")));
             services.RegisterRestEaseService<IDbWorkerService>("dbworker-service");
             services.AddEntityFrameworkSqlServer().AddDbContext<SqlMonitorDbContext>();
             services.AddScoped<IEventHandler<DbWorkerOperationCompleted>, DbWorkerOperationCompletedHandler>();

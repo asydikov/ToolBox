@@ -24,7 +24,7 @@ namespace ToolBox.Services.SQLMonitor
                        .ConfigureWebHostDefaults(webBuilder =>
                        {
                            webBuilder.UseStartup<Startup>()
-                           .UseUrls("http://localhost:5020/");
+                           .UseUrls("http://sqlmonitor:5020/");
                        });
     }
 }
