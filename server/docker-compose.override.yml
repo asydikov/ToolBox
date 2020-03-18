@@ -1,11 +1,9 @@
-version: '3.7'
+version: '3.4'
 
 services:
   api:
     hostname: 'api'
     container_name: 'api'
-    networks:
-      - boxnet
     ports:
       - 5000:5000
     restart: on-failure
@@ -17,23 +15,19 @@ services:
   identity:
     hostname: 'identity'
     container_name: 'identity'
-    networks:
-      - boxnet
     ports:
       - 5010:5010
     restart: on-failure
     depends_on:
       - rabbitmq
-      - identity-sql
+      - identitydb
     links: 
       - rabbitmq
-      - identity-sql
+      - identitydb
 
   dbworker:
     hostname: 'dbworker'
     container_name: 'dbworker'
-    networks:
-      - boxnet
     ports:
       - 5030:5030
     restart: on-failure
@@ -45,8 +39,6 @@ services:
   notification:
     hostname: 'notification'
     container_name: 'notification'
-    networks:
-      - boxnet
     ports:
       - 5050:5050
     restart: on-failure
@@ -58,23 +50,19 @@ services:
   sqlmonitor:
     hostname: 'sqlmonitor'
     container_name: 'sqlmonitor'
-    networks:
-      - boxnet
     ports:
       - 5020:5020
     restart: on-failure
     depends_on:
       - rabbitmq
-      - sqlmonitor-sql
+      - sqlmonitordb
     links: 
       - rabbitmq
-      - sqlmonitor-sql
+      - sqlmonitordb
 
   rabbitmq:
     hostname: 'rabbitmq'
     container_name: 'rabbitmq'
-    networks:
-      - 'boxnet'
     expose:
       - 5672
     healthcheck:
@@ -85,24 +73,20 @@ services:
     ports:
       - '5672:5672'
 
-  identity-sql:
-    hostname: 'identity-sql'
-    container_name: 'identity-sql'
+  identitydb:
+    hostname: 'identitydb'
+    container_name: 'identitydb'
     environment:
-      - 'ACCEPT_EULA:Y'
-      - 'SA_PASSWORD:Pass_w0rd12'
-    networks:
-      - 'boxnet'
+      - "ACCEPT_EULA=Y"
+      - "SA_PASSWORD=Pass_w0rd12"
     ports:
       - '1455:1433'
 
-  sqlmonitor-sql:
-    hostname: 'sqlmonitor-sql'
-    container_name: 'sqlmonitor-sql'
+  sqlmonitordb:
+    hostname: 'sqlmonitordb'
+    container_name: 'sqlmonitordb'
     environment:
-      - 'ACCEPT_EULA:Y'
-      - 'SA_PASSWORD:Pass_w0rd12'
-    networks:
-      - 'boxnet'
+      - "ACCEPT_EULA=Y"
+      - "SA_PASSWORD=Pass_w0rd12"
     ports:
       - '1465:1433'
