@@ -15,6 +15,9 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!this.notificationService.IsconnectionEstablished) {
+      this.notificationService.start();
+    }
     this.sqlService.getDashboard().subscribe(data => {
       this.sqlServerBadges = data;
     });
