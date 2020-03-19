@@ -1,11 +1,11 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, OnDestroy } from '@angular/core';
 import { HubConnection, HubConnectionBuilder, HttpTransportType } from '@aspnet/signalr';
 import { IdentityService } from './identity.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NotificationService {
+export class NotificationService implements OnDestroy  {
 
   messageReceived = new EventEmitter<any>();
   connectedUsersReceived = new EventEmitter<any>();
@@ -16,21 +16,31 @@ export class NotificationService {
   //sql-server-added
   connectionEstablished = new EventEmitter<Boolean>();
 
-  private IsconnectionEstablished = false;
+  public  IsconnectionEstablished = false;
   private _hubConnection: HubConnection;
 
   constructor(private identityService: IdentityService) {
+  this.start();
+  }
+
+  ngOnDestroy() {
+    this.IsconnectionEstablished = false;
+    this.endConnection();
+  }
+
+  public start() {
     this.createConnection();
     this.registerOnServerEvents();
     if (!this.IsconnectionEstablished)
       this.startConnection();
-    identityService.currentUser.subscribe(user => {
+    this.identityService.currentUser.subscribe(user => {
       if (!user)
         this.endConnection();
     });
   }
 
-  private createConnection() {
+
+  private  createConnection() {
     this._hubConnection = new HubConnectionBuilder()
       .withUrl('http://localhost:5050/notification', {
         skipNegotiation: true,
@@ -45,15 +55,16 @@ export class NotificationService {
   }
 
   private startConnection(): void {
+    this.IsconnectionEstablished = true;
     this._hubConnection
       .start()
       .then(() => {
         this._hubConnection.invoke('initializeAsync', this.identityService.accesTokenFromLocalStorage);
-        this.IsconnectionEstablished = true;
         console.log('Hub connection started');
         this.connectionEstablished.emit(true);
       })
       .catch(err => {
+        this.IsconnectionEstablished = false;
         console.log('Error while establishing connection, retrying...');
         setTimeout(function () { this.startConnection(); }, 5000);
       });
