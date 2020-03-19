@@ -2,37 +2,37 @@ version: '3.4'
 
 services:
   api:
-    image: ${DOCKER_REGISTRY-}api
+    image: 'hugewhale/toolbox:api'
     build:
       context: .
       dockerfile: ToolBox.Api/Dockerfile
 
   identity:
-    image: ${DOCKER_REGISTRY-}identity
+    image: 'hugewhale/toolbox:identity'
     build:
       context: .
       dockerfile: ToolBox.Services.Identity/Dockerfile
 
   dbworker:
-    image: ${DOCKER_REGISTRY-}dbworker
+    image: 'hugewhale/toolbox:dbworker'
     build:
       context: .
       dockerfile: ToolBox.Services.DBWorker/Dockerfile
 
   notification:
-    image: ${DOCKER_REGISTRY-}notification
+    image: 'hugewhale/toolbox:notification'
     build:
       context: .
       dockerfile: ToolBox.Services.Notification/Dockerfile
 
   sqlmonitor:
-    image: ${DOCKER_REGISTRY-}sqlmonitor
+    image: 'hugewhale/toolbox:sqlmonitor'
     build:
       context: .
       dockerfile: ToolBox.Services.SQLMonitor/Dockerfile
 
   client:
-    image: ${DOCKER_REGISTRY-}client
+    image: 'hugewhale/toolbox:client'
     build:
       context: .
       dockerfile: ToolBox.Client/Dockerfile
