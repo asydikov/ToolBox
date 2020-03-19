@@ -1,0 +1,24 @@
+<nav id="sidebar" *ngIf="currentUser">
+  
+  <div class="img bg-wrap text-center py-4">
+      <div class="user-logo">
+        <i class="fa fa-database fa-5x mb-3" style="color:red"></i>
+          <h2 class="text-monospace" style="color: white;">ToolBox</h2>
+      </div>
+  </div>
+<ul class="list-unstyled components mb-5">
+<li class="active">
+<a [routerLink]="'dashboard'"><span class="fa fa-home mr-3"></span> Dashboard</a>
+</li>
+<li> 
+  <a [routerLink]="'dashboard/servers/add'">
+    <span class="fa  fa-server mr-3 notif">
+    </span> Add Server</a>
+</li>
+<li>
+<li >
+<a [routerLink]="" (click)="logout()"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
+</li>
+</ul>
+
+</nav>

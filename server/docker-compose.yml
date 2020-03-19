@@ -31,14 +31,20 @@ services:
       context: .
       dockerfile: ToolBox.Services.SQLMonitor/Dockerfile
 
+  client:
+    image: ${DOCKER_REGISTRY-}client
+    build:
+      context: .
+      dockerfile: ToolBox.Client/Dockerfile
+
   rabbitmq:
     image: 'rabbitmq:3'
 
-  identitydb:
+  identitysql:
     image: 'mcr.microsoft.com/mssql/server:2017-CU8-ubuntu'
 
-  sqlmonitordb:
+  sqlmonitorsql:
     image: 'mcr.microsoft.com/mssql/server:2017-CU8-ubuntu'
 
-
+ 
 

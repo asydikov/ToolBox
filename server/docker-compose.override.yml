@@ -20,10 +20,10 @@ services:
     restart: on-failure
     depends_on:
       - rabbitmq
-      - identitydb
+      - identitysql
     links: 
       - rabbitmq
-      - identitydb
+      - identitysql
 
   dbworker:
     hostname: 'dbworker'
@@ -55,10 +55,20 @@ services:
     restart: on-failure
     depends_on:
       - rabbitmq
-      - sqlmonitordb
+      - sqlmonitorsql
     links: 
       - rabbitmq
-      - sqlmonitordb
+      - sqlmonitorsql
+
+  client:
+    hostname: 'localhost'
+    container_name: 'client'
+    ports:
+      - '9090:9090'
+    depends_on:
+      - notification
+    links: 
+      - notification
 
   rabbitmq:
     hostname: 'rabbitmq'
@@ -73,20 +83,21 @@ services:
     ports:
       - '5672:5672'
 
-  identitydb:
-    hostname: 'identitydb'
-    container_name: 'identitydb'
+  identitysql:
+    hostname: 'identitysql'
+    container_name: 'identitysql'
     environment:
       - "ACCEPT_EULA=Y"
       - "SA_PASSWORD=Pass_w0rd12"
     ports:
       - '1455:1433'
 
-  sqlmonitordb:
-    hostname: 'sqlmonitordb'
-    container_name: 'sqlmonitordb'
+  sqlmonitorsql:
+    hostname: 'sqlmonitorsql'
+    container_name: 'sqlmonitorsql'
     environment:
       - "ACCEPT_EULA=Y"
       - "SA_PASSWORD=Pass_w0rd12"
     ports:
       - '1465:1433'
+
