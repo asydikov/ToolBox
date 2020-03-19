@@ -26,7 +26,7 @@
           <p class="mb-0 font-weight-bold">{{server.description}}</p>
         </div>
         </div>
-        <div class="card-footer" [ngClass]="{'connection': !server.isAlive }">
+        <div class="card-footer" [ngClass]="{'connection': !server.isAlive }" style="padding: 15px">
             <button [disabled]="!server.isAlive" class="btn btn-danger col-sm-6" (click)=goToQueries()>
                 Slow Queries
             </button> 
@@ -40,4 +40,3 @@
 
 
 
-  
