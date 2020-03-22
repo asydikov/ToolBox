@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
-using RawRabbit;
 using ToolBox.Services.SQLMonitor.Domain.Enums;
 using ToolBox.Services.SQLMonitor.Domain.Models;
-using ToolBox.Services.SQLMonitor.Messages.Commands;
 using ToolBox.Services.SQLMonitor.RestEaseServices;
 using ToolBox.Services.SQLMonitor.Services;
 
-namespace ToolBox.Services.DBWorker.Controllers
+namespace ToolBox.Services.SQLMonitor.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,7 +17,6 @@ namespace ToolBox.Services.DBWorker.Controllers
     {
         private readonly ISqlQueryService _sqlQueryService;
         private readonly IDbWorkerService _dbWorkerService;
-        private readonly IScheduleService _scheduleService;
         private readonly IServerService _serverService;
         private readonly IDatabaseService _databaseService;
         private readonly IDatabaseBackupMetricsService _databaseBackupMetricsService;
@@ -32,7 +27,6 @@ namespace ToolBox.Services.DBWorker.Controllers
         public SqlMonitorController(
             IDbWorkerService dbWorkerService,
             ISqlQueryService sqlQueryService,
-            IScheduleService scheduleService,
             IServerService serverService,
             IMemoryUsageMetricsService memoryUsageMetricsService,
             IDatabaseService databaseService,
@@ -42,7 +36,6 @@ namespace ToolBox.Services.DBWorker.Controllers
         {
             _sqlQueryService = sqlQueryService;
             _dbWorkerService = dbWorkerService;
-            _scheduleService = scheduleService;
             _serverService = serverService;
             _memoryUsageMetricsService = memoryUsageMetricsService;
             _databaseService = databaseService;
@@ -50,22 +43,7 @@ namespace ToolBox.Services.DBWorker.Controllers
             _databaseSpaceMetricsService = databaseSpaceMetricsService;
             _protector = dataProtector.CreateProtector("sql-server-pass-protector");
         }
-
-        [HttpPost("server-connection-check")]
-        public async Task<IActionResult> ServerConnectionCheck(ConnectionModel connectionModel)
-        {
-            var result = await _dbWorkerService.ServerConnectionCheck(connectionModel);
-            return Ok(result);
-        }
-
-        [HttpGet("servers")]
-        public async Task<IActionResult> Servers(Guid userId)
-        {
-            var result = await _serverService.GetAllAsync(x => x.UserId == userId);
-
-            return Ok(result);
-        }
-
+       
         [HttpGet("dashboard")]
         public async Task<IActionResult> Dashboard(Guid userId)
         {
@@ -92,6 +70,21 @@ namespace ToolBox.Services.DBWorker.Controllers
 
                 result.Add(serverBadge);
             }
+            return Ok(result);
+        }
+
+        [HttpGet("servers")]
+        public async Task<IActionResult> Servers(Guid userId)
+        {
+            var result = await _serverService.GetAllAsync(x => x.UserId == userId);
+
+            return Ok(result);
+        }
+
+        [HttpPost("server-connection-check")]
+        public async Task<IActionResult> ServerConnectionCheck(ConnectionModel connectionModel)
+        {
+            var result = await _dbWorkerService.ServerConnectionCheck(connectionModel);
             return Ok(result);
         }
 

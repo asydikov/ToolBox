@@ -51,13 +51,12 @@ namespace ToolBox.Api.Controllers
             return Ok(new { Name = result });
         }
 
-        [HttpPost("server-add")]
-        public async Task<IActionResult> ServerAdd(ServerCreation command)
+        [HttpPost("server-databases")]
+        public async Task<IActionResult> ServerDatabases(ServerModel model)
         {
-            command.Id = Guid.NewGuid();
-            command.UserId = UserId;
-            await _busClient.PublishAsync(command);
-            return Accepted();
+            var result = await _sqlMonitorService.ServerDatabases(model.Id);
+            return Ok(result);
+            
         }
 
         [HttpPost("time-consuming-queries")]
@@ -67,15 +66,13 @@ namespace ToolBox.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost("server-databases")]
-        public async Task<IActionResult> ServerDatabases(ServerModel model)
+        [HttpPost("server-add")]
+        public async Task<IActionResult> ServerAdd(ServerCreation command)
         {
-            var result = await _sqlMonitorService.ServerDatabases(model.Id);
-            return Ok(result);
-            
+            command.Id = Guid.NewGuid();
+            command.UserId = UserId;
+            await _busClient.PublishAsync(command);
+            return Accepted();
         }
-
-
-
     }
 }
