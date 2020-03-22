@@ -41,7 +41,6 @@ namespace ToolBox.Api.Controllers
         public async Task<IActionResult> Servers()
         {
             var result = await _sqlMonitorService.Servers(UserId);
-
             return Ok(result);
         }
 
@@ -65,7 +64,6 @@ namespace ToolBox.Api.Controllers
         public async Task<IActionResult> TimeConsumingQueries(ServerModel model)
         {
             var result = await _sqlMonitorService.TimeConsumingQueries(model.Id);
-
             return Ok(result);
         }
 
@@ -73,7 +71,6 @@ namespace ToolBox.Api.Controllers
         public async Task<IActionResult> ServerDatabases(ServerModel model)
         {
             var result = await _sqlMonitorService.ServerDatabases(model.Id);
-
             return Ok(result);
             
         }

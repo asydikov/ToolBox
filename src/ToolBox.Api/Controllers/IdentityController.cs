@@ -27,14 +27,11 @@ namespace ToolBox.Api.Controllers
             _logger = logger;
         }
 
-        [HttpGet("me")]
-        public IActionResult Get() => Content($"Your id: '{UserId:N}'.");
-
         [AllowAnonymous]
         [HttpPost("sign-up")]
         public async Task<IActionResult> SignUp(SignUpModel signUpModel)
         {
-            Console.WriteLine($"Api gateway signup- {signUpModel.Email}");
+            _logger.LogInformation($"sign-up: {signUpModel.Email}");
             return Ok(await _identityService.SignUp(signUpModel));
         }
 
@@ -42,7 +39,7 @@ namespace ToolBox.Api.Controllers
         [HttpPost("sign-in")]
         public async Task<IActionResult> SignIn(SignInModel signInModel)
         {
-            Console.WriteLine($"Api controller - {signInModel.Email}");
+            _logger.LogInformation($"sign-in: {signInModel.Email}");
             var result = await _identityService.SignIn(signInModel);
 
             if (result is null)
@@ -54,6 +51,7 @@ namespace ToolBox.Api.Controllers
         [HttpPut("password-change")]
         public async Task<ActionResult> ChangePassword(ChangePassword command)
         {
+            _logger.LogInformation($"password-changing: {command.UserId}");
             await _busClient.PublishAsync(command);
             return Accepted();
         }
