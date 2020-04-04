@@ -46,7 +46,12 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['dashboard']);
+          if (!data || data['message'] == 'invalid_credentials') {
+            this.error = data ? data['message'] : 'Invalid credentials.';
+            this.loading = false;
+          } else {
+            this.router.navigate(['dashboard']);
+          }
         },
         error => {
           this.error = error;
