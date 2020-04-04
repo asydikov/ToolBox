@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          if (!data || data['message'] == 'invalid_credentials') {
+          if (!data || data['errorCode'] == 'invalid_credentials') {
             this.error = data ? data['message'] : 'Invalid credentials.';
             this.loading = false;
           } else {
