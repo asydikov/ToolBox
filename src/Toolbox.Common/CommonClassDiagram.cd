@@ -138,14 +138,6 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Toolbox.Common.Handlers.Handler" BaseTypeListCollapsed="true">
-    <Position X="8.5" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAQAgEqAAACAAAAAAAAAAAAAAgIAAAAgAAAACEA=</HashCode>
-      <FileName>Handlers\Handler.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Interface Name="ToolBox.Common.Auth.IJwtHandler">
     <Position X="10.25" Y="4.5" Width="1.75" />
     <TypeIdentifier>
@@ -208,13 +200,6 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>Services\IServiceHost.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="Toolbox.Common.Handlers.IHandler">
-    <Position X="6.75" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAACAAAAAAAAAAAAAAAIAAAAgAAAACEA=</HashCode>
-      <FileName>Handlers\IHandler.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9.16" />
