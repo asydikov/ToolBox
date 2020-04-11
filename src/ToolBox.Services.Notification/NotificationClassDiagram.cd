@@ -146,14 +146,14 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Interface Name="ToolBox.Services.Notification.Services.IHubService" Collapsed="true">
+  <Interface Name="ToolBox.Services.Notification.Services.IHubService">
     <Position X="1" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAQABAAAAAAgAAAQgA=</HashCode>
       <FileName>Services\IHubService.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.Notification.Services.IHubWrapper" Collapsed="true">
+  <Interface Name="ToolBox.Services.Notification.Services.IHubWrapper">
     <Position X="2.75" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
