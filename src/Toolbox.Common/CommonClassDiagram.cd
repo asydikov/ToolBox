@@ -1,120 +1,109 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Toolbox.Common.Extensions" Collapsed="true">
-    <Position X="8.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Extensions.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Toolbox.Common.Messages.MessageNamespaceAttribute" Collapsed="true">
-    <Position X="6.75" Y="2.25" Width="2.25" />
+  <Class Name="Toolbox.Common.Messages.MessageNamespaceAttribute">
+    <Position X="3" Y="10.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
       <FileName>Messages\MessageNamespaceAttribute.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Toolbox.Common.RestEase.Extensions" Collapsed="true">
-    <Position X="14.25" Y="0.5" Width="1.5" />
+  <Class Name="Toolbox.Common.RestEase.Extensions">
+    <Position X="8.5" Y="8.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAEAAAAAA=</HashCode>
       <FileName>RestEase\Extensions.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Toolbox.Common.RestEase.QueryParamSerializer" Collapsed="true">
-    <Position X="8.75" Y="2.5" Width="1.5" />
+  <Class Name="Toolbox.Common.RestEase.QueryParamSerializer">
+    <Position X="11" Y="8.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAABAAAAAAAAAAAAAAAACAAQAAQAAAAAAAAAAA=</HashCode>
       <FileName>RestEase\QueryParamSerializer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Toolbox.Common.RestEase.RestEaseOptions" Collapsed="true">
-    <Position X="12.25" Y="2.5" Width="1.5" />
+  <Class Name="Toolbox.Common.RestEase.RestEaseOptions">
+    <Position X="11" Y="10.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>RestEase\RestEaseOptions.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Toolbox.Common.RestEase.Service" Collapsed="true">
-    <Position X="7" Y="3.5" Width="1.5" />
+  <Class Name="Toolbox.Common.RestEase.Service">
+    <Position X="8.5" Y="10.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQECAAACAAAAAAAAAAAAAA=</HashCode>
       <FileName>RestEase\RestEaseOptions.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Toolbox.Common.RestEase.RestEaseServiceNotFoundException" Collapsed="true">
-    <Position X="14" Y="2.5" Width="1.5" />
+  <Class Name="Toolbox.Common.RestEase.RestEaseServiceNotFoundException">
+    <Position X="8.5" Y="13.25" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
       <FileName>RestEase\RestEaseServiceNotFoundException.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Common.Auth.Extensions" Collapsed="true">
-    <Position X="12.25" Y="0.5" Width="1.5" />
+  <Class Name="ToolBox.Common.Auth.Extensions">
+    <Position X="8.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Auth\Extensions.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Common.Auth.JsonWebToken" Collapsed="true">
-    <Position X="8.75" Y="1.5" Width="1.5" />
+  <Class Name="ToolBox.Common.Auth.JsonWebToken">
+    <Position X="10.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACIAAAQAAAAAAAEAAAAAAAEAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Auth\JsonWebToken.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Common.Auth.JsonWebTokenPayload" Collapsed="true">
-    <Position X="10.5" Y="1.5" Width="1.5" />
+  <Class Name="ToolBox.Common.Auth.JsonWebTokenPayload">
+    <Position X="12.25" Y="5.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAIAAAAAAAAAAAEIAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Auth\JwonWebTokenPayload.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ToolBox.Common.Auth.JwtHandler" BaseTypeListCollapsed="true">
-    <Position X="12.25" Y="4.5" Width="1.5" />
+    <Position X="10.5" Y="2" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAQICAAAAAAAAAAAAIABAAAAAAAIAAAAAAAA=</HashCode>
       <FileName>Auth\JwtHandler.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Common.Auth.JwtOptions" Collapsed="true">
-    <Position X="14" Y="1.5" Width="1.5" />
+  <Class Name="ToolBox.Common.Auth.JwtOptions">
+    <Position X="8.5" Y="5.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>UAEAAAAAAIAAAAAAAAAAAAAAAAAAgQAAAAAAAAAAAAA=</HashCode>
       <FileName>Auth\JwtOptions.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Common.Exceptions.ToolBoxException" Collapsed="true">
-    <Position X="10.5" Y="3.5" Width="1.5" />
+  <Class Name="ToolBox.Common.Exceptions.ToolBoxException">
+    <Position X="12.25" Y="13.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\ToolBoxException.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Common.RabbitMq.Extensions" Collapsed="true">
-    <Position X="10.5" Y="0.5" Width="1.5" />
+  <Class Name="ToolBox.Common.RabbitMq.Extensions">
+    <Position X="2.25" Y="5.5" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAAAAgAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>RabbitMq\Extensions.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Common.RabbitMq.CustomNamingConventions" Collapsed="true">
-    <Position X="7" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAgAAABAAAAAAAAAAA=</HashCode>
-      <FileName>RabbitMq\Extensions.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Common.RabbitMq.RabbitMqOptions" Collapsed="true">
-    <Position X="10.5" Y="2.5" Width="1.5" />
+  <Class Name="ToolBox.Common.RabbitMq.RabbitMqOptions">
+    <Position X="5.5" Y="10.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
       <FileName>RabbitMq\RabbitMqOptions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ToolBox.Common.Services.ServiceHost" BaseTypeListCollapsed="true">
-    <Position X="2.25" Y="5.5" Width="1.5" />
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
     <NestedTypes>
       <Class Name="ToolBox.Common.Services.ServiceHost.BuilderBase" Collapsed="true">
         <TypeIdentifier>
@@ -138,8 +127,15 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="ToolBox.Common.RabbitMq.CustomNamingConventions">
+    <Position X="0.5" Y="10.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAgAAABAAAAAAAAAAA=</HashCode>
+      <FileName>RabbitMq\CustomNamingConventions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="ToolBox.Common.Auth.IJwtHandler">
-    <Position X="10.25" Y="4.5" Width="1.75" />
+    <Position X="8.5" Y="2" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Auth\IJwtHandler.cs</FileName>
@@ -159,13 +155,6 @@
       <FileName>Commands\ICommandHandler.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Common.Events.IAuthenticatedEvent">
-    <Position X="1.5" Y="3.5" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Events\IAuthenticatedEvent.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="ToolBox.Common.Events.IEvent">
     <Position X="2.75" Y="2" Width="1.5" />
     <TypeIdentifier>
@@ -181,13 +170,11 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="ToolBox.Common.Events.IRejectedEvent">
-    <Position X="3.5" Y="3.5" Width="1.5" />
+    <Position X="2.75" Y="3.5" Width="1.5" />
     <InheritanceLine Type="ToolBox.Common.Events.IEvent" ManuallyRouted="true">
       <Path>
         <Point X="3.5" Y="3.116" />
-        <Point X="3.5" Y="3.308" />
-        <Point X="4.25" Y="3.308" />
-        <Point X="4.25" Y="3.5" />
+        <Point X="3.5" Y="3.5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -196,7 +183,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="ToolBox.Common.Services.IServiceHost">
-    <Position X="0.5" Y="5.5" Width="1.5" />
+    <Position X="2.25" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>Services\IServiceHost.cs</FileName>
