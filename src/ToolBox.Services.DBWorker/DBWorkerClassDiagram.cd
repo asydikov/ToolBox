@@ -1,105 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="ToolBox.Services.DBWorker.Program" Collapsed="true">
-    <Position X="4.25" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.DBWorker.Startup" Collapsed="true">
-    <Position X="7.75" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
-      <FileName>Startup.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.DBWorker.Controllers.DbWorkerController" Collapsed="true">
-    <Position X="6" Y="0.5" Width="1.5" />
+  <Class Name="ToolBox.Services.DBWorker.Controllers.DbWorkerController">
+    <Position X="0.5" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgEAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
       <FileName>Controllers\DbWorkerController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.DBWorker.Domain.Models.ConnectionModel" Collapsed="true">
-    <Position X="4.25" Y="0.5" Width="1.5" />
+  <Class Name="ToolBox.Services.DBWorker.Domain.Models.ConnectionModel">
+    <Position X="0.5" Y="8" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAABCAAACAACAAAQAAABAAA=</HashCode>
       <FileName>Domain\Models\ConnectionModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.DBWorker.Domain.Models.TimeConsumingQueriesModel" Collapsed="true">
-    <Position X="2.5" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>BAIAAAAAAAAAAAAAAAAAAAABAAAAAAAAACAAAAABAAA=</HashCode>
-      <FileName>Domain\Models\TimeConsumingQueriesModel.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.DBWorker.Handlers.SqlStatementQueryHandler" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="2.5" Y="2.5" Width="1.5" />
+  <Class Name="ToolBox.Services.DBWorker.Handlers.SqlStatementQueryHandler" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="4.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAAAAABAAAAAAAAAIAAAAAAAAAgAAAAAAAA=</HashCode>
       <FileName>Handlers\SQLStatementQueryHandler.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.DBWorker.Handlers.SqlStoredProcedureQueryHandler" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="6" Y="2.5" Width="1.5" />
+  <Class Name="ToolBox.Services.DBWorker.Handlers.SqlStoredProcedureQueryHandler" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="4.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAAAAABAAAAAAAAAIAAAAAAAAAgAAAAAAAA=</HashCode>
       <FileName>Handlers\SQLStoredProcedureQueryHandler.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.DBWorker.Helpers.ConnectionHelper" Collapsed="true">
-    <Position X="2.5" Y="0.5" Width="1.5" />
+  <Class Name="ToolBox.Services.DBWorker.Helpers.ConnectionHelper">
+    <Position X="3.25" Y="8" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
       <FileName>Helpers\ConnectionHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.DBWorker.Messages.Commands.SqlStatementQuery" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="7.75" Y="1.5" Width="1.5" />
+  <Class Name="ToolBox.Services.DBWorker.Messages.Commands.SqlStatementQuery" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAACAAAEIAAIAAAAAAAAAAgACAAICAACQAAQAAABAAA=</HashCode>
       <FileName>Messages\Commands\SQLStatementQuery.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.DBWorker.Messages.Commands.SqlStoredProcedureQuery" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="4.25" Y="2.5" Width="1.5" />
+  <Class Name="ToolBox.Services.DBWorker.Messages.Commands.SqlStoredProcedureQuery" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAACAgAEIAAIAAAAAAAAAAgACAAACAACQIAQAAABAAA=</HashCode>
       <FileName>Messages\Commands\SQLStoredProcedureQuery.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.DBWorker.Messages.Events.DbWorkerOperationCompleted" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="7.75" Y="0.5" Width="1.5" />
+  <Class Name="ToolBox.Services.DBWorker.Messages.Events.DbWorkerOperationCompleted" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="4.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAEIAAIAAAAAAAAAAwAAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Messages\Events\DbWorkerOperationCompleted.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.DBWorker.Messages.Events.DbWorkerOperationRejected" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="2.5" Y="1.5" Width="1.5" />
+  <Class Name="ToolBox.Services.DBWorker.Messages.Events.DbWorkerOperationRejected" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="4.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAACAAAEIAAAAAAAAAAgAAwAAAAAAAAAQAAAIAAAAAA=</HashCode>
       <FileName>Messages\Events\DbWorkerOperationRejected.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.DBWorker.Services.SqlService" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="6" Y="1.5" Width="1.5" />
+  <Class Name="ToolBox.Services.DBWorker.Services.SqlService" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="3.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\SQLService.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="ToolBox.Services.DBWorker.Services.ISQLService" Collapsed="true">
-    <Position X="2.5" Y="4.75" Width="1.5" />
+  <Interface Name="ToolBox.Services.DBWorker.Services.ISQLService">
+    <Position X="0.5" Y="3.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\ISQLService.cs</FileName>
