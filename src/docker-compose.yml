@@ -1,0 +1,50 @@
+version: '3.4'
+
+services:
+  api:
+    image: 'hugewhale/toolbox:api'
+    build:
+      context: .
+      dockerfile: ToolBox.Api/Dockerfile
+
+  identity:
+    image: 'hugewhale/toolbox:identity'
+    build:
+      context: .
+      dockerfile: ToolBox.Services.Identity/Dockerfile
+
+  dbworker:
+    image: 'hugewhale/toolbox:dbworker'
+    build:
+      context: .
+      dockerfile: ToolBox.Services.DBWorker/Dockerfile
+
+  notification:
+    image: 'hugewhale/toolbox:notification'
+    build:
+      context: .
+      dockerfile: ToolBox.Services.Notification/Dockerfile
+
+  sqlmonitor:
+    image: 'hugewhale/toolbox:sqlmonitor'
+    build:
+      context: .
+      dockerfile: ToolBox.Services.SQLMonitor/Dockerfile
+
+  client:
+    image: 'hugewhale/toolbox:client'
+    build:
+      context: .
+      dockerfile: ToolBox.Client/Dockerfile
+
+  rabbitmq:
+    image: 'rabbitmq:3'
+
+  identitysql:
+    image: 'mcr.microsoft.com/mssql/server:2017-CU8-ubuntu'
+
+  sqlmonitorsql:
+    image: 'mcr.microsoft.com/mssql/server:2017-CU8-ubuntu'
+
+ 
+

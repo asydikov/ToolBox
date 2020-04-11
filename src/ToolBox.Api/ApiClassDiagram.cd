@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ToolBox.Api.Program">
+    <Position X="2.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToolBox.Api.Startup">
+    <Position X="0.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToolBox.Api.Controllers.BaseController">
+    <Position X="1.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\BaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToolBox.Api.Controllers.IdentityController">
+    <Position X="0.5" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAICAAAAAiAAAAAAAAAAAIABAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\IdentityController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToolBox.Api.Controllers.SqlMonitorController">
+    <Position X="2.5" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAEgEAAAAABAAAIQAAAAAAABAAAAAAAAg=</HashCode>
+      <FileName>Controllers\SqlMonitorController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToolBox.Api.Domain.Models.Identity.SignInModel">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Models\Identity\SignInModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToolBox.Api.Domain.Models.Identity.SignUpModel">
+    <Position X="4.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Models\Identity\SignUpModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToolBox.Api.Domain.Models.Identity.TokenModel">
+    <Position X="6.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Domain\Models\Identity\TokenModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToolBox.Api.Domain.Models.Identity.UserModel">
+    <Position X="8.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAAAQAAAAAAAAAAgAAAAIAAAA=</HashCode>
+      <FileName>Domain\Models\Identity\UserModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToolBox.Api.Domain.Models.SqlMonitor.ConnectionModel">
+    <Position X="12.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAACAACAAAQAAABAAA=</HashCode>
+      <FileName>Domain\Models\SqlMonitor\ConnectionModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToolBox.Api.Domain.Models.SqlMonitor.ServerModel">
+    <Position X="10.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Models\SqlMonitor\ServerModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToolBox.Api.Messages.Commands.Identity.ChangePassword" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAABAAAAgAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Messages\Commands\Identity\ChangePassword.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ToolBox.Api.Messages.Commands.SqlMonitor.ServerCreation" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAwICAAACAACAAAQAAAAAAA=</HashCode>
+      <FileName>Messages\Commands\SqlMonitor\ServerCreation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="ToolBox.Api.RestEaseServices.IIdentityService">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAQAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RestEaseServices\IIdentityService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ToolBox.Api.RestEaseServices.ISqlMonitorService">
+    <Position X="6.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEgEAAAAAAAAAAAAAAAAAABAAAAAAAAg=</HashCode>
+      <FileName>RestEaseServices\ISqlMonitorService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9.16" />
+</ClassDiagram>

@@ -1,0 +1,42 @@
+
+    <div  [ngClass]="{'connection-lost': !server.isAlive }" class="card border-primary mb-3 ml-4 mr-4 sever-badge-container" style="max-width: 18rem; min-height:422px;">
+        <div [ngClass]="{'connection-lost': !server.isAlive }" class="card-header bg-transparent border-primary">
+            <div class="row">
+                <div class="col-sm-3 mr-4 d-flex align-items-center">
+                <i class="fa fa-server fa-2x mr-2 online" [ngClass]="{'offline': !server.isAlive }" aria-hidden="true"></i>
+                </div>
+               <div class="sol-sm-9">
+                   <div class="row"> <h5 class="font-weight-bold online" [ngClass]="{'offline': !server.isAlive }" style="display: contents;">{{server.name}}</h5></div>
+                   <div class="row"> <small>{{server.serverAddress}}</small></div>
+               </div>
+            </div>
+        </div>
+        <div class="card-body">
+          <p *ngIf="server.isAlive" class="d-flex justify-content-between align-items-center">
+              Server status: 
+               <span  class="badge badge-success" style="font-size: 17px;">Connected</span>
+            </p>
+            <p *ngIf="!server.isAlive" class="d-flex justify-content-between align-items-center">
+                 <span *ngIf="!server.isAlive" class="badge badge-warning" style="font-size: 17px; width: 100%;">Connecting</span>
+              </p>
+            <div [ngClass]="{'connection': !server.isAlive }">
+          <p class="d-flex justify-content-between align-items-center"><span class="">Page reads/sec:  </span> <span class="color-gray text-monospace badge-indicator">{{server.pageReadsCount}}</span></p>
+          <p class="d-flex justify-content-between align-items-center"><span class="">Page Lifetime:  </span> <span class="color-gray text-monospace badge-indicator">{{server.pageLifetime}}</span></p>
+          <p class="d-flex justify-content-between align-items-center"> Connected users:  <span class="color-gray text-monospace badge-indicator">{{server.connectedUsers}}</span></p>
+          <p class="mb-0 font-weight-bold">{{server.description}}</p>
+        </div>
+        </div>
+        <div class="card-footer" [ngClass]="{'connection': !server.isAlive }" style="padding: 15px">
+            <button [disabled]="!server.isAlive" class="btn btn-danger col-sm-6" (click)=goToQueries()>
+                Slow Queries
+            </button> 
+            <button [disabled]="!server.isAlive" class="btn btn-success ml-3 col-sm-5" (click)="goToDatabases()">
+                Databases
+            </button> 
+        </div>
+      </div>
+
+
+
+
+

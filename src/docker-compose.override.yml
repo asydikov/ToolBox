@@ -1,0 +1,103 @@
+version: '3.4'
+
+services:
+  api:
+    hostname: 'api'
+    container_name: 'api'
+    ports:
+      - 5000:5000
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    links: 
+      - rabbitmq
+
+  identity:
+    hostname: 'identity'
+    container_name: 'identity'
+    ports:
+      - 5010:5010
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+      - identitysql
+    links: 
+      - rabbitmq
+      - identitysql
+
+  dbworker:
+    hostname: 'dbworker'
+    container_name: 'dbworker'
+    ports:
+      - 5030:5030
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    links: 
+      - rabbitmq
+  
+  notification:
+    hostname: 'notification'
+    container_name: 'notification'
+    ports:
+      - 5050:5050
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    links: 
+      - rabbitmq
+  
+  sqlmonitor:
+    hostname: 'sqlmonitor'
+    container_name: 'sqlmonitor'
+    ports:
+      - 5020:5020
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+      - sqlmonitorsql
+    links: 
+      - rabbitmq
+      - sqlmonitorsql
+
+  client:
+    hostname: 'localhost'
+    container_name: 'client'
+    ports:
+      - '9090:9090'
+    depends_on:
+      - notification
+    links: 
+      - notification
+
+  rabbitmq:
+    hostname: 'rabbitmq'
+    container_name: 'rabbitmq'
+    expose:
+      - 5672
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "5672" ]
+      interval: 5s
+      timeout: 15s
+      retries: 1
+    ports:
+      - '5672:5672'
+
+  identitysql:
+    hostname: 'identitysql'
+    container_name: 'identitysql'
+    environment:
+      - "ACCEPT_EULA=Y"
+      - "SA_PASSWORD=Pass_w0rd12"
+    ports:
+      - '1455:1433'
+
+  sqlmonitorsql:
+    hostname: 'sqlmonitorsql'
+    container_name: 'sqlmonitorsql'
+    environment:
+      - "ACCEPT_EULA=Y"
+      - "SA_PASSWORD=Pass_w0rd12"
+    ports:
+      - '1465:1433'
+
