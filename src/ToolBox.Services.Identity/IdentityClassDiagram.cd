@@ -14,21 +14,21 @@
       <FileName>Startup.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.Identity.Controllers.BaseController" Collapsed="true">
+  <Class Name="ToolBox.Services.Identity.Controllers.BaseController">
     <Position X="1.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAgACAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controllers\BaseController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.Identity.Controllers.IdentityController" Collapsed="true">
+  <Class Name="ToolBox.Services.Identity.Controllers.IdentityController">
     <Position X="0.5" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAACAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Controllers\IdentityController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.Identity.Controllers.TokensController" Collapsed="true">
+  <Class Name="ToolBox.Services.Identity.Controllers.TokensController">
     <Position X="2.75" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
@@ -84,14 +84,14 @@
       <FileName>Entities\EntityBase.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.Identity.Entities.RefreshToken" Collapsed="true">
+  <Class Name="ToolBox.Services.Identity.Entities.RefreshToken">
     <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAAAAAAAAgAAgAAAAAAAAAAAAAAAABAAA=</HashCode>
       <FileName>Entities\RefreshToken.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.Identity.Entities.User" Collapsed="true">
+  <Class Name="ToolBox.Services.Identity.Entities.User">
     <Position X="2.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAQCAAAAAAAAAAAAQAAIAAAAACAAAAAAAAAAA=</HashCode>
