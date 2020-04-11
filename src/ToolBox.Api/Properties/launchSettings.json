@@ -12,6 +12,7 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": false,
+      "httpPort":  5000, 
       "publishAllPorts": true
     }
   }
