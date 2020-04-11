@@ -18,8 +18,8 @@ namespace ToolBox.Api.Controllers
     public class SqlMonitorController : BaseController
     {
         private readonly ISqlMonitorService _sqlMonitorService;
-        private readonly IBusClient _busClient;
         private readonly ILogger _logger;
+        private readonly IBusClient _busClient;
         public SqlMonitorController(
               ISqlMonitorService sqlMonitorService,
               IBusClient busClient,

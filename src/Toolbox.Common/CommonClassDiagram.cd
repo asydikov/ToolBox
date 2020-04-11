@@ -7,16 +7,8 @@
       <FileName>Extensions.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Toolbox.Common.Handlers.Handler" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="7" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAQAgEqAAACAAAAAAAAAAAAAAgIAAAAgAAAACEA=</HashCode>
-      <FileName>Handlers\Handler.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
   <Class Name="Toolbox.Common.Messages.MessageNamespaceAttribute" Collapsed="true">
-    <Position X="7" Y="2.5" Width="1.5" />
+    <Position X="6.75" Y="2.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
       <FileName>Messages\MessageNamespaceAttribute.cs</FileName>
@@ -78,8 +70,8 @@
       <FileName>Auth\JwonWebTokenPayload.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Common.Auth.JwtHandler" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="12.25" Y="1.5" Width="1.5" />
+  <Class Name="ToolBox.Common.Auth.JwtHandler" BaseTypeListCollapsed="true">
+    <Position X="12.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAQICAAAAAAAAAAAAIABAAAAAAAIAAAAAAAA=</HashCode>
       <FileName>Auth\JwtHandler.cs</FileName>
@@ -121,78 +113,89 @@
       <FileName>RabbitMq\RabbitMqOptions.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Common.Services.ServiceHost" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="8.75" Y="3.5" Width="1.5" />
+  <Class Name="ToolBox.Common.Services.ServiceHost" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="ToolBox.Common.Services.ServiceHost.BuilderBase" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\ServiceHost.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ToolBox.Common.Services.ServiceHost.RabbitmqHostBuilder" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\ServiceHost.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ToolBox.Common.Services.ServiceHost.BusBuilder" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\ServiceHost.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>Services\ServiceHost.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="Toolbox.Common.Handlers.IHandler">
-    <Position X="4.25" Y="7.75" Width="1.5" />
+  <Class Name="Toolbox.Common.Handlers.Handler" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAACAAAAAAAAAAAAAAAIAAAAgAAAACEA=</HashCode>
-      <FileName>Handlers\IHandler.cs</FileName>
+      <HashCode>AAAAAAQAgEqAAACAAAAAAAAAAAAAAgIAAAAgAAAACEA=</HashCode>
+      <FileName>Handlers\Handler.cs</FileName>
     </TypeIdentifier>
-  </Interface>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="ToolBox.Common.Auth.IJwtHandler">
-    <Position X="6" Y="7.75" Width="1.5" />
+    <Position X="10.25" Y="4.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Auth\IJwtHandler.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Common.Commands.IAuthenticatedCommand">
-    <Position X="0.75" Y="6" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Commands\IAuthenticatedCommand.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="ToolBox.Common.Commands.ICommand">
-    <Position X="0.75" Y="4.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Commands\ICommand.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ToolBox.Common.Commands.ICommandHandler&lt;T&gt;">
-    <Position X="0.75" Y="7.75" Width="1.5" />
+    <Position X="2.25" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Commands\ICommandHandler.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ToolBox.Common.Events.IAuthenticatedEvent">
-    <Position X="1" Y="2.25" Width="1.5" />
+    <Position X="1.5" Y="3.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Events\IAuthenticatedEvent.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ToolBox.Common.Events.IEvent">
-    <Position X="2" Y="0.75" Width="1.5" />
+    <Position X="2.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Events\IEvent.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ToolBox.Common.Events.IEventHandler&lt;T&gt;">
-    <Position X="2.5" Y="7.75" Width="1.5" />
+    <Position X="0.5" Y="2" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Events\IEventHandler.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ToolBox.Common.Events.IRejectedEvent">
-    <Position X="3" Y="2.25" Width="1.5" />
+    <Position X="3.5" Y="3.5" Width="1.5" />
     <InheritanceLine Type="ToolBox.Common.Events.IEvent" ManuallyRouted="true">
       <Path>
-        <Point X="2.75" Y="1.866" />
-        <Point X="2.75" Y="2.107" />
-        <Point X="3.75" Y="2.107" />
-        <Point X="3.75" Y="2.25" />
+        <Point X="3.5" Y="3.116" />
+        <Point X="3.5" Y="3.308" />
+        <Point X="4.25" Y="3.308" />
+        <Point X="4.25" Y="3.5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -201,10 +204,17 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="ToolBox.Common.Services.IServiceHost">
-    <Position X="7.75" Y="7.75" Width="1.5" />
+    <Position X="0.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>Services\IServiceHost.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Toolbox.Common.Handlers.IHandler">
+    <Position X="6.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAACAAAAAAAAAAAAAAAIAAAAgAAAACEA=</HashCode>
+      <FileName>Handlers\IHandler.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9.16" />
