@@ -1,8 +1,6 @@
-using System;
 using Microsoft.AspNetCore.Identity;
 using ToolBox.Common.Exceptions;
 using ToolBox.Services.Identity.Entities;
-using ToolBox.Services.Identity.Services;
 
 namespace ToolBox.Services.Identity.Helpers
 {
