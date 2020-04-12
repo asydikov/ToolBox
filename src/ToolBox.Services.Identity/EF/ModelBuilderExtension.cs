@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ToolBox.Services.Identity.Entities;
 using ToolBox.Services.Identity.Helpers;
-using ToolBox.Services.Identity.Services;
 
 namespace ToolBox.Services.Identity.EF
 {
@@ -19,14 +18,12 @@ namespace ToolBox.Services.Identity.EF
 
         private static void PasswordGenerate(IServiceProvider services, User user)
         {
-            using (var scope = services.CreateScope())
-            {
-                var scheduleService =
-                   scope.ServiceProvider
-                       .GetRequiredService<IPasswordHasher<User>>();
+            using var scope = services.CreateScope();
+            var scheduleService =
+                scope.ServiceProvider
+                    .GetRequiredService<IPasswordHasher<User>>();
 
-                user.SetPassword("pass", scheduleService);
-            }
+            user.SetPassword("pass", scheduleService);
         }
 
     }
