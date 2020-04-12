@@ -1,8 +1,5 @@
 using System;
-using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using ToolBox.Services.Identity.Domain;
 using ToolBox.Services.Identity.Entities;
 
 namespace ToolBox.Services.Identity.EF
