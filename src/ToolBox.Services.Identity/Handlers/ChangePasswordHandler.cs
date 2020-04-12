@@ -1,13 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using RawRabbit;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using ToolBox.Common.Commands;
 using ToolBox.Common.Exceptions;
 using ToolBox.Services.Identity.Messages.Commands;
-using ToolBox.Services.Identity.Messages.Events;
 using ToolBox.Services.Identity.Messages.Events.Notification;
 using ToolBox.Services.Identity.Services;
 
