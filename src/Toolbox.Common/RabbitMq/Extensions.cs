@@ -5,12 +5,8 @@ using RawRabbit;
 using RawRabbit.Instantiation;
 using ToolBox.Common.Commands;
 using ToolBox.Common.Events;
-using System.Reflection;
 using RawRabbit.Common;
-using System;
 using System.Net;
-using Toolbox.Common.Messages;
-using Toolbox.Common;
 
 namespace ToolBox.Common.RabbitMq
 {
@@ -40,43 +36,6 @@ namespace ToolBox.Common.RabbitMq
             };
             var client = RawRabbitFactory.CreateSingleton(rawRabbitOptions);
             services.AddSingleton<IBusClient>(_ => client);
-        }
-    }
-
-    class CustomNamingConventions : NamingConventions
-    {
-        public CustomNamingConventions(string defaultNamespace)
-        {
-            var assemblyName = Assembly.GetEntryAssembly().GetName().Name;
-            ExchangeNamingConvention = type => GetNamespace(type, defaultNamespace).ToLowerInvariant();
-            RoutingKeyConvention = type => $"{GetRoutingKeyNamespace(type, defaultNamespace)}{type.Name.Underscore()}".ToLowerInvariant();
-            QueueNamingConvention = type => GetQueueName(assemblyName, type, defaultNamespace);
-            ErrorExchangeNamingConvention = () => $"{defaultNamespace}.error";
-            RetryLaterExchangeConvention = span => $"{defaultNamespace}.retry";
-            RetryLaterQueueNameConvetion = (exchange, span) =>
-                $"{defaultNamespace}.retry_for_{exchange.Replace(".", "_")}_in_{span.TotalMilliseconds}_ms".ToLowerInvariant();
-        }
-
-        private static string GetRoutingKeyNamespace(Type type, string defaultNamespace)
-        {
-            var @namespace = type.GetCustomAttribute<MessageNamespaceAttribute>()?.Namespace ?? defaultNamespace;
-
-            return string.IsNullOrWhiteSpace(@namespace) ? string.Empty : $"{@namespace}.";
-        }
-
-        private static string GetNamespace(Type type, string defaultNamespace)
-        {
-            var @namespace = type.GetCustomAttribute<MessageNamespaceAttribute>()?.Namespace ?? defaultNamespace;
-
-            return string.IsNullOrWhiteSpace(@namespace) ? type.Name.Underscore() : $"{@namespace}";
-        }
-
-        private static string GetQueueName(string assemblyName, Type type, string defaultNamespace)
-        {
-            var @namespace = type.GetCustomAttribute<MessageNamespaceAttribute>()?.Namespace ?? defaultNamespace;
-            var separatedNamespace = string.IsNullOrWhiteSpace(@namespace) ? string.Empty : $"{@namespace}.";
-
-            return $"{assemblyName}/{separatedNamespace}{type.Name.Underscore()}".ToLowerInvariant();
         }
     }
 }
