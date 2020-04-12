@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Identity;
 using RawRabbit;
 using ToolBox.Common.Auth;
 using ToolBox.Common.Exceptions;
-using ToolBox.Services.Identity.Domain;
 using ToolBox.Services.Identity.Domain.Repositories;
 using ToolBox.Services.Identity.Entities;
 using ToolBox.Services.Identity.Helpers;
