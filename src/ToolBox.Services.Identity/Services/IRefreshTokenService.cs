@@ -8,6 +8,5 @@ namespace ToolBox.Services.Identity.Services
     {
         Task AddAsync(Guid userId);
         Task<JsonWebToken> CreateAccessTokenAsync(string refreshToken);
-        // Task RevokeAsync(string refreshToken, Guid userId);
     }
 }
