@@ -49,13 +49,13 @@ namespace ToolBox.Services.SQLMonitor.Controllers
         {
             var servers = await _serverService.GetAllAsync(x => x.UserId == userId);
             var memoryUsageMetrics = await _memoryUsageMetricsService.GetAllAsync(x => servers.Select(s => s.Id).Contains(x.ServerId));
-            var result = new List<SqlServerBadge>();
+            var result = new List<SqlServerBadgeModel>();
 
             foreach (var server in servers.OrderBy(x => x.CreatedDate))
             {
                 var memoryUsageMetric = memoryUsageMetrics.LastOrDefault(x => x.ServerId == server.Id);
 
-                var serverBadge = new SqlServerBadge
+                var serverBadge = new SqlServerBadgeModel
                 {
                     ServerId = server.Id,
                     Name = server.Name,
@@ -91,7 +91,7 @@ namespace ToolBox.Services.SQLMonitor.Controllers
         [HttpGet("server-databases")]
         public async Task<IActionResult> ServerDatabases(Guid id)
         {
-            var result = new List<DatabaseBadge>();
+            var result = new List<DatabaseBadgeModel>();
             var databases = await _databaseService.GetAllAsync(x => x.ServerId == id);
 
             foreach (var database in databases)
@@ -102,7 +102,7 @@ namespace ToolBox.Services.SQLMonitor.Controllers
                 var dbMetrics = dbMetricsAll.OrderBy(x => x.CreatedDate).LastOrDefault();
 
                 result.Add(
-                    new DatabaseBadge
+                    new DatabaseBadgeModel
                     {
                         Id = database.Id,
                         Name = database.Name,
