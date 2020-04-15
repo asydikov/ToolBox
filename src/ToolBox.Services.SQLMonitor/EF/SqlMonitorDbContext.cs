@@ -1,6 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using ToolBox.Services.SQLMonitor.Entities;
 
 namespace ToolBox.Services.SQLMonitor.EF
