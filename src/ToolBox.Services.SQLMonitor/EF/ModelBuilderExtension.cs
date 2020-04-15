@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using ToolBox.Services.SQLMonitor.Domain.Enums;
 using ToolBox.Services.SQLMonitor.Entities;
@@ -13,7 +12,7 @@ namespace ToolBox.Services.SQLMonitor.EF
         {
 
             var queries = AddQueries(modelBuilder);
-            var schedules = AddSchedule(modelBuilder, queries);
+            AddSchedule(modelBuilder, queries);
         }
 
 
