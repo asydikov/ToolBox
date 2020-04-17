@@ -2,11 +2,8 @@
 using Microsoft.Extensions.Logging;
 using RawRabbit;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using ToolBox.Common.Commands;
-using ToolBox.Common.Events;
 using ToolBox.Services.SQLMonitor.Domain.Enums;
 using ToolBox.Services.SQLMonitor.Domain.Models;
 using ToolBox.Services.SQLMonitor.Messages.Commands;
