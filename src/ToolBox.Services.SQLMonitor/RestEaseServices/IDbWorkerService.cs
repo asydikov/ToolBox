@@ -1,5 +1,4 @@
 ﻿using RestEase;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ToolBox.Services.SQLMonitor.Domain.Models;
