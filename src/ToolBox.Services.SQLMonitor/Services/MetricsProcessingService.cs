@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using RawRabbit;
 using ToolBox.Services.SQLMonitor.Domain.Enums;
 using ToolBox.Services.SQLMonitor.Domain.Models;
-using ToolBox.Services.SQLMonitor.Entities;
 using ToolBox.Services.SQLMonitor.Messages.Events.DbWorker;
 using ToolBox.Services.SQLMonitor.Messages.Events.Notification;
 
