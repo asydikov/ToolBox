@@ -1,718 +1,695 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="ToolBox.Services.SQLMonitor.Program" Collapsed="true">
-    <Position X="31.25" Y="7.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Startup" Collapsed="true">
-    <Position X="31.25" Y="10.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
-      <FileName>Startup.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Controllers.SqlMonitorController" Collapsed="true">
-    <Position X="27.75" Y="9.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Controllers.SqlMonitorController">
+    <Position X="15" Y="0.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AIQAAAAAAAAAEgEAAAAAAAAAARAAICAAAFCAAAAAAAg=</HashCode>
       <FileName>Controllers\SQLMonitorController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.ConnectionModel" Collapsed="true">
-    <Position X="26" Y="5.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.ConnectionModel">
+    <Position X="10.5" Y="5.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAABCAAACAACAAAQAAABAAA=</HashCode>
       <FileName>Domain\Models\ConnectionModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.DatabaseBackupMetricsModel" Collapsed="true">
-    <Position X="9.25" Y="18.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.DatabaseBackupMetricsModel">
+    <Position X="2.5" Y="10.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAgAAAAAAAAAAAAAAAAAAQwAAAAAAAAA=</HashCode>
       <FileName>Domain\Models\DatabaseBackupMetricsModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.DatabaseBadge" Collapsed="true">
-    <Position X="31.25" Y="5.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.DatabaseBadgeModel">
+    <Position X="14.75" Y="5.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAACACAAAAAAAAAAMAAAAAQAAAQAAAAAAQAAAgQAAAA=</HashCode>
-      <FileName>Domain\Models\DatabaseBadge.cs</FileName>
+      <FileName>Domain\Models\DatabaseBadgeModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.DatabaseModel" Collapsed="true">
-    <Position X="11.5" Y="18.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.DatabaseModel">
+    <Position X="2.5" Y="12.5" Width="2" />
+    <InheritanceLine Type="ToolBox.Services.SQLMonitor.Domain.Models.ModelBase" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.75" Y="11.702" />
+        <Point X="5.75" Y="12.389" />
+        <Point X="4.847" Y="12.389" />
+        <Point X="4.847" Y="12.688" />
+        <Point X="4.5" Y="12.688" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAEAAQAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Domain\Models\DatabaseModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.DatabaseSpaceMetricsModel" Collapsed="true">
-    <Position X="13.75" Y="18.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.DatabaseSpaceMetricsModel">
+    <Position X="6.75" Y="10.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAAAAAAAAAAIAAAAAAAAAAAAAAAQAAAAAQAAAA=</HashCode>
       <FileName>Domain\Models\DatabaseSpaceMetricsModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.MemoryUsageMetricsModel" Collapsed="true">
-    <Position X="16" Y="18.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.MemoryUsageMetricsModel">
+    <Position X="7" Y="12.25" Width="2.25" />
+    <InheritanceLine Type="ToolBox.Services.SQLMonitor.Domain.Models.ModelBase" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.75" Y="11.702" />
+        <Point X="5.75" Y="12.384" />
+        <Point X="6.66" Y="12.384" />
+        <Point X="6.66" Y="12.688" />
+        <Point X="7" Y="12.688" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAABAAAAAAAAAAAAAEAAAAAAAAAAAAAACAAAIAAAA=</HashCode>
       <FileName>Domain\Models\MemoryUsageMetricsModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.ModelBase" Collapsed="true">
-    <Position X="11.5" Y="17.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.ModelBase">
+    <Position X="5" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAEAAAAAAAAAAAAAAAAgAAAAIAAAA=</HashCode>
       <FileName>Domain\Models\ModelBase.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.ScheduleModel" Collapsed="true">
-    <Position X="18.25" Y="18.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.ScheduleModel">
+    <Position X="7" Y="14.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAEAIAAAIIAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Domain\Models\ScheduleModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.ScheduleServerModel" Collapsed="true">
-    <Position X="26" Y="8.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.ScheduleServerModel">
+    <Position X="13" Y="8" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAABAAAAEAAAAAEAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Domain\Models\ScheduleServerModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.ScheduleSqlQueryModel" Collapsed="true">
-    <Position X="29.5" Y="8.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.ScheduleSqlQueryModel">
+    <Position X="15" Y="8" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAEAAAIAAACAAAAAAAAA=</HashCode>
       <FileName>Domain\Models\ScheduleSqlQueryModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.ServerModel" Collapsed="true">
-    <Position X="4.75" Y="18.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.ServerModel">
+    <Position X="5" Y="13.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAkAAAAAAAAAAwACAAACAACAAAQAAAAAAA=</HashCode>
       <FileName>Domain\Models\ServerModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.SqlQueryModel" Collapsed="true">
-    <Position X="7" Y="18.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.SqlQueryModel">
+    <Position X="2.5" Y="14.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAAAAgAAAAAAAAAgAA=</HashCode>
       <FileName>Domain\Models\SqlQueryModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.SqlServerBadge" Collapsed="true">
-    <Position X="24.25" Y="10.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.SqlServerBadgeModel">
+    <Position X="12.75" Y="5.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAgAAAAAAAEAAQQIAAAAAAAAACIAAIAAAA=</HashCode>
-      <FileName>Domain\Models\SqlServerBadge.cs</FileName>
+      <FileName>Domain\Models\SqlServerBadgeModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.TimeConsumingQueriesModel" Collapsed="true">
-    <Position X="22.5" Y="11.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Domain.Models.TimeConsumingQueriesModel">
+    <Position X="10.5" Y="8" Width="2.25" />
     <TypeIdentifier>
       <HashCode>BIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
       <FileName>Domain\Models\TimeConsumingQueriesModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.EF.EfExtension" Collapsed="true">
-    <Position X="31.25" Y="6.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.EF.EfExtension">
+    <Position X="12.75" Y="12.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAACAAAAA=</HashCode>
       <FileName>EF\EfExtension.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.EF.ModelBuilderExtension" Collapsed="true">
-    <Position X="26" Y="7.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.EF.ModelBuilderExtension">
+    <Position X="12.75" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAIAAAAAAAACAA=</HashCode>
       <FileName>EF\ModelBuilderExtension.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.EF.SqlMonitorDbContext" Collapsed="true">
-    <Position X="29.5" Y="9.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.EF.SqlMonitorDbContext">
+    <Position X="10.5" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAUAAAAAAAAAEAQAAFEAAAAAAABAAAAAAAAA=</HashCode>
       <FileName>EF\SqlMonitorDbContext.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.EF.SqlSettings" Collapsed="true">
-    <Position X="26" Y="10.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
-      <FileName>EF\SqlSettings.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Entities.Database" Collapsed="true">
-    <Position X="9.25" Y="15.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Entities.Database">
+    <Position X="3" Y="5.25" Width="2" />
+    <InheritanceLine Type="ToolBox.Services.SQLMonitor.Entities.EntityBase" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="5.442" />
+        <Point X="6" Y="5.812" />
+        <Point X="5" Y="5.812" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAAAAAAEAAQAAAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Entities\Database.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Entities.DatabaseBackupMetrics" Collapsed="true">
-    <Position X="11.5" Y="15.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Entities.DatabaseBackupMetrics">
+    <Position X="3" Y="2.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAEAAAgAAAAAAAAAAAAAAAAAAQwAAAAAAAAA=</HashCode>
       <FileName>Entities\DatabaseBackupMetrics.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Entities.DatabaseSpaceMetrics" Collapsed="true">
-    <Position X="13.75" Y="15.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Entities.DatabaseSpaceMetrics">
+    <Position X="7" Y="2.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAACAAAEAAAAAAIAAAAAAAAAAAAAAAQAAAAAQAAAA=</HashCode>
       <FileName>Entities\DatabaseSpaceMetrics.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Entities.EntityBase" Collapsed="true">
-    <Position X="11.5" Y="14.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Entities.EntityBase">
+    <Position X="5.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAQAAEAAgCAAAAAAAAAAAAgAgAAIAAAA=</HashCode>
       <FileName>Entities\EntityBase.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Entities.MemoryUsageMetrics" Collapsed="true">
-    <Position X="16" Y="15.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Entities.MemoryUsageMetrics">
+    <Position X="7" Y="5" Width="2" />
+    <InheritanceLine Type="ToolBox.Services.SQLMonitor.Entities.EntityBase" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="5.442" />
+        <Point X="6" Y="5.812" />
+        <Point X="7" Y="5.812" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAABAAAAAAAAAAAAAEAAAAAAAAAAAAAACAAgIAAAA=</HashCode>
       <FileName>Entities\MemoryUsageMetrics.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Entities.Schedule" Collapsed="true">
-    <Position X="18.25" Y="15.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Entities.Schedule">
+    <Position X="7" Y="7.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAEAIAAAIIAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\Schedule.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Entities.ScheduleDatabase" Collapsed="true">
-    <Position X="22.5" Y="8.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAEAAAABAAAAAAAAAAEAAAAAAQAAAAAAAAAA=</HashCode>
-      <FileName>Entities\ScheduleDatabase.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Entities.ScheduleServer" Collapsed="true">
-    <Position X="24.25" Y="8.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Entities.ScheduleServer">
+    <Position X="3.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAABAAAAEAAAAAEAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Entities\ScheduleServer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Entities.ScheduleSqlQuery" Collapsed="true">
-    <Position X="27.75" Y="8.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Entities.ScheduleSqlQuery">
+    <Position X="5.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAEAAAIAAACAAAAAAAAA=</HashCode>
       <FileName>Entities\ScheduleSqlQuery.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Entities.Server" Collapsed="true">
-    <Position X="4.75" Y="15.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Entities.Server">
+    <Position X="5.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAkAAAAAAAAAAwACAAACAACAAAQAAAAAAA=</HashCode>
       <FileName>Entities\Server.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Entities.SqlQuery" Collapsed="true">
-    <Position X="7" Y="15.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Entities.SqlQuery">
+    <Position X="3" Y="7.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAgAAAAAgAAAAAAAAAgAA=</HashCode>
       <FileName>Entities\SqlQuery.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Handlers.DbWorker.DbWorkerOperationCompletedHandler" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="26" Y="6.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Handlers.DbWorker.DbWorkerOperationCompletedHandler" BaseTypeListCollapsed="true">
+    <Position X="20.75" Y="16.5" Width="3" />
     <TypeIdentifier>
       <HashCode>QAQAAIAAAAAAAABAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Handlers\DbWorker\DbWorkerOperationCompletedHandler.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Handlers.DbWorker.DbWorkerOperationRejectedHandler" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="29.5" Y="6.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Handlers.DbWorker.DbWorkerOperationRejectedHandler" BaseTypeListCollapsed="true">
+    <Position X="24" Y="16.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAAAAABAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Handlers\DbWorker\DbWorkerOperationRejectedHandler.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Handlers.ServerCommandHandler" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="31.25" Y="8.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Handlers.ServerCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="22.5" Y="4.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAAAAAAABAAAABAAAAIAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>Handlers\ServerCommandHandler.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Helpers.AutoMapperConfig" Collapsed="true">
-    <Position X="24.25" Y="5.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Helpers.AutoMapperConfig">
+    <Position X="11" Y="12.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
       <FileName>Helpers\AutoMapperConfig.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Messages.Commands.DbWorker.SqlStatementQuery" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="27.75" Y="10.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Messages.Commands.DbWorker.SqlStatementQuery" BaseTypeListCollapsed="true">
+    <Position X="20.75" Y="8" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAACAAAEIAAIAAAAAAAAAAgACAAICAACQAAQAAABAAA=</HashCode>
       <FileName>Messages\Commands\DbWorker\SqlStatementQuery.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Messages.Commands.SqlStoredProcedureQuery" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="29.5" Y="10.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Messages.Commands.SqlStoredProcedureQuery" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="8" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAACAgAEIAAIAAAAAAAAAAgACAAACAACQIAQAAABAAA=</HashCode>
       <FileName>Messages\Commands\DbWorker\SqlStoredProcedureQuery.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Messages.Commands.ServerCreation" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="20.75" Y="9.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Messages.Commands.ServerCreation" BaseTypeListCollapsed="true">
+    <Position X="20.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAgAAAAAAAAAAwICAAACAACAAAQAAAAAAA=</HashCode>
       <FileName>Messages\Commands\ServerCreation.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Messages.Events.DbWorker.DbWorkerOperationCompleted" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="24.25" Y="6.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Messages.Events.DbWorker.DbWorkerOperationCompleted" BaseTypeListCollapsed="true">
+    <Position X="20.75" Y="13" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAACAAAEIAAIAAAAAAAAAAwAAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Messages\Events\DbWorker\DbWorkerOperationCompleted.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Messages.Events.DbWorker.DbWorkerOperationRejected" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="27.75" Y="6.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Messages.Events.DbWorker.DbWorkerOperationRejected" BaseTypeListCollapsed="true">
+    <Position X="23.75" Y="13" Width="3" />
     <TypeIdentifier>
       <HashCode>AAACAAAEIAAAAAAAAAAgAAwAAAAAAAAAQAAAIAAAAAA=</HashCode>
       <FileName>Messages\Events\DbWorker\DbWorkerOperationRejected.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Messages.Events.Notification.DatabaseSpaceUsageMetricsCompleted" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="22.5" Y="6.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Messages.Events.Notification.DatabaseSpaceUsageMetricsCompleted" BaseTypeListCollapsed="true">
+    <Position X="24" Y="19.75" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAACACAAAAAAAAAAIAAAAAgAAAAAAAAAQAAAAAQAAAA=</HashCode>
       <FileName>Messages\Events\Notification\DatabaseSpaceUsageMetricsCompleted.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Messages.Events.Notification.OperationCompleted" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="27.75" Y="7.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Messages.Events.Notification.OperationCompleted" BaseTypeListCollapsed="true">
+    <Position X="23.5" Y="22.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAACAAAAIAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Messages\Events\Notification\OperationCompleted.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Messages.Events.Notification.OperationRejected" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="29.5" Y="7.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Messages.Events.Notification.OperationRejected" BaseTypeListCollapsed="true">
+    <Position X="25.5" Y="22.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAACAAAAIAAAAAAAAAAkAAwAAAAAAAAAAAAAIAAAAAA=</HashCode>
       <FileName>Messages\Events\Notification\OperationRejected.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Messages.Events.Notification.ServerMemoryUsageMetricsCompleted" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="22.5" Y="9.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Messages.Events.Notification.ServerMemoryUsageMetricsCompleted" BaseTypeListCollapsed="true">
+    <Position X="20.75" Y="19.75" Width="3" />
     <TypeIdentifier>
       <HashCode>AAACABAAAAAAAAAAAAAEAAgAAAAAAAAAAACAAAIAAAA=</HashCode>
       <FileName>Messages\Events\Notification\ServerMemoryUsageMetricsCompleted.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Messages.Events.Notification.UserSessionMetricsCompleted" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="27.75" Y="11.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Messages.Events.Notification.UserSessionMetricsCompleted" BaseTypeListCollapsed="true">
+    <Position X="20.75" Y="22.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAAAAAA=</HashCode>
       <FileName>Messages\Events\Notification\UserSessionMetricsCompleted.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Migrations.Initalize" Collapsed="true">
-    <Position X="20.75" Y="7.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
-      <FileName>Migrations\20200222225838_Initalize.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Migrations.Servers_Databases_Added" Collapsed="true">
-    <Position X="26" Y="9.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
-      <FileName>Migrations\20200222231030_Servers_Databases_Added.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Migrations.SQLQueries_Added" Collapsed="true">
-    <Position X="20.75" Y="10.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
-      <FileName>Migrations\20200223173132_SQLQueries_Added.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Migrations.Schedule_Added" Collapsed="true">
-    <Position X="20.75" Y="8.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
-      <FileName>Migrations\20200225233110_Schedule_Added.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Migrations.Static_UserId_Server_Seed" Collapsed="true">
-    <Position X="20.75" Y="11.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
-      <FileName>Migrations\20200226195918_Static_UserId_Server_Seed.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Migrations.SqlQuery_Updated" Collapsed="true">
-    <Position X="22.5" Y="10.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
-      <FileName>Migrations\20200302193655_SqlQuery_Updated.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Migrations.Added_new_SqlQueries" Collapsed="true">
-    <Position X="20.75" Y="5.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
-      <FileName>Migrations\20200302200951_Added_new_SqlQueries.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Migrations.Added_new_SqlQueries_Updated" Collapsed="true">
-    <Position X="22.5" Y="5.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
-      <FileName>Migrations\20200302204206_Added_new_SqlQueries_Updated.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Migrations.DatabasesList_Query_Removed_SqlQueries" Collapsed="true">
-    <Position X="20.75" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
-      <FileName>Migrations\20200302204534_DatabasesList_Query_Removed_SqlQueries.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Migrations.Update" Collapsed="true">
-    <Position X="26" Y="11.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
-      <FileName>Migrations\20200302205257_Update.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Migrations.Database_Metrics_Added" Collapsed="true">
-    <Position X="27.75" Y="5.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
-      <FileName>Migrations\20200304100833_Database_Metrics_Added.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Migrations.Database_Metrics_Update" Collapsed="true">
-    <Position X="29.5" Y="5.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
-      <FileName>Migrations\20200304121217_Database_Metrics_Update.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Migrations.SQLMonitorDbContextModelSnapshot" Collapsed="true">
-    <Position X="31.25" Y="9.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
-      <FileName>Migrations\SQLMonitorDbContextModelSnapshot.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Repositories.DatabaseBackupMetricsRepository" Collapsed="true">
-    <Position X="9.25" Y="12.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Repositories.DatabaseBackupMetricsRepository">
+    <Position X="8.25" Y="28.5" Width="2.75" />
+    <InheritanceLine Type="ToolBox.Services.SQLMonitor.Repositories.RepositoryBase&lt;TEntity&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="11.5" Y="27.747" />
+        <Point X="11.5" Y="28.875" />
+        <Point X="11" Y="28.875" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repositories\DatabaseBackupMetricsRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Repositories.DatabaseRepository" Collapsed="true">
-    <Position X="13.75" Y="12.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Repositories.DatabaseRepository">
+    <Position X="12.75" Y="25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repositories\DatabaseRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Repositories.DatabaseSpaceMetricsRepository" Collapsed="true">
-    <Position X="18.25" Y="12.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Repositories.DatabaseSpaceMetricsRepository">
+    <Position X="12" Y="28.5" Width="2.5" />
+    <InheritanceLine Type="ToolBox.Services.SQLMonitor.Repositories.RepositoryBase&lt;TEntity&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="11.5" Y="27.747" />
+        <Point X="11.5" Y="28.875" />
+        <Point X="12" Y="28.875" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repositories\DatabaseSpaceMetricsRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Repositories.MemoryUsageMetricsRepository" Collapsed="true">
-    <Position X="4.75" Y="12.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Repositories.MemoryUsageMetricsRepository">
+    <Position X="10.5" Y="30.25" Width="2.5" />
+    <InheritanceLine Type="ToolBox.Services.SQLMonitor.Repositories.RepositoryBase&lt;TEntity&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="11.5" Y="27.747" />
+        <Point X="11.5" Y="30.25" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repositories\MemoryUsageMetricsRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Repositories.RepositoryBase&lt;TEntity&gt;" Collapsed="true">
-    <Position X="11.5" Y="11.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Repositories.RepositoryBase&lt;TEntity&gt;">
+    <Position X="10.5" Y="25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAEAAAAACCAABAAAAAAAAAAAAAAAAAgAAAAAIIAAAAA=</HashCode>
       <FileName>Repositories\RepositoryBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Repositories.ScheduleRepository" Collapsed="true">
-    <Position X="7" Y="12.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Repositories.ScheduleRepository">
+    <Position X="12.75" Y="26.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repositories\ScheduleRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Repositories.ServerRepository" Collapsed="true">
-    <Position X="11.5" Y="12.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Repositories.ServerRepository">
+    <Position X="8.25" Y="25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repositories\ServerRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Repositories.SqlQueryRepository" Collapsed="true">
-    <Position X="16" Y="12.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Repositories.SqlQueryRepository">
+    <Position X="8.25" Y="26.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repositories\SqlQueryRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Services.DatabaseBackupMetricsService" Collapsed="true">
-    <Position X="7" Y="6.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Services.DatabaseBackupMetricsService">
+    <Position X="10.5" Y="22.5" Width="4" />
+    <InheritanceLine Type="ToolBox.Services.SQLMonitor.Services.ServiceBase&lt;TModel, TEntity&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="14.5" Y="20.692" />
+        <Point X="14.5" Y="22.211" />
+        <Point X="14.062" Y="22.211" />
+        <Point X="14.062" Y="22.5" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\DatabaseBackupMetricsService.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Services.DatabaseService" Collapsed="true">
-    <Position X="9.25" Y="6.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Services.DatabaseService">
+    <Position X="16" Y="17.75" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\DatabaseService.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Services.DatabaseSpaceMetricsService" Collapsed="true">
-    <Position X="11.5" Y="6.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Services.DatabaseSpaceMetricsService">
+    <Position X="15.25" Y="21.25" Width="3.75" />
+    <InheritanceLine Type="ToolBox.Services.SQLMonitor.Services.ServiceBase&lt;TModel, TEntity&gt;" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.5" Y="20.692" />
+        <Point X="14.5" Y="21.875" />
+        <Point X="15.25" Y="21.875" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\DatabaseSpaceMetricsService.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Services.MemoryUsageMetricsService" Collapsed="true">
-    <Position X="4.75" Y="6.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Services.MemoryUsageMetricsService">
+    <Position X="15.25" Y="23" Width="3.75" />
+    <InheritanceLine Type="ToolBox.Services.SQLMonitor.Services.ServiceBase&lt;TModel, TEntity&gt;" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.5" Y="20.692" />
+        <Point X="14.5" Y="22.211" />
+        <Point X="14.875" Y="22.211" />
+        <Point X="14.875" Y="23.312" />
+        <Point X="15.25" Y="23.312" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\MemoryUsageMetricsService.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Services.Metrics" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="22.5" Y="7.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Services.Metrics" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="38.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAKIAAAAQAAAAQIAAAAAAAIAABIAABAAAAAAAAAAA=</HashCode>
       <FileName>Services\Metrics.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Services.MetricsProcessingService" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="24.25" Y="7.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Services.MetricsProcessingService" BaseTypeListCollapsed="true">
+    <Position X="11" Y="38.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AIQAAIICAAAAAAABAAAAAAAAABAQACAAAEAAAQAAAAA=</HashCode>
       <FileName>Services\MetricsProcessingService.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Services.ScheduleService" Collapsed="true">
-    <Position X="13.75" Y="6.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Services.ScheduleService">
+    <Position X="16" Y="19.5" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
       <FileName>Services\ScheduleService.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Services.ServerService" Collapsed="true">
-    <Position X="16" Y="6.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Services.ServerService">
+    <Position X="10.5" Y="17.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAACAAAAAAAAAQ=</HashCode>
       <FileName>Services\ServerService.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Services.ServiceBase&lt;TModel, TEntity&gt;" Collapsed="true">
-    <Position X="11.5" Y="5.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Services.ServiceBase&lt;TModel, TEntity&gt;">
+    <Position X="13.25" Y="17.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAEAAAAACCBAAAAAAAABAAAAAAAAAAgAAAAAIIAAAAA=</HashCode>
       <FileName>Services\ServiceBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Services.SqlQueryService" Collapsed="true">
-    <Position X="18.25" Y="6.5" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Services.SqlQueryService">
+    <Position X="10.5" Y="20.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\SqlQueryService.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ToolBox.Services.SQLMonitor.Services.TimedHostedService" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="24.25" Y="11.25" Width="1.5" />
+  <Class Name="ToolBox.Services.SQLMonitor.Services.TimedHostedService" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="33.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACQgAAAAAAgAAAAAIAAAAAAAAQAAAAABAAA=</HashCode>
       <FileName>Services\TimedHostedService.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="ToolBox.Services.SQLMonitor.Repositories.IDatabaseBackupMetricsRepository" Collapsed="true">
-    <Position X="20.75" Y="12.5" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Repositories.IDatabaseBackupMetricsRepository">
+    <Position X="0.5" Y="27.5" Width="2.75" />
+    <InheritanceLine Type="ToolBox.Services.SQLMonitor.Repositories.IRepositoryBase&lt;TEntity&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="3.5" Y="27.093" />
+        <Point X="3.5" Y="27.938" />
+        <Point X="3.25" Y="27.938" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repositories\IDatabaseBackupMetricsRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Repositories.IDatabaseRepository" Collapsed="true">
-    <Position X="22.5" Y="12.5" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Repositories.IDatabaseRepository">
+    <Position X="4.75" Y="25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repositories\IDatabaseRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Repositories.IDatabaseSpaceMetricsRepository" Collapsed="true">
-    <Position X="24.25" Y="12.5" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Repositories.IDatabaseSpaceMetricsRepository">
+    <Position X="4.25" Y="27.5" Width="2.5" />
+    <InheritanceLine Type="ToolBox.Services.SQLMonitor.Repositories.IRepositoryBase&lt;TEntity&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="3.5" Y="27.093" />
+        <Point X="3.5" Y="27.938" />
+        <Point X="4.25" Y="27.938" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repositories\IDatabaseSpaceMetricsRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Repositories.IMemoryUsageMetricsRepository" Collapsed="true">
-    <Position X="27.75" Y="12.5" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Repositories.IMemoryUsageMetricsRepository">
+    <Position X="2.25" Y="28.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repositories\IMemoryUsageMetricsRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Repositories.IRepositoryBase&lt;TEntity&gt;" Collapsed="true">
-    <Position X="20.75" Y="13.25" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Repositories.IRepositoryBase&lt;TEntity&gt;">
+    <Position X="2.5" Y="25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAEAAAAACCAAAAAAAAAAAAAAAAAAAAgAAAAAIIAAAAA=</HashCode>
       <FileName>Repositories\IRepositoryBase.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Repositories.IScheduleRepository" Collapsed="true">
-    <Position X="22.5" Y="13.25" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Repositories.IScheduleRepository">
+    <Position X="4.75" Y="26.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repositories\IScheduleRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Repositories.IServerRepository" Collapsed="true">
-    <Position X="24.25" Y="13.25" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Repositories.IServerRepository">
+    <Position X="0.5" Y="25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repositories\IServerRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Repositories.ISqlQueryRepository" Collapsed="true">
-    <Position X="26" Y="13.25" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Repositories.ISqlQueryRepository">
+    <Position X="0.5" Y="26.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Repositories\ISqlQueryRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.RestEaseServices.IDbWorkerService" Collapsed="true">
-    <Position X="26" Y="12.5" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.RestEaseServices.IDbWorkerService">
+    <Position X="0.5" Y="33.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>RestEaseServices\IDbWorkerService.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Services.IDatabaseBackupMetricsService" Collapsed="true">
-    <Position X="13.75" Y="9.5" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Services.IDatabaseBackupMetricsService">
+    <Position X="1.25" Y="20.5" Width="4" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\IDatabaseBackupMetricsService.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Services.IDatabaseService" Collapsed="true">
-    <Position X="16" Y="9.5" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Services.IDatabaseService">
+    <Position X="7" Y="17.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\IDatabaseService.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Services.IDatabaseSpaceMetricsService" Collapsed="true">
-    <Position X="18.25" Y="9.5" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Services.IDatabaseSpaceMetricsService">
+    <Position X="5.75" Y="20.5" Width="4" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\IDatabaseSpaceMetricsService.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Services.IMemoryUsageMetricsService" Collapsed="true">
-    <Position X="4.75" Y="9.5" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Services.IMemoryUsageMetricsService">
+    <Position X="3.75" Y="21.75" Width="3.75" />
+    <InheritanceLine Type="ToolBox.Services.SQLMonitor.Services.IServiceBase&lt;TModel, TEntity&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="5.5" Y="19.843" />
+        <Point X="5.5" Y="21.75" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\IMemoryUsageMetricsService.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Services.IMetrics" Collapsed="true">
-    <Position X="29.5" Y="12.5" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Services.IMetrics">
+    <Position X="8.5" Y="37" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\IMetrics.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Services.IMetricsProcessingService" Collapsed="true">
-    <Position X="31.25" Y="12.5" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Services.IMetricsProcessingService">
+    <Position X="11" Y="37" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\IMetricsProcessingService.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Services.IScheduleService" Collapsed="true">
-    <Position X="7" Y="9.5" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Services.IScheduleService">
+    <Position X="7" Y="19.25" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\IScheduleService.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Services.IServerService" Collapsed="true">
-    <Position X="9.25" Y="9.5" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Services.IServerService">
+    <Position X="1.25" Y="17.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
       <FileName>Services\IServerService.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Services.IServiceBase&lt;TModel, TEntity&gt;" Collapsed="true">
-    <Position X="11.5" Y="8.25" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Services.IServiceBase&lt;TModel, TEntity&gt;">
+    <Position X="4.25" Y="17.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAEAAAAACCAAAAAAAAAAAAAAAAAAAAgAAAAAIIAAAAA=</HashCode>
       <FileName>Services\IServiceBase.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="ToolBox.Services.SQLMonitor.Services.ISqlQueryService" Collapsed="true">
-    <Position X="11.5" Y="9.5" Width="1.5" />
+  <Interface Name="ToolBox.Services.SQLMonitor.Services.ISqlQueryService">
+    <Position X="1.25" Y="19.25" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\ISqlQueryService.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="ToolBox.Services.SQLMonitor.Domain.Enums.SqlQueryNames" Collapsed="true">
-    <Position X="20.75" Y="14.25" Width="1.5" />
+  <Enum Name="ToolBox.Services.SQLMonitor.Domain.Enums.SqlQueryNames">
+    <Position X="14.5" Y="12.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAAAAACAAAAAAAAIgAAAIAAACAAIAAAAAAA=</HashCode>
       <FileName>Domain\Enums\SqlQueryNames.cs</FileName>
