@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: toolbox
+  description: An example of a Backstage application.
+  tags:
+    - javascript
+    - react
+    - nodejs
+  # Example for optional annotations
+  annotations:
+    github.com/project-slug: asydikov/ToolBox
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: website
+  owner: aziz@example.com
+  lifecycle: experimental
